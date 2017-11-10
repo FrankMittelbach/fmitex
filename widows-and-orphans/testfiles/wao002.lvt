@@ -1,0 +1,11 @@
+\documentclass {article}
+
+\input{regression-test}
+    
+\clubpenalty=152
+
+\START
+
+\usepackage{widows-and-orphans}
+
+\END

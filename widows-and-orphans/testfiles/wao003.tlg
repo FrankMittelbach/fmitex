@@ -1,0 +1,91 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+%% goal height=60.0, max depth=5.0
+% t=0.0 g=60.0 b=10000 p=0 c=100000#
+% t=10.0 g=60.0 b=10000 p=152 c=100000#
+% t=22.0 g=60.0 b=10000 p=51 c=100000#
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line ....
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line ....
+% t=46.0 plus 3.0 g=60.0 b=10000 p=0 c=100000#
+% t=64.0 plus 7.0 minus 3.0 g=60.0 b=* p=152 c=*
+[1
+]
+%% goal height=60.0, max depth=5.0
+% t=10.0 g=60.0 b=10000 p=152 c=100000#
+% t=22.0 g=60.0 b=10000 p=153 c=100000#
+% t=34.0 g=60.0 b=10000 p=0 c=100000#
+% t=46.0 plus 1.0 g=60.0 b=10000 p=152 c=100000#
+% t=58.0 plus 1.0 g=60.0 b=800 p=153 c=953#
+% t=70.0 plus 1.0 g=60.0 b=* p=0 c=*
+*** Widow on page 3
+[2]
+%% goal height=60.0, max depth=5.0
+% t=10.0 g=60.0 b=10000 p=0 c=100000#
+% t=22.0 plus 1.0 g=60.0 b=10000 p=152 c=100000#
+% t=34.0 plus 1.0 g=60.0 b=10000 p=153 c=100000#
+% t=46.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
+% t=58.0 plus 2.0 g=60.0 b=100 p=152 c=252#
+% t=70.0 plus 2.0 g=60.0 b=* p=153 c=*
+*** Orphan on page 3
+[3]
+%% goal height=60.0, max depth=5.0
+% t=10.0 g=60.0 b=10000 p=153 c=100000#
+% t=22.0 g=60.0 b=10000 p=0 c=100000#
+% t=34.0 plus 1.0 g=60.0 b=10000 p=305 c=100000#
+% t=46.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
+% t=58.0 plus 2.0 g=60.0 b=100 p=305 c=405#
+% t=70.0 plus 2.0 g=60.0 b=* p=0 c=*
+*** Orphan on page 4 and widow on page 5
+[4]
+%% goal height=60.0, max depth=5.0
+% t=10.0 g=60.0 b=10000 p=0 c=100000#
+% t=22.0 plus 1.0 g=60.0 b=10000 p=305 c=100000#
+% t=34.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
+% t=46.0 plus 2.0 g=60.0 b=10000 p=305 c=100000#
+% t=58.0 plus 2.0 g=60.0 b=100 p=0 c=100#
+% t=60.5 plus 2.0 plus 1.0fil g=60.0 b=* p=-10000 c=*
+[5]
+%% goal height=60.0, max depth=5.0
+% t=0.0 g=60.0 b=10000 p=0 c=100000#
+% t=10.0 g=60.0 b=10000 p=-10001 c=-10001#
+%% goal height=60.0, max depth=5.0
+% t=0.0 g=60.0 b=10000 p=0 c=100000#
+% t=10.0 g=60.0 b=10000 p=152 c=100000#
+% t=22.0 g=60.0 b=10000 p=153 c=100000#
+% t=34.0 g=60.0 b=10000 p=0 c=100000#
+% t=46.0 plus 1.0 g=60.0 b=10000 p=152 c=100000#
+% t=58.0 plus 1.0 g=60.0 b=800 p=153 c=953#
+% t=70.0 plus 1.0 g=60.0 b=* p=0 c=*
+*** Widow on page 6 (second column)
+%% goal height=60.0, max depth=5.0
+% t=10.0 g=60.0 b=10000 p=0 c=100000#
+% t=22.0 plus 1.0 g=60.0 b=10000 p=305 c=100000#
+% t=34.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
+% t=46.0 plus 2.0 g=60.0 b=10000 p=152 c=100000#
+% t=58.0 plus 2.0 g=60.0 b=100 p=153 c=253#
+% t=70.0 plus 2.0 g=60.0 b=* p=0 c=*
+*** Widow on page 7 (first column)
+[6
+]
+%% goal height=60.0, max depth=5.0
+% t=10.0 g=60.0 b=10000 p=0 c=100000#
+% t=22.0 plus 1.0 g=60.0 b=10000 p=152 c=100000#
+% t=34.0 plus 1.0 g=60.0 b=10000 p=153 c=100000#
+% t=46.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
+% t=58.0 plus 2.0 g=60.0 b=100 p=305 c=405#
+% t=70.0 plus 2.0 g=60.0 b=* p=0 c=*
+*** Orphan and widow on page 7 (first and second column)
+%% goal height=60.0, max depth=5.0
+% t=10.0 g=60.0 b=10000 p=0 c=100000#
+% t=22.0 plus 1.0 g=60.0 b=10000 p=305 c=100000#
+% t=34.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
+% t=46.0 plus 2.0 g=60.0 b=10000 p=305 c=100000#
+% t=58.0 plus 2.0 g=60.0 b=100 p=0 c=100#
+% t=60.5 plus 2.0 plus 1.0fil g=60.0 b=* p=-10000 c=*
+[7]
+%% goal height=60.0, max depth=5.0
+% t=0.0 g=60.0 b=10000 p=0 c=100000#
+% t=10.0 g=60.0 b=10000 p=-10001 c=-10001#
+(wao003.aux)
