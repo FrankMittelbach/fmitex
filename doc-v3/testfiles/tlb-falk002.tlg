@@ -1,0 +1,34 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+(tlb-falk002.lvt
+***************************
+* Character table correct *
+***************************
+\indexentry{mymacro=\verb!*+\mymacro+|main}{1}
+\indexentry{mymacronobsc=\verb!*+\mymacronobsc+}{3}
+\indexentry{mymacronobsc=\verb!*+\mymacronobsc+|main}{5}
+\indexentry{mymacro=\verb!*+\mymacro+}{6}
+\indexentry{mymacronobsc=\verb!*+\mymacronobsc+}{7}
+\indexentry{myenv={\ttfamily myenv} (environment)|main}{9}
+\indexentry{environments:>myenv={\ttfamily myenv}|main}{9}
+\indexentry{mymacro=\verb!*+\mymacro+}{10}
+\indexentry{mymacronobsc=\verb!*+\mymacronobsc+}{11}
+No file tlb-falk002.ind.
+No file tlb-falk002.gls.
+**********************************
+* This macro file has no checksum!
+* The checksum should be 12!
+**********************************
+) [1
+\glossaryentry{v2.00> =General:>Etwas Neues}{1}
+\glossaryentry{v2.01> =General:>Und sogar noch neuer}{1}
+\glossaryentry{v2.00>mymacro=\verb!*+\mymacro+:>neu}{1}
+\glossaryentry{v2.01>mymacro=\verb!*+\mymacro+:>neuer Test}{1}
+\glossaryentry{v2.00>ymacronobsc=\verb!*+mymacronobsc+:>neu}{1}
+\glossaryentry{v2.01>ymacronobsc=\verb!*+mymacronobsc+:>neuer Test}{1}
+\glossaryentry{v2.00>myenv=\verb!*+myenv+:>neu}{1}
+\glossaryentry{v2.01>myenv=\verb!*+myenv+:>neuer Test}{1}
+\indexentry{!!=Test!!}{1}
+\indexentry{0}{1}
+\indexentry{ =Leerzeichen}{1}
+] (tlb-falk002.aux)
