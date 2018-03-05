@@ -1413,6 +1413,30 @@
 \DeclareStringOption{idxtype}
 %    \end{macrocode}
 %
+% \subsection{Processing the package options}
+%
+% We need to save the default value for every option because \dox environments
+% need to reset them at every call.
+%    \begin{macrocode}
+\ProcessKeyvalOptions*
+\ifdox@noprint
+  \def\dox@noprintdefault{true}
+\else
+  \def\dox@noprintdefault{false}
+\fi
+\ifdox@noindex
+  \def\dox@noindexdefault{true}
+\else
+  \def\dox@noindexdefault{false}
+\fi
+\ifdox@macrolike
+  \def\dox@macrolikedefault{true}
+\else
+  \def\dox@macrolikedefault{false}
+\fi
+%    \end{macrocode}
+%
+%
 %
 % \subsection{Macros surrounding the `definition parts'}
 %
@@ -5157,29 +5181,6 @@
 % \end{macro}
 
 
-
-% \subsection{Finale}
-%
-% We need to save the default value for every option because \dox environments
-% need to reset them at every call.
-%    \begin{macrocode}
-\ProcessKeyvalOptions*
-\ifdox@noprint
-  \def\dox@noprintdefault{true}
-\else
-  \def\dox@noprintdefault{false}
-\fi
-\ifdox@noindex
-  \def\dox@noindexdefault{true}
-\else
-  \def\dox@noindexdefault{false}
-\fi
-\ifdox@macrolike
-  \def\dox@macrolikedefault{true}
-\else
-  \def\dox@macrolikedefault{false}
-\fi
-%    \end{macrocode}
 
 
 
