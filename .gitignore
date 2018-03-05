@@ -2,3 +2,4 @@
 doc-v3/build/
 doc-v3/doc.pdf
 doc-v3/doc-code.pdf
+*.log
