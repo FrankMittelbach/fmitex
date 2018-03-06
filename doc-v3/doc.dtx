@@ -136,9 +136,6 @@
 %
 % \newcommand{\DOC}{\texttt{doc}\xspace}
 %
-% \renewcommand\PrintDescribeEnv[1]{\strut\MacroFont
-%                  #1\normalfont\space (\textit{env})}
-%
 % \newcommand\env{\texttt}
 % \newcommand\cls{\texttt}
 % \newcommand\pkg{\texttt}
@@ -1391,7 +1388,7 @@
 %
 % \subsection{Options supported by \DOC{}}
 %
-%   V3
+%   \fmi{write docu}
 %
 %    \begin{macrocode}
 \RequirePackage{kvoptions}
@@ -1408,9 +1405,11 @@
 %    \begin{macrocode}
 \DeclareBoolOption{macrolike}
 %    \end{macrocode}
-% This one is for \cs{DeclareDocItem}:
+% These are for \cs{DeclareDocItem}:
 %    \begin{macrocode}
 \DeclareStringOption{idxtype}
+\DeclareStringOption{idxgroup}
+\DeclareStringOption{printtype}
 %    \end{macrocode}
 %
 % \subsection{Processing the package options}
@@ -2290,40 +2289,6 @@
 % The following three macros should be user definable.
 % Therefore we define those macros only if they have not already
 % been defined.
-%
-% \begin{macro}{\PrintMacroName}
-% \begin{macro}{\PrintEnvName}
-% \begin{macro}{\PrintDescribeMacro}
-% \begin{macro}{\PrintDescribeEnv}
-%    The formatting of the macro name in the left margin is done by
-%    these macros. We first set a |\strut| to get the height and
-%    depth of the normal lines. Then we change to the
-%    |\MacroFont| using |\string| to |\catcode| the
-%    argument to other (assuming that it is a macro name). Finally we
-%    print a space.  The font change remains local since this macro
-%    will be called inside an |\hbox|.
-%    \begin{macrocode}
-\@ifundefined{PrintMacroName}
-   {\def\PrintMacroName#1{\strut \MacroFont \string #1\ }}{}
-%    \end{macrocode}
-%    We use the same formatting conventions when describing a macro.
-%    \begin{macrocode}
-\@ifundefined{PrintDescribeMacro}
-   {\def\PrintDescribeMacro#1{\strut \MacroFont \string #1\ }}{}
-%    \end{macrocode}
-%    To format the name of a new environment there is no need to use
-%    |\string|.
-%    \begin{macrocode}
-\@ifundefined{PrintDescribeEnv}
-   {\def\PrintDescribeEnv#1{\strut \MacroFont #1\ }}{}
-\@ifundefined{PrintEnvName}
-   {\def\PrintEnvName#1{\strut \MacroFont #1\ }}{}
-%    \end{macrocode}
-% \end{macro}
-% \end{macro}
-% \end{macro}
-% \end{macro}
-%
 %
 %
 % \subsection{Creating index entries by scanning `macrocode'}
@@ -4833,25 +4798,31 @@
 
 
 % \section{Integrating hypdoc}
-
+%
+% If the option \texttt{hyperref} is selected (which is the default),
+% then we load the \pkg{hypdoc} package. That package currently
+%    expects some commands from \DOC version~2 being defined, so we
+%    need to provide some dummy definitions for them
 %    \begin{macrocode}
 \ifdox@hyperref
-
+  \let\PrintDescribeMacro \@empty
+  \let\PrintDescribeEnv   \@empty
+  \let\PrintMacroName     \@empty
+  \let\PrintEnvName       \@empty
   \usepackage{hypdoc}
-
-  \let\PrintMacroName\relax
-  \let\PrintDescribeMacro\relax
-
-  \let\PrintEnvName\relax
-  \let\PrintDescribeEnv\relax
-
+%    \end{macrocode}
+%    That package adds extra code into |\index| entries but it doesn't
+% know about all the stuff that \DOC does (now). So we need to provide
+% us with two helpers that handle the |\encapchar| case in some entries.
+%    \begin{macrocode}
+  \def\@doxprovidetarget{\HD@target}
   \def\@doxhandleencap#1{\encapchar hdclindex{\the\c@HD@hypercount}{#1}}
-
+%    \end{macrocode}
+%    If that package is not loaded these helpers do little to nothing
+%    \begin{macrocode}
 \else
-  \let\HD@target\@empty
-
+  \let\@doxprovidetarget\@empty
   \def\@doxhandleencap#1{\encapchar #1}
-
 \fi
 %    \end{macrocode}
 
@@ -4863,10 +4834,15 @@
 %
 % \section{Integrating the \dox package code}
 %
+% The code in this section is largely taken over from the \dox package
+% by Didier with only minor modifications (so far). This means it is a
+% bit back and forth and both the code and the documentation need
+% further updates.
+%
 % \subsection{\dox environments}
 
 % \begin{macro}{\@@doxenv}
-%   \marg{macrolike-boolean}\marg{item}\marg{name}\\
+%   \marg{are-we-macrolike}\marg{item}\marg{name}\\
 %   In \texttt{doc.sty}, the \texttt{macro} and \texttt{environment}
 %   environments go through the \cs{m@cro@} macro which implements specific
 %   parts by testing a boolean condition as its first argument. This mechanism
@@ -4887,11 +4863,22 @@
 % need one specific command generating \cs{saved@indexname} the right way for
 % every single item. These commands are
 %    named\cs{@Save\meta{item}IndexName};
-% FMi no loonger!
 % they are technically part of the generated API, only not meant for public
 % use.
+%
+% \fmi{above docu is no longer right (but code needs further changes
+% anyway}
+%
+%    |#1| is either \texttt{TT} (for true = macrolike) or \texttt{TF}.
+%    If true then we drop the first char from |\saved@macroname| and
+%    store the result in |\saved@indexname| and use the latter for
+%    sorting in the index.
 %    \begin{macrocode}
-    #1\saved@macroname
+    \if #1%      
+      \edef\saved@indexname{\expandafter\@gobble\saved@macroname}%
+    \else
+      \let\saved@indexname\saved@macroname
+    \fi
 %
     \def\makelabel##1{\llap{##1}}%
     \if@inlabel
@@ -4914,7 +4901,8 @@
 % The second notable modification to the original macro involves dynamically
 % constructing the name of the print macro:
 %    \begin{macrocode}
-        \noexpand\HD@target
+        \noexpand\@doxprovidetarget
+        \noexpand\strut
         \noexpand\@nameuse{Print#2Name}{\saved@macroname}]}%
       \@tempa
     \fi
@@ -4927,7 +4915,13 @@
       \@nameuse{SpecialMain#2Index}{#3}\nobreak
       \global\advance\c@CodelineNo\m@ne
     \fi
-    \ifx#1\@doxsavemacrolikeindexname \DoNotIndex{#3}\fi
+%    \end{macrocode}
+%    Suppress further |\index| entries when we are within a
+%    \texttt{macrolike} environment. (There is no point doing that for
+%    non-\texttt{macrolike} environments are index entries are only
+%    generated for items starting with a backslash anyway.
+%    \begin{macrocode}
+    \if#1\DoNotIndex{#3}\fi
     \ignorespaces}
 %    \end{macrocode}
 % \end{macro}
@@ -4942,7 +4936,7 @@
 
 
 % \begin{macro}{\@doxenv}
-%   \marg{item}\oarg{options}\\
+%   \marg{true-value}\marg{item}\oarg{options}\\
 %   Handle optional arguments and call \cs{@@doxenv}. Because environments can
 %   be nested, we can't rely on grouping for getting options default values.
 %   Hence, we need to reset the options at every call.
@@ -4954,7 +4948,7 @@
   \begingroup
     \catcode`\\12
     \MakePrivateLetters
-    \@@doxenv#1{#2}%
+    \@@doxenv{#1}{#2}%
 }
 %    \end{macrocode}
 % \end{macro}
@@ -4972,8 +4966,8 @@
     \endgroup
     \ifdox@noprint\else
       \marginpar{\raggedleft
-                 \HD@target
-                 \@nameuse{PrintDescribe#1}{#2}}%
+                 \@doxprovidetarget
+                 \strut\@nameuse{PrintDescribe#1}{#2}}%
     \fi
     \ifdox@noindex\else
       \@nameuse{Special#1Index}{#2}%
@@ -5001,21 +4995,6 @@
 
 % \subsection{API construction}
 
-% First, the two index name generation macros (macrolike or not).
-% \begin{macro}{\@doxsavemacrolikeindexname}
-%   \marg{saved macro name}
-%    \begin{macrocode}
-\def\@doxsavemacrolikeindexname#1{%
-  \edef\saved@indexname{\expandafter\@gobble#1}}
-%    \end{macrocode}
-% \end{macro}
-% \begin{macro}{\@doxsaveindexname}
-%   \marg{saved macro name}
-%    \begin{macrocode}
-\def\@doxsaveindexname#1{\let\saved@indexname#1}
-%    \end{macrocode}
-% \end{macro}
-%
 
 % \begin{macro}{\@doxcreatespecialmainindex}
 %   \marg{item}\marg{idxtype}\marg{idxcat}
@@ -5041,7 +5020,7 @@
 %    \begin{macrocode}
   \@namedef{Special#1Index}##1{%
     \@bsphack
-    \HD@target
+    \@doxprovidetarget
     \index{##1\actualchar{\protect\ttfamily##1}%
            \ifx\@nil#2\@nil\else \space (#2)\fi
            \@doxhandleencap{usage}}%
@@ -5073,7 +5052,7 @@
   \@namedef{Special#1Index}##1{%
     \@SpecialIndexHelper@##1\@nil
     \@bsphack
-    \HD@target
+    \@doxprovidetarget
     \index{\@gtempa\actualchar
       \string\verb\quotechar*\verbatimchar\bslash\@gtempa\verbatimchar
       \ifx\@nil#2\@nil\else \space (#2)\fi
@@ -5105,75 +5084,111 @@
 \def\@doxcreateenv#1#2#3{%
   \@namedef{#3}{%
     \@ifnextchar[%]
-    {\@doxenv#1{#2}}{\@doxenv#1{#2}[]}}
+    {\@doxenv{#1}{#2}}{\@doxenv{#1}{#2}[]}}
   \expandafter\let\csname end#2\endcsname\endtrivlist}
 %    \end{macrocode}
 % \end{macro}
 
 
+%    
+%  \begin{macro}{\@nameedef}
+%    
+%    \begin{macrocode}
+\def\@nameedef#1{\expandafter\edef\csname #1\endcsname}
+%    \end{macrocode}
+%  \end{macro}
 
 %
 % \subsection{API creation}
 %
 % The whole user interface is created in one macro call.
 % \begin{macro}{\DeclareDocItem}
-%   \oarg{options}\marg{name}\marg{envname}\marg{idxcat}
+%   \oarg{options}\marg{name}\marg{envname}
+%
+%\begin{verbatim}
+% defaults:
+%
+%  idxtype   = #3
+%  idxgroup  = #3s
+%  printtype =
+%\end{verbatim}
+
+
 %    \begin{macrocode}
-\newcommand\DeclareDocItem[4][]{%
+\newcommand\DeclareDocItem[3][]{%
   \@nameuse{dox@macrolike\dox@macrolikedefault}%
   \def\dox@idxtype{#3}%
+  \def\dox@idxgroup{#3s}%
+  \let\dox@printtype\@empty
   \setkeys{dox}{#1}%
 %    \end{macrocode}
 %   \begin{macro}{\Print...Name}
 %     \marg{name}
+% \fmi{extremly messy this with so many \cs{expandafter}s \ldots{} should reimplement in expl3}
 %    \begin{macrocode}
-  \@ifundefined{Print#2Name}{%
-    \ifdox@macrolike
-      \@namedef{Print#2Name}##1{\strut\MacroFont\string ##1\ }%
-    \else
-      \@namedef{Print#2Name}##1{\strut\MacroFont ##1\ }%
-    \fi}{}%
+  \ifx\dox@printtype\@empty
+    \@temptokena{}%
+  \else
+    \@temptokena\expandafter{\expandafter
+         \textnormal\expandafter{\expandafter
+         \space\expandafter 
+         (\dox@printtype)}}%
+  \fi
+  \@nameedef{Print#2Name}##1{%
+     {\noexpand\MacroFont
+      \ifdox@macrolike
+         \noexpand\string
+      \fi
+      ##1%
+      \the\@temptokena
+     }}%
 %    \end{macrocode}
 %   \end{macro}
+%   \begin{macro}{\PrintDescribe...}
+%     \marg{name}
+%    \begin{macrocode}
+  \expandafter\let\csname PrintDescribe#2\expandafter\endcsname
+                  \csname Print#2Name\endcsname
+%    \end{macrocode}
+%   \end{macro}
+%
 %   \begin{macro}{\SpecialMain...Index}
 %     \marg{name}
 %   \begin{macro}{\Special...Index}
 %     \marg{name}
 %    \begin{macrocode}
-  \ifdox@macrolike
-    \def\@doxexpr{\@doxcreatespecialmacrolikeindexes{#2}}%
-  \else
-    \def\@doxexpr{\@doxcreatespecialindexes{#2}}
-  \fi
-  \expandafter\@doxexpr\expandafter{\dox@idxtype}{#4}%
+  \edef\@doxexpr{%
+     \ifdox@macrolike
+       \noexpand\@doxcreatespecialmacrolikeindexes
+     \else
+       \noexpand\@doxcreatespecialindexes
+     \fi
+     {#2}%
+    }%
+   \expandafter\expandafter\expandafter
+   \@doxexpr
+   \expandafter\expandafter\expandafter
+     {\csname dox@idxtype\expandafter\endcsname
+      \expandafter}\expandafter
+     {\dox@idxgroup}%
 %    \end{macrocode}
 %   \end{macro}
 %   \end{macro}
 %
-%   \begin{macro}{\PrintDescribe...}
-%     \marg{name}
-%    \begin{macrocode}
-  \@ifundefined{PrintDescribe#2}{%
-    \ifdox@macrolike
-      \@namedef{PrintDescribe#2}##1{\strut\MacroFont\string ##1\ }%
-    \else
-      \@namedef{PrintDescribe#2}##1{\strut\MacroFont ##1\ }%
-    \fi}{}%  
-%    \end{macrocode}
-%   \end{macro}
 %   \begin{macro}{\Describe...}
 %     \oarg{options}\marg{name}
 %    \begin{macrocode}
-  \@doxcreatedescribe{#2}
+  \@doxcreatedescribe{#2}%
 %    \end{macrocode}
 %   \end{macro}
+%
 %   \begin{environment}{item}
 %     \oarg{options}\marg{name}
 %    \begin{macrocode}
     \ifdox@macrolike
-      \@doxcreateenv\@doxsavemacrolikeindexname{#2}{#3}%
+      \@doxcreateenv{TT}{#2}{#3}%
     \else
-      \@doxcreateenv\@doxsaveindexname{#2}{#3}%
+      \@doxcreateenv{TF}{#2}{#3}%
     \fi
 }
 %    \end{macrocode}
@@ -5204,14 +5219,24 @@
 %\def\SpecialMainMacroIndex#1{%
 %  \SpecialMainIndex{#1}\nobreak%
 %  \DoNotIndex{#1}}
-
 %\@doxcreateenv{Macro}{macro}
-
-\DeclareDocItem[macrolike=true,idxtype=]{Macro}{macro}{}
-
 %    \end{macrocode}
-%    We use |\def| not |\let| so redefinition of |\SpecialMacroIndex|
-%    will be transparent.
+%
+%    As we no longer define macros and envs this isn't really an
+%    overwrite any longer.
+%
+%    Macros get only a single index entry (no index group, no index
+%    type) and they do not get any label either when printing in the margin.    
+%    \begin{macrocode}
+\DeclareDocItem[macrolike = true ,
+                idxtype   = ,
+                idxgroup  = ,
+                printtype =  
+               ]{Macro}{macro}
+%    \end{macrocode} 
+%    Support \DOC V2 which had \cs{SpecialUsageIndex}: We use |\def|
+%    not |\let| so redefinition of |\SpecialMacroIndex| will be
+%    transparent.
 %    \begin{macrocode}
 \def\SpecialUsageIndex{\SpecialMacroIndex}
 
@@ -5219,15 +5244,19 @@
 %
 % \subsubsection{Environment facilities}
 %
-% Making \cs{DescribeEnv} and the \texttt{environment} environment work the
-% \dox way is even more straightforward.
+%    Providing documentation support for environments. Here we differ
+%    from \DOC V2 by marking the environments with ``(\textit{env.})''
+%    when printing the name in the margin.
 %    \begin{macrocode}
 
-\DeclareDocItem[macrolike=false]{Env}{environment}{environments}
+\DeclareDocItem[macrolike = false ,
+                idxtype   = env.  ,
+                idxgroup  = environments ,
+                printtype = \textit{env.} 
+               ]{Env}{environment}
 
 %    \end{macrocode}
 %
-
 
 
 % \section{Misc additions}
@@ -5248,289 +5277,7 @@
 %
 % \Finale
 % \PrintIndex \PrintChanges
+%
+%
 \endinput
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%% Old code and old documentation
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{macro}{\macro}
-% \begin{macro}{\m@cro@}
-% \changes{v1.5v}{1990/01/28}{\cs{macro@} renamed to \cs{m@cro@}
-%                  since AmSTeX
-%      defines another macro of the same name.}
-%    The environment takes an argument---the macro name to be
-%    described.  Since this name may contain special `letters' we have
-%    to re-|\catcode| them before scanning the argument. This is done
-%    by the |\MakePrivateLetters| macro.
-% \changes{v1.5k}{1989/08/17}{Fix for save stack problem.}
-% \changes{v1.7a}{1992/02/26}{Catcode backslash to other (from newdoc).}
-% \changes{v1.9k}{1994/02/22}{Don't omit extra group}
-%    \begin{macrocode}
-\def\macro{\begingroup
-   \catcode`\\12
-   \MakePrivateLetters \m@cro@ \iftrue}
-%    \end{macrocode}
-%
-% \begin{environment}{environment}
-% \changes{v1.8c}{1993/10/25}{Environment added}
-%    The ``environment'' envrionment will be implemented just like the
-%    ``macro'' environment flagging any differences in the code by
-%    passing |\iffalse| or |\iftrue| to the |\m@cro@| environment
-%    doing the actual work.
-%    \begin{macrocode}
-\def\environment{\begingroup
-   \catcode`\\12
-   \MakePrivateLetters \m@cro@ \iffalse}
-%    \end{macrocode}
-% \end{environment}
-%
-%    After scanning the argument we close the group to get the normal
-%    |\catcode|$\,$s back. Then we assign a special value to
-%    |\topsep| and start a \env{trivlist} environment.
-% \changes{v1.5f}{1989/05/07}{MacroTopsep parameter added.}
-% \changes{v1.5k}{1989/08/17}{Fix for save stack problem.}
-% \changes{v1.8c}{1993/10/25}{Support ``environment'' env}
-% \changes{v1.9k}{1994/02/22}{Remove \cs{macro@level}}
-%    \begin{macrocode}
-\long\def\m@cro@#1#2{\endgroup \topsep\MacroTopsep \trivlist
-%    \end{macrocode}
-% We also save the name being described in |\saved@macroname| for
-% use in conjunction with the |\changes| macro.
-%    \begin{macrocode}
-  \edef\saved@macroname{\string#2}%
-  #1
-%    \end{macrocode}
-%    If documenting an environment we put is name in |\saved@indexname|
-%    otherwise the name without the backslash.
-% \changes{v2.1g}{2016/02/15}{Use \cs{saved@indexname}}
-%    \begin{macrocode}
-    \let\saved@indexname\saved@macroname
-  \else
-    \edef\saved@indexname{\expandafter\@gobble\string#2}%
-  \fi
-%    \end{macrocode}
-%    Now there follows a variation of |\makelabel| which is used
-%    should the environment not be nested, or should it lie between
-%    two successive |\begin{macro}| instructions or explanatory
-%    text.  One can recognize this with the switch |\if@inlabel|
-%    which will be |true| in the case of successive |\item|
-%    commands.
-%    \begin{macrocode}
-  \def\makelabel##1{\llap{##1}}%
-%    \end{macrocode}
-%    If |@inlabel| is |true| and if $\verb=\macro@cnt= > 0$
-%    then the above definition needs to be changed, because in this
-%    case \LaTeX{} would otherwise put the labels all on the same line
-%    and this would lead to them being overprinted on top of each
-%    other.  Because of this |\makelabel| needs to be redefined
-%    in this case.
-%    \begin{macrocode}
-  \if@inlabel
-%    \end{macrocode}
-%    If |\macro@cnt| has the value $1$, then we redefine
-%    |\makelabel| so that the label will be positioned in the
-%    second line of the margin.  As a result of this, two macro names
-%    appear correctly, one under the other.  It's important whilst
-%    doing this that the generated label box is not allowed to have
-%    more depth than a normal line since otherwise the distance
-%    between the first two text lines of \TeX{} will be incorrectly
-%    calculated. The definition should then look like:
-%\begin{verbatim}
-%     \def\makelabel##1{\llap{\vtop to \baselineskip
-%          {\hbox{\strut}\hbox{##1}\vss}}}
-%\end{verbatim}
-%    Completely analogous to this is the case where labels need to be
-%    placed one under the other.  The lines above are only an example
-%    typeset with the \env{verbatim} environment. To produce the real
-%    definition we save the value of |\macro@cnt| in
-%    |\count@| and empty the temp macro |\@tempa| for later
-%    use.
-%    \begin{macrocode}
-    \let\@tempa\@empty \count@\macro@cnt
-%    \end{macrocode}
-%    In the following loop we append for every already typeset label
-%    an |\hbox{\strut}| to the definition of |\@tempa|.
-%    \begin{macrocode}
-    \loop \ifnum\count@>\z@
-      \edef\@tempa{\@tempa\hbox{\strut}}\advance\count@\m@ne \repeat
-%    \end{macrocode}
-%    Now be put the definition of |\makelabel| together.
-% \changes{v1.5b}{1989/04/27}{vbox to vtop changed in makelabel (test)}
-% \changes{v1.5e}{1989/04/28}{ht strutbox changed to baselineskip
-%                             (test)}
-%    \begin{macrocode}
-    \edef\makelabel##1{\llap{\vtop to\baselineskip
-                               {\@tempa\hbox{##1}\vss}}}%
-%    \end{macrocode}
-%    Next we increment the value of the nesting depth counter.  This
-%    value inside the \env{macro} environment is always at least one
-%    after this point, but its toplevel definition is zero. Provided
-%    this environment has been used correctly, $|\macro@cnt|=0$
-%    should not occur when |@inlabel|=\textsf{true}.  It is
-%    however possible if this environment is used within other list
-%    environments (but this would have little point).
-%    \begin{macrocode}
-    \advance \macro@cnt \@ne
-%    \end{macrocode}
-%    If |@inlabel| is false we reset |\macro@cnt| assuming
-%    that there is enough room to print the macro name without
-%    shifting.
-%    \begin{macrocode}
-  \else  \macro@cnt\@ne  \fi
-%    \end{macrocode}
-%    Now the label will be produced using |\item|. The following
-%    line is only a hack saving the day until a better solution is
-%    implemented.  We have to face two problems: the argument might be
-%    a |\par| which is forbidden in the argument of other macros
-%    if they are not defined as |\long|, or it is something like
-%    |\iffalse| or |\else|, i.e.\ something which will be
-%    misinterpreted when \TeX{} is skipping conditional text. In both
-%    cases |\item| will bomb, so we protect the argument by using
-%    |\string|.
-%    \begin{macrocode}
-  \edef\@tempa{\noexpand\item[%
-%    \end{macrocode}
-%    Depending on whether we are inside a ``macro'' or ``environment''
-%    environment we use |\PrintMacroName| or |\PrintEnvName| to
-%    display the name.
-%    \begin{macrocode}
-     #1%
-       \noexpand\PrintMacroName
-     \else
-       \noexpand\PrintEnvName
-     \fi
-     {\string#2}]}%
-  \@tempa
-%    \end{macrocode}
-%    At this point we also produce an index entry.  Because it is not
-%    known which index sorting program will be used, we do not use the
-%    command |\index|, but rather a command
-%    |\SpecialMainIndex| after advancing the counter for indexing
-%    by line number.  This may be redefined by the user in
-%    order to generate an index entry which will be understood by the
-%    index program in use (note the definition of
-%    |\SpecialMainIndex| for our installation).
-% \changes{v1.5s}{1989/11/05}{Support for code line no. (Undoc)}
-% \changes{v1.9u}{1995/08/06}{Removed brace group which
-%           killed \cs{DoNotIndex}}
-%    We advance the current codeline number and after producing an
-%    index entry revert to the original value
-%    \begin{macrocode}
-  \global\advance\c@CodelineNo\@ne
-%    \end{macrocode}
-%    Again the macro to call depends on the environment we are
-%    actually in.
-%    \begin{macrocode}
-   #1%
-      \SpecialMainIndex{#2}\nobreak
-      \DoNotIndex{#2}%
-   \else
-      \SpecialMainEnvIndex{#2}\nobreak
-   \fi
-  \global\advance\c@CodelineNo\m@ne
-%    \end{macrocode}
-%    The |\nobreak| is needed to prevent a page break after the
-%    |\write| produced by the |\SpecialMainIndex| macro.  We
-%    exclude the new macro in the cross-referencing feature, to
-%    prevent spurious non-main entry references.  Regarding possibly
-%    problematic arguments, the implementation takes
-%    care of |\par| and the conditionals are uncritical.
-%  \changes{v1.7a}{1992/03/02}{Removed redundant code checking for
-%                             \cs{par}.}^^A
-%
-%    Because the space symbol should be ignored between the
-%    |\begin{macro}{...}| and the following text we must take
-%    care of this with |\ignorespaces|.
-%    \begin{macrocode}
-  \ignorespaces}
-%    \end{macrocode}
-% \end{macro}
-% \end{macro}
-% \end{macro}
-%
-%
-%
-% \begin{macro}{\endmacro}
-% \begin{macro}{\endenvironment}
-%     Older releases of this environment omit the |\endgroup| token,
-%     when being nested. This was done to avoid unnecessary stack usage.
-%     However it does not work if \env{macro} and
-%     \env{environment} environments are mixed, therefore we now
-%     use a simpler approach.
-% \changes{v1.5k}{1989/08/17}{Fix for save stack problem.}
-% \changes{v1.9k}{1994/02/22}{Don't checkfor nesting}
-%    \begin{macrocode}
-\let\endmacro \endtrivlist
-\let\endenvironment\endmacro
-%    \end{macrocode}
-%  \end{macro}
-%  \end{macro}
-
-
-% \begin{macro}{\DescribeMacro}
-% \begin{macro}{\Describe@Macro}
-% \changes{v1.5v}{1990/01/28}{Macro added.}
-% \changes{v1.5j}{1989/06/09}{\cs{ignorespaces} added as a temporary
-%                             fix}
-% \begin{macro}{\DescribeEnv}
-% \begin{macro}{\Describe@Env}
-% \changes{v1.5v}{1990/01/28}{Macro added.}
-% \changes{v1.5j}{1989/06/09}{\cs{ignorespaces} added as a temporary
-%                             fix}
-%    The |\DescribeMacro| and |\DescribeEnv| macros should
-%    print their arguments in the margin and produce an index entry.
-%    We simply use |\marginpar| to get the desired result. This
-%    is however not the best solution because the labels might be
-%    slightly misplaced. One also might get a lot of `marginpar moved'
-%    messages which are hard-wired into the \LaTeX{} output
-%    routine.\footnote{It might be better to change these macros into
-%    environments like the \env{macro} environment.} First we change
-%    to horizontal mode if necessary. The \LaTeX{} macros
-%    |\@bsphack| and |\@esphack| are used to make those
-%    commands invisible (i.e.\ to normalize the surrounding space and
-%    to make the |\spacefactor| transparent).
-% \changes{v1.5v}{1990/01/28}{\cs{MakePrivateLetters} added.}
-%    \begin{macrocode}
-\def\DescribeMacro{\leavevmode\@bsphack
-%    \end{macrocode}
-%    When documenting the code for the \texttt{amstex.sty} option we
-%    encountered a bug: the |\catcode| of |@| was active and
-%    therefore couldn't be used in command names. So we first have to
-%    make sure that we get all |\catcode|s right by calling
-%    |\MakePrivateLetters| inside a group. Then we call
-%    |\Describe@Macro| to do the work.
-% \changes{v2.0g}{1999/03/22}{Parse backslash as letter in argument
-%        to \cs{DescribeMacro}.}
-% \changes{v2.0h}{1999/03/25}{Correct errors introduced in v2.0g.}
-%    \begin{macrocode}
-   \begingroup\MakePrivateLetters\Describe@Macro}
-\def\Describe@Macro#1{\endgroup
-              \marginpar{\raggedleft\PrintDescribeMacro{#1}}%
-%    \end{macrocode}
-%    Note the use of |\raggedleft| to place the output flushed
-%    right. Finally we call a macro which produces the actual index
-%    entry and finish with |\@esphack| to leave no
-%    trace.\footnote{The whole mechanism won't work because
-%                    of the \texttt{\bslash leavevmode} in front.
-%                    As a temporary change \texttt{\bslash ignorespaces}
-%                    is added.}
-%    \begin{macrocode}
-              \SpecialUsageIndex{#1}\@esphack\ignorespaces}
-%    \end{macrocode}
-%    The |\DescribeEnv| macro is completely analogous.
-% \changes{v1.5v}{1990/01/28}{\cs{MakePrivateLetters} added.}
-%    \begin{macrocode}
-\def\DescribeEnv{\leavevmode\@bsphack\begingroup\MakePrivateLetters
-  \Describe@Env}
-\def\Describe@Env#1{\endgroup
-              \marginpar{\raggedleft\PrintDescribeEnv{#1}}%
-              \SpecialEnvIndex{#1}\@esphack\ignorespaces}
-%    \end{macrocode}
-% \end{macro}
-% \end{macro}
-% \end{macro}
-% \end{macro}
