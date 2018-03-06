@@ -6,41 +6,43 @@
 echo ===== handling all logs  ===========
 
 for f in `ls *.xetex.log 2>/dev/null` ; do
-  echo FILE $f
+  echo Handle FILE $f
   BASE=`basename $f '.xetex.log'`
-  echo $BASE
   cmp -s $f $BASE.pdftex.log
   if test $? -eq 0 ; then
-    echo '=== files are identical ==='
+    echo ' => files are identical ==='
     rm $f
+    echo removing $f and $BASE.xetex.tlg
     rm -f $f $BASE.xetex.tlg
   else
-    echo '=== files are different ==='
+    echo ' => files are different ==='
     mv -f $f $BASE.xetex.tlg
   fi
 done
 
 for f in `ls *.luatex.log 2>/dev/null` ; do
-  echo FILE $f
+  echo Handle FILE $f
   BASE=`basename $f '.luatex.log'`
-  echo $BASE
   cmp -s $f $BASE.pdftex.log
   if test $? -eq 0 ; then
-    echo '=== files are identical ==='
+    echo ' => files are identical ==='
     rm $f
+    echo removing $f and $BASE.luatex.tlg
     rm -f $f $BASE.luatex.tlg
   else
-    echo '=== files are different ==='
+    echo ' => files are different ==='
     mv -f $f $BASE.luatex.tlg
   fi
 done
 
 for f in `ls *.pdftex.log 2>/dev/null` ; do
-  echo FILE $f
-  echo `basename $f '.pdftex.log'`
+  echo Handle FILE $f
   mv -f $f `basename $f '.pdftex.log'`.tlg
 done
 
 #
 echo ===== surplus logs if any =========
-ls *.log 2> /dev/null
+for f in `ls *.log 2> /dev/null` ; do 
+  echo Handle FILE $f
+  rm -i $f
+done

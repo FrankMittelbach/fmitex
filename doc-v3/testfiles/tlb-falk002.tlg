@@ -9,7 +9,7 @@ Don't change this file in any respect.
 \indexentry{mymacronobsc=\verb!*+\mymacronobsc+|main}{5}
 \indexentry{mymacro=\verb!*+\mymacro+}{6}
 \indexentry{mymacronobsc=\verb!*+\mymacronobsc+}{7}
-\indexentry{myenv={\ttfamily myenv} (environment)|main}{9}
+\indexentry{myenv={\ttfamily myenv} (env.)|main}{9}
 \indexentry{environments:>myenv={\ttfamily myenv}|main}{9}
 \indexentry{mymacro=\verb!*+\mymacro+}{10}
 \indexentry{mymacronobsc=\verb!*+\mymacronobsc+}{11}

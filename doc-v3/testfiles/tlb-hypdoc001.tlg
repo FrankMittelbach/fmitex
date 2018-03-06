@@ -24,7 +24,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <14.4> on input line ....
 \indexentry{secnumdepth={\ttfamily secnumdepth} (counter)|hdclindex{18}{main}}{12}
-\indexentry{counter:>secnumdepth={\ttfamily secnumdepth}|hdclindex{18}{main}}{12}
+\indexentry{counters:>secnumdepth={\ttfamily secnumdepth}|hdclindex{18}{main}}{12}
 \indexentry{newcounter=\verb!*+\newcounter+|hdclindex{19}{}}{12}
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line ....
@@ -32,7 +32,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line ....
 [2
 \indexentry{secnumdepth={\ttfamily secnumdepth} (counter)|hdclindex{17}{usage}}{2}
-\indexentry{counter:>secnumdepth={\ttfamily secnumdepth}|hdclindex{17}{usage}}{2}
+\indexentry{counters:>secnumdepth={\ttfamily secnumdepth}|hdclindex{17}{usage}}{2}
 ])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line ....
  [3]
