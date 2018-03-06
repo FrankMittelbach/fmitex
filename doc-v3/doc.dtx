@@ -146,6 +146,37 @@
 %
 % \newcommand\fmi[1]{\par\textbf{TODO: }\textit{#1}\par}
 %
+% 
+%\DeclareDocItem[macrolike = false ,
+%                idxtype   = env.  ,
+%                idxgroup  = LaTeX environments\actualchar\LaTeX{} environments ,
+%                printtype = \textit{env.} 
+%               ]{Env}{environment}
+
+%\DeclareDocItem[macrolike = false ,
+%                idxtype   =  counter  ,
+%                idxgroup  = LaTeX counter\actualchar \LaTeX{} counter ,
+%                printtype = \textit{counter}
+%               ]{LaTeXCounter}{lcounter} 
+%
+%\DeclareDocItem[macrolike = true ,
+%                idxtype   =  counter  ,
+%                idxgroup  = TeX counter\actualchar \TeX{} counter ,
+%                printtype = \textit{counter}
+%               ]{TeXCounter}{counter} 
+%
+%
+%\DeclareDocItem[macrolike = true ,
+%                idxtype   =  skip  ,
+%                idxgroup  = LaTeX length\actualchar \LaTeX{} length (skip) ,
+%                printtype = \textit{skip}
+%               ]{Skip}{lskip} 
+%
+%\DeclareDocItem[macrolike = true ,
+%                idxtype   =  dimen  ,
+%                idxgroup  = LaTeX length\actualchar \LaTeX{} length (dimen) ,
+%                printtype = \textit{dimen}
+%               ]{Dimen}{ldimen} 
 %
 % \changes{v1.9t}{1995/05/11}{Use \cs{GetFileInfo}}
 % \GetFileInfo{doc.sty}
@@ -268,6 +299,19 @@
 %    \begin{macrocode}
 %<*driver>
 \documentclass{ltxdoc}
+
+\makeatletter
+%fix for ltxdoc for now
+\def\codeline@wrindex#1{\if@filesw
+     \begingroup
+        \let\protect\noexpand
+        \immediate\write\@indexfile%
+            {\string\indexentry{#1}%
+             {\number\c@CodelineNo}}%
+      \endgroup
+    \fi}
+\makeatother
+
 \usepackage[T1]{fontenc}
 \usepackage{xspace}          
 
@@ -377,12 +421,12 @@
 % "\mbox{}"---in this environment before "\begin{macrocode}" or the
 % marginal label won't print in the right place.
 %
-% \DescribeMacro\MacrocodeTopsep
-% \DescribeMacro\MacroTopsep
+% \DescribeSkip\MacrocodeTopsep
+% \DescribeSkip\MacroTopsep
 % There also exist four style parameters: |\MacrocodeTopsep| and
 % |\MacroTopsep| are used to control the vertical spacing above
 % and below the \env{macrocode} and the \env{macro}
-% \DescribeMacro\MacroIndent
+% \DescribeDimen\MacroIndent
 % environment, |\MacroIndent| is used to indent the lines of code
 % and
 % \DescribeMacro\MacroFont \label{sec:macrofont}
@@ -949,7 +993,7 @@
 % and by default produces results like \Module{+foo\string|bar} with no
 % following space.
 %
-% \DescribeMacro{StandardModuleDepth} Sometimes (as in this file) the
+% \DescribeLaTeXCounter{StandardModuleDepth} Sometimes (as in this file) the
 % whole code is surrounded by modules to produce several files from a
 % single source. In this case it is clearly not appropriate to format
 % all code lines in a special "\AltMacroFont". For this reason a
@@ -1328,6 +1372,8 @@
 %  \end{thebibliography}
 %
 %  \addtocontents{toc}{\protect\end{multicols}}
+%
+%  \PrintIndex 
 %
 % } ^^A end \StopEventually
 %
@@ -1864,8 +1910,7 @@
 % \end{macro}
 % \end{macro}
 %
-%
-%  \begin{macro}{\c@StandardModuleDepth}
+%  \begin{lcounter}{StandardModuleDepth}
 % \changes{v1.7i}{1992/07/11}{Counter added.}
 %    Counter defining up to which level modules are considered part of
 %    the main code. If, for  example, the whole code is surrounded by
@@ -1874,16 +1919,17 @@
 %    \begin{macrocode}
 \newcounter{StandardModuleDepth}
 %    \end{macrocode}
-%  \end{macro}
+%  \end{lcounter}
 %
 %
-% \begin{macro}{\guard@level}
+% \begin{counter}{\guard@level}
 % \changes{v1.7f}{1992/05/16}{Added.}
 % We need a counter to keep track of the guard nesting.
 %    \begin{macrocode}
 \newcount \guard@level
 %    \end{macrocode}
-% \end{macro}
+% \end{counter}
+
 % \begin{macro}{\Module}
 % \changes{v1.7a}{1992/03/12}{Added.}
 % \changes{v1.7d}{1992/04/25}{Use sans font for modules.}
@@ -1949,8 +1995,8 @@
 %
 %
 %
-% \begin{macro}{\MacrocodeTopsep}
-% \begin{macro}{\MacroIndent}
+% \begin{lskip}{\MacrocodeTopsep}
+% \begin{ldimen}{\MacroIndent}
 %    In the code above, we have used two registers. Therefore we have
 %    to allocate them. The default values might be overwritten with
 %    the help of the |\DocstyleParms| macro.
@@ -1963,8 +2009,8 @@
 \newdimen\MacroIndent
 \settowidth\MacroIndent{\rmfamily\scriptsize 00\ }
 %    \end{macrocode}
-% \end{macro}
-% \end{macro}
+% \end{ldimen}
+% \end{lskip}
 %
 %
 %
@@ -4576,6 +4622,7 @@
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
+%
 % \begin{macro}{\codeline@wrindex}
 %    The code index entries are written out by "\special@index".  If
 %    indexing is by code line this is "\let" to "\codeline@wrindex";
@@ -4584,11 +4631,16 @@
 % \changes{v1.7j}{1992/08/14}{Added \cs{if@filesw}.}
 %    \begin{macrocode}
 \def\codeline@wrindex#1{\if@filesw
+     \begingroup
+        \set@display@protect
         \immediate\write\@indexfile
             {\string\indexentry{#1}%
-            {\number\c@CodelineNo}}\fi}
-%    \end{macrocode}
+             {\number\c@CodelineNo}}%
+      \endgroup
+    \fi}
+%     \end{macrocode}
 % \end{macro}
+%
 % \begin{macro}{\special@index}
 % By default no index entries are written out.
 %    \begin{macrocode}
@@ -5276,7 +5328,7 @@
 %
 %
 % \Finale
-% \PrintIndex \PrintChanges
+% \PrintChanges
 %
 %
 \endinput
