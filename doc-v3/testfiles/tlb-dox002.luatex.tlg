@@ -1,0 +1,49 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+(load luc: ../lmmono9-regular.luc)
+\indexentry{foo={\ttfamily foo} (option)|hdclindex{3}{main}}{1}
+(load luc: ../lmmono10-regular.luc)
+\indexentry{mylength=\verb!*+\mylength+ (length)|hdclindex{6}{main}}{1}
+\indexentry{lengths:>mylength=\verb!*+\mylength+|hdclindex{6}{main}}{1}
+(load luc: ../lmroman9-regular.luc) [1
+\indexentry{foo={\ttfamily foo} (option)|hdclindex{2}{usage}}{1}
+\glossaryentry{v1>foo=\verb!*+foo+:>first change|hdpindex{}}{1}
+\indexentry{mylength=\verb!*+\mylength+ (length)|hdclindex{5}{usage}}{1}
+\indexentry{lengths:>mylength=\verb!*+\mylength+|hdclindex{5}{usage}}{1}
+\glossaryentry{v2>mylength=\verb!*+\mylength+:>Fixing \cs  {mylength} thoroughly|hdpindex{}}{1}
+\indexentry{myenvironment={\ttfamily myenvironment} (environment)|hdclindex{9}{usage}}{1}
+\indexentry{environments:>myenvironment={\ttfamily myenvironment}|hdclindex{9}{usage}}{1}
+]
+\indexentry{myenvironment={\ttfamily myenvironment} (environment)|hdclindex{10}{main}}{2}
+\indexentry{environments:>myenvironment={\ttfamily myenvironment}|hdclindex{10}{main}}{2}
+\indexentry{newenvironment=\verb!*+\newenvironment+|hdclindex{11}{}}{2}
+\indexentry{hsize=\verb!*+\hsize+|hdclindex{11}{}}{2}
+\indexentry{mylength=\verb!*+\mylength+|hdclindex{11}{}}{2}
+\indexentry{@mymacro=\verb!*+\@mymacro+|hdclindex{12}{main}}{3}
+\indexentry{def=\verb!*+\def+|hdclindex{13}{}}{3}
+\indexentry{@mylength=\verb!*+\@mylength+|hdclindex{13}{}}{3}
+\indexentry{mylength=\verb!*+\mylength+|hdclindex{13}{}}{3}
+\indexentry{relax=\verb!*+\relax+|hdclindex{13}{}}{3}
+(tlb-dox002.ind [2
+\glossaryentry{v3>myenvironment=\verb!*+myenvironment+:>Third change|hdpindex{}}{2}
+\glossaryentry{v2.2>@mymacro=\verb!*+\@mymacro+:>new|hdpindex{}}{2}
+](load luc: ../lmroman12-regular.luc)(load luc: ../lmroman12-bold.luc)(load luc: ../lmroman9-bold.luc)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line ....
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line ....
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line ....
+(load luc: ../lmroman9-italic.luc) [3
+]) (tlb-dox002.gls [4
+])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line ....
+Package atveryend Info: Executing hook `AfterLastShipout' on input line ....
+(tlb-dox002.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line ....
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line ....
+Package rerunfilecheck Info: File `tlb-dox002.out' has not changed.
+(rerunfilecheck)             Checksum: 5B6ED6E2FD0A989D50970A70A2FDDC28;473.
+Package rerunfilecheck Info: File `tlb-dox002.hd' has not changed.
+(rerunfilecheck)             Checksum: B76112794A5C6B08F6F1B4B642B0FBF5;64.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line ....
