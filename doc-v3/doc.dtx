@@ -163,20 +163,20 @@
 %                idxtype   =  counter  ,
 %                idxgroup  = TeX counter\actualchar \TeX{} counter ,
 %                printtype = \textit{counter}
-%               ]{TeXCounter}{counter} 
+%               ]{TeXCounter}{tcounter} 
 %
 %
 %\DeclareDocItem[macrolike = true ,
 %                idxtype   =  skip  ,
 %                idxgroup  = LaTeX length\actualchar \LaTeX{} length (skip) ,
 %                printtype = \textit{skip}
-%               ]{Skip}{lskip} 
+%               ]{LaTeXSkip}{lskip} 
 %
 %\DeclareDocItem[macrolike = true ,
 %                idxtype   =  dimen  ,
 %                idxgroup  = LaTeX length\actualchar \LaTeX{} length (dimen) ,
 %                printtype = \textit{dimen}
-%               ]{Dimen}{ldimen} 
+%               ]{LaTeXDimen}{ldimen} 
 %
 % \changes{v1.9t}{1995/05/11}{Use \cs{GetFileInfo}}
 % \GetFileInfo{doc.sty}
@@ -421,12 +421,12 @@
 % "\mbox{}"---in this environment before "\begin{macrocode}" or the
 % marginal label won't print in the right place.
 %
-% \DescribeSkip\MacrocodeTopsep
-% \DescribeSkip\MacroTopsep
+% \DescribeLaTeXSkip\MacrocodeTopsep
+% \DescribeLaTeXSkip\MacroTopsep
 % There also exist four style parameters: |\MacrocodeTopsep| and
 % |\MacroTopsep| are used to control the vertical spacing above
 % and below the \env{macrocode} and the \env{macro}
-% \DescribeDimen\MacroIndent
+% \DescribeLaTeXDimen\MacroIndent
 % environment, |\MacroIndent| is used to indent the lines of code
 % and
 % \DescribeMacro\MacroFont \label{sec:macrofont}
@@ -720,7 +720,7 @@
 % |\setcounter| declaration.  Additionally one doesn't want to
 % start a new page unnecessarily.  Therefore the \env{theindex}
 % environment is redefined.
-% \DescribeMacro\IndexMin
+% \DescribeLaTeXDimen\IndexMin
 % When the \env{theindex} environment starts it will measure how much
 % space is left on the current page. If this is more than
 % |\IndexMin| then the index will start on this page. Otherwise
@@ -743,9 +743,9 @@
 % Formatting of the index columns (values for |\columnssep|
 % etc.)\ is controlled by the |\IndexParms| macro. It assigns the
 % following values:
-% \SpecialMacroIndex{\parindent}\SpecialMacroIndex{\columnsep}^^A
-% \SpecialMacroIndex{\parskip}\SpecialMacroIndex{\rightskip}^^A
-% \SpecialMacroIndex{\mathsurround}\SpecialMacroIndex{\parfillskip}
+% \SpecialLaTeXDimenIndex{\parindent}\SpecialLaTeXDimenIndex{\columnsep}^^A
+% \SpecialLaTeXSkipIndex{\parskip}\SpecialLaTeXSkipIndex{\rightskip}^^A
+% \SpecialLaTeXDimenIndex{\mathsurround}\SpecialLaTeXSkipIndex{\parfillskip}
 % \begin{center}
 %  \begin{tabular}{l@{\,=\,}ll@{\,=\,}l}
 %  |\parindent|    & \IndexParms \the\parindent    &
@@ -786,10 +786,13 @@
 %
 % The doc package currently assigns values to the following
 % registers:
-% \SpecialMacroIndex{\IndexMin}\SpecialMacroIndex{\MacrocodeTopsep}^^A
-% \SpecialMacroIndex{\MacroTopsep}^^A
-% \SpecialMacroIndex{\MacroIndent}\SpecialMacroIndex{\marginparpush}^^A
-% \SpecialMacroIndex{\marginparwidth}\SpecialMacroIndex{\tolerance}
+% \SpecialLaTeXDimenIndex{\IndexMin}^^A
+% \SpecialLaTeXSkipIndex{\MacrocodeTopsep}^^A
+% \SpecialLaTeXSkipIndex{\MacroTopsep}^^A
+% \SpecialLaTeXDimenIndex{\MacroIndent}^^A
+% \SpecialLaTeXDimenIndex{\marginparpush}^^A
+% \SpecialLaTeXDimenIndex{\marginparwidth}^^A
+% \SpecialTeXCounterIndex{\tolerance}
 % \begin{center}
 %  \begin{tabular}{l@{\,=\,}ll@{\,=\,}l}
 %  |\IndexMin|      & \the\IndexMin    &
@@ -945,7 +948,9 @@
 % other program has processed the \texttt{.glo} file to generate a
 % sorted \texttt{.gls} file.  You need a special \prg{makeindex}
 % style file; a suitable one is supplied with \DOC{}, called
-% \texttt{gglo.ist}.  \DescribeMacro\GlossaryMin
+% \texttt{gglo.ist}.  
+%
+% \DescribeLaTeXDimen\GlossaryMin
 % \DescribeMacro\GlossaryPrologue \DescribeMacro\GlossaryParms The
 % "\GlossaryMin", "\GlossaryPrologue" and "\GlossaryParms" macros are
 % analogous to the "\Index"\ldots\ versions.  (The \LaTeX{} `glossary'
@@ -1922,13 +1927,13 @@
 %  \end{lcounter}
 %
 %
-% \begin{counter}{\guard@level}
+% \begin{tcounter}{\guard@level}
 % \changes{v1.7f}{1992/05/16}{Added.}
 % We need a counter to keep track of the guard nesting.
 %    \begin{macrocode}
 \newcount \guard@level
 %    \end{macrocode}
-% \end{counter}
+% \end{tcounter}
 
 % \begin{macro}{\Module}
 % \changes{v1.7a}{1992/03/12}{Added.}
@@ -2302,7 +2307,7 @@
 % \end{macro}
 % \end{macro}
 %
-% \begin{macro}{\macro@cnt}
+% \begin{tcounter}{\macro@cnt}
 %    \label{page:macro} The \env{macro} environment is implemented as
 %    a \env{trivlist} environment, whereby in order that the macro
 %    names can be placed under one another in the margin
@@ -2315,16 +2320,16 @@
 %    \begin{macrocode}
 \newcount\macro@cnt \macro@cnt=0
 %    \end{macrocode}
-% \end{macro}
+% \end{tcounter}
 %
 %
-% \begin{macro}{\MacroTopsep}
+% \begin{lskip}{\MacroTopsep}
 %    Here is the default value for the |\MacroTopsep| parameter
 %    used above.
 %    \begin{macrocode}
 \newskip\MacroTopsep     \MacroTopsep = 7pt plus 2pt minus 2pt
 %    \end{macrocode}
-% \end{macro}
+% \end{lskip}
 %
 %
 %
@@ -3145,6 +3150,7 @@
 %    \end{macrocode}
 %
 % \begin{macro}{\SpecialIndex@}
+% \begin{macro}{\@SpecialIndexHelper@}
 % \changes{v2.0c}{1998/08/22}{Macro added.}
 % \changes{v2.0f}{1999/02/27}{Temp fix to allow strange code in arg 1
 %                             (PR 2968)}
@@ -3158,6 +3164,9 @@
 \begingroup
  \catcode`\|=0
  \catcode`\\=12
+%    \end{macrocode}
+%    \SpecialEscapechar{\|}
+%    \begin{macrocode}
  |gdef|@SpecialIndexHelper@#1#2|@nil{%
    |if |noexpand#1\%
      |gdef|@gtempa{#2}%
@@ -3168,6 +3177,10 @@
      |endgroup
    |fi}
 |endgroup
+%    \end{macrocode}
+%    
+%    \SpecialEscapechar{\\}
+%    \begin{macrocode}
 \def\SpecialIndex@#1#2{%
 %    \end{macrocode}
 %    The first thing it does is to convert the macro into a list of
@@ -3228,6 +3241,7 @@
      \@tempc
    \fi}
 %    \end{macrocode}
+% \end{macro}
 % \end{macro}
 %
 %    Slightly simpler is the main entry for environments
@@ -3417,8 +3431,8 @@
 % \end{macro}
 
 %
-% \begin{macro}{\IndexMin}
-% \begin{macro}{\c@IndexColumns}
+% \begin{ldimen}{\IndexMin}
+% \begin{lcounter}{IndexColumns}
 %    \changes{v1.4t}{1989/04/24}{Counter added.}
 %    If \texttt{multicol} is in use,
 %    when the index is started we compute the remaining space on the
@@ -3431,8 +3445,8 @@
 \newdimen\IndexMin         \IndexMin       = 80pt
 \newcount\c@IndexColumns   \c@IndexColumns = 3
 %    \end{macrocode}
-% \end{macro}
-% \end{macro}
+% \end{lcounter}
+% \end{ldimen}
 %
 %
 % \begin{environment}{theindex}
@@ -3843,10 +3857,10 @@
 % \end{macro}
 %
 %
-% \begin{macro}{\GlossaryMin}
+% \begin{ldimen}{\GlossaryMin}
 %    \changes{BHK}{1989/04/26}{Added to support
 %                            \texttt{\protect\bslash changes}.}
-% \begin{macro}{\c@GlossaryColumns}
+% \begin{lcounter}{GlossaryColumns}
 %    \changes{BHK}{1989/04/26}{Added to support \texttt{\protect\bslash
 %    changes}.} The remaining macros are all analogues of those used
 %    for the \env{theindex} environment.  When the glossary is
@@ -3860,8 +3874,8 @@
 \newdimen\GlossaryMin         \GlossaryMin       = 80pt
 \newcount\c@GlossaryColumns   \c@GlossaryColumns = 2
 %    \end{macrocode}
-% \end{macro}
-% \end{macro}
+% \end{lcounter}
+% \end{ldimen}
 %
 %
 % \begin{environment}{theglossary}
@@ -4469,9 +4483,9 @@
 % \end{macro}
 %
 %
-% \begin{macro}{\check@sum}
+% \begin{tcounter}{\check@sum}
 % \changes{v1.5k}{1989/09/04}{Macro added to support checksum.}
-% \begin{macro}{\bslash@cnt}
+% \begin{tcounter}{\bslash@cnt}
 % \changes{v1.5k}{1989/09/04}{Macro added to support checksum.}
 % We need to define counters, "\bslash@cnt" for the number of
 % backslashes counted and "\check@sum" for the value advertised by the
@@ -4482,8 +4496,8 @@
 \newcount\check@sum           \check@sum  = \m@ne
 \newcount\bslash@cnt          \bslash@cnt = \z@
 %    \end{macrocode}
-% \end{macro}
-% \end{macro}
+% \end{tcounter}
+% \end{tcounter}
 %
 %
 % \begin{macro}{\CheckSum}
@@ -4669,7 +4683,7 @@
 % \end{macro}
 %
 %
-% \begin{macro}{\c@CodelineNo}
+% \begin{lcounter}{CodelineNo}
 % \changes{v1.5l}{1989/09/10}{Counter added to support code line
 %                             numbers}
 % \changes{v1.5y}{1990/02/24}{Default changed.}
@@ -4679,7 +4693,8 @@
 %    \begin{macrocode}
 \newcount\c@CodelineNo  \c@CodelineNo\z@
 %    \end{macrocode}
-% \end{macro}
+% \end{lcounter}
+%
 % \begin{macro}{\theCodelineNo}
 % \changes{v1.7a}{1992/02/25}{Existing definition not overwritten.}
 % \changes{v1.7a}{1992/03/12}{Use \cs{reset@font} for NFSS.}
@@ -5234,7 +5249,7 @@
 %    \end{macrocode}
 %   \end{macro}
 %
-%   \begin{environment}{item}
+%   \begin{environment}{\meta{DocItem}}
 %     \oarg{options}\marg{name}
 %    \begin{macrocode}
     \ifdox@macrolike
