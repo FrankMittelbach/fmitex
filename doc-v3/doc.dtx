@@ -709,7 +709,7 @@
 % in your package file.  Precede it by any bibliography commands
 % necessary for your citations.
 % Alternatively, it may be more convenient to put all such calls
-% amongst the arguments of the |\StopEventually| macro, in
+% amongst the arguments of the |\MaybeStopHere| macro, in
 % which case a |\Finale| command should appear at the end of
 % your file.
 %
@@ -853,16 +853,23 @@
 % produces something like \meta{dimen parameter}.
 %
 % \DescribeMacro\OnlyDescription
-% \DescribeMacro\StopEventually
+% \DescribeMacro\MaybeStopHere
 % You can use the |\OnlyDescription| declaration in the driver
 % file to suppress the last part of your document (which presumably
 % exhibits the code). To make this work
-% you have to place the command |\StopEventually| at a suitable
-% point in your file.  This macro has one argument in which you put
+% you have to place the command |\MaybeStopHere| at a suitable
+% point in your file.  This macro\footnote{For about 30 years this
+%    macro was called \cs{StopEventually} which was due to a ``false
+%    friend'' misunderstanding. In the German language the word
+%    ``eventuell'' mean roughly ``perhaps'' which isn't quite the same
+%    as ``eventually''. But given that this is now used for so long
+%    and all over the place we can't drop the old name. So it is still
+%    there to allow processing all the existing documentation.}
+% has one argument in which you put
 % all information you want to see printed if your document ends at
 % this point (for example a bibliography which is normally printed at
 % the very end). When the |\OnlyDescription| declaration is
-% missing the |\StopEventually|
+% missing the |\MaybeStopHere|
 % \DescribeMacro\Finale
 % macro saves its argument in a macro called |\Finale| which can
 % afterwards be used to get things back (usually at the very end).
@@ -942,7 +949,7 @@
 % |\PrintChanges| command as the last (commented-out, and thus
 % executed during the documentation pass through the file) command in
 % your package file.  Alternatively, this command may form one of the
-% arguments of the |\StopEventually| command, although a change
+% arguments of the |\MaybeStopHere| command, although a change
 % history is probably {\em not\/} required if only the description is
 % being printed.  The command assumes that \prg{makeindex} or some
 % other program has processed the \texttt{.glo} file to generate a
@@ -1024,7 +1031,7 @@
 % "% \DescribeMacro{\fred}"\\
 % "% "\meta{description of fred's use}\\
 % \quad\ldots\\
-% "% \StopEventually{"\meta{finale code}"}"\\
+% "% \MaybeStopHere{"\meta{finale code}"}"\\
 % \quad\ldots\\
 % "% \begin{macro}{\fred}"\\
 % "% "\meta{commentary on macro fred}\\
@@ -1133,7 +1140,7 @@
 % \begin{quote}
 %    |%   \CheckSum{0}|
 % \end{quote}
-% near the beginning of the file and use the |\StopEventually| (which
+% near the beginning of the file and use the |\MaybeStopHere| (which
 % starts looking for backslashes) and the |\Finale| command.  The
 % latter will inform you either that your file has no check-sum
 % (telling you the right number) or that your number is incorrect if
@@ -1161,8 +1168,8 @@
 
 
 
-% \begin{multicols}{2}[\medskip \rule{\textwidth}{.3pt}
-%                      \section{Introduction to version 1.0}]
+% \begin{multicols}{2}[\medskip \noindent\rule{\textwidth}{.3pt}
+%                      \section{Introduction to previous releases}]
 %
 % \begin{quote}
 %   \textbf{Original abstract:}
@@ -1339,7 +1346,7 @@
 % I think every \DOC user will be grateful for.
 %
 %
-% \StopEventually{
+% \MaybeStopHere{
 %  \begin{thebibliography}{1}
 %    \bibitem{book:Buerger}  \textsc{G. A. B\"urger}.
 %      \newblock Wunderbare Reisen zu Wasser und zu Lande, Feldz\"uge
@@ -1380,7 +1387,7 @@
 %
 %  \PrintIndex 
 %
-% } ^^A end \StopEventually
+% } ^^A end \MaybeStopHere
 %
 %
 % \section{The Description of Macros}
@@ -1451,10 +1458,12 @@
 \DeclareBoolOption{noprint}
 \DeclareBoolOption{noindex}
 \DeclareBoolOption[true]{hyperref}
+\DeclareBoolOption[true]{multicol}
 %    \end{macrocode}
 % This one is for \cs{usepackage} and \cs{DeclareDocItem}:
 %    \begin{macrocode}
 \DeclareBoolOption{macrolike}
+\DeclareComplementaryOption{envlike}{macrolike}
 %    \end{macrocode}
 % These are for \cs{DeclareDocItem}:
 %    \begin{macrocode}
@@ -2128,6 +2137,10 @@
 %    \begin{macrocode}
 \reversemarginpar
 \setlength\marginparpush{0pt}  \setlength\marginparwidth{8pc}
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+\setlength\marginparsep{\labelsep}
 %    \end{macrocode}
 %
 % \begin{macro}{\bslash}
@@ -3405,30 +3418,6 @@
 %\changes{v1.4?}{1989/04/16}{changes to the index env.}
 %\changes{v1.5a}{1989/04/26}{Now input multicol.sty instead of
 %                         multcols.sty}
-% \begin{macro}{\ifhave@multicol}
-% \changes{v1.7a}{1992/03/04}{Added to support avoiding multicol.sty} By
-%    default the index is set in three columns, and will start on the
-%    same page as, and underneath, the last part of the text of the
-%    documented package file, if possible.  The last page will be
-%    reformatted with balanced columns.  This requires the
-%    \env{multicols} environment which is described elsewhere.  So
-%    that \DOC{} can be run independently of
-%    \texttt{multicol.sty} we first check for its existence and set
-%    the "have@multicol" flag appropriately for use below.
-%  \changes{v1.9a}{1993/12/02}{Use \cs{IfFileExists}}
-%  \changes{v1.9m}{1994/04/28}{Use \cs{RequirePackage} to load multicol}
-%    \begin{macrocode}
-\newif\ifhave@multicol
-%    \end{macrocode}
-%    If we found \texttt{multicol.sty} we use it.  It would be nice to
-%    delay this (and the re-definition of "theindex") until we knew
-%    whether an index was actually required \ldots
-%    \begin{macrocode}
-\IfFileExists{multicol.sty}{\have@multicoltrue
-                            \RequirePackage{multicol}%
-                           }{}
-%    \end{macrocode}
-% \end{macro}
 
 %
 % \begin{ldimen}{\IndexMin}
@@ -3449,6 +3438,7 @@
 % \end{ldimen}
 %
 %
+%
 % \begin{environment}{theindex}
 %    Now we start the multi-column mechanism, if appropriate. We use the
 %    \LaTeX{} counter |\c@IndexColumns|  declared above to denote
@@ -3460,7 +3450,14 @@
 %    \changes{v1.6e}{1991/04/03}{Turned into env definition.}
 %    \changes{v1.7a}{1992/03/04}{Include test for multicols.}
 %    \begin{macrocode}
-\ifhave@multicol
+\ifdox@multicol
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+  \RequirePackage{multicol}
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
   \renewenvironment{theindex}
     {\begin{multicols}\c@IndexColumns[\index@prologue][\IndexMin]%
 %    \end{macrocode}
@@ -3482,8 +3479,6 @@
 %    environment that's basically the one from \texttt{article.sty}.
 %    \begin{macrocode}
 \else
-  \typeout{Can't find multicol.sty -- will use normal index layout if
-     necessary.}
   \def\theindex{\@restonecoltrue\if@twocolumn\@restonecolfalse\fi
     \columnseprule \z@  \columnsep 35\p@
     \twocolumn[\index@prologue]%
@@ -3684,20 +3679,6 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\printindex}
-%    Since the above macro was called |\printindex| in older versions
-%    of \texttt{doc.sty} the following definition was provided up to
-%    version 1.9y.
-% \changes{v1.9z}{1996/04/17}{Commented out}
-%    \begin{macrocode}
-%\def\printindex{\typeout{\string\printindex\space is obsolete!}%
-%                \typeout{Please use \string\PrintIndex\space
-%                         if you are a macro implementor^^J
-%                         or get a newer version of the documented
-%                         software if you are a user}%
-%                \PrintIndex}
-%    \end{macrocode}
-% \end{macro}
 %
 % We want headings in the index (and changes list) according to the
 % initial character of the next block of entries and have to instruct
@@ -3885,13 +3866,12 @@
 %    \changes{v1.6e}{1991/04/03}{Turned into env definition.}
 %    \changes{v1.7a}{1992/03/10}{Changed to work without multicols if
 %                              necessary.}
-% \begin{macro}{\endglossary}
 %    \changes{BHK}{1989/04/26}{Added to support
 %                            \texttt{\protect\bslash changes}.}
 %    The environment \env{theglossary} is defined in the same manner
 %    as the \env{theindex} environment.
 %    \begin{macrocode}
-\ifhave@multicol
+\ifdox@multicol
   \newenvironment{theglossary}{%
     \begin{multicols}\c@GlossaryColumns
                      [\glossary@prologue][\GlossaryMin]%
@@ -3906,7 +3886,6 @@
     {\if@restonecol\onecolumn\else\clearpage\fi}
 \fi
 %    \end{macrocode}
-% \end{macro}
 % \end{environment}
 %
 % Here are the necessary \prg{makeindex} declarations with scanning
@@ -3977,7 +3956,7 @@
 %    |\PrintChanges| command as the last (commented-out, and thus
 %    executed during the documentation pass through the file) command
 %    in your package file.  Alternatively, this command may form one of
-%    the arguments of the |\StopEventually| command, although a
+%    the arguments of the |\MaybeStopHere| command, although a
 %    change history is probably {\em not\/} required if only the
 %    description is being printed.
 %
@@ -3998,7 +3977,7 @@
 %
 % \subsection{Bells and whistles}
 %
-% \begin{macro}{\StopEventually}
+% \begin{macro}{\MaybeStopHere}
 % \changes{v1.5k}{1989/09/04}{Support for checksum.}
 % \begin{macro}{\Finale}
 % \changes{v1.5k}{1989/09/04}{Support for checksum.}
@@ -4012,11 +3991,11 @@
 \newcommand\AlsoImplementation{%
 %    \end{macrocode}
 %    To make this happen we have to define
-%    |\StopEventually| in a way that its argument is typeset at the
+%    |\MaybeStopHere| in a way that its argument is typeset at the
 %    very end or more exactly at |\Finale|. For this we
 %    save its argument in the macro |\Finale|.
 %    \begin{macrocode}
-   \long\def\StopEventually##1{\@bsphack\gdef\Finale{##1%
+   \long\def\MaybeStopHere##1{\@bsphack\gdef\Finale{##1%
 %    \end{macrocode}
 %    But |\Finale| will be called at the very end of a file. This
 %    is exactly the point were we want to know if the file is
@@ -4025,7 +4004,7 @@
 %    \begin{macrocode}
                   \check@checksum}%
 %    \end{macrocode}
-%    On the other hand: |\StopEventually| is more or less a
+%    On the other hand: |\MaybeStopHere| is more or less a
 %    dividing point between description and code. So we start to look
 %    for the check-sum of the documented file by calling
 %    |\init@checksum|.
@@ -4036,26 +4015,26 @@
 %    \end{macrocode}
 %
 %    Since |\AlsoImplementation| should be the default we execute it
-%    and thus |\StopEventually| gets the desired meaning.
+%    and thus |\MaybeStopHere| gets the desired meaning.
 %    \begin{macrocode}
 \AlsoImplementation
 %    \end{macrocode}
 %    When the user places an |\OnlyDescription| declaration in
 %    the driver file the document should only be typeset up to
-%    |\StopEventually|. We therefore have to redefine this macro.
+%    |\MaybeStopHere|. We therefore have to redefine this macro.
 %    \begin{macrocode}
-\def\OnlyDescription{\@bsphack\long\def\StopEventually##1{%
+\def\OnlyDescription{\@bsphack\long\def\MaybeStopHere##1{%
 %    \end{macrocode}
-%    In this case the argument of |\StopEventually| should be set
+%    In this case the argument of |\MaybeStopHere| should be set
 %    and afterwards \TeX{} should stop reading from this file.
 %    Therefore we finish this macro with
 %    \begin{macrocode}
            ##1\endinput}\@esphack}
 %    \end{macrocode}
-%    If no |\StopEventually| command is given we silently ignore a
+%    If no |\MaybeStopHere| command is given we silently ignore a
 %    |\Finale| issued.
 % \changes{v1.9n}{1994/04/28}{Ignore \cs{Finale} if no
-%                  \cs{StopEventually} is given}
+%                  \cs{MaybeStopHere} is given}
 %    \begin{macrocode}
 \let\Finale\relax
 %    \end{macrocode}
@@ -4063,6 +4042,15 @@
 % \end{macro}
 % \end{macro}
 % \end{macro}
+%
+%
+%  \begin{macro}{\StopEventually}
+%    The old wrong name for |\MaybeStopHere|. We need to use |\def|
+%    (i.e., expansion) as |\MaybeStopHere| gets redefined once in a while.
+%    \begin{macrocode}
+\def\StopEventually{\MaybeStopHere}
+%    \end{macrocode}
+%  \end{macro}
 %
 % \begin{macro}{\meta}
 % \changes{v1.4t}{1989/04/24}{Macro added.}
@@ -4437,7 +4425,7 @@
 % \begin{macro}{\init@checksum}
 % The checksum mechanism works by counting backslashes in the
 % macrocode.  This initialises the count (when called from
-% "\StopEventually").
+% "\MaybeStopHere").
 % \changes{v1.5k}{1989/09/04}{Macro added to support checksum.}
 %    \begin{macrocode}
 \def\init@checksum{\relax
@@ -4876,7 +4864,12 @@
   \let\PrintDescribeEnv   \@empty
   \let\PrintMacroName     \@empty
   \let\PrintEnvName       \@empty
+%    \end{macrocode}
+%    Annoying to code around issue \#22
+%    \begin{macrocode}
+  \expandafter\let\expandafter\dox@eoph@@k\csname doc.sty-h@@k\endcsname
   \usepackage{hypdoc}
+  \expandafter\let\csname doc.sty-h@@k\endcsname\dox@eoph@@k
 %    \end{macrocode}
 %    That package adds extra code into |\index| entries but it doesn't
 % know about all the stuff that \DOC does (now). So we need to provide
@@ -4890,6 +4883,13 @@
 \else
   \let\@doxprovidetarget\@empty
   \def\@doxhandleencap#1{\encapchar #1}
+%    \end{macrocode}
+%    We define the next commands just in case the user changed the option
+%    \texttt{hyperref} from \texttt{true} to \texttt{false} without
+%    removing the auxiliary files.
+%    \begin{macrocode}
+  \def\hdclindex#1#2{\ifx\@nil#2\@nil\else\csname #2\expandafter\endcsname\fi}
+  \def\hdpindex   #1{\ifx\@nil#1\@nil\else\csname #1\expandafter\endcsname\fi}
 \fi
 %    \end{macrocode}
 
