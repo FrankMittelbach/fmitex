@@ -9,7 +9,7 @@ Completed box being shipped out [1]
 ...\hbox(0.0+0.0)x345.0
 ..\glue 25.0
 ..\glue(\lineskip) 0.0
-..\vbox(550.0+0.0)x345.0, glue set 506.94585fil
+..\vbox(550.0+0.0)x345.0, glue set 497.94681fil
 ...\write-{}
 ...\glue(\topskip) 2.95
 ...\hbox(7.05+1.93999)x345.0, glue set 220.07999fil
@@ -52,7 +52,7 @@ Completed box being shipped out [1]
 ...\write4{\glossaryentry{v1>foo=\verb!*+foo+:>first change}{\thepage }}
 ...\glue(\parskip) 0.0 plus 1.0
 ...\glue(\baselineskip) 1.66005
-...\hbox(8.39996+3.60004)x345.0, glue set 122.56999fil
+...\hbox(8.39996+3.60004)x345.0, glue set 125.9fil
 ....\hbox(8.39996+3.60004)x0.0
 .....\glue 0.0
 .....\glue 0.0
@@ -83,10 +83,11 @@ Completed box being shipped out [1]
 ....\TU/lmr/m/n/10 =
 ....\glue 3.33 plus 1.665 minus 1.11
 ....\TU/lmr/m/n/10 bar
-....\glue 3.33 plus 1.665 minus 1.11
 ....\penalty 10000
 ....\glue(\parfillskip) 0.0 plus 1.0fil
 ....\glue(\rightskip) 0.0
+...\penalty -51
+...\glue 9.0 plus 3.0 minus 3.0
 ...\glue(\parskip) 0.0 plus 1.0
 ...\glue(\baselineskip) 1.34996
 ...\hbox(7.05+2.28998)x345.0, glue set 196.24fil
@@ -148,7 +149,7 @@ Completed box being shipped out [2]
 ...\hbox(0.0+0.0)x345.0
 ..\glue 25.0
 ..\glue(\lineskip) 0.0
-..\vbox(550.0+0.0)x345.0, glue set 510.94542fil
+..\vbox(550.0+0.0)x345.0, glue set 504.94606fil
 ...\write3{\indexentry{mylength=\verb!*+\mylength+ (length)|main}{\thepage }}
 ...\write3{\indexentry{lengths:>mylength=\verb!*+\mylength+|main}{\thepage }}
 ...\write4{\glossaryentry{v2>mylength=\verb!*+\mylength+:>Fixing \protect \cs  {\ETC.}
@@ -199,6 +200,14 @@ Completed box being shipped out [2]
 ...\penalty 0
 ...\penalty -51
 ...\glue 3.0 plus 1.2 minus 1.0
+...\glue -3.0 plus -1.2 minus -1.0
+...\glue 3.0 plus 1.2 minus 1.0
+...\glue -5.05199 plus -1.2 minus -1.0
+...\penalty -51
+...\glue 2.05199
+...\glue 3.0 plus 1.2 minus 1.0
+...\glue -3.0 plus -1.2 minus -1.0
+...\glue 9.0 plus 3.0 minus 3.0
 ...\glue(\parskip) 0.0 plus 1.0
 ...\glue(\baselineskip) 2.89801
 ...\hbox(7.05+2.04999)x345.0, glue set 164.86fil
@@ -325,12 +334,18 @@ Completed box being shipped out [3]
 ...\penalty 0
 ...\penalty -51
 ...\glue 3.0 plus 1.2 minus 1.0
+...\glue -3.0 plus -1.2 minus -1.0
+...\glue 3.0 plus 1.2 minus 1.0
 ...\glue -5.05199 plus -1.2 minus -1.0
 ...\penalty -51
 ...\glue 2.05199
 ...\glue 3.0 plus 1.2 minus 1.0
 ...\glue -3.0 plus -1.2 minus -1.0
-...\glue 9.0 plus 4.0 minus 3.0
+...\glue 9.0 plus 3.0 minus 3.0
+...\glue -11.05199 plus -3.0 minus -3.0
+...\penalty -51
+...\glue 2.05199
+...\glue 9.0 plus 3.0 minus 3.0
 ...\write3{\indexentry{@mymacro=\verb!*+\@mymacro+|main}{\thepage }}
 ...\penalty 10000
 ...\write4{\glossaryentry{v2.2>@mymacro=\verb!*+\@mymacro+:>new}{\thepage }}
@@ -384,15 +399,23 @@ Completed box being shipped out [3]
 ...\penalty 0
 ...\penalty -51
 ...\glue 3.0 plus 1.2 minus 1.0
-...\glue -5.05199 plus -1.2 minus -1.0
-...\penalty 0
-...\glue 2.05199
+...\glue -3.0 plus -1.2 minus -1.0
 ...\glue 3.0 plus 1.2 minus 1.0
 ...\glue -5.05199 plus -1.2 minus -1.0
-...\penalty -300
+...\penalty -51
 ...\glue 2.05199
 ...\glue 3.0 plus 1.2 minus 1.0
 ...\glue -3.0 plus -1.2 minus -1.0
+...\glue 9.0 plus 3.0 minus 3.0
+...\glue -11.05199 plus -3.0 minus -3.0
+...\penalty 0
+...\glue 2.05199
+...\glue 9.0 plus 3.0 minus 3.0
+...\glue -11.05199 plus -3.0 minus -3.0
+...\penalty -300
+...\glue 2.05199
+...\glue 9.0 plus 3.0 minus 3.0
+...\glue -9.0 plus -3.0 minus -3.0
 ...\glue 15.08499 plus 4.31 minus 0.86198
 ...\glue(\parskip) 0.0 plus 1.0
 ...\glue(\baselineskip) 5.95442

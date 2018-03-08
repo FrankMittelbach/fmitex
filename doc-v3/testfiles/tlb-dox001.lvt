@@ -22,7 +22,7 @@
 \DeclareDocItem[idxgroup=]           {Option}{option}
 \DeclareDocItem[macrolike]{Length}{length}
 
-\DeclareDocItem           {Env}{environment}  % redeclare no frills
+\RedeclareDocItem         {Env}{environment}  % redeclare no frills
 
 \DescribeOption{foo} This describes option foo
 

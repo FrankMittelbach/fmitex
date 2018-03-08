@@ -27,7 +27,7 @@ Completed box being shipped out [1]
 .....\pdfcolorstack 0 pop
 ...\glue 25.0
 ...\glue(\lineskip) 0.0
-...\vbox(550.0+0.0)x345.0, glue set 506.94585fil
+...\vbox(550.0+0.0)x345.0, glue set 497.94681fil
 ....\write-{}
 ....\pdfdest name{Doc-Start} xyz
 ....\glue(\topskip) 3.05556
@@ -101,7 +101,7 @@ Completed box being shipped out [1]
 ....\write4{\glossaryentry{v1>foo=\verb!*+foo+:>first change|hdpindex{}}{\thepage \ETC.}
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\baselineskip) 1.6556
-....\hbox(8.39996+3.60004)x345.0, glue set 122.02731fil
+....\hbox(8.39996+3.60004)x345.0, glue set 125.36064fil
 .....\hbox(8.39996+3.60004)x0.0
 ......\glue 0.0
 ......\glue 0.0
@@ -172,10 +172,11 @@ Completed box being shipped out [1]
 .....\OT1/cmr/m/n/10 b
 .....\OT1/cmr/m/n/10 a
 .....\OT1/cmr/m/n/10 r
-.....\glue 3.33333 plus 1.66666 minus 1.11111
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
+....\penalty -51
+....\glue 9.0 plus 3.0 minus 3.0
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\baselineskip) 1.45552
 ....\hbox(6.94444+2.22223)x345.0, glue set 196.25026fil
@@ -296,7 +297,7 @@ Completed box being shipped out [2]
 .....\pdfcolorstack 0 pop
 ...\glue 25.0
 ...\glue(\lineskip) 0.0
-...\vbox(550.0+0.0)x345.0, glue set 510.94542fil
+...\vbox(550.0+0.0)x345.0, glue set 504.94606fil
 ....\write3{\indexentry{mylength=\verb!*+\mylength+ (length)|hdpindex{main}}{\thepage \ETC.}
 ....\write3{\indexentry{lengths:>mylength=\verb!*+\mylength+|hdpindex{main}}{\thepage \ETC.}
 ....\write4{\glossaryentry{v2>mylength=\verb!*+\mylength+:>Fixing \protect \cs  {\ETC.}
@@ -404,6 +405,14 @@ Completed box being shipped out [2]
 ....\penalty 0
 ....\penalty -51
 ....\glue 3.0 plus 1.2 minus 1.0
+....\glue -3.0 plus -1.2 minus -1.0
+....\glue 3.0 plus 1.2 minus 1.0
+....\glue -5.0 plus -1.2 minus -1.0
+....\penalty -51
+....\glue 2.0
+....\glue 3.0 plus 1.2 minus 1.0
+....\glue -3.0 plus -1.2 minus -1.0
+....\glue 9.0 plus 3.0 minus 3.0
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\baselineskip) 3.05556
 ....\hbox(6.94444+1.94444)x345.0, glue set 162.91634fil
@@ -537,7 +546,7 @@ Completed box being shipped out [3]
 .....\pdfcolorstack 0 pop
 ...\glue 25.0
 ...\glue(\lineskip) 0.0
-...\vbox(550.0+0.0)x345.0, glue set 487.94788fil
+...\vbox(550.0+0.0)x345.0, glue set 481.94852fil
 ....\write3{\indexentry{myenvironment={\ttfamily myenvironment} (environment)|hdp\ETC.}
 ....\write3{\indexentry{environments:>myenvironment={\ttfamily myenvironment}|hdp\ETC.}
 ....\write4{\glossaryentry{v3>myenvironment=\verb!*+myenvironment+:>Third change|\ETC.}
@@ -672,12 +681,18 @@ Completed box being shipped out [3]
 ....\penalty 0
 ....\penalty -51
 ....\glue 3.0 plus 1.2 minus 1.0
+....\glue -3.0 plus -1.2 minus -1.0
+....\glue 3.0 plus 1.2 minus 1.0
 ....\glue -5.0 plus -1.2 minus -1.0
 ....\penalty -51
 ....\glue 2.0
 ....\glue 3.0 plus 1.2 minus 1.0
 ....\glue -3.0 plus -1.2 minus -1.0
-....\glue 9.0 plus 4.0 minus 3.0
+....\glue 9.0 plus 3.0 minus 3.0
+....\glue -11.0 plus -3.0 minus -3.0
+....\penalty -51
+....\glue 2.0
+....\glue 9.0 plus 3.0 minus 3.0
 ....\write3{\indexentry{@mymacro=\verb!*+\@mymacro+|hdpindex{main}}{\thepage }}
 ....\penalty 10000
 ....\write4{\glossaryentry{v2.2>@mymacro=\verb!*+\@mymacro+:>new|hdpindex{}}{\thepage \ETC.}
@@ -788,6 +803,14 @@ Completed box being shipped out [3]
 ....\penalty 0
 ....\penalty -51
 ....\glue 3.0 plus 1.2 minus 1.0
+....\glue -3.0 plus -1.2 minus -1.0
+....\glue 3.0 plus 1.2 minus 1.0
+....\glue -5.0 plus -1.2 minus -1.0
+....\penalty -51
+....\glue 2.0
+....\glue 3.0 plus 1.2 minus 1.0
+....\glue -3.0 plus -1.2 minus -1.0
+....\glue 9.0 plus 3.0 minus 3.0
 ....\glue -2.0
 ....\glue 0.0 plus 1.0fil
 ....\glue 0.0

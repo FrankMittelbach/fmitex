@@ -104,7 +104,7 @@
 
 \DeclareDocItem[macrolike]{Length}{length}
 
-\DeclareDocItem[envlike]  {Env}{environment}  % redeclare no frills
+\RedeclareDocItem[envlike]  {Env}{environment}  % redeclare no frills
 \DeclareDocItem[macrolike,
                 envlike,           % should overwrite previous like
                 idxgroup=]{Option}{option}

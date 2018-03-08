@@ -28,7 +28,7 @@ Completed box being shipped out [1]
 .....\pdfcolorstack 0 pop
 ...\glue 25.0
 ...\glue(\lineskip) 0.0
-...\vbox(550.0+0.0)x345.0, glue set 506.94586fil, direction TLT
+...\vbox(550.0+0.0)x345.0, glue set 497.94681fil, direction TLT
 ....\write-{}
 ....\pdfdest name{Doc-Start} xyz
 ....\glue(\topskip) 2.95
@@ -119,7 +119,7 @@ ge}\ETC.}
 ge \ETC.}
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\baselineskip) 1.66003
-....\hbox(8.39996+3.60004)x345.0, glue set 122.57fil, direction TLT
+....\hbox(8.39996+3.60004)x345.0, glue set 125.90001fil, direction TLT
 .....\localpar
 ......\localinterlinepenalty=0
 ......\localbrokenpenalty=0
@@ -203,10 +203,11 @@ ge \ETC.}
 .....\TU/lmr/m/n/10 b
 .....\TU/lmr/m/n/10 a
 .....\TU/lmr/m/n/10 r
-.....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
+....\penalty -51
+....\glue 9.0 plus 3.0 minus 3.0
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\baselineskip) 1.34996
 ....\hbox(7.05+2.29)x345.0, glue set 196.24fil, direction TLT
@@ -343,7 +344,7 @@ Completed box being shipped out [2]
 .....\pdfcolorstack 0 pop
 ...\glue 25.0
 ...\glue(\lineskip) 0.0
-...\vbox(550.0+0.0)x345.0, glue set 510.94543fil, direction TLT
+...\vbox(550.0+0.0)x345.0, glue set 504.94608fil, direction TLT
 ....\write3{\indexentry{mylength=\verb!*+\mylength+ (length)|hdpindex{main}}{\t
 hepage \ETC.}
 ....\write3{\indexentry{lengths:>mylength=\verb!*+\mylength+|hdpindex{main}}{\t
@@ -466,6 +467,14 @@ hepage \ETC.}
 ....\penalty 0
 ....\penalty -51
 ....\glue 3.0 plus 1.2 minus 1.0
+....\glue -3.0 plus -1.2 minus -1.0
+....\glue 3.0 plus 1.2 minus 1.0
+....\glue -5.052 plus -1.2 minus -1.0
+....\penalty -51
+....\glue 2.052
+....\glue 3.0 plus 1.2 minus 1.0
+....\glue -3.0 plus -1.2 minus -1.0
+....\glue 9.0 plus 3.0 minus 3.0
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\baselineskip) 2.898
 ....\hbox(7.05+2.05)x345.0, glue set 164.86fil, direction TLT
@@ -622,7 +631,7 @@ Completed box being shipped out [3]
 .....\pdfcolorstack 0 pop
 ...\glue 25.0
 ...\glue(\lineskip) 0.0
-...\vbox(550.0+0.0)x345.0, glue set 487.94788fil, direction TLT
+...\vbox(550.0+0.0)x345.0, glue set 481.94852fil, direction TLT
 ....\write3{\indexentry{myenvironment={\ttfamily myenvironment} (environment)|h
 dp\ETC.}
 ....\write3{\indexentry{environments:>myenvironment={\ttfamily myenvironment}|h
@@ -775,12 +784,18 @@ hepage \ETC.}
 ....\penalty 0
 ....\penalty -51
 ....\glue 3.0 plus 1.2 minus 1.0
+....\glue -3.0 plus -1.2 minus -1.0
+....\glue 3.0 plus 1.2 minus 1.0
 ....\glue -5.052 plus -1.2 minus -1.0
 ....\penalty -51
 ....\glue 2.052
 ....\glue 3.0 plus 1.2 minus 1.0
 ....\glue -3.0 plus -1.2 minus -1.0
-....\glue 9.0 plus 4.0 minus 3.0
+....\glue 9.0 plus 3.0 minus 3.0
+....\glue -11.052 plus -3.0 minus -3.0
+....\penalty -51
+....\glue 2.052
+....\glue 9.0 plus 3.0 minus 3.0
 ....\write3{\indexentry{@mymacro=\verb!*+\@mymacro+|hdpindex{main}}{\thepage }}
 ....\penalty 10000
 ....\write4{\glossaryentry{v2.2>@mymacro=\verb!*+\@mymacro+:>new|hdpindex{}}{\t
@@ -910,6 +925,14 @@ hepage \ETC.}
 ....\penalty 0
 ....\penalty -51
 ....\glue 3.0 plus 1.2 minus 1.0
+....\glue -3.0 plus -1.2 minus -1.0
+....\glue 3.0 plus 1.2 minus 1.0
+....\glue -5.052 plus -1.2 minus -1.0
+....\penalty -51
+....\glue 2.052
+....\glue 3.0 plus 1.2 minus 1.0
+....\glue -3.0 plus -1.2 minus -1.0
+....\glue 9.0 plus 3.0 minus 3.0
 ....\glue -2.052
 ....\glue 0.0 plus 1.0fil
 ....\glue 0.0
