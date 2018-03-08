@@ -19,10 +19,10 @@
 
 \START
 
-\DeclareDocItem[idxgroup=]           {Option}{option}
-\DeclareDocItem[macrolike]{Length}{length}
+\NewDocElement[idxgroup=]           {Option}{option}
+\NewDocElement[macrolike]{Length}{length}
 
-\RedeclareDocItem         {Env}{environment}  % redeclare no frills
+\RenewDocElement         {Env}{environment}  % redeclare no frills
 
 \DescribeOption{foo} This describes option foo
 

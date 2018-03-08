@@ -11,8 +11,8 @@
 \CodelineIndex
 \RecordChanges
 
-\DeclareDocItem[macrolike]{Length}{length}
-\DeclareDocItem           {Counter}{counter}
+\NewDocElement[macrolike]{Length}{length}
+\NewDocElement           {Counter}{counter}
 
 \begin{document}
 

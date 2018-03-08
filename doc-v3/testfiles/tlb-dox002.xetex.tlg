@@ -4,7 +4,8 @@ Don't change this file in any respect.
 \indexentry{mylength=\verb!*+\mylength+ (length)|hdclindex{6}{main}}{1}
 \indexentry{lengths:>mylength=\verb!*+\mylength+|hdclindex{6}{main}}{1}
 (../se-ascii-print.def
-) [1
+)
+[1
 \indexentry{foo={\ttfamily foo} (option)|hdclindex{2}{usage}}{1}
 \glossaryentry{v1>foo=\verb!*+foo+:>first change|hdpindex{}}{1}
 \indexentry{mylength=\verb!*+\mylength+ (length)|hdclindex{5}{usage}}{1}

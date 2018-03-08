@@ -104,12 +104,12 @@
 
 \START
 
-\DeclareDocItem[macrolike]{Length}{length}
+\NewDocElement[macrolike]{Length}{length}
 
-\RedeclareDocItem[envlike]  {Env}{environment}  % redeclare no frills
-\DeclareDocItem[macrolike,
-                envlike,           % should overwrite previous like
-                idxgroup=]{Option}{option}
+\RenewDocElement[envlike]  {Env}{environment}  % redeclare no frills
+\NewDocElement  [macrolike,
+                 envlike,           % should overwrite previous like
+                 idxgroup=]{Option}{option}
 
 
 \DescribeOption{foo} This describes option foo
