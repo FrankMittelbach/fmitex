@@ -4854,10 +4854,11 @@
 
 % \section{Integrating hypdoc}
 %
-% If the option \texttt{hyperref} is selected (which is the default),
-% then we load the \pkg{hypdoc} package. That package currently
-%    expects some commands from \DOC version~2 being defined, so we
-%    need to provide some dummy definitions for them
+%    If the option \texttt{hyperref} is selected (which is the
+%    default), then we load the \pkg{hypdoc} package. That package
+%    currently expects some commands from \DOC version~2 being
+%    defined, so we first need to provide some dummy definitions for
+%    them
 %    \begin{macrocode}
 \ifdox@hyperref
   \let\PrintDescribeMacro \@empty
@@ -4871,7 +4872,9 @@
   \usepackage{hypdoc}
   \expandafter\let\csname doc.sty-h@@k\endcsname\dox@eoph@@k
 %    \end{macrocode}
-%    
+%    After \pkg{hypdoc} got loaded we need to undefine those macros
+%    again so that later on \texttt{Macro} and \texttt{Env} \DOC items
+%    appear to be undefined.
 %    \begin{macrocode}
   \let\PrintDescribeMacro \relax
   \let\PrintDescribeEnv   \relax
