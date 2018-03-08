@@ -147,7 +147,7 @@
 % \newcommand\fmi[1]{\par\textbf{TODO: }\textit{#1}\par}
 %
 % 
-%\DeclareDocItem[macrolike = false ,
+%\RedeclareDocItem[macrolike = false ,
 %                idxtype   = env.  ,
 %                idxgroup  = LaTeX environments\actualchar\LaTeX{} environments ,
 %                printtype = \textit{env.} 
@@ -4871,6 +4871,13 @@
   \usepackage{hypdoc}
   \expandafter\let\csname doc.sty-h@@k\endcsname\dox@eoph@@k
 %    \end{macrocode}
+%    
+%    \begin{macrocode}
+  \let\PrintDescribeMacro \relax
+  \let\PrintDescribeEnv   \relax
+  \let\PrintMacroName     \relax
+  \let\PrintEnvName       \relax
+%    \end{macrocode}
 %    That package adds extra code into |\index| entries but it doesn't
 % know about all the stuff that \DOC does (now). So we need to provide
 % us with two helpers that handle the |\encapchar| case in some entries.
@@ -5145,14 +5152,24 @@
     {\@doxdescribe{#1}}{\@doxdescribe{#1}[]}}}
 %    \end{macrocode}
 % \end{macro}
+%
+%
 % \begin{macro}{\@doxcreateenv}
 %   \marg{item}\marg{envname}
 %    \begin{macrocode}
 \def\@doxcreateenv#1#2#3{%
   \@namedef{#3}{%
     \@ifnextchar[%]
-    {\@doxenv{#1}{#2}}{\@doxenv{#1}{#2}[]}}
-  \expandafter\let\csname end#2\endcsname\endtrivlist}
+    {\@doxenv{#1}{#2}}{\@doxenv{#1}{#2}[]}}%
+%    \end{macrocode}
+%    Instead of |\let|ting the end of the environment to
+%    |\endtrivlist| we use one level of expansion. This way any
+%    possible change in that environment (if that ever happens) is
+%    properly reflected.
+%    \begin{macrocode}
+  \@namedef{end#3}{\endtrivlist}%
+%  \expandafter\let\csname end#3\endcsname\endtrivlist
+}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5183,6 +5200,48 @@
 
 %    \begin{macrocode}
 \newcommand\DeclareDocItem[3][]{%
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+  \@ifundefined{Print#2Name}%
+      {\@ifundefined{PrintDescribe#2}%
+           {\@ifundefined{#3}%
+               {\@ifundefined{end#3}%
+                    {\@DeclareDocItem{#1}{#2}{#3}%
+                    }\dox@declareerror
+               }\dox@declareerror
+           }\dox@declareerror
+      }\dox@declareerror
+}  
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+\newcommand\RedeclareDocItem[3][]{%
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+  \@ifundefined{Print#2Name}\@doxnotdeclarederrorA
+      {\@ifundefined{PrintDescribe#2}\@doxnotdeclarederrorB
+           {\@ifundefined{#3}\@doxnotdeclarederrorC
+               {\@ifundefined{end#3}\@doxnotdeclarederrorD
+                    {\@DeclareDocItem{#1}{#2}{#3}}%
+               }%
+           }%
+      }%
+}  
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+  
+   
+
+
+%    \end{macrocode}
+%    
+
+
+%    \begin{macrocode}
+\def\@DeclareDocItem#1#2#3{%
   \@nameuse{dox@macrolike\dox@macrolikedefault}%
   \def\dox@idxtype{#3}%
   \def\dox@idxgroup{#3s}%
