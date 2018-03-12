@@ -3609,8 +3609,6 @@
 %
 %
 % \begin{macro}{\pfill}
-% \begin{macro}{\dotfil}
-% \begin{macro}{\dotfill}
 %     The following definitions provide the |\pfill| command; if
 %    this is specified in the index style file to \prg{makeindex} as
 %    the delimiter to appear after index items, then the intervening
@@ -3618,18 +3616,17 @@
 %    dots, with a little white space interpolated at each end of the
 %    dots.  If the line is broken the dots will show up on both lines.
 %    \begin{macrocode}
-\def\dotfill{\leaders\hbox to.6em{\hss .\hss}\hskip\z@ plus  1fill}%
-\def\dotfil{\leaders\hbox to.6em{\hss .\hss}\hfil}%
-\def\pfill{\unskip~\dotfill\penalty500\strut\nobreak
-               \dotfil~\ignorespaces}%
+\def\pfill{\unskip~%
+           \leaders\hbox to.6em{\hss .\hss}\hfill
+           \penalty500\strut\nobreak
+           \leaders\hbox to.6em{\hss .\hss}\hfil
+           ~\ignorespaces}%
 %</package>
 %<+gind|gglo>delim_0   "\\pfill "
 %<+gind|gglo>delim_1   "\\pfill "
 %<+gind|gglo>delim_2   "\\pfill "
 %<*package>
 %    \end{macrocode}
-% \end{macro}
-% \end{macro}
 % \end{macro}
 %
 %
