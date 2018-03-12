@@ -2481,7 +2481,7 @@
 \begingroup   \catcode`\|=\z@  \catcode`\\=\active
 %    \end{macrocode}
 %    We carry out tasks 2) and 3b) first.
-%    \SpecialEscapechar{\|}
+%    \SpecialEscapechar\|
 %    \begin{macrocode}
 |gdef|init@crossref{|catcode`|\|active   |let\|bslash
 %    \end{macrocode}
@@ -2887,7 +2887,7 @@
 %
 % \subsection[The index exclude list]{The index exclude
 %             list\footnotemark}
-%            \footnotetext{Warning: the incomplete commentary on
+%            \footnotetext{Info: the incomplete commentary on
 %            \texttt{\bslash DoNotIndex} and the macros it calls
 %                          was written by Dave Love.}
 %
@@ -2976,7 +2976,7 @@
 %    "\the" followed by "\index@excludelist". To achieve the expansion
 %    of "\macro@namepart", i.e.\ to pass its contents, we need a
 %    suitable number of "\expandafter"s.
-%    \SpecialEscapechar{\|}
+%    \SpecialEscapechar\|
 %    \begin{macrocode}
 |gdef|ifnot@excluded{|expandafter
      |expanded@notin|expandafter{|expandafter
@@ -3192,7 +3192,6 @@
 |endgroup
 %    \end{macrocode}
 %    
-%    \SpecialEscapechar{\\}
 %    \begin{macrocode}
 \def\SpecialIndex@#1#2{%
 %    \end{macrocode}
