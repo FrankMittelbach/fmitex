@@ -10,8 +10,7 @@ Changes env buggy!!!!
 \indexentry{environments:>@myenvironment={\ttfamily @myenvironment}|hdclindex{5}{main}}{1}
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line ....
 (../se-ascii-print.def
-)
-[1
+) [1
 \glossaryentry{v2.1> =General:>That's general|hdpindex{}}{1}
 \glossaryentry{v2.1>mymacro=\verb!*+\mymacro+:>new|hdpindex{}}{1}
 \glossaryentry{v2.1>myenvironment=\verb!*+myenvironment+:>new|hdpindex{}}{1}
