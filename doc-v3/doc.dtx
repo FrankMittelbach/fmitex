@@ -3769,7 +3769,11 @@
 %    In this case we precede it by "\generalname".
 %    \begin{macrocode}
                                  \ifx\saved@macroname\@empty
-                                   \space
+%    \end{macrocode}
+%    Putting a |!| at the beginning of the entry hopefully moves this
+%    entry to the very beginning during sourting.
+%    \begin{macrocode}
+                                   \quotechar!%
                                    \actualchar
                                    \generalname
                                  \else
