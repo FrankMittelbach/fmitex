@@ -1,0 +1,30 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+\indexentry{skip_new:N=\verb!*+\skip_new:N+|hdclindex{3}{main}}{1}
+Disable indexing for '\skip_new:N '
+Searching for '\cs_new:Npn'
+Indexing '\cs_new:Npn' (normal)
+\indexentry{cs_new:Npn=\verb!*+\cs_new:Npn+|hdclindex{4}{code}}{1}
+Searching for '\skip_new:N'
+Not indexing '\skip_new:N'
+Recording index type for '\l_mylength_skip' as Length
+\indexentry{l_mylength_skip=\verb!*+\l_mylength_skip+ (length)|hdclindex{7}{main}}{2}
+\indexentry{lengths:>l_mylength_skip=\verb!*+\l_mylength_skip+|hdclindex{7}{main}}{2}
+Disable indexing for '\l_mylength_skip '
+Searching for '\skip_new:N'
+Indexing '\skip_new:N' (normal)
+\indexentry{skip_new:N=\verb!*+\skip_new:N+|hdclindex{8}{code}}{2}
+Searching for '\l_mylength_skip'
+Not indexing '\l_mylength_skip'
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line ....
+(../se-ascii-print.def
+) [1
+\indexentry{skip_new:N=\verb!*+\skip_new:N+|hdclindex{2}{usage}}{1}
+\indexentry{l_mylength_skip=\verb!*+\l_mylength_skip+ (length)|hdclindex{6}{usage}}{1}
+\indexentry{lengths:>l_mylength_skip=\verb!*+\l_mylength_skip+|hdclindex{6}{usage}}{1}
+]
+Package atveryend Info: Executing hook `AfterLastShipout' on input line ....
+ (tlb-dox008.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line ....
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line ....
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line ....

@@ -54,6 +54,9 @@
 \begin{macro}{\@mymacro}
   \changes{v2.2}{2015/05/18}{new}
   A macro definition
+%    \begin{macrocode}
+\def\@mymacro{\mylength=1cm}
+%    \end{macrocode}
 \end{macro}
 
 

@@ -55,7 +55,7 @@ Completed box being shipped out [1]
 ........\special{pdf:dest (HD.2) [@thispage /XYZ @xpos @ypos null]}
 ........\penalty 10000
 ........\kern 1.66672
-.....\write3{\indexentry{foo={\protect \ttfamily foo} (option)|hdclindex{2}{usage}\ETC.}
+.....\write3{\indexentry{foo={\ttfamily foo} (option)|hdclindex{2}{usage}}{\thepage \ETC.}
 .....\TU/lmr/m/n/10 This
 .....\glue 3.33 plus 1.665 minus 1.11
 .....\TU/lmr/m/n/10 describes
@@ -198,6 +198,10 @@ Completed box being shipped out [1]
 \glossaryentry{v1>foo=\verb!*+foo+:>first change|hdpindex{}}{1}
 \indexentry{mylength=\verb!*+\mylength+ (length)|hdclindex{5}{usage}}{1}
 \indexentry{lengths:>mylength=\verb!*+\mylength+|hdclindex{5}{usage}}{1}
+Recording index type for '\mylength' as Length
+Disable indexing for '\mylength '
+Searching for '\mylength'
+Not indexing '\mylength'
 Completed box being shipped out [2]
 \vbox(633.0+0.0)x407.0
 .\vbox(0.0+0.0)x0.0, glue set - 14.99626fil
@@ -225,6 +229,7 @@ Completed box being shipped out [2]
 ...\glue 25.0
 ...\glue(\lineskip) 0.0
 ...\vbox(550.0+0.0)x345.0, glue set 504.94606fil
+....\write1{\RecordIndexTypeAux{\mylength}{Length}}
 ....\write3{\indexentry{mylength=\verb!*+\mylength+ (length)|hdpindex{main}}{\thepage \ETC.}
 ....\write3{\indexentry{lengths:>mylength=\verb!*+\mylength+|hdpindex{main}}{\thepage \ETC.}
 ....\write4{\glossaryentry{v2>mylength=\verb!*+\mylength+:>Fixing \protect \cs  {\ETC.}
@@ -298,8 +303,8 @@ Completed box being shipped out [2]
 ........\special{pdf:dest (HD.8) [@thispage /XYZ @xpos @ypos null]}
 ........\penalty 10000
 ........\kern 1.66672
-.....\write3{\indexentry{myenvironment={\protect \ttfamily myenvironment} (environ\ETC.}
-.....\write3{\indexentry{environments:>myenvironment={\protect \ttfamily myenviron\ETC.}
+.....\write3{\indexentry{myenvironment={\ttfamily myenvironment} (environment)|hdc\ETC.}
+.....\write3{\indexentry{environments:>myenvironment={\ttfamily myenvironment}|hdc\ETC.}
 .....\TU/lmr/m/n/10 The
 .....\glue 3.33 plus 1.665 minus 1.11
 .....\TU/lmr/m/n/10 description
@@ -348,6 +353,21 @@ Completed box being shipped out [2]
 \glossaryentry{v2>mylength=\verb!*+\mylength+:>Fixing \cs  {mylength} thoroughly|hdpindex{}}{2}
 \indexentry{myenvironment={\ttfamily myenvironment} (environment)|hdclindex{8}{usage}}{2}
 \indexentry{environments:>myenvironment={\ttfamily myenvironment}|hdclindex{8}{usage}}{2}
+Searching for '\newenvironment'
+Indexing '\newenvironment' (normal)
+Searching for '\hsize'
+Indexing '\hsize' (normal)
+Searching for '\mylength'
+Indexing '\mylength' as Length
+Disable indexing for '\@mymacro '
+Searching for '\def'
+Indexing '\def' (normal)
+Searching for '\@mylength'
+Indexing '\@mylength' (normal)
+Searching for '\mylength'
+Indexing '\mylength' as Length
+Searching for '\relax'
+Indexing '\relax' (normal)
 (tlb-dox004.ind
 Completed box being shipped out [3]
 \vbox(633.0+0.21999)x407.0
@@ -420,11 +440,12 @@ Completed box being shipped out [3]
 .....\glue(\leftskip) 6.67801
 .....\hbox(0.0+0.0)x0.0
 .....\TU/lmtt/m/n/9 \newenvironment
-.....\write3{\indexentry{newenvironment=\verb!*+\newenvironment+|hdpindex{}}{\thepage \ETC.}
+.....\write3{\indexentry{newenvironment=\verb!*+\newenvironment+|hdpindex{code}}{\thepage \ETC.}
 .....\TU/lmtt/m/n/9 {myenvironment}{\hsize
-.....\write3{\indexentry{hsize=\verb!*+\hsize+|hdpindex{}}{\thepage }}
+.....\write3{\indexentry{hsize=\verb!*+\hsize+|hdpindex{code}}{\thepage }}
 .....\TU/lmtt/m/n/9 \mylength
-.....\write3{\indexentry{mylength=\verb!*+\mylength+|hdpindex{}}{\thepage }}
+.....\write3{\indexentry{mylength=\verb!*+\mylength+ (length)|hdpindex{code}}{\thepage \ETC.}
+.....\write3{\indexentry{lengths:>mylength=\verb!*+\mylength+|hdpindex{code}}{\thepage \ETC.}
 .....\TU/lmtt/m/n/9 }{}
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
@@ -489,13 +510,14 @@ Completed box being shipped out [3]
 .....\glue(\leftskip) 6.67801
 .....\hbox(0.0+0.0)x0.0
 .....\TU/lmtt/m/n/9 \def
-.....\write3{\indexentry{def=\verb!*+\def+|hdpindex{}}{\thepage }}
+.....\write3{\indexentry{def=\verb!*+\def+|hdpindex{code}}{\thepage }}
 .....\TU/lmtt/m/n/9 \@mylength
-.....\write3{\indexentry{@mylength=\verb!*+\@mylength+|hdpindex{}}{\thepage }}
+.....\write3{\indexentry{@mylength=\verb!*+\@mylength+|hdpindex{code}}{\thepage }}
 .....\TU/lmtt/m/n/9 #1{\mylength
-.....\write3{\indexentry{mylength=\verb!*+\mylength+|hdpindex{}}{\thepage }}
+.....\write3{\indexentry{mylength=\verb!*+\mylength+ (length)|hdpindex{code}}{\thepage \ETC.}
+.....\write3{\indexentry{lengths:>mylength=\verb!*+\mylength+|hdpindex{code}}{\thepage \ETC.}
 .....\TU/lmtt/m/n/9 =#1\relax
-.....\write3{\indexentry{relax=\verb!*+\relax+|hdpindex{}}{\thepage }}
+.....\write3{\indexentry{relax=\verb!*+\relax+|hdpindex{code}}{\thepage }}
 .....\TU/lmtt/m/n/9 }
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
@@ -526,15 +548,17 @@ Completed box being shipped out [3]
 \indexentry{myenvironment={\ttfamily myenvironment} (environment)|hdpindex{main}}{3}
 \indexentry{environments:>myenvironment={\ttfamily myenvironment}|hdpindex{main}}{3}
 \glossaryentry{v3>myenvironment=\verb!*+myenvironment+:>Third change|hdpindex{}}{3}
-\indexentry{newenvironment=\verb!*+\newenvironment+|hdpindex{}}{3}
-\indexentry{hsize=\verb!*+\hsize+|hdpindex{}}{3}
-\indexentry{mylength=\verb!*+\mylength+|hdpindex{}}{3}
+\indexentry{newenvironment=\verb!*+\newenvironment+|hdpindex{code}}{3}
+\indexentry{hsize=\verb!*+\hsize+|hdpindex{code}}{3}
+\indexentry{mylength=\verb!*+\mylength+ (length)|hdpindex{code}}{3}
+\indexentry{lengths:>mylength=\verb!*+\mylength+|hdpindex{code}}{3}
 \indexentry{@mymacro=\verb!*+\@mymacro+|hdpindex{main}}{3}
 \glossaryentry{v2.2>@mymacro=\verb!*+\@mymacro+:>new|hdpindex{}}{3}
-\indexentry{def=\verb!*+\def+|hdpindex{}}{3}
-\indexentry{@mylength=\verb!*+\@mylength+|hdpindex{}}{3}
-\indexentry{mylength=\verb!*+\mylength+|hdpindex{}}{3}
-\indexentry{relax=\verb!*+\relax+|hdpindex{}}{3}
+\indexentry{def=\verb!*+\def+|hdpindex{code}}{3}
+\indexentry{@mylength=\verb!*+\@mylength+|hdpindex{code}}{3}
+\indexentry{mylength=\verb!*+\mylength+ (length)|hdpindex{code}}{3}
+\indexentry{lengths:>mylength=\verb!*+\mylength+|hdpindex{code}}{3}
+\indexentry{relax=\verb!*+\relax+|hdpindex{code}}{3}
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line ....
 LaTeX Font Info:    External font `cmex10' loaded for size

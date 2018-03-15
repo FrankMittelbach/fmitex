@@ -20,8 +20,7 @@ Completed box being shipped out [1]
 .....\localleftbox=null
 .....\localrightbox=null
 ....\hbox(0.0+0.0)x15.0, direction TLT
-....\write3{\indexentry{foo={\protect \ttfamily foo} (option)|usage}{\thepage }
-}
+....\write3{\indexentry{foo={\ttfamily foo} (option)|usage}{\thepage }}
 ....\TU/lmr/m/n/10 T
 ....\TU/lmr/m/n/10 h
 ....\TU/lmr/m/n/10 i
@@ -271,6 +270,10 @@ Completed box being shipped out [1]
 \glossaryentry{v1>foo=\verb!*+foo+:>first change}{1}
 \indexentry{mylength=\verb!*+\mylength+ (length)|usage}{1}
 \indexentry{lengths:>mylength=\verb!*+\mylength+|usage}{1}
+Recording index type for '\mylength' as Length
+Disable indexing for '\mylength '
+Searching for '\mylength'
+Not indexing '\mylength'
 Completed box being shipped out [2]
 \vbox(633.0+0.0)x407.0, direction TLT
 .\glue 16.0
@@ -281,6 +284,7 @@ Completed box being shipped out [2]
 ..\glue 25.0
 ..\glue(\lineskip) 0.0
 ..\vbox(550.0+0.0)x345.0, glue set 504.94608fil, direction TLT
+...\write1{\RecordIndexTypeAux{\mylength}{Length}}
 ...\write3{\indexentry{mylength=\verb!*+\mylength+ (length)|main}{\thepage }}
 ...\write3{\indexentry{lengths:>mylength=\verb!*+\mylength+|main}{\thepage }}
 ...\write4{\glossaryentry{v2>mylength=\verb!*+\mylength+:>Fixing \protect \cs  
@@ -414,10 +418,10 @@ Completed box being shipped out [2]
 .....\localleftbox=null
 .....\localrightbox=null
 ....\hbox(0.0+0.0)x15.0, direction TLT
-....\write3{\indexentry{myenvironment={\protect \ttfamily myenvironment} (envir
-on\ETC.}
-....\write3{\indexentry{environments:>myenvironment={\protect \ttfamily myenvir
-on\ETC.}
+....\write3{\indexentry{myenvironment={\ttfamily myenvironment} (environment)|u
+sa\ETC.}
+....\write3{\indexentry{environments:>myenvironment={\ttfamily myenvironment}|u
+sa\ETC.}
 ....\TU/lmr/m/n/10 T
 ....\TU/lmr/m/n/10 h
 ....\TU/lmr/m/n/10 e
@@ -523,6 +527,21 @@ on\ETC.}
 \glossaryentry{v2>mylength=\verb!*+\mylength+:>Fixing \cs  {mylength} thoroughly}{2}
 \indexentry{myenvironment={\ttfamily myenvironment} (environment)|usage}{2}
 \indexentry{environments:>myenvironment={\ttfamily myenvironment}|usage}{2}
+Searching for '\newenvironment'
+Indexing '\newenvironment' (normal)
+Searching for '\hsize'
+Indexing '\hsize' (normal)
+Searching for '\mylength'
+Indexing '\mylength' as Length
+Disable indexing for '\@mymacro '
+Searching for '\def'
+Indexing '\def' (normal)
+Searching for '\@mylength'
+Indexing '\@mylength' (normal)
+Searching for '\mylength'
+Indexing '\mylength' as Length
+Searching for '\relax'
+Indexing '\relax' (normal)
 (tlb-dox005.ind(load luc: ../lmroman12-regular.luc)(load luc: ../lmroman12-bold.luc)(load luc: ../lmroman9-regular.luc)(load luc: ../lmroman9-bold.luc)
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line ....
@@ -678,7 +697,8 @@ i\ETC.}
 ....\TU/lmtt/m/n/9 e
 ....\TU/lmtt/m/n/9 n
 ....\TU/lmtt/m/n/9 t
-....\write3{\indexentry{newenvironment=\verb!*+\newenvironment+}{\thepage }}
+....\write3{\indexentry{newenvironment=\verb!*+\newenvironment+|code}{\thepage 
+}}
 ....\TU/lmtt/m/n/9 {
 ....\TU/lmtt/m/n/9 m
 ....\TU/lmtt/m/n/9 y
@@ -701,7 +721,7 @@ i\ETC.}
 ....\TU/lmtt/m/n/9 i
 ....\TU/lmtt/m/n/9 z
 ....\TU/lmtt/m/n/9 e
-....\write3{\indexentry{hsize=\verb!*+\hsize+}{\thepage }}
+....\write3{\indexentry{hsize=\verb!*+\hsize+|code}{\thepage }}
 ....\TU/lmtt/m/n/9 \
 ....\TU/lmtt/m/n/9 m
 ....\TU/lmtt/m/n/9 y
@@ -711,7 +731,8 @@ i\ETC.}
 ....\TU/lmtt/m/n/9 g
 ....\TU/lmtt/m/n/9 t
 ....\TU/lmtt/m/n/9 h
-....\write3{\indexentry{mylength=\verb!*+\mylength+}{\thepage }}
+....\write3{\indexentry{mylength=\verb!*+\mylength+ (length)|code}{\thepage }}
+....\write3{\indexentry{lengths:>mylength=\verb!*+\mylength+|code}{\thepage }}
 ....\TU/lmtt/m/n/9 }
 ....\TU/lmtt/m/n/9 {
 ....\TU/lmtt/m/n/9 }
@@ -813,7 +834,7 @@ i\ETC.}
 ....\TU/lmtt/m/n/9 d
 ....\TU/lmtt/m/n/9 e
 ....\TU/lmtt/m/n/9 f
-....\write3{\indexentry{def=\verb!*+\def+}{\thepage }}
+....\write3{\indexentry{def=\verb!*+\def+|code}{\thepage }}
 ....\TU/lmtt/m/n/9 \
 ....\TU/lmtt/m/n/9 @
 ....\TU/lmtt/m/n/9 m
@@ -824,7 +845,7 @@ i\ETC.}
 ....\TU/lmtt/m/n/9 g
 ....\TU/lmtt/m/n/9 t
 ....\TU/lmtt/m/n/9 h
-....\write3{\indexentry{@mylength=\verb!*+\@mylength+}{\thepage }}
+....\write3{\indexentry{@mylength=\verb!*+\@mylength+|code}{\thepage }}
 ....\TU/lmtt/m/n/9 #
 ....\TU/lmtt/m/n/9 1
 ....\TU/lmtt/m/n/9 {
@@ -837,7 +858,8 @@ i\ETC.}
 ....\TU/lmtt/m/n/9 g
 ....\TU/lmtt/m/n/9 t
 ....\TU/lmtt/m/n/9 h
-....\write3{\indexentry{mylength=\verb!*+\mylength+}{\thepage }}
+....\write3{\indexentry{mylength=\verb!*+\mylength+ (length)|code}{\thepage }}
+....\write3{\indexentry{lengths:>mylength=\verb!*+\mylength+|code}{\thepage }}
 ....\TU/lmtt/m/n/9 =
 ....\TU/lmtt/m/n/9 #
 ....\TU/lmtt/m/n/9 1
@@ -847,7 +869,7 @@ i\ETC.}
 ....\TU/lmtt/m/n/9 l
 ....\TU/lmtt/m/n/9 a
 ....\TU/lmtt/m/n/9 x
-....\write3{\indexentry{relax=\verb!*+\relax+}{\thepage }}
+....\write3{\indexentry{relax=\verb!*+\relax+|code}{\thepage }}
 ....\TU/lmtt/m/n/9 }
 ....\penalty 10000
 ....\glue(\parfillskip) 0.0 plus 1.0fil
@@ -2367,13 +2389,15 @@ i\ETC.}
 \indexentry{myenvironment={\ttfamily myenvironment} (environment)|main}{3}
 \indexentry{environments:>myenvironment={\ttfamily myenvironment}|main}{3}
 \glossaryentry{v3>myenvironment=\verb!*+myenvironment+:>Third change}{3}
-\indexentry{newenvironment=\verb!*+\newenvironment+}{3}
-\indexentry{hsize=\verb!*+\hsize+}{3}
-\indexentry{mylength=\verb!*+\mylength+}{3}
+\indexentry{newenvironment=\verb!*+\newenvironment+|code}{3}
+\indexentry{hsize=\verb!*+\hsize+|code}{3}
+\indexentry{mylength=\verb!*+\mylength+ (length)|code}{3}
+\indexentry{lengths:>mylength=\verb!*+\mylength+|code}{3}
 \indexentry{@mymacro=\verb!*+\@mymacro+|main}{3}
 \glossaryentry{v2.2>@mymacro=\verb!*+\@mymacro+:>new}{3}
-\indexentry{def=\verb!*+\def+}{3}
-\indexentry{@mylength=\verb!*+\@mylength+}{3}
-\indexentry{mylength=\verb!*+\mylength+}{3}
-\indexentry{relax=\verb!*+\relax+}{3}
+\indexentry{def=\verb!*+\def+|code}{3}
+\indexentry{@mylength=\verb!*+\@mylength+|code}{3}
+\indexentry{mylength=\verb!*+\mylength+ (length)|code}{3}
+\indexentry{lengths:>mylength=\verb!*+\mylength+|code}{3}
+\indexentry{relax=\verb!*+\relax+|code}{3}
 (tlb-dox005.aux)

@@ -12,20 +12,38 @@ LaTeX Font Info:    Try loading font information for T1+cmtt on input line ....
 \indexentry{foo=\verb!*+\foo+|hdclindex{2}{usage}}{1}
 ]
 \indexentry{foo=\verb!*+\foo+|hdclindex{3}{main}}{1}
+Disable indexing for '\foo '
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line ....
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line ....
+Searching for '\foo'
+Not indexing '\foo'
+Recording index type for '\mylength' as Length
 \indexentry{mylength=\verb!*+\mylength+ (length)|hdclindex{7}{main}}{4}
 \indexentry{lengths:>mylength=\verb!*+\mylength+|hdclindex{7}{main}}{4}
-\indexentry{foo=\verb!*+\foo+|hdclindex{9}{}}{5}
-\indexentry{foo=\verb!*+\foo+|hdclindex{11}{}}{7}
-\indexentry{mylength=\verb!*+\mylength+|hdclindex{11}{}}{7}
+Disable indexing for '\mylength '
+Searching for '\mylength'
+Not indexing '\mylength'
+Searching for '\foo'
+Indexing '\foo' (normal)
+\indexentry{foo=\verb!*+\foo+|hdclindex{9}{code}}{5}
+Searching for '\mylength'
+Not indexing '\mylength'
+Searching for '\foo'
+Indexing '\foo' (normal)
+\indexentry{foo=\verb!*+\foo+|hdclindex{11}{code}}{7}
+Searching for '\mylength'
+Indexing '\mylength' as Length
+\indexentry{mylength=\verb!*+\mylength+ (length)|hdclindex{11}{code}}{7}
+\indexentry{lengths:>mylength=\verb!*+\mylength+|hdclindex{11}{code}}{7}
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <14.4> on input line ....
 \indexentry{secnumdepth={\ttfamily secnumdepth} (counter)|hdclindex{18}{main}}{12}
 \indexentry{counters:>secnumdepth={\ttfamily secnumdepth}|hdclindex{18}{main}}{12}
-\indexentry{newcounter=\verb!*+\newcounter+|hdclindex{19}{}}{12}
+Searching for '\newcounter'
+Indexing '\newcounter' (normal)
+\indexentry{newcounter=\verb!*+\newcounter+|hdclindex{19}{code}}{12}
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line ....
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):

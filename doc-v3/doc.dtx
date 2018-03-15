@@ -137,6 +137,7 @@
 % \newcommand{\DOC}{\texttt{doc}\xspace}
 %
 % \newcommand\env{\texttt}
+% \newcommand\opt{\texttt}
 % \newcommand\cls{\texttt}
 % \newcommand\pkg{\texttt}
 % \newcommand\prg{\textsf}
@@ -146,37 +147,61 @@
 %
 % \newcommand\fmi[1]{\par\textbf{TODO: }\textit{#1}\par}
 %
-% 
+%
+%\RenewDocElement[macrolike = true ,
+%		 toplevel  = false,
+%                idxtype   = ,
+%                idxgroup  = LaTeX comands\actualchar\LaTeX{} commands ,
+%                printtype =  
+%               ]{Macro}{macro}
+%
 %\RenewDocElement[macrolike = false ,
+%		 toplevel  = false,
 %                idxtype   = env.  ,
 %                idxgroup  = LaTeX environments\actualchar\LaTeX{} environments ,
 %                printtype = \textit{env.} 
 %               ]{Env}{environment}
-
+%
+%
 %\NewDocElement[macrolike = false ,
+%		 toplevel  = false,
 %                idxtype   =  counter  ,
-%                idxgroup  = LaTeX counter\actualchar \LaTeX{} counter ,
+%                idxgroup  = LaTeX counters\actualchar \LaTeX{} counters ,
 %                printtype = \textit{counter}
 %               ]{LaTeXCounter}{lcounter} 
 %
 %\NewDocElement[macrolike = true ,
+%		 toplevel  = false,
 %                idxtype   =  counter  ,
-%                idxgroup  = TeX counter\actualchar \TeX{} counter ,
+%                idxgroup  = TeX counters\actualchar \TeX{} counters ,
 %                printtype = \textit{counter}
 %               ]{TeXCounter}{tcounter} 
 %
 %
 %\NewDocElement[macrolike = true ,
+%		 toplevel  = false,
 %                idxtype   =  skip  ,
 %                idxgroup  = LaTeX length\actualchar \LaTeX{} length (skip) ,
 %                printtype = \textit{skip}
 %               ]{LaTeXSkip}{lskip} 
 %
 %\NewDocElement[macrolike = true ,
+%		 toplevel  = false,
 %                idxtype   =  dimen  ,
 %                idxgroup  = LaTeX length\actualchar \LaTeX{} length (dimen) ,
 %                printtype = \textit{dimen}
 %               ]{LaTeXDimen}{ldimen} 
+%
+%\NewDocElement[macrolike = false ,
+%		 toplevel  = false,
+%                idxtype   = option  ,
+%                idxgroup  = Options ,
+%                printtype = \textit{option}
+%               ]{Option}{option} 
+%
+% \renewcommand\code[1]{\mbox{$\ell$-#1}}
+% \renewcommand\main[1]{\underline{\mbox{$\ell$-#1}}}
+% \setcounter{IndexColumns}{2}
 %
 % \changes{v1.9t}{1995/05/11}{Use \cs{GetFileInfo}}
 % \GetFileInfo{doc.sty}
@@ -255,8 +280,8 @@
 % formatted document. This driver file has the following
 % characteristics:
 % \begin{quote}
-% \noindent |\documentclass[|\meta{options}]^^A
-%           |{|\meta{document-class}|}|\\[1pt]
+% \noindent |\documentclass|\oarg{options}^^A
+%           \marg{document-class}\\[1pt]
 % |\usepackage{doc}|\\[3pt]
 % \hspace*{10pt}\meta{preamble}\\[3pt]
 % |\begin{document}|\\[3pt]
@@ -272,8 +297,8 @@
 %
 % \DescribeMacro\DocInput \DescribeMacro\IndexInput
 % Finally the \meta{special input commands} part should contain one or
-% more |\DocInput|\meta{file name} and/or
-% |\IndexInput|\meta{file name} commands.  The
+% more |\DocInput|\marg{file name} and/or
+% |\IndexInput|\marg{file name} commands.  The
 % |\DocInput| command is used for files prepared for the
 % \DOC{} package whereas |\IndexInput| can be used for all kinds of
 % macro files.  See page \pageref{..Input} for more details of
@@ -392,10 +417,24 @@
 % |\DescribeMacro{\DescribeMacro}| to make clear that this is the
 % point where the usage of |\DescribeMacro| is explained.
 %
+% As the argument to |\DescribeMacro| is a command name, many people
+% got used to using the (incorrect) short form, i.e., omitting the
+% braces around the argument as in |\DescribeMacro\foo|. This does
+% work as long as the macro name consists only of ``letters''.
+% However, if the name contains special characters that are normally
+% not of type ``letter'' (such as |@|, or in case of \pkg{expl3} |_|
+% and |:|) this will fail dramatically. |\DescribeMacro| would then
+% receive only a partial command name (up to the first ``non-letter'')
+% e.g., |\DescribeMacro\foo@bar| would be equivalent to
+% |\DescribeMacro{\foo} @bar| and you can guess that this can
+% resulting in both incorrect output and possibly low-level error
+% messages.
+%
 % \DescribeMacro\DescribeEnv
-% An analogous macro |\DescribeEnv| should be used to indicate
-% that a \LaTeX{} environment is explained. It will produce a somewhat
-% different index entry. Below I used |\DescribeEnv{verbatim}|.
+% An analogous macro |\DescribeEnv| should be used to indicate that a
+% \LaTeX{} environment is explained. It will produce a somewhat
+% different index entry and a slightly different display in the
+% margin. Below I used |\DescribeEnv{verbatim}|.
 %
 %
 %
@@ -450,14 +489,14 @@
 % 
 %
 %
-% \subsection{Formatting the margins}
+% \subsection{Formatting names in the margin}
 %
 % \DescribeMacro\PrintDescribeMacro
 % \DescribeMacro\PrintDescribeEnv
 % \DescribeMacro\PrintMacroName
 % \DescribeMacro\PrintEnvName
-% As mentioned earlier, some macros and the \env{macro} environment
-% print their arguments in the margin. This is actually done by four
+% As mentioned earlier, some macros and environment
+% print their arguments in the margin. The actual formatting is done by four
 % macros which are user
 % definable.\footnote{You may place the changed definitions in a
 %                     separate package
@@ -465,14 +504,13 @@
 %                     file.
 %                     For example, if you don't like any names in the
 %                     margin
-%                     but want a fine index you can simply
-%                     \texttt{\bslash let}
-%                     these macros equal \texttt{\bslash @gobble}.
-%                     The doc package won't redefine any existing
-%                     definitions of these macros.}
-% They are named |\PrintDescribeMacro|, |\PrintDescribeEnv|,
-% |\PrintMacroName| (called by the \env{macro} environment) and
-% |\PrintEnvName| (called by the \env{environment} environment).
+%                     but want a fine index you can simply redefine them
+% accept their argument and do nothing with it.}
+% They are named |\PrintDescribeMacro| and |\PrintDescribeEnv| (defining
+% how |\DescribeMacro| and |\DescribeEnv| behave) and
+% |\PrintMacroName| and
+% |\PrintEnvName| (called by the \env{macro} and \env{environment}
+% environments, respectively).
 %
 %
 % \subsection{Providing further documentation items}
@@ -483,8 +521,78 @@
 % easily provide your own items, such as counters, length register,
 % options etc.
 %
+% \DescribeMacro{\NewDocElement}
 % \fmi{write docu}
 %
+% The general syntax for providing a new \DOC element is
+% \begin{quote}
+%   \cs{NewDocElement}\oarg{options}\marg{element-name}\marg{env-name}
+% \end{quote}
+% By convention the \meta{element-name} has the first letter
+% uppercased as in \texttt{Env} or \texttt{Macro}.
+%
+% Such a declaration will define for you
+% \begin{itemize}
+% \item the command |\Describe|\meta{element-name}
+% \item the environment \meta{env-name} 
+% \item the display command |\PrintDescribe|\meta{element-name}
+% \item and
+% |\Print|\meta{element-name}|Name|  display command for the
+% environment.
+% \end{itemize}
+% If any of the commands or the environment is already defined (which
+% especially with the \meta{env-name} is a danger) then you will
+% receive an error telling you so.
+% \DescribeMacro{\RenewDocElement}
+% If you want to modify an existing \DOC element use
+% |\RenewDocElement| instead.
+%
+% For example, the already provided ``\texttt{Env}'' \DOC element could have been
+% done simply through
+% ^^A\begin{quote}
+%   |\NewDocElement{Env}{environment}|
+% ^^A\end{quote}
+% though that's not quite what has been done, as we will see later.
+%
+% \DescribeOption{macrolike}
+% \DescribeOption{envlike}
+% \DescribeOption{toplevel}
+% \DescribeOption{notoplevel}
+% \DescribeOption{idxtype}
+% \DescribeOption{printtype}
+% \DescribeOption{idxgroup}
+% The \meta{options} are keyword/value and define further details on
+% how that \DOC element should behave. They are:
+% \begin{description}
+% \item[\opt{macrolike}] Boolean (default \opt{false}). Does this \DOC
+%   element starts with a backslash?
+%
+% \item[\opt{envlike}] Boolean. Complementary option to
+%   \opt{macrolike}.
+%
+% \item[\opt{toplevel}] Boolean (default \opt{true}). Should all
+%   a top-level index entry be made? If set to \texttt{false} then
+%   either no index entries are produced or only grouped index entries
+%   (see \opt{idxgroup} for details).
+%
+% \item[\opt{notoplevel}] Boolean.  Complementary option to
+%   \opt{toplevel}.
+%
+% \item[\opt{idxtype}] String (default \meta{env-name}). What to put
+%   (in parantheses if non-empty) at the end of a top-level index entry.
+%
+% \item[\opt{printtype}] String (default \meta{env-name}). What to put
+%   (in parantheses if non-empty) after an element name in the margin.
+%
+% \item[\opt{idxgroup}]  String (default
+%   \meta{env-name}\texttt{s}). Name of the top-level index entry if
+%   entries are grouped. They are only grouped this option is
+%   non-empty.
+% \end{description}
+% As usual giving a boolean option without a value sets it to
+% \texttt{true}.
+
+
 
 
 % \subsection{Displaying sample code verbatim}
@@ -538,7 +646,7 @@
 % \subsection{Cross-referencing all macros used}
 %
 % \DescribeMacro\DisableCrossrefs \DescribeMacro\EnableCrossrefs As
-% already mentioned, every new macro name used within a
+% already mentioned, every macro name used within a
 % \env{macrocode} or \env{macrocode$*$} environment will produce an
 % index entry. In this way one can easily find out where a specific
 % macro is used.  Since \TeX{} is considerably slower\footnote{This
@@ -570,8 +678,10 @@
 % \DescribeMacro\PageIndex Using "\PageIndex" makes all index
 % entries refer to their page number; with
 % \DescribeMacro\CodelineIndex "\CodelineIndex", index entries
-% produced by "\DescribeMacro" and "\DescribeEnv" refer to page number
-% but those produced by the \env{macro} environment refer to the
+% produced by "\DescribeMacro" and "\DescribeEnv" and possibly further
+% "\Describe..." commands refer to a page number
+% but those produced by the \env{macro} environment (or other \DOC
+% element environments) refer to the
 % code lines, which will be numbered automatically.\footnote{The line
 % number is actually that of the first line of the first
 % \env{macrocode} environment in the \env{macro} environment.}
@@ -715,7 +825,9 @@
 %
 % \DescribeEnv{theindex}
 % Contrary to standard \LaTeX, the index is typeset in three columns
-% by default. This is controlled by the \LaTeX{} counter
+% by default. 
+% \DescribeLaTeXCounter{IndexColumns}
+% This is controlled by the \LaTeX{} counter
 % `\textsf{IndexColumns}' and can therefore be changed with a
 % |\setcounter| declaration.  Additionally one doesn't want to
 % start a new page unnecessarily.  Therefore the \env{theindex}
@@ -766,10 +878,13 @@
 %
 % \DescribeMacro\main
 % \DescribeMacro\usage
+% \DescribeMacro\code
 % The page numbers for main index entries are encapsulated by the
 % |\main| macro (underlining its argument) and the numbers
 % denoting the description are encapsulated by the |\usage| macro
-% (which produces {\em italics}). As usual these commands are user
+% (which produces {\em italics}). |\code| encapsulates page or code
+%    line numbers in entries generated by parsing the code inside
+%    \env{macrocode} environments. As usual these commands are user
 % definable.
 %
 %
@@ -958,8 +1073,12 @@
 % \texttt{gglo.ist}.  
 %
 % \DescribeLaTeXDimen\GlossaryMin
-% \DescribeMacro\GlossaryPrologue \DescribeMacro\GlossaryParms The
-% "\GlossaryMin", "\GlossaryPrologue" and "\GlossaryParms" macros are
+% \DescribeMacro\GlossaryPrologue 
+% \DescribeMacro\GlossaryParms
+% \DescribeLaTeXCounter{GlossaryColumns}
+%  The
+% "\GlossaryMin", "\GlossaryPrologue" and "\GlossaryParms" macros and
+% the counter \texttt{GlossaryColumns} are
 % analogous to the "\Index"\ldots\ versions.  (The \LaTeX{} `glossary'
 % mechanism is used for the change entries.)
 %
@@ -1462,11 +1581,13 @@
 %    \end{macrocode}
 % This one is for \cs{usepackage} and \cs{NewDocElement}:
 %    \begin{macrocode}
-\DeclareBoolOption{macrolike}
-\DeclareComplementaryOption{envlike}{macrolike}
+\DeclareBoolOption[true]{toplevel}
+\DeclareComplementaryOption{notoplevel}{toplevel}
 %    \end{macrocode}
 % These are for \cs{NewDocElement}:
 %    \begin{macrocode}
+\DeclareBoolOption{macrolike}
+\DeclareComplementaryOption{envlike}{macrolike}
 \DeclareStringOption{idxtype}
 \DeclareStringOption{idxgroup}
 \DeclareStringOption{printtype}
@@ -1492,6 +1613,11 @@
   \def\dox@macrolikedefault{true}
 \else
   \def\dox@macrolikedefault{false}
+\fi
+\ifdox@toplevel
+  \def\dox@topleveldefault{true}
+\else
+  \def\dox@topleveldefault{false}
 \fi
 %    \end{macrocode}
 %
@@ -2657,6 +2783,9 @@
 %
 %
 % \begin{macro}{\short@macro}
+%
+% \fmi{this needs cleaning up too}
+%
 % \changes{v1.5c}{1989/04/27}{Corrected bad bug by putting the
 %                         scan@allowedfalse macro before printing
 %                         the argument.}
@@ -2682,14 +2811,13 @@
    \uccode`\&=\expandafter`\string#1%
    \uppercase{\def\x{\def\macro@namepart{&}}}%
    \expandafter\endgroup\x
-   \ifnot@excluded
 %    \end{macrocode}
 %    If necessary the index entry is produced by the macro
 %    |\produce@index|. Depending on the actual character seen,
 %    this macro has to do different things, so we pass the character
 %    as an argument.
 %    \begin{macrocode}
-     \produce@index{#1}\fi
+     \maybe@index@macro\macro@namepart
 %    \end{macrocode}
 %    Then we disable the cross-referencing mechanism with
 %    |\scan@allowedfalse| and print the actual character. The
@@ -2705,104 +2833,6 @@
 %    \begin{macrocode}
     \scan@allowedtrue }
 \endgroup
-%    \end{macrocode}
-% \end{macro}
-%
-%
-%
-% \begin{macro}{\produce@index}
-% \changes{v1.4s}{1989/04/23}{Added noexpand to all
-%                           \cs{if} tests
-%               to avoid garbage produced by new active chars}
-% \changes{v1.4s}{1989/04/23}{Used \texttt{\protect\bslash string} for
-%                          the same reason.}
-% \changes{v1.5c}{1989/04/27}{Corrected bad bug by placing the
-%                         scan@allowedfalse macro into short@macro}
-%    This macro is supposed to generate a suitable |\SortIndex|
-%    command for a given single-letter control sequence.  We test
-%    first for the cases which involve active characters (i.e.\ the
-%    backslash, the special escape character (if any), the space and
-%    the |^^M|).  Using the |\if| test (testing for
-%    character codes), we have to ensure that the argument isn't
-%    expanded.
-%    \begin{macrocode}
-\def\produce@index#1{%
-  \if\noexpand#1\special@escape@char
-%    \end{macrocode}
-%    If the character is the special escape character (or the
-%    `|\|' in case there was none) the |\it@is@a| macro is
-%    used to produce the actual |\SortIndex| call.
-%    \begin{macrocode}
-     \scan@allowedfalse \it@is@a\special@escape@char \else
-%    \end{macrocode}
-%    Next comes the test for a `|\|' which must be the
-%    $|\|_{13}$ expanding to |\bslash|.
-%    \begin{macrocode}
-     \if\noexpand#1\bslash \it@is@a\bslash \else
-%    \end{macrocode}
-%    Another possibility is \verb*+ +$_{13}$. Recall that |\space|
-%    produces a \verb*+ +$_{10}$.
-%    \begin{macrocode}
-       \if\noexpand#1\space \it@is@a\space \else
-%    \end{macrocode}
-%    The last\footnote{Well, it isn't the last active character after
-%    all. I added \texttt{\bslash @noligs} some days ago and now
-%    \texttt{`} too is active. So we have to make sure that such
-%    characters don't get expanded in the index.} possibility of an
-%    active character is |^^M|\@.  In this case we don't test for
-%    character codes, since it is easier to look if the character is
-%    equal to |\par|. (We are inside the \env{macrocode}
-%    environment.)
-%    \begin{macrocode}
-         \ifx#1\par
-%    \end{macrocode}
-%    If we end up here we have just scanned a |\^^M| or something
-%    similar. Since this will be treated like \verb*+\ + by \TeX{} we
-%    produce a corresponding index entry.
-%    \begin{macrocode}
-         \it@is@a\space \else
-%    \end{macrocode}
-%    If it is the token |\relax| we do nothing. This can't happen
-%    when the `doc' package is used in the way described here, but was
-%    added to allow extensions like the \texttt{idxverb} option.
-%  \changes{v1.5t}{1989/11/14}{Added \cs{relax} as a possible token to
-%                           allow extensions.}
-%    \begin{macrocode}
-         \ifx#1\relax \else
-%    \end{macrocode}
-%    The next three branches are needed because of bugs in
-%    our \prg{makeindex} program. You can't produce unbalanced index
-%    entries\footnote{This is possible for \TeX{} if you use
-%                     \texttt{\string{$_{12}$ \rmfamily or
-%                     \ttfamily\string}$_{12}$},
-%                     but \prg{makeindex} will complain.}
-%    and you have to double a percent character. To get around these
-%    restrictions we use special macros to produce the |\index|
-%    calls.\footnote{Brian \textsc{Hamilton Kelly} has written fixes for
-%                  all three
-%                  bugs. When they've found their way through all
-%                    installations,
-%                    the lines above will be removed. See
-%                    page~\pageref{bug:fixes} if you already have them.
-%                    (I'm not sure which versions incorporate these, but
-%                    2.11 is OK.  See also
-%                    \pageref{makeindex:version}.)}
-%    \begin{macrocode}
-           \if\noexpand#1\bgroup \LeftBraceIndex \else
-             \if\noexpand#1\egroup \RightBraceIndex \else
-               \if\noexpand#1\percentchar \PercentIndex \else
-%    \end{macrocode}
-%    All remaining characters are used directly to produce their index
-%    entries. This is possible even for the characters which have
-%    special meanings in the index program, provided we quote the
-%    characters.  (This is correctly done in |\it@is@a|.)
-%    \begin{macrocode}
-                 \it@is@a{\string#1}%
-%    \end{macrocode}
-%    We now need a whole pile of |\fi|$\,$s to match up with
-%    the |\if|$\,$s.
-%    \begin{macrocode}
-       \fi \fi \fi \fi \fi \fi \fi \fi}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2875,9 +2905,11 @@
 %    routine.  At this time \texttt{\bslash macro@namepart} might have a
 %    new value.}
 %    \begin{macrocode}
-  \ifnot@excluded
-     \edef\@tempa{\noexpand\SpecialIndex{\bslash\macro@namepart}}%
-     \@tempa  \fi}
+%  \ifnot@excluded
+%     \edef\@tempa{\noexpand\SpecialIndex{\bslash\macro@namepart}}%
+%     \@tempa  \fi
+  \maybe@index@macro \macro@namepart
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2891,151 +2923,385 @@
 %            \texttt{\bslash DoNotIndex} and the macros it calls
 %                          was written by Dave Love.}
 %
-%    The internal form of the index exclude list is
-% \begin{quote}
-% \meta{macro name}|,|\meta{macro name}|,|
-% \ldots|,|
-% \end{quote}
-% where \meta{macro name} is a macro name like
-% $"\"_{12}"p"{_{11}}"@"_{11}$ or $"\"_{12}"$"_{11}$.  Note that the "\"
-% has category `other' and the other characters in the name are all
-% `letter', regardless of their normal category.
 %
-% \begin{macro}{\DoNotIndex}
-%    This macro is used to suppress macro names in the index.  It
-%    starts off with a new group because we have to change the
-%    |\catcode|$\,$s of all characters which belong to `letters'
-%    while macros are defined.
-%    \begin{macrocode}
-\def\DoNotIndex{\begingroup \MakePrivateLetters
-    \catcode`\\12
-%    \end{macrocode}
-%    Then we call the macro which actually reads the argument given by
-%    the user.
-%    \begin{macrocode}
-    \do@not@index}
-%    \end{macrocode}
-% \end{macro}
+%    
+
+% \def\MakePrivateLetters{%
+%    \makeatletter
+%    \catcode`\_11
+%    \catcode`\:11}
 %
 %
+% The follwoing part of the code is a new implementation using the
+% \texttt{expl3} programming language as the constructs and types
+% provided therein are making programming mauch easier. Over time I
+% will probvably replace the rest of that \DOC code too.
+%    \begin{macrocode}
+\RequirePackage{expl3}
+\ExplSyntaxOn
+%    \end{macrocode}
+%    
 %
-% \begin{macro}{\do@not@index}
-%    We make the |\do@not@index| macro |\long|
-%    since the user might want to exclude the |\par|
-%    macro.
-%    \begin{macrocode}
-\long\def\do@not@index#1{%
-%    \end{macrocode}
-%    It just adds to a token list after finishing the group in which
-%    the catcodes were changed.
-%    \changes{v1.7a}{1992/02/26}{Replaced with newdoc version.}
-%    \begin{macrocode}
-    \endgroup
-    \addto@hook\index@excludelist{#1,}}
-%    \end{macrocode}
-% \end{macro}
+% \DescribeMacro\l__doc_donotindex_seq
+%    Local sequence that holds names (as strings) of commands that
+%    should not be indexed. Within a \DOC element environment that
+%    element is placed into the sequence so that it isn't
+%    unnecessarily index within that part of the code. As the sequence
+%    is local it will revert this setting at the end of the
+%    environment so that the command is indexed elsewhere (unless it
+%    is generally disabled from indexing.
 %
-% \begin{macro}{\addto@hook}
-% The code for adding tokens (the second argument) to a token list
-% (the first argument) is taken from~\cite{art:verbatim}, but it needs
-% to be "\long" in case "\par" is amongst the tokens.
-%    \begin{macrocode}
-\long\def\addto@hook#1#2{#1\expandafter{\the#1#2}}
-%    \end{macrocode}
-% \end{macro}
+% \DescribeMacro\g__doc_idxtype_prop
+%    Global property list that holds for all commands that are special
+%    \DOC elements the type of the element. The key is the command
+%    name without backslash and the  value is \DOC element type
+%    identifier, e.g., "\texttt{Length}" for length registers if that
+%    type has been set up. \DOC only indexes commands, that is things
+%    starting with an escape character, i.e., a backslash (by
+%    default). \DOC elements that do not start with an escape
+%    character, e.g., environments are not identified when parsing
+%    code so that aren't indexed automatically inside. Thus for them
+%    there is no point in keeping them in that property list.
 %
-% \begin{macro}{\index@excludelist}
-% We need an initially-empty register for the excluded list.
-%    \begin{macrocode}
-\newtoks\index@excludelist
-\index@excludelist{}
-%    \end{macrocode}
-% \end{macro}
+% \DescribeMacro{\doc_dont_index:n}
+% \DescribeMacro{\DoNotIndex}
+%    Takes a clist of commands (with backslash) as input and exclude
+%    all of them from the index. User facing we make this available as
+%    |\DoNotIndex|.
 %
-% \begin{macro}{\ifnot@excluded}
-%    \changes{v1.7a}{1992/02/26}{Replaced with newdoc version.}
-% \begin{macro}{\expanded@notin}
-%    Now we take a look at the |\index@excludelist| to see
-%    whether a macro name saved in |\macro@namepart| should
-%    produce an index entry. This macro is a pseudo |\if|; it
-%    should expand to |\iftrue| or |\iffalse| depending on
-%    the contents of |\index@excludelist|.
-%    \begin{macrocode}
-\begingroup
-%    \end{macrocode}
-%    First we change "\catcode"s so that "\" is `other' and "|" a
-%    temporary for the escape character. This is necessary since our
-%    macro names are stored that way in the "\index@excludelist".
-%    \begin{macrocode}
-\catcode`\|=0%
-\catcode`\\=12
-%    \end{macrocode}
-%    Then we define "\ifnot@excluded" to call "\expanded@notin" with
-%    two arguments: the first is the string "\" followed by the
-%    contents of "\macro@namepart" followed by a "," and the second is
-%    "\the" followed by "\index@excludelist". To achieve the expansion
-%    of "\macro@namepart", i.e.\ to pass its contents, we need a
-%    suitable number of "\expandafter"s.
-%    \SpecialEscapechar\|
-%    \begin{macrocode}
-|gdef|ifnot@excluded{|expandafter
-     |expanded@notin|expandafter{|expandafter
-     \|macro@namepart,}{|the|index@excludelist}}
-|endgroup
-%    \end{macrocode}
-%    The macro "\expanded@notin" now does the dirty work. It first
-%    defines a macro "\in@@" with a very special parameter text. If
-%    you look closely "\in@@" has three arguments, the first one is
-%    delimited by the first argument of "\expanded@notin" (i.e.\ by
-%    the string starting with a "\" and ending with a "," above), the
-%    second is undelimited (which means that it will get the next
-%    token after our string, and the third is delimited again and will
-%    get the rest up to the token "\in@@". In other words the token
-%    "\in@@" is also used as a delimiter.
-%    \begin{macrocode}
-\def\expanded@notin#1#2{%
- \def\in@@##1#1##2##3\in@@{%
-%    \end{macrocode}
-%    Now the replacement text simply compares the second argument
-%    (i.e.\ the undelimited one after our string) to the token
-%    "\expanded@notin". This is an unclosed "\ifx" statement which
-%    means that this macro behaves similar to a normal \TeX{}
-%    conditional.
-%    \begin{macrocode}
-  \ifx\expanded@notin##2}%
-%    \end{macrocode}
-%    After all these preparations we call "\in@@". First we expand the
-%    token after "\in@@" (which is "\the" from the second argument to
-%    "\expanded@notin"). As a result we get the contents of the
-%    "\index@excludelist" inserted after "\in@@". After this contents
-%    we add once more the string we are looking for, then the token
-%    "\expanded@notin" and finally the token "\in@@".
-%    \begin{macrocode}
- \expandafter\in@@#2#1\expanded@notin\in@@}
-%    \end{macrocode}
-%    Now what happens when the macro "\in@@" above gets called? The
-%    first argument to "\in@@" is delimited by our string. In other
-%    words it will get everything from the contents of
-%    "\index@excludelist" before this string. If the string is not in
-%    "\index@excludelist" then it gets the whole contents, since after
-%    it we had inserted the string one more. In this case the next
-%    token is "\expanded@notin" which gets assigned to the second
-%    argument and the third argument will be empty. If, on the other
-%    hand, the string was inside "\index@excludelist" then the second
-%    argument will not be the token "\expanded@notin" and the third
-%    argument will be all the garbage up to "\in@@". Therefore testing
-%    the seconded argument, as done in the definition of "\in@@" will
-%    tell us  whether or not the string is in "\index@includelist" and
-%    this was exactly what we wanted. (Deep breath.) You got
-%    that?\footnote{\TeX{}book page 125. The code described above is
-%    originally due to Michael Spivak who used a similar method within
-%    the \AmSTeX{} macros.}
-% \end{macro}
-% \end{macro}
+%
+% \DescribeMacro\ShowDoNotIndexState 
+%    Displays the current list of the exclude index list in a fairly
+%    low-level form.
+%
+% \DescribeMacro\RecordIndexType
+%    This command takes two arguments: a command (with escape char)
+%    and its type (i.e., first mandatory
+%    argument of a |\NewDocElement| declaration. If |#1| should not be
+%    included from the index, then the data is used to record that
+%    this command is of this type. The information is then used to
+%    generate appropriate index entries. Obviously, index entries
+%    generated earlier will be listing the wrong type. Therefore this
+%    information is also placed into the \texttt{.aux} file so that it
+%    will be available  at the beginning of further runs.
+%
+%    This command is internally executed as part of any \DOC element
+%    environment so  it only needs to be explicitly given if for some
+%    reason a command with a special type has no corresponding enviroment.
 %
 %
 %
 %
+%  \begin{macro}{\l__doc_donotindex_seq}
+%  \begin{macro}{\g__doc_idxtype_prop}
+%    Declarations.
+%    \begin{macrocode}
+\seq_new:N  \l__doc_donotindex_seq
+\prop_new:N \g__doc_idxtype_prop
+%    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
+%
+% ^^A --------------------------------------------------
+%
+%  \begin{macro}{\doc_dont_index:n}
+%  \begin{macro}{\__doc_dont_index:n}
+%  \begin{macro}{\__doc_dont_index:N}
+%
+%    Parses the argument a clist of commands with
+%    |\MakePrivateLetters| in force (so that special characters are
+%    recognized as being part of command names) and puts each command
+%    without is backslash as a string into the sequence
+%    |\l__doc_donotindex_seq|.
+%    \begin{macrocode}
+\cs_new:Npn \doc_dont_index:n {
+  \group_begin:
+    \MakePrivateLetters
+    \__doc_dont_index:n 
+}
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+\cs_new:Npn \__doc_dont_index:n #1 {
+  \group_end:
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+  \iow_term:x{Disable~ indexing~ for~ '\exp_not:n{#1}' }
+%    \end{macrocode}
+%    Adding the commands to the |\l__doc_donotindex_seq| sequence is
+%    done by mapping the function |\__doc_dont_index:N|  on each
+%    element in the clist.
+%    \begin{macrocode}
+  \clist_map_function:nN {#1} \__doc_dont_index:N
+}
+%    \end{macrocode}
+%    We record each command by using its name as a string (without the
+%    backslash. This means more tokens in the sequence but it allows
+%    to compare names not ``action'' which is important as different
+%    commands may have the same meaning (e.g., they may not be defined
+%    at all),
+%    \begin{macrocode}
+\cs_new:Npn \__doc_dont_index:N #1 {
+  \seq_put_right:Nx \l__doc_donotindex_seq {\cs_to_str:N #1}
+}
+%    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
+%  \end{macro}
+%
+%  \begin{macro}{\DoNotIndex}
+%    The document-level interface
+%    \begin{macrocode}
+\cs_set_eq:NN \DoNotIndex \doc_dont_index:n
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%  \begin{macro}{\ShowDoNotIndexState}
+%    Some tracing information that may be helpful.
+%    \begin{macrocode}
+\def \ShowDoNotIndexState {
+  \iow_term:x{Show~ doc~ indexing~ state:}
+  \seq_show:N  \l__doc_donotindex_seq
+  \prop_show:N \g__doc_idxtype_prop
+}
+%    \end{macrocode}
+%  \end{macro}
+
+
+
+% ^^A --------------------------------------------------
+%
+%
+%  \begin{macro}{\__doc_idxtype_put:Nn}
+%  \begin{macro}{\RecordIndexType}
+%  \begin{macro}{\RecordIndexTypeAux}
+%    This is the internal form for |\RecordIndexType|. The first
+%    argument is turned into a string and the rest of the processing
+%    is then done by |\__doc_idxtype_put:nn|
+%    \begin{macrocode}
+\cs_new:Npn \__doc_idxtype_put:Nn #1#2 {
+  \exp_args:Nx \__doc_idxtype_put:nn { \cs_to_str:N #1 }{#2}
+%    \end{macrocode}
+%    We also make an entry in the \texttt{.aux} file so that this
+%    declaration becomes immediately available in the next
+%    run. However, for this we aren't reusing |\__doc_idxtype_put:N|
+%    (a.k.a.\ |\RecordIndexType|) since that would result in doubling
+%    such lines each time the document is run. Instead we use
+%    |\RecordIndexTypeAux| which only updating the data structures
+%    without writing to the \texttt{.aux} file.
+%    \begin{macrocode}
+  \protected@write\@auxout{}
+     {\string\RecordIndexTypeAux {\string#1 }{#2} }
+}
+%    \end{macrocode}
+%    When we execute this code from the \texttt{.aux} we we better not
+%    generate a new line in the \texttt{.aux}. Otherwise those would
+%    cumulate over time.
+%    \begin{macrocode}
+\cs_new:Npn \RecordIndexTypeAux #1#2 {
+  \exp_args:Nx \__doc_idxtype_put:nn { \cs_to_str:N #1 }{#2}
+}
+%    \end{macrocode}
+%    Similarly, when the \texttt{.aux} is read at the end of the run we
+%    should disable that command to avoid unnecessary processing.
+%    \begin{macrocode}
+\AtEndDocument{
+  \cs_set_eq:NN \RecordIndexTypeAux \use_none:nn
+}
+%    \end{macrocode}
+%    Finally, we provide the user-level interface
+%    \begin{macrocode}
+\cs_set_eq:NN \RecordIndexType \__doc_idxtype_put:Nn
+%    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
+%  \end{macro}
+%
+%
+%  \begin{macro}{\__doc_idxtype_put:nn}
+%    This internal command takes two arguments: a command name as
+%    string (no backslash) and its type (i.e., first mandatory
+%    argument of a |\NewDocElement| declaration. If |#1| is not in
+%    |\l__doc_donotindex_seq| it will add this data to the property
+%    list |\g__doc_idxtype_prop| using |#1| as key and |#2| as its
+%    value. If the key already exist its value will be overwritten. If
+%    the command is later marked for exclusion from the index the
+%    property list setting remains unchanged but as long as no index
+%    is produced for the command it will not be consulted.
+%
+%   Note: the command assumes that |#1| is already in string form 
+%    \begin{macrocode}
+\cs_new:Npn \__doc_idxtype_put:nn #1#2 {
+%    \end{macrocode}
+%    No mystery here: if the command is not marked for exclusion from
+%    the index add the property. The extra |\tl_to_str:n| is a safety
+%    measure in case the input wasn't already in that form (should
+%    only be the case with broken input but \ldots)
+%    \begin{macrocode}
+  \exp_args:NNf 
+  \seq_if_in:NnTF \l__doc_donotindex_seq {\tl_to_str:n{#1}}
+%    \end{macrocode}
+%    Some tracing info \ldots{}
+%    \begin{macrocode}
+     { 
+       \iow_term:x{Not~ recording~ index~ type~ for~ '\bslash #1' }
+     }
+     { 
+       \iow_term:x{Recording~ index~ type~ for~ '\bslash #1' ~ as~ #2 }
+%    \end{macrocode}
+%    Stick the data into the property list:
+%    \begin{macrocode}
+       \prop_gput:Nnn \g__doc_idxtype_prop {#1}{#2}
+     }
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+% ^^A --------------------------------------------------
+%
+%
+%  \begin{macro}{\exp_args:co}
+%    A helper: constructing a function with the first argument
+%    expanded once:
+%    \begin{macrocode}
+\cs_new:Npn \exp_args:co #1#2 
+   { \cs:w #1 \exp_after:wN \cs_end:\exp_after:wN {#2} }
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%  \begin{macro}{\cs_to_str:c}
+%    Another helper: construct a csname and then drop the escape char
+%    again. Probably slightly more effective than doing |\tl_to_str:n|
+%    on the same input though I haven't really checked.
+%    \begin{macrocode}
+\cs_generate_variant:Nn \cs_to_str:N {c}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+% ^^A --------------------------------------------------
+%
+%
+%
+% \DescribeMacro\maybe@index@macro
+%
+%    This takes a macro name (without backslash) as parsed within a
+%    \env{macrocode} environment and checks if it should get indexed
+%    (i.e., is not on the exclude list) and if so how (i.e., gets it
+%    index type property and makes the right choice depending on that.
+%
+
+
+%  \begin{macro}{\maybe@index@macro}
+%  \begin{macro}{\__doc_maybe_index:n}
+%    We first make sure that the argument is really a string (so that
+%    we have a defined situation) and then
+%    pass it on to |\__doc_maybe_index_aux:n| to do the work.
+%    \begin{macrocode}
+\cs_new:Npn \__doc_maybe_index:n #1 {
+   \exp_args:Nf \__doc_maybe_index_aux:n { \cs_to_str:c {#1} }
+}
+%    \end{macrocode}
+%    And here is what we call it in the older non-expl3 code:
+%    \begin{macrocode}
+\cs_set_eq:NN \maybe@index@macro \__doc_maybe_index:n
+%    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
+%
+%
+%
+%
+%  \begin{macro}{\__doc_maybe_index_aux:n}
+%    Take a string (representing a macro without backslash) and make
+%    the right choices with respect to indexing.
+%    \begin{macrocode}
+\cs_new:Npn \__doc_maybe_index_aux:n #1 {
+%    \end{macrocode}
+%    A bit of tracing:
+%    \begin{macrocode}
+  \iow_term:x{Searching~ for~ '\bslash #1'}
+%    \end{macrocode}
+%    If the name is on the exclude list do nothing.
+%    \begin{macrocode}
+  \seq_if_in:NnTF \l__doc_donotindex_seq {#1}
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+    {
+     \iow_term:x{Not~ indexing~ '\bslash #1' }
+    }
+%    \end{macrocode}
+%    Otherwise check if this name has an index type property attached
+%    to it.
+%    \begin{macrocode}
+    {
+     \prop_get:NnNTF \g__doc_idxtype_prop {#1} \l__doc_idxtype_tl
+%    \end{macrocode}
+%    If so construct and execute
+%    |\Code|\meta{idxtype}|Index|\footnote{I guess this should really
+%    be an internal name not a user-level one.} which is done inside
+%    |\__doc_maybe_index_aux| 
+%    \begin{macrocode}
+       {
+        \exp_args:Ncno \__doc_maybe_index_aux:Nnn
+              { Code \tl_use:N \l__doc_idxtype_tl Index } 
+              {\encapchar code} {\bslash #1}
+        }
+%    \end{macrocode}
+%    Otherwise execute |\SpecialIndex| which is a short form for
+%    |\CodeMacroIndex|.
+%    \begin{macrocode}
+        {
+          \iow_term:x{Indexing~ '\bslash #1'\space (normal)}
+          \exp_args:No \SpecialIndex {\bslash #1} 
+        }
+    }
+}
+%    \end{macrocode}
+%  \end{macro}
+
+
+
+%  \begin{macro}{\__doc_maybe_index_aux:Nnn}
+%    Execute the function passed on as first argument taking argument
+%    2 and 3 as input.
+%    \begin{macrocode}
+\cs_new:Npn \__doc_maybe_index_aux:Nnn #1#2#3 {
+%    \end{macrocode}
+%    We have to be a little careful: as that function name is
+%    constructed it may not actually exist (as constructions generate
+%    |\relax| in \TeX{} in that case). In that case we raise an error,
+%    otherwise we execute (with a little bit of tracing info): 
+%    \begin{macrocode}
+    \cs_if_exist:NTF #1
+      {
+        \iow_term:x{Indexing~ '#3'\space as~ 
+                    \tl_use:N \l__doc_idxtype_tl }
+        #1{#2}{#3}
+      }
+      {
+        \PackageError{doc}{Doc~ element~
+           '\tl_use:N \l__doc_idxtype_tl'~ unknown}%
+
+          {When~ using~ '\string\RecordIndexType'~ the~ type~ must~ 
+           be~ known~\MessageBreak
+           to~ the~ system,~ i.e.,~ declared~ via~ 
+           '\string\NewDocElement'\MessageBreak
+           before~ it~ can~ be~ used~ in~ indexing.}
+     }
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%    Back to old style coding \ldots    
+%    \begin{macrocode}
+\ExplSyntaxOff
+%    \end{macrocode}
 %
 %
 %
@@ -3120,47 +3386,6 @@
 % \end{macro}
 %
 %
-% \begin{macro}{\SpecialIndex}
-%    The |\SpecialIndex| command creates index entries for
-%    macros.  If the argument is |\|$xyz$, the command produces
-%    \verb|\indexentry{|$xyz$\verb|=\verb!*+\|$xyz$\verb|+}{|$n$\verb|}|
-%    given the above defined defaults for |\actualchar|,
-%    |\quotechar| and |\verbatimchar|.  We first remove the
-%    initial `|\|' to get a better index.
-% \changes{v1.5s}{1989/11/05}{Support for code line no. (Undoc)}
-%    \begin{macrocode}
-\def\SpecialIndex#1{\@bsphack\special@index{\expandafter\@gobble
-                                      \string#1\actualchar
-%    \end{macrocode}
-%    Then follows the actual entry. A |\quotechar| is placed
-%    before the |*| to allow its use as a special \prg{makeindex}
-%    character.  Again |\@bsphack| and |\@esphack| are used
-%    to make the macros invisible.
-%    \begin{macrocode}
-      \string\verb\quotechar*\verbatimchar\string#1\verbatimchar}%
-    \@esphack}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\SpecialMainIndex}
-% \begin{macro}{\SpecialMainEnvIndex}
-% \begin{macro}{\SpecialUsageIndex}
-%    The |\SpecialMainIndex| macro is used to cross-reference the
-%    names introduced by the \env{macro} environment.  The action is
-%    as for |\SpecialIndex|, except that \prg{makeindex} is
-%    instructed to `encap'sulate the entry with the string
-%    \verb=|main= to cause it to generate a call of the |\main|
-%    macro.
-% \changes{v1.5s}{1989/11/05}{Support for code line no. (Undoc)}
-% \changes{v2.0c}{1998/08/22}{Correctly handle single character
-%                   control sequences like \cs{<}.}
-%
-%    |\SpecialMainIndex| passes the macro name to be indexed on to the
-%    macro |\SpecialIndex@|.
-%    \begin{macrocode}
-\def\SpecialMainIndex#1{\@bsphack\SpecialIndex@{#1}{\encapchar main}%
-                        \@esphack}
-%    \end{macrocode}
 %
 % \begin{macro}{\SpecialIndex@}
 % \begin{macro}{\@SpecialIndexHelper@}
@@ -3178,7 +3403,7 @@
  \catcode`\|=0
  \catcode`\\=12
 %    \end{macrocode}
-%    \SpecialEscapechar{\|}
+%    \SpecialEscapechar\|
 %    \begin{macrocode}
  |gdef|@SpecialIndexHelper@#1#2|@nil{%
    |if |noexpand#1\%
@@ -3209,7 +3434,8 @@
    \def\@tempb{ }%
    \ifcat \@tempb\@gtempa
       \special@index{\quotechar\space\actualchar
-                     \string\verb\quotechar*\verbatimchar
+                     \string\verb%   % tofool emacs highlighting
+                     \quotechar*\verbatimchar
                      \quotechar\bslash\quotechar\space\verbatimchar#2}%
    \else
 %    \end{macrocode}
@@ -3235,14 +3461,16 @@
 %    adds quotechars in critical places.
 %    \begin{macrocode}
           \def\@tempc{\special@index{\quotechar##1\actualchar
-                      \string\verb\quotechar*\verbatimchar
+                      \string\verb% % to fool emacs highlighting
+                      \quotechar*\verbatimchar
                       \quotechar\bslash\quotechar##1\verbatimchar#2}}%
 %    \end{macrocode}
 %    Otherwise we write the characters as in |\SpecialIndex|.
 %    \begin{macrocode}
         \else
           \def\@tempc{\special@index{##1##2\actualchar
-                       \string\verb\quotechar*\verbatimchar
+                       \string\verb% % to fool emacs highlighting
+                       \quotechar*\verbatimchar
                        \bslash##1##2\verbatimchar#2}}%
         \fi}%
 %    \end{macrocode}
@@ -3254,72 +3482,6 @@
    \fi}
 %    \end{macrocode}
 % \end{macro}
-% \end{macro}
-%
-%    Slightly simpler is the main entry for environments
-% \changes{v1.9e}{1994/02/03}{use \cs{ttfamily} with \cs{string}}
-% \changes{v1.9f}{1994/02/07}{should have used \cs{noexpand}, sigh}
-% \changes{v1.9i}{1994/02/11}{should have used \cs{protect}}
-% \changes{v1.9j}{1994/02/16}{Back to string:-)}
-% \changes{v1.9s}{1994/10/14}{Added missing percent and changed to
-%                             \cs{ttfamily}}
-% \changes{v2.0d}{1998/12/20}{Correctly handle second index entry
-%    by using \cs{special@index} not \cs{index} (PR/2928).}
-% \changes{v2.0e}{1998/12/28}{Use \cs{string}, not \cs{protect} in argument to
-%             \cs{special@index}.}
-% \changes{v2.1c}{2004/07/23}{environment names incorrectly sorted in
-%           index (pr/3615)}
-%    \begin{macrocode}
-\def\SpecialMainEnvIndex#1{\@bsphack\special@index{%
-                                      #1\actualchar
-                                      {\string\ttfamily\space#1}
-                                         (environment)%
-                                      \encapchar main}%
-    \special@index{environments:\levelchar#1\actualchar{%
-                   \string\ttfamily\space#1}\encapchar
-           main}\@esphack}
-%    \end{macrocode}
-%    The |\SpecialUsageIndex| is similar to |\SpecialMainIndex|, except
-%    that it uses the standard |\index| command.
-%    \texttt{usage} instead of \texttt{main}.
-%    \begin{macrocode}
-\def\SpecialUsageIndex#1{\@bsphack
-   {\let\special@index\index\SpecialIndex@{#1}{\encapchar usage}}%
-   \@esphack}
-%    \end{macrocode}
-% \end{macro}
-% \end{macro}
-% \end{macro}
-%
-%
-%
-%
-% \begin{macro}{\SpecialEnvIndex}
-%    Indexing environments is done a little bit differently; we produce
-%    two index entries with the |\SpecialEnvIndex| macro:
-% \changes{v1.9e}{1994/02/03}{The index needs protecting}
-% \changes{v1.9g}{1994/02/08}{should have used \cs{noexpand}, sigh}
-% \changes{v1.9i}{1994/02/11}{should have used \cs{protect}}
-%    \begin{macrocode}
-\def\SpecialEnvIndex#1{\@bsphack
-%    \end{macrocode}
-%    First we sort the environment under its own name stating in the
-%    actual entry that this is an environment.
-%    \begin{macrocode}
-    \index{#1\actualchar{\protect\ttfamily#1}
-           (environment)\encapchar usage}%
-%    \end{macrocode}
-%    The second entry is sorted as a subitem under the key
-%    `environments:'.
-% \changes{v2.1b}{2004/02/09}{environment names incorrectly sorted in
-%           index (pr/3615)}
-%    \begin{macrocode}
-    \index{environments:\levelchar#1\actualchar
-          {\protect\ttfamily#1}\encapchar usage}\@esphack}
-%    \end{macrocode}
-%    Because both entries correspond to `descriptions' of the
-%    environment, we encapsulate the page numbers with the
-%    |\usage| macro.
 % \end{macro}
 %
 %
@@ -3338,20 +3500,6 @@
 %
 %
 %
-% \begin{macro}{\it@is@a}
-%    This macro is supposed to produce a correct |\SortIndex|
-%    entry for a given character. Since this character might be
-%    recognised as a `command' character by the index program used,
-%    all characters are quoted with the |\quotechar|.
-% \changes{v1.5s}{1989/11/05}{Support for code line no. (Undoc)}
-%    \begin{macrocode}
-\def\it@is@a#1{\special@index{\quotechar #1\actualchar
-                          \string\verb\quotechar*\verbatimchar
-                          \quotechar\bslash\quotechar#1\verbatimchar}}
-%    \end{macrocode}
-% \end{macro}
-%
-%
 %
 % \begin{macro}{\LeftBraceIndex}
 % \changes{v1.5s}{1989/11/05}{Support for code line no. (Undoc)}
@@ -3366,11 +3514,14 @@
 %    brace in between |\iffalse| |\fi| will vanish.
 %    \begin{macrocode}
 \@ifundefined{LeftBraceIndex}{\def\LeftBraceIndex{%
-   \special@index{\bgroup\actualchar\string\verb\quotechar*\verbatimchar
-          \quotechar\bslash{\verbatimchar\string\iffalse}\string\fi}}}{}
+   \special@index{\bgroup\actualchar
+                  \string\verb% % to fool emacs highlighting
+                  \quotechar*\verbatimchar
+                  \quotechar\bslash{\verbatimchar\string\iffalse}\string\fi}}}{}
 
 \@ifundefined{RightBraceIndex}{\def\RightBraceIndex{%
- \special@index{\egroup\actualchar\string\iffalse{\string\fi\string\verb
+ \special@index{\egroup\actualchar\string\iffalse{\string\fi
+           \string\verb% % to fool emacs highlighting
            \quotechar*\verbatimchar\quotechar\bslash}\verbatimchar}}}{}
 %    \end{macrocode}
 % \end{macro}
@@ -3396,12 +3547,28 @@
 %    appropriately.\label{bug:fixes}
 %    \begin{macrocode}
 \def\OldMakeindex{\def\PercentIndex{%
-    \special@index{\quotechar\percentchar\actualchar\string\verb
+    \special@index{\quotechar\percentchar\actualchar
+           \string\verb% % to fool emacs highlighting
            \quotechar*\verbatimchar\quotechar\bslash
            \percentchar\percentchar\verbatimchar}}}
 {\catcode`\%=12 \gdef\percentchar{%}}
 %    \end{macrocode}
 % \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\it@is@a}
+%    This macro is supposed to produce a correct |\SortIndex|
+%    entry for a given character. Since this character might be
+%    recognised as a `command' character by the index program used,
+%    all characters are quoted with the |\quotechar|.
+% \changes{v1.5s}{1989/11/05}{Support for code line no. (Undoc)}
+%    \begin{macrocode}
+\def\it@is@a#1{\special@index{\quotechar #1\actualchar
+                          \string\verb% % to fool emacs highlighting
+                          \quotechar*\verbatimchar
+                          \quotechar\bslash\quotechar#1\verbatimchar}}
+%    \end{macrocode}
 % \end{macro}
 %
 %
@@ -3661,6 +3828,17 @@
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\code}
+%    The |\code| macro is used to indicate index entries to code lines
+%    that aren't main entries.
+%    By default we do nothing special with them
+%    the usage of a macro.
+% \fmi{fix}
+%    \begin{macrocode}
+\@ifundefined{code}{\def\code#1{#1}}{}
+%    \end{macrocode}
+% \end{macro}
+%
 %
 % \begin{macro}{\PrintIndex}
 % \changes{v1.5k}{1989/09/04}{\cs{printindex} changed to
@@ -3767,25 +3945,26 @@
 %    (ie is empty) the current changes entry was done at top-level.
 %    In this case we precede it by "\generalname".
 %    \begin{macrocode}
-                                 \ifx\saved@macroname\@empty
+                   \ifx\saved@macroname\@empty
 %    \end{macrocode}
 %    Putting a |!| at the beginning of the entry hopefully moves this
 %    entry to the very beginning during sourting.
 %    \begin{macrocode}
-                                   \quotechar!%
-                                   \actualchar
-                                   \generalname
-                                 \else
+                      \quotechar!%
+                      \actualchar
+                      \generalname
+                   \else
 %    \end{macrocode}
 % \changes{v2.1g}{2016/02/15}{Use \cs{saved@indexname}}
 %    \begin{macrocode}
-                                   \saved@indexname
-                                   \actualchar
-                                   \string\verb\quotechar*%
-                                   \verbatimchar\saved@macroname
-                                   \verbatimchar
-                                 \fi
-                                 :\levelchar #3}}%
+                      \saved@indexname
+                      \actualchar
+                      \string\verb% % to fool emacs highlighting
+                      \quotechar*%
+                      \verbatimchar\saved@macroname
+                      \verbatimchar
+                   \fi
+                   :\levelchar #3}}%
   \@tempa\endgroup\@esphack}
 %    \end{macrocode}
 %
@@ -4288,7 +4467,9 @@
 %    \end{macrocode}
 % \changes{v1.9v}{1995/11/03}{(DPC) Use \cs{@shortvrbinfo}}
 %    \begin{macrocode}
-    \@shortvrbinfo\@empty{#1 already}{\@empty\verb(*)}%
+    \@shortvrbinfo\@empty{#1 already}%
+                         {\@empty\verb% % to fool emacs highlighting
+                          (*)}%
   \fi}
 %    \end{macrocode}
 % \end{macro}
@@ -4313,12 +4494,17 @@
 % \changes{v2.1a}{2003/12/10}{(HjG) Notify user
 %             if it's not a short verb character}
 %    \begin{macrocode}
-    \@shortvrbinfo\@empty{#1 not}{\@empty\verb(*)}%
+    \@shortvrbinfo\@empty{#1 not}%
+                         {\@empty\verb% % to fool emacs highlighting
+                          (*)}%
   \else
 %    \end{macrocode}
 % \changes{v1.9v}{1995/11/03}{(DPC) Use \cs{@shortvrbinfo}}
 %    \begin{macrocode}
-    \@shortvrbinfo{Deleted }{#1 as}{\@empty\verb(*)}%
+    \@shortvrbinfo{Deleted }{#1 as}%
+                            {\@empty\verb% % to fool emacs
+                                           % highlighting
+                            (*)}%
     \rem@special{#1}%
     \global\catcode`#1\csname cc\string#1\endcsname
 %    \end{macrocode}
@@ -4401,19 +4587,6 @@
 %<*package>
 %    \end{macrocode}
 % \end{macro}
-% \begin{macro}{\MakeShortverb}
-% \begin{macro}{\DeleteShortverb}
-% \changes{v1.7a}{1992/02/27}{Added (from newdoc).}
-% These commands from \pkg{newdoc} are now obsolete.
-%    \begin{macrocode}
-\def\MakeShortverb{\typeout{*** Switch to \noexpand\MakeShortVerb
-                         syntax, this is obsolete ***}\MakeShortVerb}
-\def\DeleteShortverb{\typeout{*** Switch to \noexpand\DeleteShortVerb
-                         syntax, this is obsolete ***}\DeleteShortVerb}
-%    \end{macrocode}
-% \end{macro}
-% \end{macro}
-%
 %
 %
 % \subsection[Providing a checksum and character table]
@@ -4865,11 +5038,13 @@
   \let\PrintDescribeEnv   \@empty
   \let\PrintMacroName     \@empty
   \let\PrintEnvName       \@empty
+  \let\SpecialUsageIndex  \@empty
+  \let\SpecialEnvIndex    \@empty
 %    \end{macrocode}
 %    Annoying to code around issue \#22
 %    \begin{macrocode}
   \expandafter\let\expandafter\dox@eoph@@k\csname doc.sty-h@@k\endcsname
-  \usepackage{hypdoc}
+  \RequirePackage{hypdoc}
   \expandafter\let\csname doc.sty-h@@k\endcsname\dox@eoph@@k
 %    \end{macrocode}
 %    After \pkg{hypdoc} got loaded we need to undefine those macros
@@ -4919,7 +5094,7 @@
 % \subsection{\dox environments}
 
 % \begin{macro}{\@@doxenv}
-%   \marg{are-we-macrolike}\marg{item}\marg{name}\\
+%   \marg{are-we-macrolike}\marg{item}\marg{indextype}\marg{name}\\
 %   In \texttt{doc.sty}, the \texttt{macro} and \texttt{environment}
 %   environments go through the \cs{m@cro@} macro which implements specific
 %   parts by testing a boolean condition as its first argument. This mechanism
@@ -4953,6 +5128,17 @@
 %    \begin{macrocode}
     \if #1%      
       \edef\saved@indexname{\expandafter\@gobble\saved@macroname}%
+%
+      \expandafter\ifx
+                  \csname Code#2Index\endcsname
+                  \CodeIndex@default
+      \else
+%    \end{macrocode}
+%    \fmi{fix}
+%    \begin{macrocode}
+        \expandafter\RecordIndexType\csname\saved@indexname\endcsname{#2}%
+      \fi
+%
     \else
       \let\saved@indexname\saved@macroname
     \fi
@@ -4997,8 +5183,9 @@
 %    \texttt{macrolike} environment. (There is no point doing that for
 %    non-\texttt{macrolike} environments are index entries are only
 %    generated for items starting with a backslash anyway.
+% \fmi{fix}
 %    \begin{macrocode}
-    \if#1\DoNotIndex{#3}\fi
+    \if#1\expandafter\DoNotIndex \csname \saved@indexname\endcsname \fi
     \ignorespaces}
 %    \end{macrocode}
 % \end{macro}
@@ -5040,7 +5227,7 @@
 %   argument. The second one was opened to handle local options.
 %    \begin{macrocode}
 \def\@@doxdescribe#1#2{%
-    \endgroup
+%    \endgroup
     \ifdox@noprint\else
       \marginpar{\raggedleft
                  \@doxprovidetarget
@@ -5049,8 +5236,10 @@
     \ifdox@noindex\else
       \@nameuse{Special#1Index}{#2}%
     \fi
-    \endgroup
-  \@esphack\ignorespaces}
+%    \endgroup
+  \@esphack
+  \endgroup
+  \ignorespaces}
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\@doxdescribe}
@@ -5059,10 +5248,10 @@
 %    \begin{macrocode}
 \def\@doxdescribe#1[#2]{%
   \leavevmode\@bsphack
-  \begingroup
+%  \begingroup
     \setkeys{dox}{#2}%
-    \begingroup
-      \MakePrivateLetters
+%    \begingroup
+%      \MakePrivateLetters
       \@@doxdescribe{#1}}
 %    \end{macrocode}
 % \end{macro}
@@ -5071,6 +5260,11 @@
 
 
 % \subsection{API construction}
+
+%    
+%    \begin{macrocode}
+\@ifundefined{temptokenb}{\newtoks\@temptokenb}{}
+%    \end{macrocode}
 
 
 % \begin{macro}{\@doxcreatespecialmainindex}
@@ -5082,64 +5276,107 @@
 %   define \verb*|\ | or nonletter macros as macrolike \dox items\ldots
 %    \begin{macrocode}
 \def\@doxcreatespecialindexes#1#2#3{%
-  \@namedef{SpecialMain#1Index}##1{%
-    \@bsphack
-    \special@index{##1\actualchar{\string\ttfamily\space##1}%
-                   \ifx\@nil#2\@nil\else \space (#2)\fi
-                   \encapchar main}%
-  \ifx\@nil#3\@nil\else
-    \special@index{#3:\levelchar##1\actualchar{\string\ttfamily\space##1}%
-                   \encapchar main}%
-  \fi
-    \@esphack}%
 %    \end{macrocode}
 %    
 %    \begin{macrocode}
-  \@namedef{Special#1Index}##1{%
-    \@bsphack
-    \@doxprovidetarget
-    \index{##1\actualchar{\protect\ttfamily##1}%
-           \ifx\@nil#2\@nil\else \space (#2)\fi
-           \@doxhandleencap{usage}}%
-  \ifx\@nil#3\@nil\else
-    \index{#3:\levelchar##1\actualchar{\protect\ttfamily##1}%
-           \@doxhandleencap{usage}}%
+  \@temptokena{\space (#2)}%
+  \@temptokenb{#3:}%
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+  \@nameedef{SpecialMain#1Index}##1{%
+    \noexpand\@bsphack
+  \ifdox@toplevel
+    \noexpand\special@index{##1\noexpand\actualchar
+    {\string\ttfamily\space##1}%
+    \ifx\@nil#2\@nil\else \the\@temptokena \fi
+    \noexpand\encapchar main}%
   \fi
-    \@esphack}}
+  \ifx\@nil#3\@nil\else
+    \noexpand\special@index{\the\@temptokenb\noexpand\levelchar
+      ##1\noexpand\actualchar{\string\ttfamily\space##1}%
+      \noexpand\encapchar main}%
+  \fi
+    \noexpand\@esphack}%
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+  \@nameedef{Special#1Index}##1{%
+    \noexpand\@bsphack
+  \ifdox@toplevel
+    \noexpand\@doxprovidetarget
+    \noexpand\index{##1\noexpand\actualchar{\string\ttfamily\space##1}%
+    \ifx\@nil#2\@nil\else \the\@temptokena \fi
+           \noexpand\@doxhandleencap{usage}}%
+  \fi
+  \ifx\@nil#3\@nil\else
+    \noexpand\index{\the\@temptokenb\noexpand\levelchar
+       ##1\noexpand\actualchar{\string\ttfamily\space##1}%
+           \noexpand\@doxhandleencap{usage}}%
+  \fi
+    \noexpand\@esphack}}
 %    \end{macrocode}
 %    
 %    \begin{macrocode}
 \def\@doxcreatespecialmacrolikeindexes#1#2#3{%
-  \@namedef{SpecialMain#1Index}##1{%
-    \@SpecialIndexHelper@##1\@nil
-    \@bsphack
-    \special@index{\@gtempa\actualchar
-      \string\verb\quotechar*\verbatimchar\bslash\@gtempa\verbatimchar
-      \ifx\@nil#2\@nil\else \space (#2)\fi
-      \encapchar main}%
-  \ifx\@nil#3\@nil\else
-    \special@index{#3:\levelchar\@gtempa\actualchar%
-      \string\verb\quotechar*\verbatimchar\bslash\@gtempa\verbatimchar
-      \encapchar main}%
-  \fi
-    \@esphack}%
 %    \end{macrocode}
 %    
 %    \begin{macrocode}
-  \@namedef{Special#1Index}##1{%
-    \@SpecialIndexHelper@##1\@nil
-    \@bsphack
-    \@doxprovidetarget
-    \index{\@gtempa\actualchar
-      \string\verb\quotechar*\verbatimchar\bslash\@gtempa\verbatimchar
-      \ifx\@nil#2\@nil\else \space (#2)\fi
-      \@doxhandleencap{usage}}%
-  \ifx\@nil#3\@nil\else
-    \index{#3:\levelchar\@gtempa\actualchar
-      \string\verb\quotechar*\verbatimchar\bslash\@gtempa\verbatimchar%
-      \@doxhandleencap{usage}}%
+  \@temptokena{\space (#2)}%
+  \@temptokenb{#3:}%
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+  \@nameedef{Code#1Index}##1##2{%
+    \noexpand\@SpecialIndexHelper@##2\noexpand\@nil
+    \noexpand\@bsphack
+  \ifdox@toplevel
+    \noexpand\special@index{\noexpand\@gtempa\noexpand\actualchar
+      \string\verb% % to fool emacs highlighting
+      \noexpand\quotechar*\noexpand\verbatimchar
+      \noexpand\bslash\noexpand\@gtempa\noexpand\verbatimchar
+      \ifx\@nil#2\@nil\else \the\@temptokena \fi
+      ##1}%
   \fi
-    \@esphack}}
+  \ifx\@nil#3\@nil\else
+    \noexpand\special@index{\the\@temptokenb\noexpand\levelchar
+      \noexpand\@gtempa\noexpand\actualchar
+      \string\verb% % to fool emacs highlighting
+      \noexpand\quotechar*\noexpand\verbatimchar
+      \noexpand\bslash\noexpand\@gtempa\noexpand\verbatimchar
+      ##1}%
+  \fi
+    \noexpand\@esphack}%
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+  \@nameedef{SpecialMain#1Index}##1{%
+    \expandafter\noexpand\csname Code#1Index\endcsname
+        {\noexpand\encapchar main}{##1}}%
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+  \@nameedef{Special#1Index}##1{%
+    \noexpand\@SpecialIndexHelper@##1\noexpand\@nil
+    \noexpand\@bsphack
+  \ifdox@toplevel
+    \noexpand\@doxprovidetarget
+    \noexpand\index{\noexpand\@gtempa\noexpand\actualchar
+      \string\verb% % to fool emacs highlighting
+      \noexpand\quotechar*\noexpand\verbatimchar
+      \noexpand\bslash\noexpand\@gtempa\noexpand\verbatimchar
+      \ifx\@nil#2\@nil\else \the\@temptokena \fi
+      \noexpand\@doxhandleencap{usage}}%
+  \fi
+  \ifx\@nil#3\@nil\else
+    \noexpand\index{\the\@temptokenb\noexpand\levelchar
+      \noexpand\@gtempa\noexpand\actualchar
+      \string\verb% % to fool emacs highlighting
+      \noexpand\quotechar*\noexpand\verbatimchar
+      \noexpand\bslash\noexpand\@gtempa\noexpand\verbatimchar
+      \noexpand\@doxhandleencap{usage}}%
+  \fi
+    \noexpand\@esphack}}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -5151,8 +5388,19 @@
 %    \begin{macrocode}
 \def\@doxcreatedescribe#1{%
   \@namedef{Describe#1}{%
-    \@ifnextchar[%]
-    {\@doxdescribe{#1}}{\@doxdescribe{#1}[]}}}
+%    \end{macrocode}
+%    Because of the optional argument we have to set
+%    |\MakePrivateLetters| already before parsing that (fingers
+%    crossed). Otherwise incorrect but quite common usage, such as
+%    |\DescribeMacro\foo@bar| will break because the scan for the
+%    optional argument will tokenize the following input (i.e., |\foo|
+%    in that case) before the |@| sign becomes a letter. As a result
+%    |DescribeMacro| would receive only |\foo| as its argument.
+%    \begin{macrocode}
+    \begingroup
+      \MakePrivateLetters
+      \@ifnextchar[%]
+      {\@doxdescribe{#1}}{\@doxdescribe{#1}[]}}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -5281,6 +5529,7 @@
 %    \begin{macrocode}
 \def\@NewDocElement#1#2#3{%
   \@nameuse{dox@macrolike\dox@macrolikedefault}%
+  \@nameuse{dox@toplevel\dox@topleveldefault}%
   \def\dox@idxtype{#3}%
   \def\dox@idxgroup{#3s}%
   \let\dox@printtype\@empty
@@ -5288,7 +5537,8 @@
 %    \end{macrocode}
 %   \begin{macro}{\Print...Name}
 %     \marg{name}
-% \fmi{extremly messy this with so many \cs{expandafter}s \ldots{} should reimplement in expl3}
+% \fmi{extremly messy this with so many \cs{expandafter}s \ldots{}
+%       should reimplement in expl3}
 %    \begin{macrocode}
   \ifx\dox@printtype\@empty
     \@temptokena{}%
@@ -5332,8 +5582,7 @@
    \expandafter\expandafter\expandafter
    \@doxexpr
    \expandafter\expandafter\expandafter
-     {\csname dox@idxtype\expandafter\endcsname
-      \expandafter}\expandafter
+     {\expandafter\dox@idxtype\expandafter}\expandafter
      {\dox@idxgroup}%
 %    \end{macrocode}
 %   \end{macro}
@@ -5403,7 +5652,11 @@
 %    transparent.
 %    \begin{macrocode}
 \def\SpecialUsageIndex{\SpecialMacroIndex}
-
+\def\SpecialIndex     {\CodeMacroIndex{\encapchar code}}
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+\let\CodeIndex@default\CodeMacroIndex
 %    \end{macrocode}
 %
 % \subsubsection{Environment facilities}
@@ -5429,7 +5682,6 @@
 %    special in OT1 and otherwise use \cs{textbackslash}
 %    \begin{macrocode}
 \DeclareRobustCommand\cs[1]{\texttt{\bslash #1}}
-
 %    \end{macrocode}
 
 

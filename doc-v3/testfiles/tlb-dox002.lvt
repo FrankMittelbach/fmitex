@@ -142,6 +142,8 @@
 %    \end{macrocode}
 \end{environment}
 
+\RecordIndexType\hsize{Length}  % after it has been used
+
 \begin{macro}{\@mymacro}
   \changes{v2.2}{2015/05/18}{new}
   A macro definition

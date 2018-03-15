@@ -3,9 +3,14 @@ Don't change this file in any respect.
 (load luc: ../lmmono9-regular.luc)
 \indexentry{foo={\ttfamily foo} (option)|main}{1}
 (load luc: ../lmmono10-regular.luc)
+Recording index type for '\mylength' as Length
 \indexentry{mylength=\verb!*+\mylength+ (length)|main}{1}
 \indexentry{lengths:>mylength=\verb!*+\mylength+|main}{1}
-(load luc: ../lmroman9-regular.luc) [1
+Disable indexing for '\mylength '
+(load luc: ../lmroman9-regular.luc)
+Searching for '\mylength'
+Not indexing '\mylength'
+[1
 \indexentry{foo={\ttfamily foo} (option)|usage}{1}
 \glossaryentry{v1>foo=\verb!*+foo+:>first change}{1}
 \indexentry{mylength=\verb!*+\mylength+ (length)|usage}{1}
@@ -16,14 +21,31 @@ Don't change this file in any respect.
 ]
 \indexentry{myenvironment={\ttfamily myenvironment} (environment)|main}{2}
 \indexentry{environments:>myenvironment={\ttfamily myenvironment}|main}{2}
-\indexentry{newenvironment=\verb!*+\newenvironment+}{2}
-\indexentry{hsize=\verb!*+\hsize+}{2}
-\indexentry{mylength=\verb!*+\mylength+}{2}
+Searching for '\newenvironment'
+Indexing '\newenvironment' (normal)
+\indexentry{newenvironment=\verb!*+\newenvironment+|code}{2}
+Searching for '\hsize'
+Indexing '\hsize' (normal)
+\indexentry{hsize=\verb!*+\hsize+|code}{2}
+Searching for '\mylength'
+Indexing '\mylength' as Length
+\indexentry{mylength=\verb!*+\mylength+ (length)|code}{2}
+\indexentry{lengths:>mylength=\verb!*+\mylength+|code}{2}
 \indexentry{@mymacro=\verb!*+\@mymacro+|main}{3}
-\indexentry{def=\verb!*+\def+}{3}
-\indexentry{@mylength=\verb!*+\@mylength+}{3}
-\indexentry{mylength=\verb!*+\mylength+}{3}
-\indexentry{relax=\verb!*+\relax+}{3}
+Disable indexing for '\@mymacro '
+Searching for '\def'
+Indexing '\def' (normal)
+\indexentry{def=\verb!*+\def+|code}{3}
+Searching for '\@mylength'
+Indexing '\@mylength' (normal)
+\indexentry{@mylength=\verb!*+\@mylength+|code}{3}
+Searching for '\mylength'
+Indexing '\mylength' as Length
+\indexentry{mylength=\verb!*+\mylength+ (length)|code}{3}
+\indexentry{lengths:>mylength=\verb!*+\mylength+|code}{3}
+Searching for '\relax'
+Indexing '\relax' (normal)
+\indexentry{relax=\verb!*+\relax+|code}{3}
 (tlb-dox003.ind(load luc: ../lmroman12-regular.luc)(load luc: ../lmroman12-bold.luc)(load luc: ../lmroman9-bold.luc)
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line ....

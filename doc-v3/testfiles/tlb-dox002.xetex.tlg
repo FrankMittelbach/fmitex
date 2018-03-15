@@ -1,8 +1,12 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 \indexentry{foo={\ttfamily foo} (option)|hdclindex{3}{main}}{1}
+Recording index type for '\mylength' as Length
 \indexentry{mylength=\verb!*+\mylength+ (length)|hdclindex{6}{main}}{1}
 \indexentry{lengths:>mylength=\verb!*+\mylength+|hdclindex{6}{main}}{1}
+Disable indexing for '\mylength '
+Searching for '\mylength'
+Not indexing '\mylength'
 (../se-ascii-print.def
 ) [1
 \indexentry{foo={\ttfamily foo} (option)|hdclindex{2}{usage}}{1}
@@ -15,14 +19,33 @@ Don't change this file in any respect.
 ]
 \indexentry{myenvironment={\ttfamily myenvironment} (environment)|hdclindex{10}{main}}{2}
 \indexentry{environments:>myenvironment={\ttfamily myenvironment}|hdclindex{10}{main}}{2}
-\indexentry{newenvironment=\verb!*+\newenvironment+|hdclindex{11}{}}{2}
-\indexentry{hsize=\verb!*+\hsize+|hdclindex{11}{}}{2}
-\indexentry{mylength=\verb!*+\mylength+|hdclindex{11}{}}{2}
+Searching for '\newenvironment'
+Indexing '\newenvironment' (normal)
+\indexentry{newenvironment=\verb!*+\newenvironment+|hdclindex{11}{code}}{2}
+Searching for '\hsize'
+Indexing '\hsize' as Length
+\indexentry{hsize=\verb!*+\hsize+ (length)|hdclindex{11}{code}}{2}
+\indexentry{lengths:>hsize=\verb!*+\hsize+|hdclindex{11}{code}}{2}
+Searching for '\mylength'
+Indexing '\mylength' as Length
+\indexentry{mylength=\verb!*+\mylength+ (length)|hdclindex{11}{code}}{2}
+\indexentry{lengths:>mylength=\verb!*+\mylength+|hdclindex{11}{code}}{2}
+Recording index type for '\hsize' as Length
 \indexentry{@mymacro=\verb!*+\@mymacro+|hdclindex{12}{main}}{3}
-\indexentry{def=\verb!*+\def+|hdclindex{13}{}}{3}
-\indexentry{@mylength=\verb!*+\@mylength+|hdclindex{13}{}}{3}
-\indexentry{mylength=\verb!*+\mylength+|hdclindex{13}{}}{3}
-\indexentry{relax=\verb!*+\relax+|hdclindex{13}{}}{3}
+Disable indexing for '\@mymacro '
+Searching for '\def'
+Indexing '\def' (normal)
+\indexentry{def=\verb!*+\def+|hdclindex{13}{code}}{3}
+Searching for '\@mylength'
+Indexing '\@mylength' (normal)
+\indexentry{@mylength=\verb!*+\@mylength+|hdclindex{13}{code}}{3}
+Searching for '\mylength'
+Indexing '\mylength' as Length
+\indexentry{mylength=\verb!*+\mylength+ (length)|hdclindex{13}{code}}{3}
+\indexentry{lengths:>mylength=\verb!*+\mylength+|hdclindex{13}{code}}{3}
+Searching for '\relax'
+Indexing '\relax' (normal)
+\indexentry{relax=\verb!*+\relax+|hdclindex{13}{code}}{3}
 (tlb-dox002.ind [2
 \glossaryentry{v3>myenvironment=\verb!*+myenvironment+:>Third change|hdpindex{}}{2}
 \glossaryentry{v2.2>@mymacro=\verb!*+\@mymacro+:>new|hdpindex{}}{2}
