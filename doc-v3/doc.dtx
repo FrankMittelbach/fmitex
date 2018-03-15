@@ -3120,6 +3120,45 @@
 %  \end{macro}
 %
 %
+%  \begin{macro}{\__doc_idxtype_put_scan:nn}
+%    When we want to record an index type for a scanned name we can't
+%    turn that into a csname and then call |\__doc_idxtype_put:Nn|
+%    because turning it into a csname may change the meaning of the
+%    name from ``undefined'' to |\relax|. Got bitten by that when
+%    processing the kernel sources containing |\@undefined| within the
+%    code: suddenly that wasn't undefined any longer.
+%    So here is another version that works only on characters as
+%    input. As we don't know whether or not they are proper strings
+%    already we first make sure that this is the case.
+%    \begin{macrocode}
+\cs_new:Npn \__doc_idxtype_put_scan:nn #1#2 {
+  \exp_args:Nf \__doc_idxtype_put:nn { \tl_to_str:n {#1} }{#2}
+%    \end{macrocode}
+%    In this case we also have to append a backslash when writing to
+%    the \texttt{.aux} file.
+%    \begin{macrocode}
+  \protected@write\@auxout{}
+     {\string\RecordIndexTypeAux {\bslash #1 }{#2} }
+}
+%    \end{macrocode}
+%    
+%  \begin{macro}{\__doc_idxtype_put_scan:on}
+%    And here is the one we really need since the characters are
+%    stored in some macro.
+%    \begin{macrocode}
+\cs_generate_variant:Nn \__doc_idxtype_put_scan:nn {o}
+%    \end{macrocode}
+%
+%  \begin{macro}{\record@index@type@save}
+%    And here is the interface to the rest of the code:
+%    \begin{macrocode}
+\cs_set_eq:NN \record@index@type@save \__doc_idxtype_put_scan:on
+%    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
+%  \end{macro}
+%
+%
 %  \begin{macro}{\__doc_idxtype_put:nn}
 %    This internal command takes two arguments: a command name as
 %    string (no backslash) and its type (i.e., first mandatory
@@ -3163,7 +3202,7 @@
 %
 %
 %  \begin{macro}{\exp_args:co}
-%    A helper: constructing a function with the first argument
+%    A helper: construct a function and call it with its first argument
 %    expanded once:
 %    \begin{macrocode}
 \cs_new:Npn \exp_args:co #1#2 
@@ -3171,15 +3210,14 @@
 %    \end{macrocode}
 %  \end{macro}
 %
-%
-%  \begin{macro}{\cs_to_str:c}
-%    Another helper: construct a csname and then drop the escape char
-%    again. Probably slightly more effective than doing |\tl_to_str:n|
-%    on the same input though I haven't really checked.
+%  \begin{macro}{\tl_to_str:o}
+%    Another helper: take some token list variable, expand it and turn
+%    it into a string.
 %    \begin{macrocode}
-\cs_generate_variant:Nn \cs_to_str:N {c}
+\cs_generate_variant:Nn \tl_to_str:n {o}
 %    \end{macrocode}
 %  \end{macro}
+%
 %
 %
 % ^^A --------------------------------------------------
@@ -3201,17 +3239,16 @@
 %    we have a defined situation) and then
 %    pass it on to |\__doc_maybe_index_aux:n| to do the work.
 %    \begin{macrocode}
-\cs_new:Npn \__doc_maybe_index:n #1 {
-   \exp_args:Nf \__doc_maybe_index_aux:n { \cs_to_str:c {#1} }
+\cs_new:Npn \__doc_maybe_index:o #1 {
+   \exp_args:Nf \__doc_maybe_index_aux:n { \tl_to_str:o {#1} }
 }
 %    \end{macrocode}
 %    And here is what we call it in the older non-expl3 code:
 %    \begin{macrocode}
-\cs_set_eq:NN \maybe@index@macro \__doc_maybe_index:n
+\cs_set_eq:NN \maybe@index@macro \__doc_maybe_index:o
 %    \end{macrocode}
 %  \end{macro}
 %  \end{macro}
-%
 %
 %
 %
@@ -5136,7 +5173,8 @@
 %    \end{macrocode}
 %    \fmi{fix}
 %    \begin{macrocode}
-        \expandafter\RecordIndexType\csname\saved@indexname\endcsname{#2}%
+        \expandafter\record@index@type@save
+            \expandafter{\saved@indexname}{#2}%
       \fi
 %
     \else
