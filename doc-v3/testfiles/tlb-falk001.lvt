@@ -3,7 +3,7 @@
 %
 %<*driver>
 \documentclass{article}
-\usepackage{doc}
+\usepackage[debugshow]{doc}
 \CodelineIndex
 \RecordChanges
 

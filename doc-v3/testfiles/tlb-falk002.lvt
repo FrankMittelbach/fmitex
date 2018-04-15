@@ -53,7 +53,7 @@
   2016/04/19 v2.05 TUD-KOMA-Script (test)%
 ]
 \documentclass[english,ngerman]{article}
-\usepackage[hyperref=false]{doc}
+\usepackage[hyperref=false,debugshow]{doc}
 \DoNotIndex{\begin,\end}
 \CodelineIndex
 \RecordChanges

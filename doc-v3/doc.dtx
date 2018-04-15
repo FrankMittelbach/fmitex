@@ -173,7 +173,7 @@
 %\NewDocElement[macrolike = true ,
 %		 toplevel  = false,
 %                idxtype   =  counter  ,
-%                idxgroup  = TeX counters\actualchar \TeX{} counters ,
+%                idxgroup  = TeX counters\actualchar \protect\TeX{} counters ,
 %                printtype = \textit{counter}
 %               ]{TeXCounter}{tcounter} 
 %
@@ -203,6 +203,7 @@
 % \renewcommand\main[1]{\underline{\mbox{$\ell$-#1}}}
 % \setcounter{IndexColumns}{2}
 %
+%
 % \changes{v1.9t}{1995/05/11}{Use \cs{GetFileInfo}}
 % \GetFileInfo{doc.sty}
 %
@@ -220,7 +221,7 @@
 %        {Extraction of \texttt{shortvrb}
 %        package added by Joachim Schrod (TU~Darmstadt).}~\thanks
 %        {Version~3 now integrates code from Didier Verna's
-%        \texttt{dox} package and some of his documentation was
+%        \dox package and some of his documentation was
 %        reused (a.k.a.\ stolen).}}
 % \date{Printed \today}
 %
@@ -247,7 +248,7 @@
 %    important modifications are the integration of the
 %    \texttt{hypdoc} package to enable links within the document (in
 %    particular from the index) is so desired. Also integrated are the
-%    ideas from the \texttt{dox} package by Didier Verna (although I
+%    ideas from the \dox package by Didier Verna (although I
 %    offer a different interface that imho fits better with the rest
 %    of \DOC's interfaces). Finally I updated a few odds and ends.
 % \end{abstract}
@@ -270,7 +271,21 @@
 %
 % \section{Introduction}
 %
-% \fmi{write new into}
+% This is version of of the \DOC package written roughly 30 years
+% after the initial release. As the package has been used for so long
+% it is absolutely important to preserve existing interfaces (even if
+% we can agree that they could have been done better).
+%
+% So this is a light-weight change, basically adding hyperlink support
+% and adding a way to provide generally \DOC elements (not just macros
+% and environments) and try to do this properly (which wasn't the case
+% for enviromnents either in the past). The ideas for this have been
+% stolen from the \dox package by Didier Verna even though I
+% didn't kept his interfaces.
+%
+% Most of the documentation below is from the earlier release  which
+% accounts for some inconsistencies in presentation, mea culpa.
+%
 %
 % \section{The User Interface}\label{sec:interface}
 % \subsection{The driver file}
@@ -295,8 +310,10 @@
 % manipulate the behavior of the \DOC{} package like
 % |\DisableCrossrefs| or |\OnlyDescription|.
 %
+%
 % \DescribeMacro\DocInput \DescribeMacro\IndexInput
-% Finally the \meta{special input commands} part should contain one or
+% Finally 
+% the \meta{special input commands} part should contain one or
 % more |\DocInput|\marg{file name} and/or
 % |\IndexInput|\marg{file name} commands.  The
 % |\DocInput| command is used for files prepared for the
@@ -352,6 +369,45 @@
 \end{document}
 %</driver>
 %    \end{macrocode}
+%
+%
+% \subsection{Package options}
+%
+% Starting with version~3 the \DOC package now offers a small number
+% of package options to modify its overall behavior. These are:
+% \DescribeOption[noprint]{multicol}
+% \DescribeOption[noprint]{hyperref}
+% \DescribeOption[noprint]{debugshow}
+% \DescribeOption[noprint]{noindex}
+% \DescribeOption[noprint]{noprint}
+% \begin{description}
+% \item[\opt{hyperref}] Boolean (default \texttt{true}). Load the
+%    \pkg{hyperref} package and make index references to code lines
+%    and pages and other items clickable links.
+%
+% \item[\opt{multicol}] Boolean (default \texttt{true}). Load the
+%    \pkg{multicol} package for use in typesetting the index and the
+%    list of changes.
+%
+% \item[\opt{debugshow}] Boolean (default \texttt{false}). Provide
+%    various tracing information at the terminal and in the transcript
+%    file. In particular show which elements are indexed.
+%
+% \item[\opt{noindex}] Boolean (default \texttt{false}). If set all
+%    automatic indexing is suppressed. This option can also be used on
+%    individual elements as described below.
+%
+% \item[\opt{noprint}] Boolean (default \texttt{false}). If set then
+%    printing of element names in the margin will be suppressed. This
+%    option can also be used on individual elements as described
+%    below.
+% \end{description}
+%
+% \DescribeMacro{\SetupDoc} Instead of providing options to the \DOC
+%    package you can call \cs{SetupDoc} and provide them there. This
+%    allows, for example,  to change default values in case \DOC was already
+%    loaded earlier.
+%
 %
 %
 % \subsection{General conventions}
@@ -437,6 +493,12 @@
 % margin. Below I used |\DescribeEnv{verbatim}|.
 %
 %
+% Starting with version~3 the \cs{Describe...} commands accept an
+% optional argument in which you can specify either \opt{noindex}
+% or \opt{noprint} to suppress indexing or printing for that
+% particular instance. Using both would be possible too, but pointless
+% as then the commands wouldn't do anything any more.
+%
 %
 % \subsection{Describing the definition of macros and environments}
 %
@@ -485,6 +547,12 @@
 % backslash) as its argument and internally provides different index
 % entries suitable for environments.
 %
+% Starting with version~3 these environments accept an optional
+% argument in which you can specify \opt{noindex} or \opt{noprint} or
+% both to suppress indexing or printing for that particular
+% instance. If any such setting is made on the environment level it
+% overwrite whatever default was given when the \DOC element was
+% defined or when the package was loaded.
 %
 % 
 %
@@ -533,10 +601,24 @@
 %
 % Such a declaration will define for you
 % \begin{itemize}
-% \item the command |\Describe|\meta{element-name}
-% \item the environment \meta{env-name} 
-% \item the display command |\PrintDescribe|\meta{element-name}
-% \item and
+% \item the command |\Describe|\meta{element-name} which has the
+%    syntax
+%    \begin{quote}
+%      |\Describe|\meta{element-name}\oarg{options}\marg{element}
+%    \end{quote}
+%
+% \item the environment \meta{env-name} which has the sntax
+%    \begin{quote}
+%      \cs{begin}\marg{env-name}\oarg{options}\marg{element}
+%    \end{quote}
+%
+% \item the display command |\PrintDescribe|\meta{element-name} with
+%    the syntax
+%    \begin{quote}
+%      |\PrintDescribe|\meta{element-name}\marg{element}
+%    \end{quote}
+%
+% \item and the
 % |\Print|\meta{element-name}|Name|  display command for the
 % environment.
 % \end{itemize}
@@ -548,19 +630,17 @@
 % |\RenewDocElement| instead.
 %
 % For example, the already provided ``\texttt{Env}'' \DOC element could have been
-% done simply through
-% ^^A\begin{quote}
+% defined simply by making the declaration
 %   |\NewDocElement{Env}{environment}|
-% ^^A\end{quote}
 % though that's not quite what has been done, as we will see later.
 %
-% \DescribeOption{macrolike}
-% \DescribeOption{envlike}
-% \DescribeOption{toplevel}
-% \DescribeOption{notoplevel}
-% \DescribeOption{idxtype}
-% \DescribeOption{printtype}
-% \DescribeOption{idxgroup}
+% \DescribeOption[noprint]{macrolike}
+% \DescribeOption[noprint]{envlike}
+% \DescribeOption[noprint]{toplevel}
+% \DescribeOption[noprint]{notoplevel}
+% \DescribeOption[noprint]{idxtype}
+% \DescribeOption[noprint]{printtype}
+% \DescribeOption[noprint]{idxgroup}
 % The \meta{options} are keyword/value and define further details on
 % how that \DOC element should behave. They are:
 % \begin{description}
@@ -584,10 +664,18 @@
 % \item[\opt{printtype}] String (default \meta{env-name}). What to put
 %   (in parantheses if non-empty) after an element name in the margin.
 %
-% \item[\opt{idxgroup}]  String (default
+% \item[\opt{idxgroup}] String (default
 %   \meta{env-name}\texttt{s}). Name of the top-level index entry if
 %   entries are grouped. They are only grouped this option is
 %   non-empty.
+%
+% \item[\opt{noindex}] Boolean (default \texttt{false}).  If set this
+%   will suppress indexing for elements of this type. This setting
+%   overwrite any global setting of \opt{noindex}.
+%
+% \item[\opt{noprint}] Boolean (default \texttt{false}).  If set this
+%   will suppress printing the element name in the margin. This setting
+%   overwrite any global setting of \opt{noprint}.
 % \end{description}
 % As usual giving a boolean option without a value sets it to
 % \texttt{true}.
@@ -1166,7 +1254,39 @@
 %
 
 
-
+%
+% \section{Incompatibilities between version 2 and 3}
+%
+% The basic approach when developing version~3 was to provide a very
+% high level of compatibility with version~2 so that nearly all
+% older documents should work out of the box without the need for
+% any adjustments.
+%
+% But as with any change there are situations where that change can
+% result in some sort of incompatbility, e.g., if a newly introduce
+% command name was already been defined in the user document then
+% there will be a conflict that is nearly impossible to avoid
+% 100\%.
+%
+% As mentioned earlier, \DOC now supports options on several commands
+% and environments and as a result it is necessary to use braces
+% around the argument for \cs{DescribeMaro} if the ``macro ot be
+% described'' uses private letters such as |@| or |_| as part of its
+% name. That was always the official syntax but in the past you could
+% get away with leaving out the braces more often than you can now.
+%
+% The old \DOC documentation also claimed that redefinitions of things
+% like \cs{PrintDescribeMacro} could be done before loading the
+% package (and not only afterwards) and \DOC would in that case not
+% change those commands. As the setup mechanisms are now much more
+% powerful and general such an approach is not really good. So with
+% \DOC version~3 modifcations have to be done after the \DOC package
+% got loaded and the last modification will always win.
+%
+%
+% I'm temped to drop compatibility with \LaTeX~2.09  (but so far I
+% have left it in).
+%
 %
 % \section{Old interfaces no longer really neeeded}
 %
@@ -1569,7 +1689,7 @@
 %
 %    \begin{macrocode}
 \RequirePackage{kvoptions}
-\SetupKeyvalOptions{family=dox,prefix=dox@}
+\SetupKeyvalOptions{family=doc,prefix=doc@}
 %    \end{macrocode}
 % These two options are available for use in \cs{usepackage} or in the
 % generated item \api's:
@@ -1578,6 +1698,7 @@
 \DeclareBoolOption{noindex}
 \DeclareBoolOption[true]{hyperref}
 \DeclareBoolOption[true]{multicol}
+\DeclareBoolOption[false]{debugshow}
 %    \end{macrocode}
 % This one is for \cs{usepackage} and \cs{NewDocElement}:
 %    \begin{macrocode}
@@ -1595,30 +1716,48 @@
 %
 % \subsection{Processing the package options}
 %
-% We need to save the default value for every option because \dox environments
-% need to reset them at every call.
 %    \begin{macrocode}
 \ProcessKeyvalOptions*
-\ifdox@noprint
-  \def\dox@noprintdefault{true}
-\else
-  \def\dox@noprintdefault{false}
-\fi
-\ifdox@noindex
-  \def\dox@noindexdefault{true}
-\else
-  \def\dox@noindexdefault{false}
-\fi
-\ifdox@macrolike
-  \def\dox@macrolikedefault{true}
-\else
-  \def\dox@macrolikedefault{false}
-\fi
-\ifdox@toplevel
-  \def\dox@topleveldefault{true}
-\else
-  \def\dox@topleveldefault{false}
-\fi
+%    \end{macrocode}
+%
+%    
+% \begin{macro}{\ifscan@allowed}
+% \begin{macro}{\scan@allowedtrue}
+% \begin{macro}{\scan@allowedfalse}
+%    |\ifscan@allowed| is the switch used to determine if
+%    the |\active@escape@char|\SpecialIndex{\active@escape@char}
+%    should start the macro scanning mechanism.
+%    \begin{macrocode}
+\newif\ifscan@allowed    \scan@allowedtrue
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%  \begin{macro}{\SetupDoc}
+%    
+%    We need to save the default value for some options because \DOC elements
+%    can locally set them.
+%    \begin{macrocode}
+\def\SetupDoc#1{%
+  \setkeys{doc}{#1}%
+    \edef\doc@noprintdefault{\ifdoc@noprint true\else false\fi}%
+  \ifdoc@noindex
+%    \end{macrocode}
+%    If we do not index by default then we should also turn off
+%    \cs{scan@allowed}.
+%    \begin{macrocode}
+    \def\doc@noindexdefault{true}%
+    \scan@allowedfalse
+  \else
+    \def\doc@noindexdefault{false}%
+  \fi
+}
+%    \end{macrocode}
+%  \end{macro}
+%    
+%    \begin{macrocode}
+\SetupDoc{}              % just save the default values
 %    \end{macrocode}
 %
 %
@@ -2115,24 +2254,6 @@
                     \mathcode`\:="703A \mathcode`\=="703D }
 %    \end{macrocode}
 % \end{macro}
-%
-% \begin{macro}{\mathsf}
-% \changes{v1.7c}{1992/03/26}{Added.}
-% \changes{v1.7d}{1992/04/25}{Use sans font for modules.}
-% \changes{v1.7n}{1993/02/21}{\cs{sfmath} Renamed to \cs{mathsf}.}
-% \changes{v1.8c}{1993/10/25}{NFSS standard}
-% If NFSS is in use we need a new math alphabet which uses a sans serif
-% font. To support both the release one and two of NFSS the alphabet
-% was renamed to "\mathsf" which is defined in NFSS2.
-%    \begin{macrocode}
-%\ifx\selectfont\undefined
-%\else
-%  \ifx\mathsf\undefined
-%    \newmathalphabet*{\mathsf}{\sfdefault}{m}{n}\fi
-%\fi
-%    \end{macrocode}
-% \end{macro}
-%
 %
 %
 % \begin{lskip}{\MacrocodeTopsep}
@@ -2722,19 +2843,6 @@
 % \end{macro}
 %
 %
-% \begin{macro}{\ifscan@allowed}
-% \begin{macro}{\scan@allowedtrue}
-% \begin{macro}{\scan@allowedfalse}
-%    |\ifscan@allowed| is the switch used above to determine if
-%    the |\active@escape@char|\SpecialIndex{\active@escape@char}
-%    should start the macro scanning mechanism.
-%    \begin{macrocode}
-\newif\ifscan@allowed    \scan@allowedtrue
-%    \end{macrocode}
-% \end{macro}
-% \end{macro}
-% \end{macro}
-%
 %
 % \begin{macro}{\EnableCrossrefs}
 % \begin{macro}{\DisableCrossrefs}
@@ -2784,7 +2892,8 @@
 %
 % \begin{macro}{\short@macro}
 %
-% \fmi{this needs cleaning up too}
+% \fmi{this needs cleaning up too, the results in the indext are
+% currently wrong for cases like `\cs{ }' and the like.}
 %
 % \changes{v1.5c}{1989/04/27}{Corrected bad bug by putting the
 %                         scan@allowedfalse macro before printing
@@ -2970,7 +3079,7 @@
 %    |\DoNotIndex|.
 %
 %
-% \DescribeMacro\ShowDoNotIndexState 
+% \DescribeMacro\ShowIndexingState
 %    Displays the current list of the exclude index list in a fairly
 %    low-level form.
 %
@@ -3004,6 +3113,23 @@
 %
 % ^^A --------------------------------------------------
 %
+%
+%  \begin{macro}{\__doc_trace:x}
+%    
+%    \begin{macrocode}
+\cs_new:Npn\__doc_trace:x {
+  \ifdoc@debugshow
+    \expandafter \iow_term:x 
+  \else
+    \expandafter \use_none:n
+  \fi
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+% ^^A --------------------------------------------------
+%
 %  \begin{macro}{\doc_dont_index:n}
 %  \begin{macro}{\__doc_dont_index:n}
 %  \begin{macro}{\__doc_dont_index:N}
@@ -3027,7 +3153,7 @@
 %    \end{macrocode}
 %    
 %    \begin{macrocode}
-  \iow_term:x{Disable~ indexing~ for~ '\exp_not:n{#1}' }
+  \__doc_trace:x{Disable~ indexing~ for~ '\exp_not:n{#1}' }
 %    \end{macrocode}
 %    Adding the commands to the |\l__doc_donotindex_seq| sequence is
 %    done by mapping the function |\__doc_dont_index:N|  on each
@@ -3058,11 +3184,11 @@
 %  \end{macro}
 %
 %
-%  \begin{macro}{\ShowDoNotIndexState}
+%  \begin{macro}{\ShowIndexingState}
 %    Some tracing information that may be helpful.
 %    \begin{macrocode}
-\def \ShowDoNotIndexState {
-  \iow_term:x{Show~ doc~ indexing~ state:}
+\def \ShowIndexingState {
+  \__doc_trace:x{Show~ doc~ indexing~ state:}
   \seq_show:N  \l__doc_donotindex_seq
   \prop_show:N \g__doc_idxtype_prop
 }
@@ -3141,6 +3267,7 @@
      {\string\RecordIndexTypeAux {\bslash #1 }{#2} }
 }
 %    \end{macrocode}
+%  \end{macro}
 %    
 %  \begin{macro}{\__doc_idxtype_put_scan:on}
 %    And here is the one we really need since the characters are
@@ -3148,14 +3275,13 @@
 %    \begin{macrocode}
 \cs_generate_variant:Nn \__doc_idxtype_put_scan:nn {o}
 %    \end{macrocode}
+%  \end{macro}
 %
 %  \begin{macro}{\record@index@type@save}
 %    And here is the interface to the rest of the code:
 %    \begin{macrocode}
 \cs_set_eq:NN \record@index@type@save \__doc_idxtype_put_scan:on
 %    \end{macrocode}
-%  \end{macro}
-%  \end{macro}
 %  \end{macro}
 %
 %
@@ -3185,10 +3311,10 @@
 %    Some tracing info \ldots{}
 %    \begin{macrocode}
      { 
-       \iow_term:x{Not~ recording~ index~ type~ for~ '\bslash #1' }
+       \__doc_trace:x{Not~ recording~ index~ type~ for~ '\bslash #1' }
      }
      { 
-       \iow_term:x{Recording~ index~ type~ for~ '\bslash #1' ~ as~ #2 }
+       \__doc_trace:x{Recording~ index~ type~ for~ '\bslash #1' ~ as~ #2 }
 %    \end{macrocode}
 %    Stick the data into the property list:
 %    \begin{macrocode}
@@ -3260,7 +3386,7 @@
 %    \end{macrocode}
 %    A bit of tracing:
 %    \begin{macrocode}
-  \iow_term:x{Searching~ for~ '\bslash #1'}
+  \__doc_trace:x{Searching~ for~ '\bslash #1'}
 %    \end{macrocode}
 %    If the name is on the exclude list do nothing.
 %    \begin{macrocode}
@@ -3269,7 +3395,7 @@
 %    
 %    \begin{macrocode}
     {
-     \iow_term:x{Not~ indexing~ '\bslash #1' }
+     \__doc_trace:x{Not~ indexing~ '\bslash #1' }
     }
 %    \end{macrocode}
 %    Otherwise check if this name has an index type property attached
@@ -3293,7 +3419,7 @@
 %    |\CodeMacroIndex|.
 %    \begin{macrocode}
         {
-          \iow_term:x{Indexing~ '\bslash #1'\space (normal)}
+          \__doc_trace:x{Indexing~ '\bslash #1'\space (normal)}
           \exp_args:No \SpecialIndex {\bslash #1} 
         }
     }
@@ -3316,8 +3442,8 @@
 %    \begin{macrocode}
     \cs_if_exist:NTF #1
       {
-        \iow_term:x{Indexing~ '#3'\space as~ 
-                    \tl_use:N \l__doc_idxtype_tl }
+        \__doc_trace:x{Indexing~ '#3'\space as~ 
+                       \tl_use:N \l__doc_idxtype_tl }
         #1{#2}{#3}
       }
       {
@@ -3424,17 +3550,8 @@
 %
 %
 %
-% \begin{macro}{\SpecialIndex@}
 % \begin{macro}{\@SpecialIndexHelper@}
-% \changes{v2.0c}{1998/08/22}{Macro added.}
-% \changes{v2.0f}{1999/02/27}{Temp fix to allow strange code in arg 1
-%                             (PR 2968)}
-%    The macro |\SpecialIndex@| does the real work for |\SpecialMainIndex|
-%    and |\SpecialUsageIndex|. It takes two arguments: the macro to be
-%    indexed (as a control sequence or list of character tokens) and the
-%    additional text for the index.
-% \changes{v2.0g}{1999/03/22}{Correct so-called temp fix. I'm not going to
-%                   explain this.}
+%    \fmi{doc or drop}
 %    \begin{macrocode}
 \begingroup
  \catcode`\|=0
@@ -3454,71 +3571,6 @@
 |endgroup
 %    \end{macrocode}
 %    
-%    \begin{macrocode}
-\def\SpecialIndex@#1#2{%
-%    \end{macrocode}
-%    The first thing it does is to convert the macro into a list of
-%    characters. Note that a character token list remains (mostly) unchanged.
-%    \begin{macrocode}
-   \@SpecialIndexHelper@#1\@nil
-%    \end{macrocode}
-%    The macro name \verb*|\ | has to handled in a special way. The reason
-%    is that the space token is skipped when \TeX\ is scanning macro
-%    parameters, so that the trick used below will not work.
-%    So, we check whether the replacement text of |\@tempa| starts with
-%    a space token and write the appropriate index entry.
-%    \begin{macrocode}
-   \def\@tempb{ }%
-   \ifcat \@tempb\@gtempa
-      \special@index{\quotechar\space\actualchar
-                     \string\verb%   % tofool emacs highlighting
-                     \quotechar*\verbatimchar
-                     \quotechar\bslash\quotechar\space\verbatimchar#2}%
-   \else
-%    \end{macrocode}
-%    Having handled this special case we have to distinguish control
-%    sequences consisting of one or more
-%    letters and those that consists of exactly one nonletter. As character
-%    tokens in the replacement text of the macro |\@gtempa| have all
-%    category code $12$ (other), this is difficult. For simplicity, we treat
-%    all single character control sequences alike, irregardless of whether
-%    the character is a letter or not. This has the advantage that it works
-%    even for strange settings of the category codes.
-%
-%    We define a utility macro |\@tempb| with two arguments, the second
-%    delimited by |\relax|.
-%    It will be called later so that the first argument is the first character
-%    of the macro name, and the second argument receives the rest of the
-%    characters. So we distinguish the two cases above by checking whether
-%    the second argument is empty.
-%    \begin{macrocode}
-     \def\@tempb##1##2\relax{\ifx\relax##2\relax
-%    \end{macrocode}
-%    If so, we define the helper macro |\@tempc| in a way that it
-%    adds quotechars in critical places.
-%    \begin{macrocode}
-          \def\@tempc{\special@index{\quotechar##1\actualchar
-                      \string\verb% % to fool emacs highlighting
-                      \quotechar*\verbatimchar
-                      \quotechar\bslash\quotechar##1\verbatimchar#2}}%
-%    \end{macrocode}
-%    Otherwise we write the characters as in |\SpecialIndex|.
-%    \begin{macrocode}
-        \else
-          \def\@tempc{\special@index{##1##2\actualchar
-                       \string\verb% % to fool emacs highlighting
-                       \quotechar*\verbatimchar
-                       \bslash##1##2\verbatimchar#2}}%
-        \fi}%
-%    \end{macrocode}
-%    Now pass the list of characters to \@tempb and call \@tempc to do the
-%    work.
-%    \begin{macrocode}
-     \expandafter\@tempb\@gtempa\relax
-     \@tempc
-   \fi}
-%    \end{macrocode}
-% \end{macro}
 % \end{macro}
 %
 %
@@ -3531,7 +3583,11 @@
 %    the entry. It can also be used directly to generate index entries
 %    which differ in sort key and actual entry.
 %    \begin{macrocode}
-\def\SortIndex#1#2{\index{#1\actualchar#2}}
+\def\SortIndex#1#2{%
+  \ifdoc@noindex\else
+    \index{#1\actualchar#2}%
+  \fi
+}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -3653,7 +3709,7 @@
 %    \changes{v1.6e}{1991/04/03}{Turned into env definition.}
 %    \changes{v1.7a}{1992/03/04}{Include test for multicols.}
 %    \begin{macrocode}
-\ifdox@multicol
+\ifdoc@multicol
 %    \end{macrocode}
 %    
 %    \begin{macrocode}
@@ -3870,7 +3926,6 @@
 %    that aren't main entries.
 %    By default we do nothing special with them
 %    the usage of a macro.
-% \fmi{fix}
 %    \begin{macrocode}
 \@ifundefined{code}{\def\code#1{#1}}{}
 %    \end{macrocode}
@@ -4087,7 +4142,7 @@
 %    The environment \env{theglossary} is defined in the same manner
 %    as the \env{theindex} environment.
 %    \begin{macrocode}
-\ifdox@multicol
+\ifdoc@multicol
   \newenvironment{theglossary}{%
     \begin{multicols}\c@GlossaryColumns
                      [\glossary@prologue][\GlossaryMin]%
@@ -5070,7 +5125,7 @@
 %    defined, so we first need to provide some dummy definitions for
 %    them
 %    \begin{macrocode}
-\ifdox@hyperref
+\ifdoc@hyperref
   \let\PrintDescribeMacro \@empty
   \let\PrintDescribeEnv   \@empty
   \let\PrintMacroName     \@empty
@@ -5080,9 +5135,9 @@
 %    \end{macrocode}
 %    Annoying to code around issue \#22
 %    \begin{macrocode}
-  \expandafter\let\expandafter\dox@eoph@@k\csname doc.sty-h@@k\endcsname
+  \expandafter\let\expandafter\doc@eoph@@k\csname doc.sty-h@@k\endcsname
   \RequirePackage{hypdoc}
-  \expandafter\let\csname doc.sty-h@@k\endcsname\dox@eoph@@k
+  \expandafter\let\csname doc.sty-h@@k\endcsname\doc@eoph@@k
 %    \end{macrocode}
 %    After \pkg{hypdoc} got loaded we need to undefine those macros
 %    again so that later on \texttt{Macro} and \texttt{Env} \DOC items
@@ -5097,14 +5152,14 @@
 % know about all the stuff that \DOC does (now). So we need to provide
 % us with two helpers that handle the |\encapchar| case in some entries.
 %    \begin{macrocode}
-  \def\@doxprovidetarget{\HD@target}
-  \def\@doxhandleencap#1{\encapchar hdclindex{\the\c@HD@hypercount}{#1}}
+  \def\doc@providetarget{\HD@target}
+  \def\doc@handleencap#1{\encapchar hdclindex{\the\c@HD@hypercount}{#1}}
 %    \end{macrocode}
 %    If that package is not loaded these helpers do little to nothing
 %    \begin{macrocode}
 \else
-  \let\@doxprovidetarget\@empty
-  \def\@doxhandleencap#1{\encapchar #1}
+  \let\doc@providetarget\@empty
+  \def\doc@handleencap#1{\encapchar #1}
 %    \end{macrocode}
 %    We define the next commands just in case the user changed the option
 %    \texttt{hyperref} from \texttt{true} to \texttt{false} without
@@ -5193,7 +5248,7 @@
     \else
       \macro@cnt\@ne
     \fi
-    \ifdox@noprint
+    \ifdoc@noprint
       \item
     \else
       \edef\@tempa{%
@@ -5202,12 +5257,12 @@
 % The second notable modification to the original macro involves dynamically
 % constructing the name of the print macro:
 %    \begin{macrocode}
-        \noexpand\@doxprovidetarget
+        \noexpand\doc@providetarget
         \noexpand\strut
         \noexpand\@nameuse{Print#2Name}{\saved@macroname}]}%
       \@tempa
     \fi
-    \ifdox@noindex\else
+    \ifdoc@noindex\else
       \global\advance\c@CodelineNo\@ne
 %    \end{macrocode}
 % and the third one involves dynamically constructing the name of the index
@@ -5244,9 +5299,9 @@
 %   Hence, we need to reset the options at every call.
 %    \begin{macrocode}
 \def\@doxenv#1#2[#3]{%
-  \@nameuse{dox@noprint\dox@noprintdefault}%
-  \@nameuse{dox@noindex\dox@noindexdefault}%
-  \setkeys{dox}{#3}%
+  \@nameuse{doc@noprint\doc@noprintdefault}%
+  \@nameuse{doc@noindex\doc@noindexdefault}%
+  \setkeys{doc}{#3}%
   \begingroup
     \catcode`\\12
     \MakePrivateLetters
@@ -5266,12 +5321,17 @@
 %    \begin{macrocode}
 \def\@@doxdescribe#1#2{%
 %    \endgroup
-    \ifdox@noprint\else
+    \ifdoc@noprint\else
       \marginpar{\raggedleft
-                 \@doxprovidetarget
-                 \strut\@nameuse{PrintDescribe#1}{#2}}%
+%    \end{macrocode}
+%    The hypherref target has to be in horizonatal mode (which is the
+% case if it is after the \cs{strut}).
+%    \begin{macrocode}
+                 \strut
+                 \doc@providetarget
+                 \@nameuse{PrintDescribe#1}{#2}}%
     \fi
-    \ifdox@noindex\else
+    \ifdoc@noindex\else
       \@nameuse{Special#1Index}{#2}%
     \fi
 %    \endgroup
@@ -5287,7 +5347,7 @@
 \def\@doxdescribe#1[#2]{%
   \leavevmode\@bsphack
 %  \begingroup
-    \setkeys{dox}{#2}%
+    \setkeys{doc}{#2}%
 %    \begingroup
 %      \MakePrivateLetters
       \@@doxdescribe{#1}}
@@ -5300,9 +5360,12 @@
 % \subsection{API construction}
 
 %    
+%  \begin{macro}{\@temptokenb}
+%    A scratch register (which may have been defined elsewhere)
 %    \begin{macrocode}
 \@ifundefined{temptokenb}{\newtoks\@temptokenb}{}
 %    \end{macrocode}
+%  \end{macro}
 
 
 % \begin{macro}{\@doxcreatespecialmainindex}
@@ -5324,7 +5387,7 @@
 %    \begin{macrocode}
   \@nameedef{SpecialMain#1Index}##1{%
     \noexpand\@bsphack
-  \ifdox@toplevel
+  \ifdoc@toplevel
     \noexpand\special@index{##1\noexpand\actualchar
     {\string\ttfamily\space##1}%
     \ifx\@nil#2\@nil\else \the\@temptokena \fi
@@ -5341,16 +5404,16 @@
 %    \begin{macrocode}
   \@nameedef{Special#1Index}##1{%
     \noexpand\@bsphack
-  \ifdox@toplevel
-    \noexpand\@doxprovidetarget
+  \ifdoc@toplevel
+    \noexpand\doc@providetarget
     \noexpand\index{##1\noexpand\actualchar{\string\ttfamily\space##1}%
     \ifx\@nil#2\@nil\else \the\@temptokena \fi
-           \noexpand\@doxhandleencap{usage}}%
+           \noexpand\doc@handleencap{usage}}%
   \fi
   \ifx\@nil#3\@nil\else
     \noexpand\index{\the\@temptokenb\noexpand\levelchar
        ##1\noexpand\actualchar{\string\ttfamily\space##1}%
-           \noexpand\@doxhandleencap{usage}}%
+           \noexpand\doc@handleencap{usage}}%
   \fi
     \noexpand\@esphack}}
 %    \end{macrocode}
@@ -5368,22 +5431,24 @@
   \@nameedef{Code#1Index}##1##2{%
     \noexpand\@SpecialIndexHelper@##2\noexpand\@nil
     \noexpand\@bsphack
-  \ifdox@toplevel
-    \noexpand\special@index{\noexpand\@gtempa\noexpand\actualchar
-      \string\verb% % to fool emacs highlighting
-      \noexpand\quotechar*\noexpand\verbatimchar
-      \noexpand\bslash\noexpand\@gtempa\noexpand\verbatimchar
-      \ifx\@nil#2\@nil\else \the\@temptokena \fi
-      ##1}%
-  \fi
-  \ifx\@nil#3\@nil\else
-    \noexpand\special@index{\the\@temptokenb\noexpand\levelchar
-      \noexpand\@gtempa\noexpand\actualchar
-      \string\verb% % to fool emacs highlighting
-      \noexpand\quotechar*\noexpand\verbatimchar
-      \noexpand\bslash\noexpand\@gtempa\noexpand\verbatimchar
-      ##1}%
-  \fi
+  \noexpand\ifdoc@noindex\noexpand\else
+    \ifdoc@toplevel
+      \noexpand\special@index{\noexpand\@gtempa\noexpand\actualchar
+	\string\verb% % to fool emacs highlighting
+	\noexpand\quotechar*\noexpand\verbatimchar
+	\noexpand\bslash\noexpand\@gtempa\noexpand\verbatimchar
+	\ifx\@nil#2\@nil\else \the\@temptokena \fi
+	##1}%
+    \fi
+    \ifx\@nil#3\@nil\else
+      \noexpand\special@index{\the\@temptokenb\noexpand\levelchar
+	\noexpand\@gtempa\noexpand\actualchar
+	\string\verb% % to fool emacs highlighting
+	\noexpand\quotechar*\noexpand\verbatimchar
+	\noexpand\bslash\noexpand\@gtempa\noexpand\verbatimchar
+	##1}%
+    \fi
+  \noexpand\fi
     \noexpand\@esphack}%
 %    \end{macrocode}
 %    
@@ -5397,23 +5462,25 @@
   \@nameedef{Special#1Index}##1{%
     \noexpand\@SpecialIndexHelper@##1\noexpand\@nil
     \noexpand\@bsphack
-  \ifdox@toplevel
-    \noexpand\@doxprovidetarget
-    \noexpand\index{\noexpand\@gtempa\noexpand\actualchar
-      \string\verb% % to fool emacs highlighting
-      \noexpand\quotechar*\noexpand\verbatimchar
-      \noexpand\bslash\noexpand\@gtempa\noexpand\verbatimchar
-      \ifx\@nil#2\@nil\else \the\@temptokena \fi
-      \noexpand\@doxhandleencap{usage}}%
-  \fi
-  \ifx\@nil#3\@nil\else
-    \noexpand\index{\the\@temptokenb\noexpand\levelchar
-      \noexpand\@gtempa\noexpand\actualchar
-      \string\verb% % to fool emacs highlighting
-      \noexpand\quotechar*\noexpand\verbatimchar
-      \noexpand\bslash\noexpand\@gtempa\noexpand\verbatimchar
-      \noexpand\@doxhandleencap{usage}}%
-  \fi
+  \noexpand\ifdoc@noindex\noexpand\else
+    \ifdoc@toplevel
+      \noexpand\doc@providetarget
+      \noexpand\index{\noexpand\@gtempa\noexpand\actualchar
+	\string\verb% % to fool emacs highlighting
+	\noexpand\quotechar*\noexpand\verbatimchar
+	\noexpand\bslash\noexpand\@gtempa\noexpand\verbatimchar
+	\ifx\@nil#2\@nil\else \the\@temptokena \fi
+	\noexpand\doc@handleencap{usage}}%
+    \fi
+    \ifx\@nil#3\@nil\else
+      \noexpand\index{\the\@temptokenb\noexpand\levelchar
+	\noexpand\@gtempa\noexpand\actualchar
+	\string\verb% % to fool emacs highlighting
+	\noexpand\quotechar*\noexpand\verbatimchar
+	\noexpand\bslash\noexpand\@gtempa\noexpand\verbatimchar
+	\noexpand\doc@handleencap{usage}}%
+    \fi
+  \noexpand\fi
     \noexpand\@esphack}}
 %    \end{macrocode}
 % \end{macro}
@@ -5566,29 +5633,35 @@
 %   \marg{options}\marg{name}\marg{envname}
 %    \begin{macrocode}
 \def\@NewDocElement#1#2#3{%
-  \@nameuse{dox@macrolike\dox@macrolikedefault}%
-  \@nameuse{dox@toplevel\dox@topleveldefault}%
-  \def\dox@idxtype{#3}%
-  \def\dox@idxgroup{#3s}%
-  \let\dox@printtype\@empty
-  \setkeys{dox}{#1}%
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+  \doc@macrolikefalse
+  \doc@topleveltrue
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+  \def\doc@idxtype{#3}%
+  \def\doc@idxgroup{#3s}%
+  \let\doc@printtype\@empty
+  \setkeys{doc}{#1}%
 %    \end{macrocode}
 %   \begin{macro}{\Print...Name}
 %     \marg{name}
 % \fmi{extremly messy this with so many \cs{expandafter}s \ldots{}
 %       should reimplement in expl3}
 %    \begin{macrocode}
-  \ifx\dox@printtype\@empty
+  \ifx\doc@printtype\@empty
     \@temptokena{}%
   \else
     \@temptokena\expandafter{\expandafter
          \textnormal\expandafter{\expandafter
          \space\expandafter 
-         (\dox@printtype)}}%
+         (\doc@printtype)}}%
   \fi
   \@nameedef{Print#2Name}##1{%
      {\noexpand\MacroFont
-      \ifdox@macrolike
+      \ifdoc@macrolike
          \noexpand\string
       \fi
       ##1%
@@ -5610,7 +5683,7 @@
 %     \marg{name}
 %    \begin{macrocode}
   \edef\@doxexpr{%
-     \ifdox@macrolike
+     \ifdoc@macrolike
        \noexpand\@doxcreatespecialmacrolikeindexes
      \else
        \noexpand\@doxcreatespecialindexes
@@ -5620,8 +5693,8 @@
    \expandafter\expandafter\expandafter
    \@doxexpr
    \expandafter\expandafter\expandafter
-     {\expandafter\dox@idxtype\expandafter}\expandafter
-     {\dox@idxgroup}%
+     {\expandafter\doc@idxtype\expandafter}\expandafter
+     {\doc@idxgroup}%
 %    \end{macrocode}
 %   \end{macro}
 %   \end{macro}
@@ -5636,7 +5709,7 @@
 %   \begin{environment}{\meta{DocItem}}
 %     \oarg{options}\marg{name}
 %    \begin{macrocode}
-    \ifdox@macrolike
+    \ifdoc@macrolike
       \@doxcreateenv{TT}{#2}{#3}%
     \else
       \@doxcreateenv{TF}{#2}{#3}%
@@ -5650,31 +5723,9 @@
 
 
 
-% \subsection{\texttt{Doc} overrides}
+% \subsection{Setting up the default \DOC elements}
 
 % \subsubsection{Macro facilities}
-% Making \cs{DescribeMacro} work the \dox way is straightforward. The only
-% precaution we need is to provide an alias to \cs{SpecialUsageIndex} because
-% it should really be named \cs{SpecialMacroIndex}.
-%    \begin{macrocode}
-%\let\SpecialMacroIndex\SpecialUsageIndex
-%\@doxcreatedescribe{Macro}
-
-%    \end{macrocode}
-% Making the \texttt{macro} environment work the \dox way is straightforward.
-% The only precaution we need is to to provide a \cs{SpecialMainMacroIndex}
-% macro that does the job originally done in \texttt{doc}'s \cs{m@cro@}.
-%    \begin{macrocode}
-
-%FMi this is wrong is that macro is called by the user on toplevel
-%\def\SpecialMainMacroIndex#1{%
-%  \SpecialMainIndex{#1}\nobreak%
-%  \DoNotIndex{#1}}
-%\@doxcreateenv{Macro}{macro}
-%    \end{macrocode}
-%
-%    As we no longer define macros and envs this isn't really an
-%    overwrite any longer.
 %
 %    Macros get only a single index entry (no index group, no index
 %    type) and they do not get any label either when printing in the margin.    
@@ -5703,21 +5754,17 @@
 %    from \DOC V2 by marking the environments with ``(\textit{env.})''
 %    when printing the name in the margin.
 %    \begin{macrocode}
-
 \NewDocElement[macrolike = false ,
                 idxtype   = env.  ,
                 idxgroup  = environments ,
                 printtype = \textit{env.} 
                ]{Env}{environment}
-
 %    \end{macrocode}
 %
 
 
 % \section{Misc additions}
 
-%    Maybe make \cs{bslash} check for font encoding and do something
-%    special in OT1 and otherwise use \cs{textbackslash}
 %    \begin{macrocode}
 \DeclareRobustCommand\cs[1]{\texttt{\bslash #1}}
 %    \end{macrocode}

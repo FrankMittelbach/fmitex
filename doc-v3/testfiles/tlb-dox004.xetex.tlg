@@ -78,6 +78,8 @@ Completed box being shipped out [1]
 .........\glue(\leftskip) 0.0 plus 1.0fil
 .........\hbox(0.0+0.0)x0.0
 .........\rule(8.39996+3.60004)x0.0
+.........\hbox(0.0+0.0)x0.0
+..........\hbox(0.0+0.0)x0.0, shifted -9.22397
 .........\TU/lmtt/m/n/9 foo
 .........\penalty 10000
 .........\glue(\parfillskip) 0.0
@@ -171,6 +173,8 @@ Completed box being shipped out [1]
 .........\glue(\leftskip) 0.0 plus 1.0fil
 .........\hbox(0.0+0.0)x0.0
 .........\rule(8.39996+3.60004)x0.0
+.........\hbox(0.0+0.0)x0.0
+..........\hbox(0.0+0.0)x0.0, shifted -9.22397
 .........\TU/lmtt/m/n/9 \mylength
 .........\penalty 10000
 .........\glue(\parfillskip) 0.0
@@ -327,6 +331,8 @@ Completed box being shipped out [2]
 .........\glue(\leftskip) 0.0 plus 1.0fil
 .........\hbox(0.0+0.0)x0.0
 .........\rule(8.39996+3.60004)x0.0
+.........\hbox(0.0+0.0)x0.0
+..........\hbox(0.0+0.0)x0.0, shifted -9.22397
 .........\TU/lmtt/m/n/9 myenvironment
 .........\penalty 10000
 .........\glue(\parfillskip) 0.0

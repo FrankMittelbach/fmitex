@@ -9,12 +9,38 @@ Disable indexing for '\*'
 Searching for '\*'
 Not indexing '\*'
 Disable indexing for '\foo '
+Show doc indexing state:
+The sequence \l__doc_donotindex_seq contains the items (without outer braces):
+>  {foo}.
+<recently read> }
+l. ...\ShowIndexingState
+The property list \g__doc_idxtype_prop contains the pairs (without outer
+braces):
+>  {%}  =>  {Length}
+>  {&}  =>  {FooBar}
+>  {*}  =>  {Length}.
+<recently read> }
+l. ...\ShowIndexingState
 Not recording index type for '\foo'
 \indexentry{foo=\verb!*+\foo+ (length)|hdclindex{7}{main}}{2}
 \indexentry{lengths:>foo=\verb!*+\foo+|hdclindex{7}{main}}{2}
 Disable indexing for '\foo '
 Searching for '\foo'
 Not indexing '\foo'
+Show doc indexing state:
+The sequence \l__doc_donotindex_seq contains the items (without outer braces):
+>  {foo}.
+<recently read> }
+l. ...\ShowIndexingState
+                         ^^A \foo doesn't show up because it is not indexed!
+The property list \g__doc_idxtype_prop contains the pairs (without outer
+braces):
+>  {%}  =>  {Length}
+>  {&}  =>  {FooBar}
+>  {*}  =>  {Length}.
+<recently read> }
+l. ...\ShowIndexingState
+                         ^^A \foo doesn't show up because it is not indexed!
 \indexentry{par=\verb!*+\par+|hdclindex{9}{main}}{3}
 Disable indexing for '\par '
 Searching for '\def'
@@ -103,15 +129,14 @@ The sequence \l__doc_donotindex_seq contains the items (without outer braces):
 >  {$}
 >  {%}.
 <recently read> }
-l. ...\ShowDoNotIndexState
+l. ...\ShowIndexingState
 The property list \g__doc_idxtype_prop contains the pairs (without outer
 braces):
 >  {%}  =>  {Length}
 >  {&}  =>  {FooBar}
->  {*}  =>  {Length}
->  {foo}  =>  {Length}.
+>  {*}  =>  {Length}.
 <recently read> }
-l. ...\ShowDoNotIndexState
+l. ...\ShowIndexingState
 Searching for '\def'
 Not indexing '\def'
 Searching for '\par'
@@ -168,22 +193,3 @@ Indexing '\*' as Length
 \indexentry{lengths:>*=\verb!*+\*+|hdclindex{24}{code}}{17}
 Searching for '\,'
 Not indexing '\,'
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line ....
-[1
-\indexentry{*=\verb!*+\*+ (length)|hdclindex{2}{usage}}{1}
-\indexentry{lengths:>*=\verb!*+\*+|hdclindex{2}{usage}}{1}
-\glossaryentry{v2>*=\verb!*+\*+:>Fixing \cs  {*} thoroughly|hdpindex{}}{1}
-\indexentry{foo=\verb!*+\foo+ (length)|hdclindex{6}{usage}}{1}
-\indexentry{lengths:>foo=\verb!*+\foo+|hdclindex{6}{usage}}{1}
-\glossaryentry{v2>foo=\verb!*+\foo+:>Fixing \cs  {foo} thoroughly|hdpindex{}}{1}
-\glossaryentry{v2.2>par=\verb!*+\par+:>new|hdpindex{}}{1}
-]
-Package atveryend Info: Executing hook `AfterLastShipout' on input line ....
- (tlb-dox007.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line ....
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line ....
-Package rerunfilecheck Info: File `tlb-dox007.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package rerunfilecheck Info: File `tlb-dox007.hd' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line ....

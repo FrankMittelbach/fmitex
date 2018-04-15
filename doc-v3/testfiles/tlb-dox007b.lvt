@@ -2,7 +2,7 @@
 % Test file dox stuff
 %
 \documentclass{article}
-\usepackage[debugshow]{doc}
+\usepackage{doc}               % no debugging
 \CodelineIndex
 \RecordChanges
 
@@ -39,8 +39,6 @@
 \DescribeLength\foo
 \DoNotIndex\foo
 
-\ShowIndexingState
-
 \begin{length}{\foo}
   \changes{v2}{2018-01-02}{Fixing \cs{foo} thoroughly}
    Something about \verb=\foo= with a lone of code.
@@ -48,8 +46,6 @@
 \foo=1cm
 %    \end{macrocode}
 \end{length}
-
-\ShowIndexingState  ^^A \foo doesn't show up because it is not indexed!
 
 \begin{macro}{\par}
   \changes{v2.2}{2015/05/18}{new}
@@ -76,6 +72,8 @@
 
 \ShowIndexingState
 
+\SetupDoc{debugshow}                       % trace from here on
+
 %    \begin{macrocode}
 \def\par{ \* 
 \\
@@ -83,6 +81,11 @@
 \[ \]
 \$ \% \& \" \! \?
 \, \; \_ \-
+%    \end{macrocode}
+
+\SetupDoc{debugshow=false}                 % and hide again
+    
+%    \begin{macrocode}
 \foo \*\,
 }
 %    \end{macrocode}

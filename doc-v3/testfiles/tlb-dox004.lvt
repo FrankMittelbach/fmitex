@@ -2,7 +2,7 @@
 % Test file dox stuff
 %
 \documentclass{article}
-\usepackage[multicol=false,hyperref=true]{doc}
+\usepackage[multicol=false,hyperref=true,debugshow]{doc}
 
 \PageIndex
 \RecordChanges

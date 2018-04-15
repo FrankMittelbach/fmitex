@@ -2,7 +2,7 @@
 % Test file dox stuff with expl3 names
 %
 \documentclass{article}
-\usepackage{doc}
+\usepackage[debugshow]{doc}
 \CodelineIndex
 \RecordChanges
 

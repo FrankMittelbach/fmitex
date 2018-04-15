@@ -2,7 +2,7 @@
 %
 %<*driver>
 \documentclass[a4paper]{article}
-\usepackage{doc}                   % don't use ltxdoc since that has config
+\usepackage[debugshow]{doc}              % don't use ltxdoc since that has config
 \usepackage[T1]{fontenc}
 
 % Input the test macros for latex 2e
