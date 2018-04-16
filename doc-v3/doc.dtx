@@ -33,9 +33,17 @@
 % ^^A category for `<'
 %\catcode`\<=14
 %<+package|shortvrb>\NeedsTeXFormat{LaTeX2e}[1994/12/01]
-%<+package> \ProvidesPackage{doc}
+%<+package>
+%<+package>\providecommand\DeclareRelease[3]{}
+%<+package>\providecommand\DeclareCurrentRelease[2]{}
+%<+package>
+%<+package>\DeclareRelease{v2}{2016-02-15.sty}
+%<+package>               {doc-2016-02-15.sty}
+%<+package>\DeclareCurrentRelease{v3}{2018-04-16}
+%<+package>
+%<+package>\ProvidesPackage{doc}
 %<+shortvrb>\ProvidesPackage{shortvrb}
-%<+package|shortvrb>  [2018/02/01 v3.0a
+%<+package|shortvrb>  [2018/04/16 v3.0a beta
 %<+package|shortvrb>   Standard LaTeX documentation package V3 (FMi)]
 %\catcode`\<=12
 %
@@ -5346,7 +5354,7 @@
 % bit back and forth and both the code and the documentation need
 % further updates.
 %
-% \subsection{\dox environments}
+% \subsection{\DOX environments}
 
 % \begin{macro}{\@doc@env}
 % \fmi{original doc -- fix}
@@ -5539,7 +5547,7 @@
 % \fmi{original doc -- fix}
 %   The ``macrolike'' version does something similar to |doc|'s
 %   \cs{SpecialIndex@} macro, but simplified. Let's just hope nobody will ever
-%   define \verb*|\ | or nonletter macros as macrolike \dox items\ldots
+%   define \verb*|\ | or nonletter macros as macrolike \DOC elements\ldots
 %    \begin{macrocode}
 \def\doc@createspecialindexes#1#2#3{%
 %    \end{macrocode}
