@@ -234,7 +234,9 @@
 %    the first version of the \DOC package, a package to provide code
 %    documentation for \TeX{} code. Since then it has be used all over
 %    the place to document the \LaTeX{} kernel and most of the
-%    packages that are nowadays available.
+%    packages that are nowadays available. The core code of version 2
+%    (which is the current version) exists since 1988, i.e., for 20
+%    years.
 %
 %    If I would restart from scratch I would do a lot of things
 %    differently these days and in fact several other people have
@@ -1224,6 +1226,8 @@
 % at the beginning of the file.
 %
 %
+% \section{Examples and basic usage summary}
+%
 % \subsection{Basic usage summary}
 % \changes{v1.7a}{1992/03/11}{Added basic usage summary to spell
 %                             it out.}
@@ -1247,11 +1251,89 @@
 % \quad\ldots\\
 % "% \Finale \PrintIndex \PrintChanges"
 % \end{verse}
-% For examples of the use of most---if not all---of the features
-% described above consult the \texttt{doc.dtx} source itself.
+% For further examples of the use of most---if not all---of the features
+% described above, consult the \texttt{doc.dtx} source itself.
 %
-
-
+%
+%
+% \subsection{Examples}
+%
+% The default setup includes definitions for the \DOC elements
+% ``macro'' and ``environment''. They correspond to the following
+% declarations:
+%\begin{verbatim}
+% \NewDocElement[macrolike = true ,
+%                 idxtype   = ,
+%                 idxgroup  = ,
+%                 printtype =  
+%                ]{Macro}{macro}
+% 
+% \NewDocElement[macrolike = false ,
+%                 idxtype   = env.  ,
+%                 idxgroup  = environments ,
+%                 printtype = \textit{env.} 
+%                ]{Env}{environment}
+%\end{verbatim}
+%
+% To showcase the new features of \DOC version 3 to some extend, the
+% current documentation is done by redefining these declarations and
+% also adding a few additional declarations on top. These are:
+%\begin{verbatim}
+%\RenewDocElement[macrolike = true ,
+%                toplevel  = false,
+%                idxtype   = ,
+%                idxgroup  = LaTeX comands\actualchar\LaTeX{} commands ,
+%                printtype =  
+%               ]{Macro}{macro}
+%
+%\RenewDocElement[macrolike = false ,
+%                toplevel  = false,
+%                idxtype   = env.  ,
+%                idxgroup  = LaTeX environments\actualchar\LaTeX{} environments ,
+%                printtype = \textit{env.} 
+%               ]{Env}{environment}
+%
+%
+%\NewDocElement[macrolike = false ,
+%                toplevel  = false,
+%                idxtype   =  counter  ,
+%                idxgroup  = LaTeX counters\actualchar \LaTeX{} counters ,
+%                printtype = \textit{counter}
+%               ]{LaTeXCounter}{lcounter} 
+%
+%\NewDocElement[macrolike = true ,
+%                toplevel  = false,
+%                idxtype   =  counter  ,
+%                idxgroup  = TeX counters\actualchar \protect\TeX{} counters ,
+%                printtype = \textit{counter}
+%               ]{TeXCounter}{tcounter} 
+%
+%
+%\NewDocElement[macrolike = true ,
+%                toplevel  = false,
+%                idxtype   =  skip  ,
+%                idxgroup  = LaTeX length\actualchar \LaTeX{} length (skip) ,
+%                printtype = \textit{skip}
+%               ]{LaTeXSkip}{lskip} 
+%
+%\NewDocElement[macrolike = true ,
+%                toplevel  = false,
+%                idxtype   =  dimen  ,
+%                idxgroup  = LaTeX length\actualchar \LaTeX{} length (dimen) ,
+%                printtype = \textit{dimen}
+%               ]{LaTeXDimen}{ldimen} 
+%
+%\NewDocElement[macrolike = false ,
+%                toplevel  = false,
+%                idxtype   = option  ,
+%                idxgroup  = Options ,
+%                printtype = \textit{option}
+%               ]{Option}{option} 
+%
+% \renewcommand\code[1]{\mbox{$\ell$-#1}}
+% \renewcommand\main[1]{\underline{\mbox{$\ell$-#1}}}
+% \setcounter{IndexColumns}{2}
+%\end{verbatim}
 %
 % \section{Incompatibilities between version 2 and 3}
 %

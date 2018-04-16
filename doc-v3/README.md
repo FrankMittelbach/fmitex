@@ -5,7 +5,12 @@ This is an updated version of the doc package from the LateX kernel
 incorporating work by Didier Verna (dox package) and integrating
 hypdoc by Heiko Oberdiek.
 
-This is work in progress so not really meant for usage right now-
+This is work in progress so not really meant for (production) usage
+right now as the interfaces may still change and the code further
+corrected/ streamlined.
+
+But I would appreciate any comments and tests to ensure that this can
+become a drop-in replacement for the current doc package.
 
 This package is set up to produce two PDF files: one including the
 user documentation for the package, and the second, with ‘`-code`’
@@ -17,6 +22,6 @@ file so only one source file needs to be maintained.
 
 -----
 
-Copyright (C) 2014-2018 The LaTeX3 Project <br />
+Copyright (C) 2017-2018 Frank Mittelbach, The LaTeX3 Project<br />
 <https://latex-project.org/> <br />
 All rights reserved.
