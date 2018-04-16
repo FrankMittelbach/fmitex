@@ -142,7 +142,7 @@
 % \newcommand\pkg{\texttt}
 % \newcommand\prg{\textsf}
 %
-% \newcommand\dox{\env{DoX}\xspace}
+% \newcommand\DOX{\env{DoX}\xspace}
 % \newcommand\api{\textsc{api}\xspace}
 %
 % \newcommand\fmi[1]{\par\textbf{TODO: }\textit{#1}\par}
@@ -235,7 +235,7 @@
 %        {Extraction of \texttt{shortvrb}
 %        package added by Joachim Schrod (TU~Darmstadt).}~\thanks
 %        {Version~3 now integrates code from Didier Verna's
-%        \dox package and some of his documentation was
+%        \DOX package and some of his documentation was
 %        reused (a.k.a.\ stolen).}}
 % \date{Printed \today}
 %
@@ -264,7 +264,7 @@
 %    important modifications are the integration of the
 %    \texttt{hypdoc} package to enable links within the document (in
 %    particular from the index) is so desired. Also integrated are the
-%    ideas from the \dox package by Didier Verna (although I
+%    ideas from the \DOX package by Didier Verna (although I
 %    offer a different interface that imho fits better with the rest
 %    of \DOC's interfaces). Finally I updated a few odds and ends.
 % \end{abstract}
@@ -280,7 +280,7 @@
 % ^^A}
 %
 % \changes{v1.7a}{1992/02/25}{Miscellaneous small changes to the text}
-% \changes{v3.0a}{2018/03/04}{Integrated dox package}
+% \changes{v3.0a}{2018/03/04}{Integrated DoX package}
 % \changes{v3.0a}{2018/03/04}{Interfaced hypdoc package}
 %
 %
@@ -296,7 +296,7 @@
 % and adding a way to provide generally \DOC elements (not just macros
 % and environments) and try to do this properly (which wasn't the case
 % for enviromnents either in the past). The ideas for this have been
-% stolen from the \dox package by Didier Verna even though I
+% stolen from the \DOX package by Didier Verna even though I
 % didn't keep his interfaces.
 %
 % Most of the documentation below is from the earlier release  which
@@ -5339,16 +5339,17 @@
 
 
 %
-% \section{Integrating the \dox package code}
+% \section{Integrating the \DOX package code}
 %
-% The code in this section is largely taken over from the \dox package
+% The code in this section is largely taken over from the \DOX package
 % by Didier with only minor modifications (so far). This means it is a
 % bit back and forth and both the code and the documentation need
 % further updates.
 %
 % \subsection{\dox environments}
 
-% \begin{macro}{\@@doxenv}
+% \begin{macro}{\@doc@env}
+% \fmi{original doc -- fix}
 %   \marg{are-we-macrolike}\marg{item}\marg{indextype}\marg{name}\\
 %   In \texttt{doc.sty}, the \texttt{macro} and \texttt{environment}
 %   environments go through the \cs{m@cro@} macro which implements specific
@@ -5357,7 +5358,7 @@
 %   would work for any new \texttt{dox} item, only which looks pretty much
 %   like the original one (with the addition of options management).
 %    \begin{macrocode}
-\long\def\@@doxenv#1#2#3{%
+\long\def\@doc@env#1#2#3{%
   \endgroup
   \topsep\MacroTopsep
   \trivlist
@@ -5455,34 +5456,34 @@
 
 
 
-% \begin{macro}{\@doxenv}
+% \begin{macro}{\doc@env}
 %   \marg{true-value}\marg{item}\oarg{options}\\
-%   Handle optional arguments and call \cs{@@doxenv}. Because environments can
+%   Handle optional arguments and call \cs{@doc@env}. Because environments can
 %   be nested, we can't rely on grouping for getting options default values.
 %   Hence, we need to reset the options at every call.
 %    \begin{macrocode}
-\def\@doxenv#1#2[#3]{%
+\def\doc@env#1#2[#3]{%
   \@nameuse{doc@noprint\doc@noprintdefault}%
   \@nameuse{doc@noindex\doc@noindexdefault}%
   \setkeys{doc}{#3}%
   \begingroup
     \catcode`\\12
     \MakePrivateLetters
-    \@@doxenv{#1}{#2}%
+    \@doc@env{#1}{#2}%
 }
 %    \end{macrocode}
 % \end{macro}
 
 
 
-% \subsection{\dox descriptions}
+% \subsection{\DOC descriptions}
 %
-% \begin{macro}{\@@doxdescribe}
+% \begin{macro}{\@doc@describe}
 %   \marg{item}\marg{name}\\
 %   The first closed group was the one opened to parse the \meta{name}
 %   argument. The second one was opened to handle local options.
 %    \begin{macrocode}
-\def\@@doxdescribe#1#2{%
+\def\@doc@describe#1#2{%
 %    \endgroup
     \ifdoc@noprint\else
       \marginpar{\raggedleft
@@ -5503,17 +5504,17 @@
   \ignorespaces}
 %    \end{macrocode}
 % \end{macro}
-% \begin{macro}{\@doxdescribe}
+% \begin{macro}{\doc@describe}
 %   \marg{item}\oarg{options}\\
-%   Handle optional arguments and call \cs{@@doxdescribe}.
+%   Handle optional arguments and call \cs{@doc@describe}.
 %    \begin{macrocode}
-\def\@doxdescribe#1[#2]{%
+\def\doc@describe#1[#2]{%
   \leavevmode\@bsphack
 %  \begingroup
     \setkeys{doc}{#2}%
 %    \begingroup
 %      \MakePrivateLetters
-      \@@doxdescribe{#1}}
+      \@doc@describe{#1}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -5531,15 +5532,16 @@
 %  \end{macro}
 
 
-% \begin{macro}{\@doxcreatespecialmainindex}
+% \begin{macro}{\doc@createspecialmainindex}
 %   \marg{item}\marg{idxtype}\marg{idxcat}
-% \begin{macro}{\@doxcreatespecialmainmacrolikeindex}
+% \begin{macro}{\doc@createspecialmainmacrolikeindex}
 %   \marg{item}\marg{idxtype}\marg{idxcat}\\
+% \fmi{original doc -- fix}
 %   The ``macrolike'' version does something similar to |doc|'s
 %   \cs{SpecialIndex@} macro, but simplified. Let's just hope nobody will ever
 %   define \verb*|\ | or nonletter macros as macrolike \dox items\ldots
 %    \begin{macrocode}
-\def\@doxcreatespecialindexes#1#2#3{%
+\def\doc@createspecialindexes#1#2#3{%
 %    \end{macrocode}
 %    
 %    \begin{macrocode}
@@ -5582,7 +5584,7 @@
 %    \end{macrocode}
 %    
 %    \begin{macrocode}
-\def\@doxcreatespecialmacrolikeindexes#1#2#3{%
+\def\doc@createspecialmacrolikeindexes#1#2#3{%
 %    \end{macrocode}
 %    
 %    \begin{macrocode}
@@ -5651,10 +5653,10 @@
 
 
 
-% \begin{macro}{\@doxcreatedescribe}
+% \begin{macro}{\doc@createdescribe}
 %   \marg{item}
 %    \begin{macrocode}
-\def\@doxcreatedescribe#1{%
+\def\doc@createdescribe#1{%
   \@namedef{Describe#1}{%
 %    \end{macrocode}
 %    Because of the optional argument we have to set
@@ -5668,18 +5670,18 @@
     \begingroup
       \MakePrivateLetters
       \@ifnextchar[%]
-      {\@doxdescribe{#1}}{\@doxdescribe{#1}[]}}}
+      {\doc@describe{#1}}{\doc@describe{#1}[]}}}
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\@doxcreateenv}
+% \begin{macro}{\doc@createenv}
 %   \marg{item}\marg{envname}
 %    \begin{macrocode}
-\def\@doxcreateenv#1#2#3{%
+\def\doc@createenv#1#2#3{%
   \@namedef{#3}{%
     \@ifnextchar[%]
-    {\@doxenv{#1}{#2}}{\@doxenv{#1}{#2}[]}}%
+    {\doc@env{#1}{#2}}{\doc@env{#1}{#2}[]}}%
 %    \end{macrocode}
 %    Instead of |\let|ting the end of the environment to
 %    |\endtrivlist| we use one level of expansion. This way any
@@ -5716,10 +5718,10 @@
 
 
 
-%  \begin{macro}{\dox@declareerror}
+%  \begin{macro}{\doc@declareerror}
 %    
 %    \begin{macrocode}
-\def\dox@declareerror#1#2{%
+\def\doc@declareerror#1#2{%
    \PackageError{doc}{Doc element '#1/#2' already defined?\@gobble}%
       {There is already a definition for
        '\string\Print#1Name',\MessageBreak
@@ -5731,10 +5733,10 @@
 %    \end{macrocode}
 %  \end{macro}
 
-%  \begin{macro}{\@doxnotdeclarederror}
+%  \begin{macro}{\doc@notdeclarederror}
 %    
 %    \begin{macrocode}
-\def\@doxnotdeclarederror#1#2{%
+\def\doc@notdeclarederror#1#2{%
    \PackageError{doc}{Doc element '#1/#2' unknown}%
       {I expected an existing definition for
        '\string\Print#1Name',\MessageBreak
@@ -5761,10 +5763,10 @@
            {\@ifundefined{#3}%
                {\@ifundefined{end#3}%
                     {\@NewDocElement{#1}}%
-                    \dox@declareerror
-               }\dox@declareerror
-           }\dox@declareerror
-      }\dox@declareerror
+                    \doc@declareerror
+               }\doc@declareerror
+           }\doc@declareerror
+      }\doc@declareerror
   {#2}{#3}%
 }  
 %    \end{macrocode}
@@ -5778,10 +5780,10 @@
 %    \end{macrocode}
 %    
 %    \begin{macrocode}
-  \@ifundefined{Print#2Name}\@doxnotdeclarederror
-      {\@ifundefined{PrintDescribe#2}\@doxnotdeclarederror
-           {\@ifundefined{#3}\@doxnotdeclarederror
-               {\@ifundefined{end#3}\@doxnotdeclarederror
+  \@ifundefined{Print#2Name}\doc@notdeclarederror
+      {\@ifundefined{PrintDescribe#2}\doc@notdeclarederror
+           {\@ifundefined{#3}\doc@notdeclarederror
+               {\@ifundefined{end#3}\doc@notdeclarederror
                     {\@NewDocElement{#1}}%
                }%
            }%
@@ -5846,16 +5848,16 @@
 %   \begin{imacro}{\Special...Index}
 %     \marg{name}
 %    \begin{macrocode}
-  \edef\@doxexpr{%
+  \edef\doc@expr{%
      \ifdoc@macrolike
-       \noexpand\@doxcreatespecialmacrolikeindexes
+       \noexpand\doc@createspecialmacrolikeindexes
      \else
-       \noexpand\@doxcreatespecialindexes
+       \noexpand\doc@createspecialindexes
      \fi
      {#2}%
     }%
    \expandafter\expandafter\expandafter
-   \@doxexpr
+   \doc@expr
    \expandafter\expandafter\expandafter
      {\expandafter\doc@idxtype\expandafter}\expandafter
      {\doc@idxgroup}%
@@ -5866,7 +5868,7 @@
 %   \begin{imacro}{\Describe...}
 %     \oarg{options}\marg{name}
 %    \begin{macrocode}
-  \@doxcreatedescribe{#2}%
+  \doc@createdescribe{#2}%
 %    \end{macrocode}
 %   \end{imacro}
 %
@@ -5875,9 +5877,9 @@
 %     \oarg{options}\marg{name}
 %    \begin{macrocode}
     \ifdoc@macrolike
-      \@doxcreateenv{TT}{#2}{#3}%
+      \doc@createenv{TT}{#2}{#3}%
     \else
-      \@doxcreateenv{TF}{#2}{#3}%
+      \doc@createenv{TF}{#2}{#3}%
     \fi
 }
 %    \end{macrocode}
