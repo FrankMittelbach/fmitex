@@ -158,10 +158,24 @@
 %\RenewDocElement[macrolike = false ,
 %		 toplevel  = false,
 %                idxtype   = env.  ,
-%                idxgroup  = LaTeX environments\actualchar\LaTeX{} environments ,
+%                idxgroup  = Package environments,
 %                printtype = \textit{env.} 
 %               ]{Env}{environment}
 %
+%
+%\NewDocElement[macrolike = true ,
+%		 toplevel  = false,
+%                idxtype   = ,
+%                idxgroup  = Package commands,
+%                printtype =  
+%               ]{InterfaceMacro}{imacro}
+%
+%\NewDocElement[macrolike = true ,
+%		 toplevel  = false,
+%                idxtype   = ,
+%                idxgroup  = Package commands (obsolete),
+%                printtype =  
+%               ]{ObsoleteInterfaceMacro}{omacro}
 %
 %\NewDocElement[macrolike = false ,
 %		 toplevel  = false,
@@ -195,7 +209,7 @@
 %\NewDocElement[macrolike = false ,
 %		 toplevel  = false,
 %                idxtype   = option  ,
-%                idxgroup  = Options ,
+%                idxgroup  = Package options ,
 %                printtype = \textit{option}
 %               ]{Option}{option} 
 %
@@ -313,7 +327,7 @@
 % |\DisableCrossrefs| or |\OnlyDescription|.
 %
 %
-% \DescribeMacro\DocInput \DescribeMacro\IndexInput
+% \DescribeInterfaceMacro\DocInput \DescribeInterfaceMacro\IndexInput
 % Finally 
 % the \meta{special input commands} part should contain one or
 % more |\DocInput|\marg{file name} and/or
@@ -372,6 +386,15 @@
 %</driver>
 %    \end{macrocode}
 %
+% \RecordIndexType{\CodelineIndex}{InterfaceMacro}
+% \RecordIndexType{\DisableCrossrefs}{InterfaceMacro}
+% \RecordIndexType{\DocInput}{InterfaceMacro}
+% \RecordIndexType{\EnableCrossrefs}{InterfaceMacro}
+% \RecordIndexType{\OnlyDescription}{InterfaceMacro}
+% \RecordIndexType{\RecordChanges}{InterfaceMacro}
+% \RecordIndexType{\hbadness}{TeXCounter}
+% \RecordIndexType{\hfuzz}{LaTeXDimen}
+%
 %
 % \subsection{Package options}
 %
@@ -405,7 +428,7 @@
 %    below.
 % \end{description}
 %
-% \DescribeMacro{\SetupDoc} Instead of providing options to the \DOC
+% \DescribeInterfaceMacro{\SetupDoc} Instead of providing options to the \DOC
 %    package you can call \cs{SetupDoc} and provide them there. This
 %    allows, for example,  to change default values in case \DOC was already
 %    loaded earlier.
@@ -467,7 +490,7 @@
 %
 % \subsection{Describing the usage of macros and environments}
 %
-% \DescribeMacro\DescribeMacro
+% \DescribeInterfaceMacro\DescribeMacro
 % When you describe a new macro you may use |\DescribeMacro| to
 % indicate that at this point the usage of a specific macro is
 % explained. It takes one argument which will be printed in the margin
@@ -488,7 +511,7 @@
 % resulting in both incorrect output and possibly low-level error
 % messages.
 %
-% \DescribeMacro\DescribeEnv
+% \DescribeInterfaceMacro\DescribeEnv
 % An analogous macro |\DescribeEnv| should be used to indicate that a
 % \LaTeX{} environment is explained. It will produce a somewhat
 % different index entry and a slightly different display in the
@@ -532,7 +555,7 @@
 % \DescribeLaTeXDimen\MacroIndent
 % environment, |\MacroIndent| is used to indent the lines of code
 % and
-% \DescribeMacro\MacroFont \label{sec:macrofont}
+% \DescribeInterfaceMacro\MacroFont \label{sec:macrofont}
 % |\MacroFont| holds the font and a possible size change command
 % for the code lines, the "verbatim"["*"] environment and the macro
 % names printed in the margin.  If you want
@@ -561,10 +584,10 @@
 %
 % \subsection{Formatting names in the margin}
 %
-% \DescribeMacro\PrintDescribeMacro
-% \DescribeMacro\PrintDescribeEnv
-% \DescribeMacro\PrintMacroName
-% \DescribeMacro\PrintEnvName
+% \DescribeInterfaceMacro\PrintDescribeMacro
+% \DescribeInterfaceMacro\PrintDescribeEnv
+% \DescribeInterfaceMacro\PrintMacroName
+% \DescribeInterfaceMacro\PrintEnvName
 % As mentioned earlier, some macros and environment
 % print their arguments in the margin. The actual formatting is done by four
 % macros which are user
@@ -591,7 +614,7 @@
 % easily provide your own items, such as counters, length register,
 % options etc.
 %
-% \DescribeMacro{\NewDocElement}
+% \DescribeInterfaceMacro{\NewDocElement}
 % The general syntax for providing a new \DOC element is
 % \begin{quote}
 %   \cs{NewDocElement}\oarg{options}\marg{element-name}\marg{env-name}
@@ -625,7 +648,7 @@
 % If any of the commands or the environment is already defined (which
 % especially with the \meta{env-name} is a danger) then you will
 % receive an error telling you so.
-% \DescribeMacro{\RenewDocElement}
+% \DescribeInterfaceMacro{\RenewDocElement}
 % If you want to modify an existing \DOC element use
 % |\RenewDocElement| instead.
 %
@@ -697,7 +720,7 @@
 % \DescribeEnv{verbatim*}
 % The \env{verbatim$*$} environment is changed in the same way.
 % \changes{v1.7a}{1992/02/26}{Documented \cs{verb} change.}
-% \DescribeMacro\verb
+% \DescribeInterfaceMacro\verb
 % The "\verb" command is re-implemented to give an error report if a
 % newline appears in its argument.
 % The \env{verbatim} and \env{verbatim$*$} environments set text
@@ -707,7 +730,7 @@
 
 % \subsection{Using a special escape character}
 %
-% \DescribeMacro\SpecialEscapechar
+% \DescribeInterfaceMacro\SpecialEscapechar
 % If one defines complicated macros it is sometimes necessary to
 % introduce a new escape character because the `|\|' has got a
 % special |\catcode|. In this case one can use
@@ -733,7 +756,7 @@
 %
 % \subsection{Cross-referencing all macros used}
 %
-% \DescribeMacro\DisableCrossrefs \DescribeMacro\EnableCrossrefs As
+% \DescribeInterfaceMacro\DisableCrossrefs \DescribeInterfaceMacro\EnableCrossrefs As
 % already mentioned, every macro name used within a
 % \env{macrocode} or \env{macrocode$*$} environment will produce an
 % index entry. In this way one can easily find out where a specific
@@ -750,7 +773,7 @@
 % which might be present in the source will be ignored.}
 %
 %
-% \DescribeMacro\DoNotIndex
+% \DescribeInterfaceMacro\DoNotIndex
 % But also finer control is provided. The |\DoNotIndex| macro
 % takes a list of macro names separated by commas. Those names won't
 % show up in the index. You might use several |\DoNotIndex|
@@ -763,9 +786,9 @@
 % Production (or not) of the index (via the "\makeindex" commend) is
 % controlled by using or omitting the following declarations in the
 % driver file preamble; if neither is used, no index is produced.
-% \DescribeMacro\PageIndex Using "\PageIndex" makes all index
+% \DescribeInterfaceMacro\PageIndex Using "\PageIndex" makes all index
 % entries refer to their page number; with
-% \DescribeMacro\CodelineIndex "\CodelineIndex", index entries
+% \DescribeInterfaceMacro\CodelineIndex "\CodelineIndex", index entries
 % produced by "\DescribeMacro" and "\DescribeEnv" and possibly further
 % "\Describe..." commands refer to a page number
 % but those produced by the \env{macro} environment (or other \DOC
@@ -773,12 +796,12 @@
 % code lines, which will be numbered automatically.\footnote{The line
 % number is actually that of the first line of the first
 % \env{macrocode} environment in the \env{macro} environment.}
-% \DescribeMacro\theCodelineNo
+% \DescribeInterfaceMacro\theCodelineNo
 % The style of this numbering can be controlled by defining the macro
 % "\theCodelineNo".  Its default definition is to use scriptsize
 % arabic numerals; a user-supplied definition won't be overwritten.
 %
-% \DescribeMacro\CodelineNumbered
+% \DescribeInterfaceMacro\CodelineNumbered
 % When you don't wish to get an index but want your code lines
 % numbered use "\CodelineNumbered" instead of "\CodelineIndex". This
 % prevents the generation of an unnecessary ".idx" file.
@@ -807,19 +830,19 @@
 % However, all characters used should be of |\catcode| other than
 % `letter' (11).
 %
-% \DescribeMacro{\actualchar}
+% \DescribeInterfaceMacro{\actualchar}
 % The |\actualchar| is used to separate the `key' and the actual
 % index entry.
-% \DescribeMacro{\quotechar}
+% \DescribeInterfaceMacro{\quotechar}
 % The |\quotechar| is used before a special index program
 % character to suppress its special meaning.
-% \DescribeMacro{\encapchar}
+% \DescribeInterfaceMacro{\encapchar}
 %  The |\encapchar| separates the indexing information from a
 % letter string which \prg{makeindex} uses as a \TeX{} command to
 % format the page number associated with a special entry.  It is used
 % in this package to apply the |\main| and the |\usage|
 % commands.
-% \DescribeMacro{\levelchar}
+% \DescribeInterfaceMacro{\levelchar}
 %  Additionally |\levelchar| is used to separate `item',
 % `subitem' and `subsubitem' entries.
 %
@@ -829,8 +852,8 @@
 %
 % \fmi{describe old \cs{SpecialMainIndex} and \cs{SpecialUsageIndex}}
 %
-% \DescribeMacro\SpecialMainMacroIndex
-% \DescribeMacro\SpecialMainEnvIndex
+% \DescribeInterfaceMacro\SpecialMainMacroIndex
+% \DescribeInterfaceMacro\SpecialMainEnvIndex
 % To produce a main index entry for a macro the
 % |\SpecialMainMacroIndex| macro\footnote{This macro is called by the
 % \env{macro} environment.} may be used.  It is called `special'
@@ -840,8 +863,8 @@
 % environment.\footnote{This macro is called by the
 % \env{environment} environment.}
 %
-% \DescribeMacro\SpecialMacroIndex
-% \DescribeMacro\SpecialEnvIndex
+% \DescribeInterfaceMacro\SpecialMacroIndex
+% \DescribeInterfaceMacro\SpecialEnvIndex
 % To index the usage of a macro or an environment
 % |\SpecialMacroIndex| and |\SpecialEnvIndex| may be used.
 %
@@ -853,18 +876,18 @@
 % additional indexing commands, e.g.,
 % \cs{SpecialMain\meta{name}Index}.
 %
-% \DescribeMacro\SpecialIndex
+% \DescribeInterfaceMacro\SpecialIndex
 % If you want a normal index entry for a macro name
 % |\SpecialIndex| might be used.\footnote{This macro is called
 % within the \env{macrocode} environment when encountering a macro
 % name.}
 %
 %
-% \DescribeMacro\SortIndex
+% \DescribeInterfaceMacro\SortIndex
 % Additionally a |\SortIndex| command is provided.  It takes two
 % arguments---the sort key and the actual index entry.
 %
-% \DescribeMacro\verbatimchar
+% \DescribeInterfaceMacro\verbatimchar
 % But there is one characteristic worth mentioning: all macro names in
 % the index are typeset with the |\verb*| command. Therefore one
 % special character is needed to act as a delimiter for this command.
@@ -877,7 +900,7 @@
 % case you should redefine |\verbatimchar| globally or locally to
 % overcome this problem.
 %
-% \DescribeMacro\*
+% \DescribeInterfaceMacro\*
 % We also provide a |\*| macro.  This is intended to be used for
 % index entries like
 % \begin{quote}
@@ -900,7 +923,7 @@
 % \texttt{-s} switch).  A suitable one is supplied with \DOC{},
 % called \texttt{gind.ist}.
 %
-% \DescribeMacro\PrintIndex
+% \DescribeInterfaceMacro\PrintIndex
 % To read in and print the sorted index, just put the
 % |\PrintIndex| command as the last (commented-out, and thus
 % executed during the documentation pass through the file) command
@@ -929,7 +952,7 @@
 % Then a short introduction about the meaning of several index entries
 % is typeset (still in onecolumn mode). Afterwards the actual index
 % entries follow in multi-column mode.
-% \DescribeMacro\IndexPrologue
+% \DescribeInterfaceMacro\IndexPrologue
 % You can change this prologue with the help of the
 % |\IndexPrologue| macro. Actually the section heading is also
 % produced in this way, so you'd better write something like:
@@ -939,7 +962,7 @@
 % When the \env{theindex} environment is finished the last page will
 % be reformatted to produce balanced columns. This improves the layout
 % and allows the next article to start on the same page.
-% \DescribeMacro\IndexParms
+% \DescribeInterfaceMacro\IndexParms
 % Formatting of the index columns (values for |\columnssep|
 % etc.)\ is controlled by the |\IndexParms| macro. It assigns the
 % following values:
@@ -958,15 +981,15 @@
 %                         \expandafter\dimenvalue\the\parfillskip
 %  \end{tabular}
 % \end{center}
-% \DescribeMacro{\@idxitem}
+% \DescribeInterfaceMacro{\@idxitem}
 % Additionally it defines |\@idxitem| (which will be used when an
 % |\item| command is encountered) and selects |\small| size.
 % If you want to change any of these values you have to define them
 % all.
 %
-% \DescribeMacro\main
-% \DescribeMacro\usage
-% \DescribeMacro\code
+% \DescribeInterfaceMacro\main
+% \DescribeInterfaceMacro\usage
+% \DescribeInterfaceMacro\code
 % The page numbers for main index entries are encapsulated by the
 % |\main| macro (underlining its argument) and the numbers
 % denoting the description are encapsulated by the |\usage| macro
@@ -978,7 +1001,7 @@
 %
 % \subsection{Changing the default values of style parameters}
 %
-% \DescribeMacro\DocstyleParms If you want to overwrite some default
+% \DescribeInterfaceMacro\DocstyleParms If you want to overwrite some default
 % settings made by the \DOC{} package, you can either put your
 % declarations in the driver file (that is after \texttt{doc.sty} is
 % read in) or use a separate package file for doing this work. In the
@@ -1011,8 +1034,8 @@
 %
 % \subsection{Short input of verbatim text pieces}
 %
-% \DescribeMacro\MakeShortVerb
-% \DescribeMacro{\MakeShortVerb*} \DescribeMacro\DeleteShortVerb It is
+% \DescribeInterfaceMacro\MakeShortVerb
+% \DescribeInterfaceMacro{\MakeShortVerb*} \DescribeInterfaceMacro\DeleteShortVerb It is
 % awkward to have to type, say, "\verb|"\ldots"|" continually when
 % quoting
 % verbatim bits (like macro names) in the text, so an abbreviation
@@ -1051,12 +1074,13 @@
 % |\BibTeX|, |\SliTeX| or |\PlainTeX|, respectively.
 % \LaTeX{} and \TeX{} are already defined in \texttt{latex.tex}.
 %
-% \DescribeMacro\meta
+% \DescribeInterfaceMacro\meta
 % Another useful macro is |\meta| which has one argument and
 % produces something like \meta{dimen parameter}.
 %
-% \DescribeMacro\OnlyDescription
-% \DescribeMacro\MaybeStopHere
+% \DescribeInterfaceMacro\OnlyDescription
+% \DescribeInterfaceMacro\MaybeStopHere
+% \DescribeObsoleteInterfaceMacro\StopEventually
 % You can use the |\OnlyDescription| declaration in the driver
 % file to suppress the last part of your document (which presumably
 % exhibits the code). To make this work
@@ -1073,7 +1097,7 @@
 % this point (for example a bibliography which is normally printed at
 % the very end). When the |\OnlyDescription| declaration is
 % missing the |\MaybeStopHere|
-% \DescribeMacro\Finale
+% \DescribeInterfaceMacro\Finale
 % macro saves its argument in a macro called |\Finale| which can
 % afterwards be used to get things back (usually at the very end).
 % Such a scheme makes changes in two places unnecessary.
@@ -1081,17 +1105,17 @@
 % Thus you can use this feature to produce a local guide for the
 % \TeX{} users which describes only the usage of macros (most of them
 % won't be interested in your definitions anyway).  For the same
-% reason the |\maketitle| \DescribeMacro\maketitle command is slightly
+% reason the |\maketitle| \DescribeInterfaceMacro\maketitle command is slightly
 % changed to allow multiple titles in one document.  So you can make
 % one driver file reading in several articles at once.
-% \DescribeMacro{\ps@titlepage} To avoid an unwanted
+% \DescribeInterfaceMacro{\ps@titlepage} To avoid an unwanted
 % \textsf{pagestyle} on the title page the |\maketitle| command issues
 % a |\thispagestyle{titlepage}| declaration which produces a
 % \textsf{plain} page if the \textsf{titlepage} page style is
 % undefined.  This allows class files like \cls{ltugboat.cls} to
 % define their own page styles for title pages.
 %
-% \DescribeMacro\AlsoImplementation
+% \DescribeInterfaceMacro\AlsoImplementation
 % Typesetting the whole document is the default. However, this default
 % can also be explicitly selected using the declaration
 % |\AlsoImplementation|. This overwrites any previous
@@ -1104,7 +1128,7 @@
 % \end{quote}
 % to make sure that all documents will show the code part.
 %
-% \DescribeMacro\IndexInput \label{..Input} Last but not least I
+% \DescribeInterfaceMacro\IndexInput \label{..Input} Last but not least I
 % defined an |\IndexInput| macro which takes a file name as an
 % argument and produces a verbatim listing of the file, indexing every
 % command as it goes along.  This might be handy, if you want to learn
@@ -1118,7 +1142,7 @@
 %
 % \changes{v2.1d}{2006/02/02}{Corrected description of \cs{changes}
 % macro.}
-% \DescribeMacro\changes
+% \DescribeInterfaceMacro\changes
 % To maintain a change history within the file, the |\changes|
 % command may be placed amongst the description part of the changed
 % code.  It takes three arguments, thus:
@@ -1145,9 +1169,9 @@
 %
 % \changes{v1.7a}{1992/02/26}{Description of \cs{RecordChanges} etc.
 % added
-% to interface section.} \DescribeMacro\RecordChanges To cause the
+% to interface section.} \DescribeInterfaceMacro\RecordChanges To cause the
 % change information to be written out, include "\RecordChanges" in
-% the driver file.  \DescribeMacro\PrintChanges To read in and print
+% the driver file.  \DescribeInterfaceMacro\PrintChanges To read in and print
 % the sorted change history (in two columns), just put the
 % |\PrintChanges| command as the last (commented-out, and thus
 % executed during the documentation pass through the file) command in
@@ -1161,8 +1185,8 @@
 % \texttt{gglo.ist}.  
 %
 % \DescribeLaTeXDimen\GlossaryMin
-% \DescribeMacro\GlossaryPrologue 
-% \DescribeMacro\GlossaryParms
+% \DescribeInterfaceMacro\GlossaryPrologue 
+% \DescribeInterfaceMacro\GlossaryParms
 % \DescribeLaTeXCounter{GlossaryColumns}
 %  The
 % "\GlossaryMin", "\GlossaryPrologue" and "\GlossaryParms" macros and
@@ -1171,7 +1195,7 @@
 % mechanism is used for the change entries.)
 %
 %
-% \DescribeMacro\bslash
+% \DescribeInterfaceMacro\bslash
 % From time to time, it is necessary to print a |\| without
 % being able to use the |\verb| command because the
 % |\catcode|$\,$s of the symbols are already firmly
@@ -1182,7 +1206,7 @@
 % $"\"_{12}$.  This means that you have to |\protect|
 % it if it is used in `moving arguments'.
 %
-% \DescribeMacro\MakePrivateLetters
+% \DescribeInterfaceMacro\MakePrivateLetters
 % \changes{v1.7a}{1992/02/26}{Documented \cs{MakePrivateLetters} in
 %                           interface section}^^A
 % If your macros "\catcode" anything other than "@" to `letter', you
@@ -1190,8 +1214,8 @@
 % relevant characters `letters' for the benefit of the indexing.  The
 % default definition is just "\makeatletter".
 %
-% \DescribeMacro\DontCheckModules \DescribeMacro\CheckModules
-% \DescribeMacro\Module \DescribeMacro\AltMacroFont The `module'
+% \DescribeInterfaceMacro\DontCheckModules \DescribeInterfaceMacro\CheckModules
+% \DescribeInterfaceMacro\Module \DescribeInterfaceMacro\AltMacroFont The `module'
 % directives of the \prg{docstrip} system \cite{art:docstrip} are
 % normally recognised and invoke special formatting.  This can be
 % turned on and off in the \texttt{.dtx} file or the driver file using
@@ -1277,7 +1301,10 @@
 %
 % To showcase the new features of \DOC version 3 to some extend, the
 % current documentation is done by redefining these declarations and
-% also adding a few additional declarations on top. These are:
+% also adding a few additional declarations on top.
+%
+% For any internal command we document we use \texttt{Macro} and put
+% all of them under the heading ``\LaTeX{} commands'' (note the use of \cs{actualchar}):
 %\begin{verbatim}
 %\RenewDocElement[macrolike = true ,
 %                toplevel  = false,
@@ -1285,22 +1312,55 @@
 %                idxgroup  = LaTeX comands\actualchar\LaTeX{} commands ,
 %                printtype =  
 %               ]{Macro}{macro}
+%\end{verbatim}
 %
+% We only have package environments so we use \texttt{Env} for those
+% and group them as well:
+%\begin{verbatim}
 %\RenewDocElement[macrolike = false ,
 %                toplevel  = false,
 %                idxtype   = env.  ,
-%                idxgroup  = LaTeX environments\actualchar\LaTeX{} environments ,
+%                idxgroup  = Package environments,
 %                printtype = \textit{env.} 
 %               ]{Env}{environment}
+%\end{verbatim}
 %
 %
+% All the interface commands are also grouped together under the label
+% ``Package commands'', we use \texttt{InterfaceMacro} for them:
+%\begin{verbatim}
+%\NewDocElement[macrolike = true ,
+%                toplevel  = false,
+%                idxtype   = ,
+%                idxgroup  = Package commands,
+%                printtype =  
+%               ]{InterfaceMacro}{imacro}
+%\end{verbatim}
+%
+% And since we also have a few obsolete interfaces we add yet another category:
+%\begin{verbatim}
+%\NewDocElement[macrolike = true ,
+%                toplevel  = false,
+%                idxtype   = ,
+%                idxgroup  = Package commands (obsolete),
+%                printtype =  
+%               ]{ObsoleteInterfaceMacro}{omacro}
+%\end{verbatim}
+%
+% Another type of category are the package options:
+%\begin{verbatim}
 %\NewDocElement[macrolike = false ,
 %                toplevel  = false,
-%                idxtype   =  counter  ,
-%                idxgroup  = LaTeX counters\actualchar \LaTeX{} counters ,
-%                printtype = \textit{counter}
-%               ]{LaTeXCounter}{lcounter} 
+%                idxtype   = option  ,
+%                idxgroup  = Package options ,
+%                printtype = \textit{option}
+%               ]{Option}{option} 
+%\end{verbatim}
 %
+% Finally we have \TeX{} counters (with a backslash in front) and
+% \LaTeX{} counters (no backslash) and the two types of \LaTeX{}
+% length registers:
+%\begin{verbatim}
 %\NewDocElement[macrolike = true ,
 %                toplevel  = false,
 %                idxtype   =  counter  ,
@@ -1308,6 +1368,12 @@
 %                printtype = \textit{counter}
 %               ]{TeXCounter}{tcounter} 
 %
+%\NewDocElement[macrolike = false ,
+%                toplevel  = false,
+%                idxtype   =  counter  ,
+%                idxgroup  = LaTeX counters\actualchar \LaTeX{} counters ,
+%                printtype = \textit{counter}
+%               ]{LaTeXCounter}{lcounter} 
 %
 %\NewDocElement[macrolike = true ,
 %                toplevel  = false,
@@ -1323,17 +1389,18 @@
 %                printtype = \textit{dimen}
 %               ]{LaTeXDimen}{ldimen} 
 %
-%\NewDocElement[macrolike = false ,
-%                toplevel  = false,
-%                idxtype   = option  ,
-%                idxgroup  = Options ,
-%                printtype = \textit{option}
-%               ]{Option}{option} 
+%\end{verbatim}
 %
+% And we modify the appearance of the index: just 2 columns not 3 and
+% all the code-line entries get prefixed with an ``$\ell$'' (for line)
+% so that they can easily be distinguished from page index entries.
+%\begin{verbatim}
 % \renewcommand\code[1]{\mbox{$\ell$-#1}}
 % \renewcommand\main[1]{\underline{\mbox{$\ell$-#1}}}
 % \setcounter{IndexColumns}{2}
 %\end{verbatim}
+%
+%
 %
 % \section{Incompatibilities between version 2 and 3}
 %
@@ -1379,7 +1446,7 @@
 %
 % \subsection{\prg{makeindex} bugs}
 %
-% \DescribeMacro\OldMakeindex
+% \DescribeObsoleteInterfaceMacro\OldMakeindex
 % Versions of \prg{makeindex} prior to 2.9 had some bugs affecting
 % \DOC{}.  One of these,
 % pertaining to the "%" character doesn't have a work-around
@@ -1412,8 +1479,8 @@
 % should be used in new developments.
 %
 % \label{sec:checksum}
-% \DescribeMacro\CharacterTable
-% \DescribeMacro\CheckSum
+% \DescribeObsoleteInterfaceMacro\CharacterTable
+% \DescribeObsoleteInterfaceMacro\CheckSum
 % To overcome some of the problems of sending files over the networks
 % we developed two macros which should detect corrupted files. If one
 % places the lines
@@ -1732,9 +1799,9 @@
 \@ifundefined{macro@cnt}{}{\endinput}
 %    \end{macrocode}
 %
-% \DescribeMacro\fileversion
-% \DescribeMacro\filedate
-% \DescribeMacro\docdate
+% \DescribeObsoleteInterfaceMacro\fileversion
+% \DescribeObsoleteInterfaceMacro\filedate
+% \DescribeObsoleteInterfaceMacro\docdate
 % As you can see I used macros like |\fileversion| to denote the
 % version number and the date. They are defined at the very beginning
 % of the package file (without a surrounding \env{macrocode}
@@ -1814,7 +1881,7 @@
 % \end{macro}
 % \end{macro}
 %
-%  \begin{macro}{\SetupDoc}
+%  \begin{imacro}{\SetupDoc}
 %    
 %    We need to save the default value for some options because \DOC elements
 %    can locally set them.
@@ -1834,7 +1901,7 @@
   \fi
 }
 %    \end{macrocode}
-%  \end{macro}
+%  \end{imacro}
 %    
 %    \begin{macrocode}
 \SetupDoc{}              % just save the default values
@@ -2004,7 +2071,7 @@
 % \end{macro}
 %
 %
-% \begin{macro}{\MacroFont}
+% \begin{imacro}{\MacroFont}
 %    Here is the default definition for the |\MacroFont| macro.
 %    With the new math font handling in NFSS2 it isn't any longer
 %    correct to suppress the math font setup since this is now handled
@@ -2040,9 +2107,9 @@
   \fi
   }{}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
-% \begin{macro}{\AltMacroFont}
+% \begin{imacro}{\AltMacroFont}
 % \begin{macro}{\macro@font}
 % \changes{v1.7a}{1992/03/12}{Added to support distinction of modules.}
 % \changes{v1.7c}{1992/03/26}{Altered font change for OFSS.}
@@ -2086,7 +2153,7 @@
 \AtBeginDocument{\let\macro@font\MacroFont}
 %    \end{macrocode}
 % \end{macro}
-% \end{macro}
+% \end{imacro}
 %
 % \begin{macro}{\check@module}
 % \begin{macro}{\ifpm@module}
@@ -2116,8 +2183,8 @@
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
-% \begin{macro}{\DontCheckModules}
-% \begin{macro}{\CheckModules}
+% \begin{imacro}{\DontCheckModules}
+% \begin{imacro}{\CheckModules}
 % \changes{v1.7a}{1992/03/12}{Added.}
 % \begin{macro}{\ifcheck@modules}
 % Here are two driver-file interface macros for turning the module
@@ -2128,8 +2195,10 @@
 \newif\ifcheck@modules  \check@modulestrue
 %    \end{macrocode}
 % \end{macro}
-% \end{macro}
-% \end{macro}
+% \end{imacro}
+% \end{imacro}
+%
+%
 % \begin{macro}{\ch@percent}
 % \changes{v1.7a}{1992/03/12}{Added.}
 % If the lookahead token in "\next" is $"%"_{12}$ we go on to check
@@ -2470,7 +2539,7 @@
 \setlength\marginparsep{\labelsep}
 %    \end{macrocode}
 %
-% \begin{macro}{\bslash}
+% \begin{imacro}{\bslash}
 % \changes{v1.7a}{1992/02/26}{Moved \cs{bslash} documentation to `user
 %                           interface' part}
 %    We start a new group in which to hide the alteration of
@@ -2487,7 +2556,7 @@
 %    \begin{macrocode}
 |gdef|bslash{\}}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 %
 %
@@ -2574,7 +2643,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\verb}
+% \begin{imacro}{\verb}
 % \changes{v1.7a}{1992/02/27}{Now warns about newlines (from
 %                           newdoc with `@noligs added).}
 % \changes{v1.8b}{1993/09/21}{Changed to conform to new LaTeX \cs{verb}}
@@ -2592,7 +2661,7 @@
     \ttfamily \verb@eol@error \let\do\@makeother \dospecials
     \@ifstar{\@sverb}{\@vobeyspaces \frenchspacing \@sverb}}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 % \begin{macro}{\verb@balance@group}
 % \begin{macro}{\verb@egroup}
@@ -2702,7 +2771,7 @@
 %  need to make similar reassignments for their macros.
 %
 %
-% \begin{macro}{\SpecialEscapechar}\label{sect:specialescapechar}
+% \begin{imacro}{\SpecialEscapechar}\label{sect:specialescapechar}
 % \begin{macro}{\active@escape@char}
 % \begin{macro}{\special@escape@char}
 %    The macro |\SpecialEscapechar| is used to denote a special escape
@@ -2762,7 +2831,7 @@
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
-% \end{macro}
+% \end{imacro}
 %
 %
 %
@@ -2847,7 +2916,7 @@
 %
 %
 %
-% \begin{macro}{\MakePrivateLetters}
+% \begin{imacro}{\MakePrivateLetters}
 %    Here is the default definition of this command, which makes just
 %    the |@| into a letter. The user may change it if he/she
 %    needs more or other characters masquerading as letters.
@@ -2855,7 +2924,7 @@
 \@ifundefined{MakePrivateLetters}
     {\let\MakePrivateLetters\makeatletter}{}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 % \begin{macro}{\close@crossref}
 %    At the end of a cross-referencing part we prepare ourselves for
@@ -2924,8 +2993,8 @@
 %
 %
 %
-% \begin{macro}{\EnableCrossrefs}
-% \begin{macro}{\DisableCrossrefs}
+% \begin{imacro}{\EnableCrossrefs}
+% \begin{imacro}{\DisableCrossrefs}
 %    At this point we might define two macros which allow the user to
 %    disable or enable the cross-referencing mechanism. Processing of
 %    files will be faster if only main index entries are generated
@@ -2939,8 +3008,8 @@
 \def\EnableCrossrefs{\@bsphack\scan@allowedtrue
                      \def\DisableCrossrefs{\@bsphack\@esphack}\@esphack}
 %    \end{macrocode}
-% \end{macro}
-% \end{macro}
+% \end{imacro}
+% \end{imacro}
 %
 %
 %
@@ -3153,17 +3222,17 @@
 %    there is no point in keeping them in that property list.
 %
 % \DescribeMacro{\doc_dont_index:n}
-% \DescribeMacro{\DoNotIndex}
+% \DescribeInterfaceMacro{\DoNotIndex}
 %    Takes a clist of commands (with backslash) as input and exclude
 %    all of them from the index. User facing we make this available as
 %    |\DoNotIndex|.
 %
 %
-% \DescribeMacro\ShowIndexingState
+% \DescribeInterfaceMacro\ShowIndexingState
 %    Displays the current list of the exclude index list in a fairly
 %    low-level form.
 %
-% \DescribeMacro\RecordIndexType
+% \DescribeInterfaceMacro\RecordIndexType
 %    This command takes two arguments: a command (with escape char)
 %    and its type (i.e., first mandatory
 %    argument of a |\NewDocElement| declaration. If |#1| should not be
@@ -3281,7 +3350,8 @@
 %
 %
 %  \begin{macro}{\__doc_idxtype_put:Nn}
-%  \begin{macro}{\RecordIndexType}
+%  \begin{imacro}{\RecordIndexType}
+%  \fmi{Change name of interface command!}
 %  \begin{macro}{\RecordIndexTypeAux}
 %    This is the internal form for |\RecordIndexType|. The first
 %    argument is turned into a string and the rest of the processing
@@ -3322,7 +3392,7 @@
 \cs_set_eq:NN \RecordIndexType \__doc_idxtype_put:Nn
 %    \end{macrocode}
 %  \end{macro}
-%  \end{macro}
+%  \end{imacro}
 %  \end{macro}
 %
 %
@@ -3588,9 +3658,9 @@
 %<+gind|gglo>
 %    \end{macrocode}
 %
-% \begin{macro}{\actualchar}
-% \begin{macro}{\quotechar}
-% \begin{macro}{\levelchar}
+% \begin{imacro}{\actualchar}
+% \begin{imacro}{\quotechar}
+% \begin{imacro}{\levelchar}
 %    First come the definitions of |\actualchar|,
 %    |\quotechar| and |\levelchar|. Note, that our defaults
 %    are not the ones used by the \prg{makeindex} program without a
@@ -3606,27 +3676,27 @@
 %<+gind|gglo>level '>'
 %<*package>
 %    \end{macrocode}
-% \end{macro}
-% \end{macro}
-% \end{macro}
+% \end{imacro}
+% \end{imacro}
+% \end{imacro}
 %
 %
-% \begin{macro}{\encapchar}
+% \begin{imacro}{\encapchar}
 %    The \prg{makeindex} default for the |\encapchar| isn't
 %    changed.
 %    \begin{macrocode}
 \@ifundefined{encapchar}{\def\encapchar{|}}{}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 %
-% \begin{macro}{\verbatimchar}
+% \begin{imacro}{\verbatimchar}
 %    We also need a special character to be used as a delimiter for
 %    the |\verb*| command used in the definitions below.
 %    \begin{macrocode}
 \@ifundefined{verbatimchar}{\def\verbatimchar{+}}{}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 %
 %
@@ -3655,7 +3725,7 @@
 %
 %
 %
-% \begin{macro}{\SortIndex}
+% \begin{imacro}{\SortIndex}
 %    This macro is used to generate the index entries for any
 %    single-character command that |\scan@macro| encounters.  The
 %    first parameter specifies the lexical order for the character,
@@ -3669,14 +3739,14 @@
   \fi
 }
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 %
 %
 %
-% \begin{macro}{\LeftBraceIndex}
+% \begin{imacro}{\LeftBraceIndex}
 % \changes{v1.5s}{1989/11/05}{Support for code line no. (Undoc)}
-% \begin{macro}{\RightBraceIndex}
+% \begin{imacro}{\RightBraceIndex}
 % \changes{v1.5s}{1989/11/05}{Support for code line no. (Undoc)} These
 %    two macros fix the problems with \prg{makeindex}.  Note the
 %    `hack' with |\iffalse}\fi| to satisfy both \TeX{} and the
@@ -3697,11 +3767,11 @@
            \string\verb% % to fool emacs highlighting
            \quotechar*\verbatimchar\quotechar\bslash}\verbatimchar}}}{}
 %    \end{macrocode}
-% \end{macro}
-% \end{macro}
+% \end{imacro}
+% \end{imacro}
 %
 %
-% \begin{macro}{\PercentIndex}
+% \begin{imacro}{\PercentIndex}
 % \changes{v1.5s}{1989/11/05}{Support for code line no. (Undoc)}
 % \changes{v1.7c}{1992/03/25}{Default now for bug-fixed makeindex}
 % By default we assume a version of \prg{makeindex} without the
@@ -3710,10 +3780,12 @@
 \@ifundefined{PercentIndex}
   {\def\PercentIndex{\it@is@a\percentchar}}{}
 %    \end{macrocode}
-% \end{macro}
-% \begin{macro}{\OldMakeindex}
+% \end{imacro}
+%
+%  
+% \begin{omacro}{\OldMakeindex}
 % \changes{v1.7c}{1992/03/26}{Replaced \cs{NewMakeIndex}.}
-% \begin{macro}{\percentchar}
+% \begin{imacro}{\percentchar}
 %    Here is one solution for the percent bug in \prg{makeindex}.
 %    The macro |\percentchar| denotes a |%|$_{12}$.  Calling this from
 %    a package or the driver file sets things up
@@ -3726,8 +3798,8 @@
            \percentchar\percentchar\verbatimchar}}}
 {\catcode`\%=12 \gdef\percentchar{%}}
 %    \end{macrocode}
-% \end{macro}
-% \end{macro}
+% \end{imacro}
+% \end{omacro}
 %
 %
 % \begin{macro}{\it@is@a}
@@ -3841,7 +3913,7 @@
 %    \end{macrocode}
 %
 %
-% \begin{macro}{\IndexPrologue}
+% \begin{imacro}{\IndexPrologue}
 % \begin{macro}{\index@prologue}
 % \changes{v1.9w}{1995/12/27}{Text changed}
 % \changes{v1.9x}{1996/01/11}{Text depends on code lines used}
@@ -3876,11 +3948,11 @@
                  }}{}
 %    \end{macrocode}
 % \end{macro}
-% \end{macro}
+% \end{imacro}
 %
 %
 %
-% \begin{macro}{\IndexParms}
+% \begin{imacro}{\IndexParms}
 %    These are some last-minute assignments for formatting the index
 %    entries. They are defined in a separate macro so that a user can
 %    substitute different definitions.  We start by defining the
@@ -3927,10 +3999,10 @@
 % \end{macro}
 % \end{macro}
 % \end{macro}
-% \end{macro}
+% \end{imacro}
 %
 %
-% \begin{macro}{\efill}
+% \begin{imacro}{\efill}
 %    This definition of |\efill| is intended to be used after index
 %    items which have no following text (for example, ``\textit{
 %    see\/}'' entries).  It just ensures that the current line is
@@ -3943,11 +4015,11 @@
 %<+gind>item_x2   "\\efill \n \\subsubitem "
 %<*package>
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 %
 %
-% \begin{macro}{\pfill}
+% \begin{imacro}{\pfill}
 %     The following definitions provide the |\pfill| command; if
 %    this is specified in the index style file to \prg{makeindex} as
 %    the delimiter to appear after index items, then the intervening
@@ -3966,20 +4038,20 @@
 %<+gind|gglo>delim_2   "\\pfill "
 %<*package>
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 %
 %
-% \begin{macro}{\*}
+% \begin{imacro}{\*}
 %    Here is the definition for the |\*| macro. It isn't used in
 %    this set of macros.
 %    \begin{macrocode}
 \def\*{\leavevmode\lower.8ex\hbox{$\,\widetilde{\ }\,$}}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 %
-% \begin{macro}{\main}
+% \begin{imacro}{\main}
 %    The \textit{defining\/} entry for a macro name is flagged with
 %    the string \texttt{\encapchar main}\footnote{With the current
 %    definition of \texttt{\bslash encapchar} substituted for
@@ -3990,18 +4062,18 @@
 %    \begin{macrocode}
 \@ifundefined{main}{\def\main#1{\underline{#1}}}{}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
-% \begin{macro}{\usage}
+% \begin{imacro}{\usage}
 %    The |\usage| macro is used to indicate entries describing
 %    the usage of a macro. The corresponding page number(s) will be
 %    set in \textit{italics}.
 %    \begin{macrocode}
 \@ifundefined{usage}{\def\usage#1{\textit{#1}}}{}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
-% \begin{macro}{\code}
+% \begin{imacro}{\code}
 %    The |\code| macro is used to indicate index entries to code lines
 %    that aren't main entries.
 %    By default we do nothing special with them
@@ -4009,10 +4081,10 @@
 %    \begin{macrocode}
 \@ifundefined{code}{\def\code#1{#1}}{}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 %
-% \begin{macro}{\PrintIndex}
+% \begin{imacro}{\PrintIndex}
 % \changes{v1.5k}{1989/09/04}{\cs{printindex} changed to
 %                             \cs{PrintIndex}}
 % \changes{v1.7a}{1992/02/26}{Documentation moved to interface section.}
@@ -4023,7 +4095,7 @@
 \def\PrintIndex{\@input@{\jobname.ind}%
                 \global\let\PrintIndex\@empty}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 %
 % We want headings in the index (and changes list) according to the
@@ -4074,7 +4146,7 @@
 % parameters should not exceed 61 altogether (to allow for the
 % parentheses placed around the date).
 %
-% \begin{macro}{\changes}
+% \begin{imacro}{\changes}
 % \changes{BHK}{1989/04/26}{Documented \texttt{\protect\bslash changes}
 %                         command.}
 % \changes{BHK}{1989/04/26}{Changed definition of
@@ -4139,6 +4211,8 @@
                    :\levelchar #3}}%
   \@tempa\endgroup\@esphack}
 %    \end{macrocode}
+% \end{imacro}
+%
 %
 % \begin{macro}{\saved@macroname}
 % \changes{BHK}{1989/04/26}{Provided for sorting outside \env{macro}
@@ -4166,17 +4240,17 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\generalname}
+% \begin{imacro}{\generalname}
 % \changes{v1.9u}{1995/08/06}{Macro added}
 %    This macro holds the string placed before changes entries on
 %    top-level.
 %    \begin{macrocode}
 \def\generalname{General}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 %
-% \begin{macro}{\RecordChanges}
+% \begin{imacro}{\RecordChanges}
 % \changes{BHK}{1989/04/26}{Renames former \texttt{\protect\bslash
 %                         PrintChanges} command.}
 %    To cause the changes to be written (to a \texttt{.glo}) file, we
@@ -4185,8 +4259,7 @@
 %    \begin{macrocode}
 \let\RecordChanges\makeglossary
 %    \end{macrocode}
-% \end{macro}
-% \end{macro}
+% \end{imacro}
 %
 %
 % \begin{ldimen}{\GlossaryMin}
@@ -4257,7 +4330,7 @@
 %    \end{macrocode}
 %
 %
-% \begin{macro}{\GlossaryPrologue}
+% \begin{imacro}{\GlossaryPrologue}
 %    \changes{BHK}{1989/04/26}{Added to support
 %                            \texttt{\protect\bslash changes}.}
 % \begin{macro}{\glossary@prologue}
@@ -4282,9 +4355,9 @@
                  }}{}
 %    \end{macrocode}
 % \end{macro}
-% \end{macro}
+% \end{imacro}
 %
-% \begin{macro}{\GlossaryParms}
+% \begin{imacro}{\GlossaryParms}
 %    \changes{BHK}{1989/04/26}{Added to support
 %                            \texttt{\protect\bslash changes}.}
 % Unless the user specifies otherwise, we set the change history
@@ -4299,8 +4372,9 @@
      \parfillskip -15pt plus -1fil\relax}
 }{}
 %    \end{macrocode}
-% \end{macro}
-% \begin{macro}{\PrintChanges}
+% \end{imacro}
+%
+% \begin{imacro}{\PrintChanges}
 %    \changes{BHK}{1989/04/26}{Added to support
 %                            \texttt{\protect\bslash changes}.}
 %    To read in and print the sorted change history, just put the
@@ -4320,7 +4394,7 @@
 \def\PrintChanges{\@input@{\jobname.gls}%
                   \global\let\PrintChanges\@empty}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 %
 %
@@ -4328,14 +4402,14 @@
 %
 % \subsection{Bells and whistles}
 %
-% \begin{macro}{\MaybeStopHere}
+% \begin{imacro}{\MaybeStopHere}
 % \changes{v1.5k}{1989/09/04}{Support for checksum.}
-% \begin{macro}{\Finale}
+% \begin{imacro}{\Finale}
 % \changes{v1.5k}{1989/09/04}{Support for checksum.}
 % \changes{v1.5z}{1990/04/22}{Define \cs{Finale} globally.}
-% \begin{macro}{\AlsoImplementation}
+% \begin{imacro}{\AlsoImplementation}
 % \changes{v1.9w}{1995/12/27}{Macro added}
-% \begin{macro}{\OnlyDescription}
+% \begin{imacro}{\OnlyDescription}
 %    If |\AlsoImplementation| is in force the whole documentation
 %    including the code part will be typeset. This is the default.
 %    \begin{macrocode}
@@ -4389,21 +4463,21 @@
 %    \begin{macrocode}
 \let\Finale\relax
 %    \end{macrocode}
-% \end{macro}
-% \end{macro}
-% \end{macro}
-% \end{macro}
+% \end{imacro}
+% \end{imacro}
+% \end{imacro}
+% \end{imacro}
 %
 %
-%  \begin{macro}{\StopEventually}
+%  \begin{omacro}{\StopEventually}
 %    The old wrong name for |\MaybeStopHere|. We need to use |\def|
 %    (i.e., expansion) as |\MaybeStopHere| gets redefined once in a while.
 %    \begin{macrocode}
 \def\StopEventually{\MaybeStopHere}
 %    \end{macrocode}
-%  \end{macro}
+%  \end{omacro}
 %
-% \begin{macro}{\meta}
+% \begin{imacro}{\meta}
 % \changes{v1.4t}{1989/04/24}{Macro added.}
 % \changes{v1.5w}{1990/02/03}{Breaks at space allowed.}
 % \changes{v1.6a}{1990/05/24}{Extra space bug corrected.}
@@ -4457,7 +4531,7 @@
      }\ensuremath\rangle
 }
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 %
 % \begin{macro}{\meta@font@select}
@@ -4469,7 +4543,7 @@
 % \end{macro}
 %
 %
-% \begin{macro}{\IndexInput}
+% \begin{imacro}{\IndexInput}
 %    This next macro may be used to read in a separate file (possibly
 %    a package file that is {\em not\/} documented by this means) and
 %    set it verbatim, whilst scanning for macro names and indexing the
@@ -4501,10 +4575,10 @@
 %    \begin{macrocode}
      \endgroup}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 %
-% \begin{macro}{\maketitle}
+% \begin{imacro}{\maketitle}
 %    The macro to generate titles is easily altered in order that it
 %    can be used more than once (an article with many titles).  In the
 %    original, diverse macros were concealed after use with
@@ -4540,10 +4614,10 @@
       \gdef\@date{\today}\gdef\@thanks{}%
       \gdef\@author{}\gdef\@title{}}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 %
-% \begin{macro}{\ps@titlepage}
+% \begin{imacro}{\ps@titlepage}
 % \changes{v1.5k}{1989/09/04}{Added \texttt{\protect\bslash
 %    ps@titlepage}} When a number of articles are concatenated into a
 %    journal, for example, it is not usual for the title pages of such
@@ -4555,9 +4629,9 @@
 \@ifundefined{ps@titlepage}
     {\let\ps@titlepage=\ps@plain}{}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
-% \begin{macro}{\MakeShortVerb}
+% \begin{imacro}{\MakeShortVerb}
 % \changes{v1.7a}{1992/02/27}{Added (from newdoc but now alters
 %                           \cs{dospecials}, \cs{@sanitize}).}
 % This arranges an abbreviation for "\verb" such that if you say
@@ -4584,7 +4658,7 @@
 % if he reads the "LOG" file. (Should have used module internal names,
 % 'though.)
 %
-% \begin{macro}{\MakeShortVerb*}
+% \begin{imacro}{\MakeShortVerb*}
 % \changes{v2.1a}{2003/12/09}{(HjG) Added \texttt{*} form}
 % This arranges an abbreviation for "\verb*" such that if you say
 % "\MakeShortVerb*{\"\meta{c}"}" subsequently using
@@ -4598,7 +4672,10 @@
     {\def\@shortvrbdef{\verb*}\@MakeShortVerb}%
     {\def\@shortvrbdef{\verb}\@MakeShortVerb}}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
+% \end{imacro}
+%      
+% \begin{macro}{\@MakeShortVerb}
 %    \begin{macrocode}
 \def\@MakeShortVerb#1{%
   \expandafter\ifx\csname cc\string#1\endcsname\relax
@@ -4645,7 +4722,9 @@
   \fi}
 %    \end{macrocode}
 % \end{macro}
-% \begin{macro}{\DeleteShortVerb}
+%
+%
+% \begin{imacro}{\DeleteShortVerb}
 % \changes{v1.7a}{1992/02/27}{Added (from newdoc but now alters
 %                           \cs{dospecials}, \cs{@sanitize}).}
 % Here's the means of undoing a "\MakeShortVerb", for instance in a
@@ -4694,7 +4773,7 @@
           \csname ac\string#1\endcsname}%
       \endgroup \fi \fi}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 %  \begin{macro}{\@shortvrbinfo}
 % \changes{v1.9v}{1995/11/03}{(DPC) Macro added}
@@ -4734,6 +4813,8 @@
     {\@sanitize \@makeother #1}}
 %    \end{macrocode}
 % \end{macro}
+%
+%
 % \begin{macro}{\rem@special}
 % \changes{v1.7a}{1992/02/27}{Added for short verb facility.}
 % The inverse of "\add@special" is slightly trickier.  "\do" is
@@ -4833,13 +4914,13 @@
 % \end{tcounter}
 %
 %
-% \begin{macro}{\CheckSum}
+% \begin{omacro}{\CheckSum}
 % \changes{v1.5k}{1989/09/04}{Macro added to support checksum.}
 % This is the interface to setting "\check@sum".
 %    \begin{macrocode}
 \def\CheckSum#1{\@bsphack\global\check@sum#1\relax\@esphack}
 %    \end{macrocode}
-% \end{macro}
+% \end{omacro}
 %
 %
 %
@@ -4852,7 +4933,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\CharacterTable}
+% \begin{omacro}{\CharacterTable}
 %    The user interface to the character table-checking does some
 %    "\catcode"ing and then compares the following table with the
 %    stored version. We need to have "@" of type ``other'' within the
@@ -4870,8 +4951,10 @@
 %    \begin{macrocode}
 \def\CharacterTable{\begingroup \CharTableChanges \character@table}
 %    \end{macrocode}
-% \end{macro}
+% \end{omacro}
+%
 % \def\MakePrivateLetters{\catcode`\~=11\makeatletter}
+%
 % \begin{macro}{\character@table}
 % This does the work of comparing the tables and reporting the result.
 % Note that the following code is enclosed in a group
@@ -4894,7 +4977,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\CharTableChanges}
+% \begin{omacro}{\CharTableChanges}
 %    When the character table is read in we need to scan it with a
 %    fixed set of "\catcode"s. The reference table below  was defined by
 %    assuming the normal "\catcode"s of \TeX{}, i.e.\ "@" is of type
@@ -4909,7 +4992,7 @@
 %    \begin{macrocode}
   \global\let\CharTableChanges\@empty
 %    \end{macrocode}
-% \end{macro}
+% \end{omacro}
 %
 % \begin{macro}{\default~table}
 % Here's what the table {\em should\/} look like (modulo spaces).
@@ -4961,13 +5044,13 @@
 % Indexing by code line is controlled by the "codeline@index" switch.
 % \changes{v1.5s}{1989/11/05}{Support for code line no. (Undoc)}
 % \changes{v1.7a}{1992/02/24}{Documented code line no. support.}
-% \begin{macro}{\CodelineNumbered}
+% \begin{imacro}{\CodelineNumbered}
 % \changes{v1.8a}{1993/05/19}{Macro added}
 %    \begin{macrocode}
 \newif\ifcodeline@index \codeline@indexfalse
 \let\CodelineNumbered\codeline@indextrue
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 % \end{macro}
 %
 % \begin{macro}{\codeline@wrindex}
@@ -5006,14 +5089,14 @@
                    \let\special@index\codeline@wrindex}
 %    \end{macrocode}
 % \end{macro}
-% \begin{macro}{\PageIndex}
+% \begin{imacro}{\PageIndex}
 % "\PageIndex" is similar.
 %    \begin{macrocode}
 \def\PageIndex{\makeindex
                \codeline@indexfalse
                \let\special@index\index}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 %
 % \begin{lcounter}{CodelineNo}
@@ -5149,8 +5232,8 @@
 %
 % \subsection{Changing the \texttt{\protect\bslash catcode} of \%}
 %
-% \begin{macro}{\MakePercentIgnore}
-% \begin{macro}{\MakePercentComment}
+% \begin{imacro}{\MakePercentIgnore}
+% \begin{imacro}{\MakePercentComment}
 %    And finally the most important bit: we change the |\catcode|
 %    of `|%|' so that it is ignored (which is how we are able to
 %    produce this document!). We provide two commands to do the actual
@@ -5161,10 +5244,10 @@
 \def\MakePercentIgnore{\catcode`\%9\relax}
 \def\MakePercentComment{\catcode`\%14\relax}
 %    \end{macrocode}
-% \end{macro}
-% \end{macro}
+% \end{imacro}
+% \end{imacro}
 %
-% \begin{macro}{\DocInput}
+% \begin{imacro}{\DocInput}
 %    The two macros above are now used to define the |\DocInput| macro
 %    which was introduced in version v1.5l (or so) of the \DOC{}
 %    package. In older versions |\MakePercentIgnore| was placed
@@ -5172,7 +5255,7 @@
 %    \begin{macrocode}
 \def\DocInput#1{\MakePercentIgnore\input{#1}\MakePercentComment}
 %    \end{macrocode}
-% \end{macro}
+% \end{imacro}
 %
 % \subsection{GetFileInfo}
 %
@@ -5665,7 +5748,7 @@
 %  \end{macro}
 %
 %
-% \begin{macro}{\NewDocElement}
+% \begin{imacro}{\NewDocElement}
 %   \oarg{options}\marg{name}\marg{envname}
 %
 %    \begin{macrocode}
@@ -5685,9 +5768,9 @@
   {#2}{#3}%
 }  
 %    \end{macrocode}
-%  \end{macro}
+%  \end{imacro}
 %    
-% \begin{macro}{\RenewDocElement}
+% \begin{imacro}{\RenewDocElement}
 %   \oarg{options}\marg{name}\marg{envname}
 %
 %    \begin{macrocode}
@@ -5706,7 +5789,7 @@
   {#2}{#3}%
 }  
 %    \end{macrocode}
-%  \end{macro}
+%  \end{imacro}
 %    
 %
 % \begin{macro}{\@NewDocElement}
@@ -5726,7 +5809,7 @@
   \let\doc@printtype\@empty
   \setkeys{doc}{#1}%
 %    \end{macrocode}
-%   \begin{macro}{\Print...Name}
+%   \begin{imacro}{\Print...Name}
 %     \marg{name}
 % \fmi{extremly messy this with so many \cs{expandafter}s \ldots{}
 %       should reimplement in expl3}
@@ -5748,18 +5831,19 @@
       \the\@temptokena
      }}%
 %    \end{macrocode}
-%   \end{macro}
-%   \begin{macro}{\PrintDescribe...}
+%   \end{imacro}
+%  
+%   \begin{imacro}{\PrintDescribe...}
 %     \marg{name}
 %    \begin{macrocode}
   \expandafter\let\csname PrintDescribe#2\expandafter\endcsname
                   \csname Print#2Name\endcsname
 %    \end{macrocode}
-%   \end{macro}
+%   \end{imacro}
 %
-%   \begin{macro}{\SpecialMain...Index}
+%   \begin{imacro}{\SpecialMain...Index}
 %     \marg{name}
-%   \begin{macro}{\Special...Index}
+%   \begin{imacro}{\Special...Index}
 %     \marg{name}
 %    \begin{macrocode}
   \edef\@doxexpr{%
@@ -5776,17 +5860,18 @@
      {\expandafter\doc@idxtype\expandafter}\expandafter
      {\doc@idxgroup}%
 %    \end{macrocode}
-%   \end{macro}
-%   \end{macro}
+%   \end{imacro}
+%   \end{imacro}
 %
-%   \begin{macro}{\Describe...}
+%   \begin{imacro}{\Describe...}
 %     \oarg{options}\marg{name}
 %    \begin{macrocode}
   \@doxcreatedescribe{#2}%
 %    \end{macrocode}
-%   \end{macro}
+%   \end{imacro}
 %
-%   \begin{environment}{\meta{DocItem}}
+%   \begin{environment}{\meta{DocElement}}
+%  \fmi{can't have formatting in argument -- fix}
 %     \oarg{options}\marg{name}
 %    \begin{macrocode}
     \ifdoc@macrolike
@@ -5845,9 +5930,11 @@
 
 % \section{Misc additions}
 
+% \begin{imacro}{\cs}
 %    \begin{macrocode}
 \DeclareRobustCommand\cs[1]{\texttt{\bslash #1}}
 %    \end{macrocode}
+% \end{imacro}
 
 
 % We can now finish the \texttt{docstrip} main module.
