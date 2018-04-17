@@ -43,7 +43,7 @@
 %<+package>
 %<+package>\ProvidesPackage{doc}
 %<+shortvrb>\ProvidesPackage{shortvrb}
-%<+package|shortvrb>  [2018/04/16 v3.0a beta
+%<+package|shortvrb>  [2018/04/18 v3.0a beta
 %<+package|shortvrb>   Standard LaTeX documentation package V3 (FMi)]
 %\catcode`\<=12
 %
@@ -3570,11 +3570,11 @@
        {
         \exp_args:Ncno \__doc_maybe_index_aux:Nnn
               { Code \tl_use:N \l__doc_idxtype_tl Index } 
-              {\encapchar code} {\bslash #1}
+              {code} {\bslash #1}
         }
 %    \end{macrocode}
 %    Otherwise execute |\SpecialIndex| which is a short form for
-%    |\CodeMacroIndex|.
+%    |\CodeMacroIndex{code}|.
 %    \begin{macrocode}
         {
           \__doc_trace:x{Indexing~ '\bslash #1'\space (normal)}
@@ -5393,17 +5393,23 @@
     \if #1%      
       \edef\saved@indexname{\expandafter\@gobble\saved@macroname}%
 %
+%    \end{macrocode}
+%    If the \DOC element described is macrolike but not a normal
+%    ``macro'' then its type should be recorded and this is the places
+%    where this happens. For macros (which should make up the bulk of
+%    these items we don't do this and for anything else that looks
+%    from an indexing perspective like a macro we don't do that either
+%    to keep the list of exceptions small. That would be the case if
+%    the indexing command |\Code|\meta{doc-element}|Index| is
+%    equivalent to \cs{CodeMacroIndex}.
+%    \begin{macrocode}
       \expandafter\ifx
                   \csname Code#2Index\endcsname
-                  \CodeIndex@default
+                  \CodeMacroIndex
       \else
-%    \end{macrocode}
-%    \fmi{fix}
-%    \begin{macrocode}
-        \expandafter\record@index@type@save
-            \expandafter{\saved@indexname}{#2}%
+        \record@index@type@save
+          {\saved@indexname}{#2}%
       \fi
-%
     \else
       \let\saved@indexname\saved@macroname
     \fi
@@ -5611,7 +5617,7 @@
 	\noexpand\quotechar*\noexpand\verbatimchar
 	\noexpand\bslash\noexpand\@gtempa\noexpand\verbatimchar
 	\ifx\@nil#2\@nil\else \the\@temptokena \fi
-	##1}%
+	\noexpand\encapchar ##1}%
     \fi
     \ifx\@nil#3\@nil\else
       \noexpand\special@index{\the\@temptokenb\noexpand\levelchar
@@ -5619,7 +5625,7 @@
 	\string\verb% % to fool emacs highlighting
 	\noexpand\quotechar*\noexpand\verbatimchar
 	\noexpand\bslash\noexpand\@gtempa\noexpand\verbatimchar
-	##1}%
+	\noexpand\encapchar ##1}%
     \fi
   \noexpand\fi
     \noexpand\@esphack}%
@@ -5628,7 +5634,7 @@
 %    \begin{macrocode}
   \@nameedef{SpecialMain#1Index}##1{%
     \expandafter\noexpand\csname Code#1Index\endcsname
-        {\noexpand\encapchar main}{##1}}%
+        {main}{##1}}%
 %    \end{macrocode}
 %    
 %    \begin{macrocode}
@@ -5910,18 +5916,44 @@
                 idxgroup  = ,
                 printtype =  
                ]{Macro}{macro}
-%    \end{macrocode} 
-%    Support \DOC V2 which had \cs{SpecialUsageIndex}: We use |\def|
-%    not |\let| so redefinition of |\SpecialMacroIndex| will be
-%    transparent.
+%    \end{macrocode}
+
+
+%  \begin{macro}{SpecialMainIndex}
+%
+%    In \DOC v2 we had \cs{SpecialMainIndex} and
+%    \cs{SpecialMainEnvIndex} but now with additional \DOC elements we
+%    always add the element name after ``\texttt{Main}'' so this would
+%    be \cs{SpecialMainMacroIndex}. We use |\def| not |\let| so any
+%    redefinition of |\SpecialMainMacroIndex| will be transparent.
+%    \begin{macrocode}
+\def\SpecialMainIndex{\SpecialMainMacroIndex}
+%    \end{macrocode}
+%  \end{macro}
+
+%  \begin{macro}{SpecialUsageIndex}
+%    \DOC v2 also had \cs{SpecialUsageIndex} which is now called
+%    \cs{SpecialMacroIndex} generating the ``usage'' index entry  for
+%    a macro. Again we provide that as an alias via |\def|.
+%
+%    In fact the documentation of \DOC v2 claimed that one can use
+%    this for both macros and environments but that was never true as
+%    for environments the result was that thefirst character was
+%    dropped in sorting of the index. The correct way is to use
+%    \cs{SpecialEnvIndex} for this.
 %    \begin{macrocode}
 \def\SpecialUsageIndex{\SpecialMacroIndex}
-\def\SpecialIndex     {\CodeMacroIndex{\encapchar code}}
 %    \end{macrocode}
+%  \end{macro}
 %    
+
+%  \begin{macro}{\SpecialIndex}
 %    \begin{macrocode}
-\let\CodeIndex@default\CodeMacroIndex
+\def\SpecialIndex     {\CodeMacroIndex{code}}
 %    \end{macrocode}
+%  \end{macro}
+
+
 %
 % \subsubsection{Environment facilities}
 %
