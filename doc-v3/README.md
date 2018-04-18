@@ -41,6 +41,12 @@ package code.  Note that these are produced by the two `.tex` files,
 which simply set typesetting options and read in the `.dtx` docstrip
 file so only one source file needs to be maintained.
 
+Please also note that the documentation is produced by using the new
+`doc` package itself. This means you have to first extract the code
+and then produce the documentation (or use `texlua build.lua doc`that
+does all that for you and also runs makeindex to generate the index
+entries etc).
+
 
 -----
 

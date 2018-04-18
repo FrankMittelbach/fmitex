@@ -1,18 +1,15 @@
 #!/usr/bin/env texlua
 
+--[[
+     For documentation and usage of the l3build system
+     see l3build.pdf
+--]]
+
 module = "doc"
 
 typesetfiles  = {"*.tex"}
 
 checkruns     = 2
-
---[[
-function runtest_tasks (name)
-          makeindex(name, "./", ".glo", ".gls", ".glg", glossarystyle) 
-          makeindex(name, "./", ".idx", ".ind", ".ilg", indexstyle)
-  return ""
-end
---]]
 
 kpse.set_program_name("kpsewhich")
 dofile(kpse.lookup("l3build.lua"))
