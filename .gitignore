@@ -6,3 +6,4 @@ doc-v3/tmp/*
 *.log
 dashundergaps.zip
 dashundergaps/build
+*.pdf
