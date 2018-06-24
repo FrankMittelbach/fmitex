@@ -1,0 +1,36 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+! dashundergaps error: "nested"
+! 
+! The \gap command can't be tested!
+! 
+! See the dashundergaps documentation for further information.
+! 
+! For immediate help type H <return>.
+!...............................................  
+l. ......d} gap and \gap{some \gap{nesting} of words}
+                                                   in
+|'''''''''''''''''''''''''''''''''''''''''''''''
+| Nesting doesn't make much sense as the inner one wouldn't be visible. To
+| allow continuation it is handled as if it wasn't been asked for.
+|...............................................
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+! dashundergaps error: "nested"
+! 
+! The \gap command can't be tested!
+! 
+! See the dashundergaps documentation for further information.
+! 
+! For immediate help type H <return>.
+!...............................................  
+l. ......d} gap and \gap{some \gap{nesting} of words}
+                                                   in
+|'''''''''''''''''''''''''''''''''''''''''''''''
+| Nesting doesn't make much sense as the inner one wouldn't be visible. To
+| allow continuation it is handled as if it wasn't been asked for.
+|...............................................
+[1
+] (dug-003.aux)

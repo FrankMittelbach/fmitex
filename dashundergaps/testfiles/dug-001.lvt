@@ -1,0 +1,33 @@
+\documentclass{article}
+
+\input{regression-test}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+\START
+
+\usepackage[
+    teachermode,
+    phantomtext,
+    dash,
+    displaynbgaps
+  ]{dashundergaps}
+
+\OMIT
+
+\begin{document}
+
+\TIMO
+
+Here we have a \gap{gap to fill a number of words} in. Missing
+\gap{longishwords} all over the \gap{place}.
+
+\setcounter{gapnumber}{0} % reset counter
+
+Here we have a \gap{gap to fill a number of words} in. Missing
+\gap{longishwords} all over the \gap{place}.
+
+\showoutput
+
+\end{document}

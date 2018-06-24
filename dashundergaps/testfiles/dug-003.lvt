@@ -1,0 +1,21 @@
+\documentclass{article}
+
+\input{regression-test}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{dashundergaps}
+
+\begin{document}
+
+\START
+
+Testing \gap{nonnested} gap and \gap{some \gap{nesting} of words} in
+this sentence.
+
+\TeacherModeOn
+
+Testing \gap{nonnested} gap and \gap{some \gap{nesting} of words} in
+this sentence.
+
+\end{document}
