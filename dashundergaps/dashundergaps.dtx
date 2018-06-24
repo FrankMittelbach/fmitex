@@ -122,7 +122,7 @@
 % The \pkg{dashundergaps} package is built as a small application on top
 % of the \pkg{ulem} package, a package that defines a number of commands for
 % underling \meta{simple-text} in various ways.
-% \begin{function}{\uline,\uwave,\dashuline,\dotuline}
+% \begin{function}{\uline,\uuline,\uwave,\dashuline,\dotuline}
 %   \begin{syntax}
 % \cs{uline}\Arg{simple-text}  \cs{uwave}\Arg{simple-text}  % etc.
 %   \end{syntax}
@@ -153,6 +153,7 @@
 %
 %   The optional \meta{style} argument explicitly defines a certain type
 %   of underlining: |u| stands for normal underlining (via \cs{uline}),
+%   |d| for double underlining (via \cs{uuline}),
 %   |w| for a wave line (via \cs{uwave}), |b| for blank (i.e., no
 %   underlining whatsoever), ``|-|'' for a dash-line (via \cs{dashuline})
 %   and finally ``|.|'' for underlining with dots (via \cs{dotuline}).
@@ -240,6 +241,7 @@
 % \begin{description}
 % \item[gap-format] A choice option that defines how the gap is
 %   marked. It accepts the following values: |underline| (default),
+%   |double-underline|,
 %   |dash|, |dot|, |wave| or |blank|.
 % \item[teacher-gap-format] Another choice option to be used in case we
 %   are in ``teacher mode''. It accepts the same values, but this time
@@ -459,8 +461,8 @@
 \ProvidesExplPackage
   {dashundergaps}
   {2018/06/24}
-  {v2.0a}
-  {Dashing and underlining (phantom) text}
+  {v2.0b}
+  {Dashing and underlining phantom text}
 %    \end{macrocode}
 %
 %
@@ -583,6 +585,8 @@
          .choice:
       ,gap-format / underline
          .code:n = \tl_set:Nn \l_@@_gap_format_tl { \uline }
+      ,gap-format / double-underline
+         .code:n = \tl_set:Nn \l_@@_gap_format_tl { \uuline }
       ,gap-format / dash
          .code:n = \tl_set:Nn \l_@@_gap_format_tl { \dashuline }
       ,gap-format / dot
@@ -600,6 +604,8 @@
          .choice:
      ,teacher-gap-format / underline
          .code:n = \tl_set:Nn \l_@@_teacher_gap_format_tl { \uline }
+      ,teacher-gap-format / double-underline
+         .code:n = \tl_set:Nn \l_@@_teacher_gap_format_tl { \uuline }
       ,teacher-gap-format / dash
          .code:n = \tl_set:Nn \l_@@_teacher_gap_format_tl { \dashuline }
       ,teacher-gap-format / dot
@@ -738,6 +744,7 @@
         \str_case:nnF {#2}
             {
               {u} { \uline }
+              {d} { \uuline }
               {w} { \uwave }
               {b} { \@ublank }
               {.} { \dotuline }
