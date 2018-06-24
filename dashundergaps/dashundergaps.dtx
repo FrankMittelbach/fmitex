@@ -320,6 +320,8 @@
 % \item
 %   Various combinations of options that didn't work are now possible;
 % \item
+%   Explicit hyphens |\-| showed up in gap mode, now they can be used;
+% \item
 %   Nesting isn't possible for obvious reasons, but the fact is now
 %   detected and catered for by ignoring the inner gap requests after
 %   generating an error;
@@ -384,6 +386,11 @@
 % \DoNotIndex{\c@totalgapnumber,\hb@xt@,\LA@penalty,\UL@box,\UL@leaders}
 % \DoNotIndex{\UL@leadtype,\UL@setULdepth,\UL@skip,\UL@start,\z@,\ULdepth}
 % \DoNotIndex{\ULon,\vrule,\wd,\@width,\UL@putbox,\markoverwith}
+% \DoNotIndex{\char,\cs_new:Npn,\cs_set:Npn,\dim_new:N,\font,\global,\hyphenchar}
+% \DoNotIndex{\setbox,\string,\UL@hyphenbox,\UL@start}
+% \DoNotIndex{\tl_new:N,\tl_set:Nn,\ifnum,\UL@stop,\dim_set:Nn,\box}
+%
+%
 %
 % \section{The Implementation}
 %
@@ -417,31 +424,54 @@
 
 
 
-%  \begin{macro}[int]{\@ublank}
-%    \cs{@ublank} underlines with blanks. Normally not really useful
+%  \begin{macro}[int]{\fmdug@ublank}
+%    \cs{fmdug@ublank} underlines with blanks. Normally not really useful
 %    (which is why we make it internal),
 %    but when we want to have \pkg{ulem} acting---but without actually
 %    underlining with something visible---that is the command to use.
 %    \begin{macrocode}
-\def\@ublank{\bgroup\let\UL@leadtype\@empty\ULon}
+\def\fmdug@ublank{\bgroup\let\UL@leadtype\@empty\ULon}
 %    \end{macrocode}
 %  \end{macro}
-
-
-
-%  \begin{macro}[int]{\phantom@putbox}
-%    This is going to be a replacement for \cs{UL@putbox} when we want
-%    \pkg{ulem} to underline something but show a gap instead of the material.
+%
+%
+%
+%  \begin{macro}[int]{\UL@dischyp}
+%  \begin{macro}[int]{\UL@putbox}
+%   We need to do a little patching to ensure that nothing is output
+%   by the \pkg{ulem} commands if we don't want it to. So the next two
+%   commands are from \pkg{ulem} with |\box| replaced by
+%   |\fmdug@box| so that we can change the behavior.
 %    \begin{macrocode}
-\def\phantom@putbox{\ifx\UL@start\@empty \else % not inner
+\def\UL@dischyp{\global\setbox\UL@hyphenbox\hbox
+   {\ifnum \hyphenchar\font<\z@ \string-\else \char\hyphenchar\font \fi}%
+   \kern\wd\UL@hyphenbox \LA@penalty\@M 
+   \UL@stop \kern-\wd\UL@hyphenbox
+   \discretionary{\fmdug@box\UL@hyphenbox}{}{}\UL@start}
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+\def\UL@putbox{\ifx\UL@start\@empty \else % not inner
   \vrule\@width\z@ \LA@penalty\@M
   {\UL@skip\wd\UL@box \UL@leaders \kern-\UL@skip}%
-  \hb@xt@\wd\UL@box{}%
-\fi}
+  \fmdug@box\UL@box  \fi}
 %    \end{macrocode}
 %  \end{macro}
-%
-%
+%  \end{macro}
+
+
+%  \begin{macro}[int]{\fmdug@box}
+%    By default we output the box, when we don't want to we change the
+%    definition to generate a box with empty content but the right size.
+%    \begin{macrocode}
+\let\fmdug@box\box
+%    \end{macrocode}
+%  \end{macro}
+
+
+
+
+
 %
 %  \subsection{The main implementation part}
 %
@@ -594,7 +624,7 @@
       ,gap-format / wave
          .code:n = \tl_set:Nn \l_@@_gap_format_tl { \uwave  }
       ,gap-format / blank
-         .code:n = \tl_set:Nn \l_@@_gap_format_tl { \@ublank  }
+         .code:n = \tl_set:Nn \l_@@_gap_format_tl { \fmdug@ublank  }
       ,gap-format / unknown
          .code:n = \tl_set:Nn \l_@@_gap_format_tl { #1 }
       ,gap-format
@@ -613,7 +643,7 @@
       ,teacher-gap-format / wave
          .code:n = \tl_set:Nn \l_@@_teacher_gap_format_tl { \uwave }
       ,teacher-gap-format / blank
-         .code:n = \tl_set:Nn \l_@@_teacher_gap_format_tl { \@ublank }
+         .code:n = \tl_set:Nn \l_@@_teacher_gap_format_tl { \fmdug@ublank }
       ,teacher-gap-format / unknown
          .code:n = \tl_set:Nn \l_@@_teacher_gap_format_tl { #1 }
       ,teacher-gap-format
@@ -740,13 +770,18 @@
 %    \begin{macrocode}
     \bool_if:NTF \l_@@_teacher_bool
       { \l_@@_teacher_gap_format_tl }
-      { \cs_set_eq:NN \UL@putbox \phantom@putbox
+      {
+%    \end{macrocode}
+%    But before we execute any of the \pkg{ulem} commands we make sure
+%    that the do not output text.
+%    \begin{macrocode}
+        \cs_set:Npn   \fmdug@box ##1 {\hbox_to_wd:nn{\box_wd:N ##1}{}}
         \str_case:nnF {#2}
             {
               {u} { \uline }
               {d} { \uuline }
               {w} { \uwave }
-              {b} { \@ublank }
+              {b} { \fmdug@ublank }
               {.} { \dotuline }
               {-} { \dashuline }
             }

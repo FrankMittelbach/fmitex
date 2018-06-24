@@ -6,6 +6,8 @@
 \usepackage[T1]{fontenc}
 \usepackage{dashundergaps}
 
+\showoutput
+
 \begin{document}
 
 \START
@@ -37,7 +39,5 @@ Here we have a \gap{gap to fill a number of words} in. Missing
 
 Here we have a \gap[.]{gap to fill a number} \gap[w]{of words} in. Missing
 \gap[-]{longishwords} all \gap[]{over} the \gap[u]{place}.
-
-\showoutput
 
 \end{document}

@@ -1,0 +1,27 @@
+\documentclass{article}
+
+\input{regression-test}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{dashundergaps}
+
+\showoutput
+
+\begin{document}
+
+\START
+
+\dashundergapssetup{ gap-widen }
+
+
+Test for explicit hyphen in the next gap: \gap{A\-longish\-word\-using\-explicit\-hyphens\-what\-happens?}
+the hyphen should not show up in gap mode!
+
+\TeacherModeOn
+
+Test for explicit hyphen in the next gap: \gap{A\-longish\-word\-using\-explicit\-hyphens\-what\-happens?}
+the hyphen should not show up in gap mode!
+
+
+\end{document}
