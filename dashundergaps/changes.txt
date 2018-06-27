@@ -1,0 +1,25 @@
+2018-06-27  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* dashundergaps.dtx v2.0c
+
+	(subsubsection{Gap formatting}): Added key
+	'gap-format-adjust' to raise the underline to baseline.
+
+	(subsubsection{Gap widening}): Default minimum now 20pt (10pt on
+	each side).
+
+	(subsection{Loading and fixing/changing \pkg{ulem}}): Robustify
+	\dotuline and \uwave.
+
+	(subsection{Loading and fixing/changing \pkg{ulem}}): Change
+	default def of \uwave to react to \ULdepth.
+
+2018-06-24  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* dashundergaps.dtx v2.0b
+
+        Changed def of \UL@dischyp to not typeset the hyphen if we don't
+	want any printing.
+
+	(subsubsection{Gap formatting}): Support 'double-underline' as
+	value for \uuline.

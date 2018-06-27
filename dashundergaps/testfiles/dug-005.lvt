@@ -1,3 +1,5 @@
+% same as dug002 but with adjust in force
+
 \documentclass{article}
 
 \input{regression-test}
@@ -14,6 +16,7 @@
 
 \dashundergapssetup{
    ,gap-widen
+   ,gap-format-adjust
 }
 
 Here we have a \gap{gap to fill a number of words} in. Missing
@@ -38,7 +41,7 @@ Here we have a \gap{gap to fill a number of words} in. Missing
 
 
 Here we have a \gap[.]{gap to fill a number} \gap[w]{of words} in. Missing
-\gap[-]{longishwords} all \gap[]{over} the \gap[u]{place}.
+\gap[-]{longishwords} all \gap[b]{over} the \gap[u]{place}.
 
 Compare: \gap*[w]{wave} \gap*[u]{uline} \gap*[d]{uuline}
          \gap*[-]{dash} \gap*[.]{dash}!

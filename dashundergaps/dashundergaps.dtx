@@ -243,6 +243,9 @@
 %   marked. It accepts the following values: |underline| (default),
 %   |double-underline|,
 %   |dash|, |dot|, |wave| or |blank|.
+% \item[gap-format-adjust] A boolean (default |true|). If set, the
+%     ``line'' below the gap is raised to be roughly at the baseline
+%     which looks normally better when there is no text above the line.
 % \item[teacher-gap-format] Another choice option to be used in case we
 %   are in ``teacher mode''. It accepts the same values, but this time
 %   the default is |blank| as normally the gap text is typeset in bold
@@ -293,7 +296,8 @@
 % \item[gap-widen] Boolean that decides if the gaps should be made wider
 %   or not (default is |false| but mainly for historical reasons.
 % \item[gap-extend-minimum] Minimum of extra space that should be added
-%   to each gap if gap widening is active. Default is |10pt|.
+%   to each gap if gap widening is active. Default is |20pt|, i.e.,
+%   |10pt| on either side.
 % \item[gap-extend-percent] Percentage (as a number) by which the gap should be made
 %   wider if widening is active. The result is compared to
 %   \option{gap-extend-minimum} and the larger of the two is
@@ -389,12 +393,13 @@
 % \DoNotIndex{\char,\cs_new:Npn,\cs_set:Npn,\dim_new:N,\font,\global,\hyphenchar}
 % \DoNotIndex{\setbox,\string,\UL@hyphenbox,\UL@start}
 % \DoNotIndex{\tl_new:N,\tl_set:Nn,\ifnum,\UL@stop,\dim_set:Nn,\box}
+% \DoNotIndex{\discretionary,\sixly,\p@,\usepackage,\ignorespaces}
 %
 %
 %
 % \section{The Implementation}
 %
-% \subsection{Loading and fixing \pkg{ulem}}
+% \subsection{Loading and fixing/changing \pkg{ulem}}
 %
 % First thing to do is to load \pkg{ulem} without changing \cs{emph}
 % or \cs{em}:
@@ -410,7 +415,8 @@
 %     The dot produce by \cs{dotuline} depends on the current font
 %     which is a somewhat questionable design (if you underline a part
 %     with a single bold word somewhere inside it will change the
-%     shape of the dot line). So we  always use the \cs{normalfont} dot.
+%     shape of the dot line). So we  always use the \cs{normalfont}
+%     dot (which is not done in the original definition).
 %    \begin{macrocode}
 \def\dotuline{\bgroup
   \UL@setULdepth
@@ -419,11 +425,27 @@
      \lower\ULdepth\hbox{\normalfont \kern.1em .\kern.04em}%
      \endgroup}%
   \ULon}
+\MakeRobust\dotuline
 %    \end{macrocode}
 %  \end{macro}
-
-
-
+%
+%
+%
+%  \begin{macro}{\uwave}
+%    The original \cs{uwave} used a hard-wirded value of |3.5pt| for
+%     the lowering. We change that to make it based on the current
+%     value of \cs{ULdepth} so that the user (or this package here)
+%     can change the placement.
+%    \begin{macrocode}
+\def\uwave{\bgroup
+  \UL@setULdepth
+  \advance\ULdepth 0.6\p@
+  \markoverwith{\lower\ULdepth\hbox{\sixly \char58}}\ULon}
+\MakeRobust\uwave
+%    \end{macrocode}
+%  \end{macro}
+%
+%
 %  \begin{macro}[int]{\fmdug@ublank}
 %    \cs{fmdug@ublank} underlines with blanks. Normally not really useful
 %    (which is why we make it internal),
@@ -490,8 +512,8 @@
 %    \begin{macrocode}
 \ProvidesExplPackage
   {dashundergaps}
-  {2018/06/24}
-  {v2.0b}
+  {2018/06/27}
+  {v2.0c}
   {Dashing and underlining phantom text}
 %    \end{macrocode}
 %
@@ -593,6 +615,13 @@
 %    \end{macrocode}
 %
 %
+%    \begin{macrocode}
+\msg_new:nnnn {dashundergaps} {gap-format-value}
+  { Unknown~ value~ for~ key~ '#1 gap-format'! }
+  { Supported~ values~ are~ 'underline',~ 'double-underline',\\
+    'dash',~ 'dot',~ 'wave'~ or~ 'blank'. }
+%    \end{macrocode}
+%
 %
 %
 % \subsubsection{Option handling}
@@ -613,22 +642,62 @@
        % ====================================
       ,gap-format
          .choice:
+%    \end{macrocode}
+%
+%    In case of dashes and even more so in case of dots, it looks
+%    fairly ugly if they are below the baseline as if there is text
+%    above. We there fore raise them up a bit if the option
+%    \texttt{gap-format-adjust} is given (which is the default).
+%
+%    In case of dots we undo
+%    exactly the amount by which they are lowered in \pkg{ulem} so
+%    that they end up precisely at the baseline (just in case they are
+%    followed by a real dot. In other cases we stay a bit below the baseline.
+%
+%     The same is done below when the optional argument is
+%     evaluated. But we don't do this in teacher mode since there we
+%     \emph{will} have text above and don't want to bumpt into that.
+%
+%    \begin{macrocode}
       ,gap-format / underline
-         .code:n = \tl_set:Nn \l_@@_gap_format_tl { \uline }
+         .code:n = \tl_set:Nn \l_@@_gap_format_tl
+                              { \@@_gap_format_adjust:n{.4pt} \uline }
       ,gap-format / double-underline
-         .code:n = \tl_set:Nn \l_@@_gap_format_tl { \uuline }
+         .code:n = \tl_set:Nn \l_@@_gap_format_tl
+                              { \@@_gap_format_adjust:n{2pt} \uuline }
       ,gap-format / dash
-         .code:n = \tl_set:Nn \l_@@_gap_format_tl { \dashuline }
+         .code:n = \tl_set:Nn \l_@@_gap_format_tl
+                              { \@@_gap_format_adjust:n{0pt} \dashuline }
       ,gap-format / dot
-         .code:n = \tl_set:Nn \l_@@_gap_format_tl { \dotuline  }
+         .code:n = \tl_set:Nn \l_@@_gap_format_tl
+                              { \@@_gap_format_adjust:n{-.08ex} \dotuline }
       ,gap-format / wave
-         .code:n = \tl_set:Nn \l_@@_gap_format_tl { \uwave  }
+         .code:n = \tl_set:Nn \l_@@_gap_format_tl
+                              { \@@_gap_format_adjust:n{1pt} \uwave }
       ,gap-format / blank
          .code:n = \tl_set:Nn \l_@@_gap_format_tl { \fmdug@ublank  }
       ,gap-format / unknown
-         .code:n = \tl_set:Nn \l_@@_gap_format_tl { #1 }
+         .code:n = \msg_error:nnn{dashundergaps}{gap-format-value}{}
       ,gap-format
          .initial:n = underline
+       % ====================================
+%    \end{macrocode}
+%     This controls the raising of the gap underline by some
+%     amount. We implement it as a |.choice| even though it looks like
+%     a boolean.
+%    \begin{macrocode}
+       ,gap-format-adjust
+         .choice:
+       ,gap-format-adjust / true
+         .code:n = \cs_set:Npn \@@_gap_format_adjust:n ##1
+                               { \setlength\ULdepth {##1} }
+       ,gap-format-adjust / false
+         .code:n = \cs_set_eq:NN \@@_gap_format_adjust:n \use_none:n
+      ,gap-format-adjust
+         .default:n = true
+      ,gap-format-adjust
+         .initial:n = true
+      ,adjust .meta:n = { gap-format-adjust }
        % ====================================
       ,teacher-gap-format
          .choice:
@@ -645,7 +714,7 @@
       ,teacher-gap-format / blank
          .code:n = \tl_set:Nn \l_@@_teacher_gap_format_tl { \fmdug@ublank }
       ,teacher-gap-format / unknown
-         .code:n = \tl_set:Nn \l_@@_teacher_gap_format_tl { #1 }
+         .code:n = \msg_error:nnn{dashundergaps}{gap-format-value}{teacher-}
       ,teacher-gap-format
          .initial:n = blank
        % ====================================
@@ -656,7 +725,7 @@
       ,widen                 .meta:n = { gap-widen }
        % ------------------
       ,gap-extend-minimum .dim_set:N = \l_@@_gap_min_dim
-      ,gap-extend-minimum .initial:n = 10pt
+      ,gap-extend-minimum .initial:n = 20pt
        % ------------------
       ,gap-extend-percent .tl_set:N  = \l_@@_gap_percent_tl
       ,gap-extend-percent .initial:n = 20
@@ -778,12 +847,12 @@
         \cs_set:Npn   \fmdug@box ##1 {\hbox_to_wd:nn{\box_wd:N ##1}{}}
         \str_case:nnF {#2}
             {
-              {u} { \uline }
-              {d} { \uuline }
-              {w} { \uwave }
+              {u} { \@@_gap_format_adjust:n{.4pt}   \uline  }
+              {d} { \@@_gap_format_adjust:n{2pt}    \uuline }
+              {w} { \@@_gap_format_adjust:n{1pt}    \uwave  }
               {b} { \fmdug@ublank }
-              {.} { \dotuline }
-              {-} { \dashuline }
+              {.} { \@@_gap_format_adjust:n{-.08ex} \dotuline }
+              {-} { \@@_gap_format_adjust:n{0pt}   \dashuline }
             }
             { \l_@@_gap_format_tl }
       }

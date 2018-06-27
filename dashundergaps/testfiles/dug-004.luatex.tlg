@@ -3,7 +3,7 @@ Don't change this file in any respect.
 Overfull \hbox (3.58014pt too wide) in paragraph at lines 18--20
 []\T1/lmr/m/n/10 Test for ex-plicit hy-phen in the next gap: |   []|   [][]|   
 [][]|   [][]|   [][]|   [][]
-\hbox(6.88875+2.9)x345.0, glue set - 1.0, direction TLT
+\hbox(6.88875+1.94443)x345.0, glue set - 1.0, direction TLT
 .\localpar
 ..\localinterlinepenalty=0
 ..\localbrokenpenalty=0
@@ -62,7 +62,7 @@ Overfull \hbox (3.58014pt too wide) in paragraph at lines 18--20
 .\penalty 10000
 .\glue -0.24089
 .\leaders 24.89844
-..\rule(-2.5+2.9)x*
+..\rule(0.0+0.4)x*
 .\glue -0.24089
 .\kern-24.41666
 .\hbox(0.0+0.0)x24.41666, direction TLT
@@ -71,7 +71,7 @@ Overfull \hbox (3.58014pt too wide) in paragraph at lines 18--20
 .\penalty 10000
 .\glue -0.24089
 .\leaders 13.00911
-..\rule(-2.5+2.9)x*
+..\rule(0.0+0.4)x*
 .\glue -0.24089
 .\kern-12.52733
 .\hbox(0.0+0.0)x12.52733, direction TLT
@@ -83,7 +83,7 @@ Overfull \hbox (3.58014pt too wide) in paragraph at lines 18--20
 .\penalty 10000
 .\glue -0.24089
 .\leaders 39.5181
-..\rule(-2.5+2.9)x*
+..\rule(0.0+0.4)x*
 .\glue -0.24089
 .\kern-39.03632
 .\hbox(0.0+0.0)x39.03632, direction TLT
@@ -95,7 +95,7 @@ Overfull \hbox (3.58014pt too wide) in paragraph at lines 18--20
 .\penalty 10000
 .\glue -0.24089
 .\leaders 29.17664
-..\rule(-2.5+2.9)x*
+..\rule(0.0+0.4)x*
 .\glue -0.24089
 .\kern-28.69485
 .\hbox(0.0+0.0)x28.69485, direction TLT
@@ -107,7 +107,7 @@ Overfull \hbox (3.58014pt too wide) in paragraph at lines 18--20
 .\penalty 10000
 .\glue -0.24089
 .\leaders 30.57361
-..\rule(-2.5+2.9)x*
+..\rule(0.0+0.4)x*
 .\glue -0.24089
 .\kern-30.09183
 .\hbox(0.0+0.0)x30.09183, direction TLT
@@ -119,7 +119,7 @@ Overfull \hbox (3.58014pt too wide) in paragraph at lines 18--20
 .\penalty 10000
 .\glue -0.24089
 .\leaders 41.21109
-..\rule(-2.5+2.9)x*
+..\rule(0.0+0.4)x*
 .\glue -0.24089
 .\kern-40.72931
 .\hbox(0.0+0.0)x40.72931, direction TLT
@@ -315,7 +315,7 @@ Completed box being shipped out [1]
 ..\vbox(550.0+0.0)x345.0, glue set 503.94617fil, direction TLT
 ...\write-{}
 ...\glue(\topskip) 3.11125
-...\hbox(6.88875+2.9)x345.0, glue set - 1.0, direction TLT
+...\hbox(6.88875+1.94443)x345.0, glue set - 1.0, direction TLT
 ....\localpar
 .....\localinterlinepenalty=0
 .....\localbrokenpenalty=0
@@ -374,7 +374,7 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\glue -0.24089
 ....\leaders 24.89844
-.....\rule(-2.5+2.9)x*
+.....\rule(0.0+0.4)x*
 ....\glue -0.24089
 ....\kern-24.41666
 ....\hbox(0.0+0.0)x24.41666, direction TLT
@@ -383,7 +383,7 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\glue -0.24089
 ....\leaders 13.00911
-.....\rule(-2.5+2.9)x*
+.....\rule(0.0+0.4)x*
 ....\glue -0.24089
 ....\kern-12.52733
 ....\hbox(0.0+0.0)x12.52733, direction TLT
@@ -395,7 +395,7 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\glue -0.24089
 ....\leaders 39.5181
-.....\rule(-2.5+2.9)x*
+.....\rule(0.0+0.4)x*
 ....\glue -0.24089
 ....\kern-39.03632
 ....\hbox(0.0+0.0)x39.03632, direction TLT
@@ -407,7 +407,7 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\glue -0.24089
 ....\leaders 29.17664
-.....\rule(-2.5+2.9)x*
+.....\rule(0.0+0.4)x*
 ....\glue -0.24089
 ....\kern-28.69485
 ....\hbox(0.0+0.0)x28.69485, direction TLT
@@ -419,7 +419,7 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\glue -0.24089
 ....\leaders 30.57361
-.....\rule(-2.5+2.9)x*
+.....\rule(0.0+0.4)x*
 ....\glue -0.24089
 ....\kern-30.09183
 ....\hbox(0.0+0.0)x30.09183, direction TLT
@@ -431,7 +431,7 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\glue -0.24089
 ....\leaders 41.21109
-.....\rule(-2.5+2.9)x*
+.....\rule(0.0+0.4)x*
 ....\glue -0.24089
 ....\kern-40.72931
 ....\hbox(0.0+0.0)x40.72931, direction TLT
@@ -441,13 +441,13 @@ Completed box being shipped out [1]
 ....\discretionary (penalty 50)
 ....\glue(\rightskip) 0.0
 ...\penalty 400
-...\glue(\baselineskip) 1.6
-...\hbox(7.5+2.9)x345.0, glue set - 0.839, direction TLT
+...\glue(\baselineskip) 2.55557
+...\hbox(7.5+2.5)x345.0, glue set - 0.839, direction TLT
 ....\rule(*+*)x0.0
 ....\penalty 10000
 ....\glue -0.24089
 ....\leaders 45.42819
-.....\rule(-2.5+2.9)x*
+.....\rule(0.0+0.4)x*
 ....\glue -0.24089
 ....\kern-44.94641
 ....\hbox(0.0+0.0)x44.94641, direction TLT
@@ -459,7 +459,7 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\glue -0.24089
 ....\leaders 29.07208
-.....\rule(-2.5+2.9)x*
+.....\rule(0.0+0.4)x*
 ....\glue -0.24089
 ....\kern-28.5903
 ....\hbox(0.0+0.0)x28.5903, direction TLT
@@ -471,7 +471,7 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\glue -0.24089
 ....\leaders 47.18474
-.....\rule(-2.5+2.9)x*
+.....\rule(0.0+0.4)x*
 ....\glue -0.24089
 ....\kern-46.70296
 ....\hbox(0.0+0.0)x46.70296, direction TLT
@@ -480,7 +480,7 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\glue -0.24089
 ....\leaders 24.89844
-.....\rule(-2.5+2.9)x*
+.....\rule(0.0+0.4)x*
 ....\glue -0.24089
 ....\kern-24.41666
 ....\hbox(0.0+0.0)x24.41666, direction TLT
@@ -541,7 +541,7 @@ Completed box being shipped out [1]
 ....\glue(\parfillskip) 0.0 plus 1.0fil
 ....\glue(\rightskip) 0.0
 ...\glue(\parskip) 0.0 plus 1.0
-...\glue(\baselineskip) 2.10953
+...\glue(\baselineskip) 2.50952
 ...\hbox(6.99048+1.94443)x345.0, glue set - 1.0, direction TLT
 ....\localpar
 .....\localinterlinepenalty=0

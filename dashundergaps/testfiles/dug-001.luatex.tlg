@@ -201,7 +201,7 @@ Don't change this file in any respect.
 * kept forever I strongly encourage you to remove it from your document.
 *************************************************
 )
-Overfull \hbox (6.13483pt too wide) in paragraph at lines 23--25
+Overfull \hbox (6.13483pt too wide) in paragraph at lines 25--27
 []\T1/lmr/m/n/10 Here we have a |   []   |   []   |   []   |   []   |   []   | 
   []   |   [] (1) in. Miss-ing |   []
 \hbox(7.5+2.5)x345.0, glue set - 1.0, direction TLT
@@ -384,7 +384,7 @@ Overfull \hbox (6.13483pt too wide) in paragraph at lines 23--25
 ..\T1/lmr/bx/n/10 d
 ..\T1/lmr/bx/n/10 s
 .\glue(\rightskip) 0.0
-Overfull \hbox (6.13483pt too wide) in paragraph at lines 28--30
+Overfull \hbox (6.13483pt too wide) in paragraph at lines 30--32
 []\T1/lmr/m/n/10 Here we have a |   []   |   []   |   []   |   []   |   []   | 
   []   |   [] (1) in. Miss-ing |   []
 \hbox(7.5+2.5)x345.0, glue set - 1.0, direction TLT
@@ -567,6 +567,36 @@ Overfull \hbox (6.13483pt too wide) in paragraph at lines 28--30
 ..\T1/lmr/bx/n/10 d
 ..\T1/lmr/bx/n/10 s
 .\glue(\rightskip) 0.0
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+! dashundergaps error: "gap-format-value"
+! 
+! Unknown value for key 'gap-format'!
+! 
+! See the dashundergaps documentation for further information.
+! 
+! For immediate help type H <return>.
+!...............................................  
+l. ......up{ gap-format=foo, teacher-gap-format=bar }
+|'''''''''''''''''''''''''''''''''''''''''''''''
+| Supported values are 'underline', 'double-underline',
+| 'dash', 'dot', 'wave' or 'blank'.
+|...............................................
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+! dashundergaps error: "gap-format-value"
+! 
+! Unknown value for key 'teacher-gap-format'!
+! 
+! See the dashundergaps documentation for further information.
+! 
+! For immediate help type H <return>.
+!...............................................  
+l. ......up{ gap-format=foo, teacher-gap-format=bar }
+|'''''''''''''''''''''''''''''''''''''''''''''''
+| Supported values are 'underline', 'double-underline',
+| 'dash', 'dot', 'wave' or 'blank'.
+|...............................................
 Completed box being shipped out [1]
 \vbox(633.0+0.0)x407.0, direction TLT
 .\glue 16.0
