@@ -31,8 +31,10 @@
 %
 % \newcommand\option[1]{\texttt{#1}}
 %
-% \title{The \texttt{dashundergaps} package\thanks{A reimplementation of
-%     a package originally written by Luca Merciadri in 2010.}}
+% \title{The \texttt{dashundergaps} package\thanks{This is a
+%    reimplementation (using \texttt{expl3}, the \LaTeX3 programming
+%    language) of a package originally written by Luca Merciadri in
+%    2010.}}
 % \author{Frank Mittelbach}
 %
 % \maketitle
@@ -57,14 +59,14 @@
 % which takes its argument and produces a gap of a width matching its
 % width. To better mark this gap it is underlined in some form (could be
 % a solid line, a dashed or dotted line or even a \uwave{wriggling
-%   line}). Furthermore, each gap might be numbered to be able to easily
+%   line}). Furthermore, some gaps might be numbered to be able to easily
 % refer to it. Here is an example in form of a puzzle:
 %
 %
 % \newcommand\puzzletext{%
 % \begin{quote}
-%   The initial `E.' in Donald E. Knuth's name stands for \gap*{Erwin}.
-%   The well-known  answer to the Ultimate Question \gap{of Life, the
+%   The initial `E.' in Donald E. Knuth's name stands for \gap{Erwin}.
+%   The well-known  answer to the Ultimate Question \gap*{of Life, the
 %   Universe, and Everything} is 42 according to \gap{Douglas Adams}.
 %   The first edition of \gap{The \LaTeX{} Companion} celebrates silver
 %   anniversary in 2019.  Historically speaking, \texttt{expl3} stands for
@@ -89,7 +91,7 @@
 %     radio~show.
 %   \item Back then known as the doggie book.
 %   \item Old names die hard.\\
-%     \mbox{}                      % manual to get same height
+%     \mbox{}                      ^^A manual to get same height
 %   \end{enumerate}
 % \end{multicols}
 % \end{quote}
@@ -191,7 +193,7 @@
 %
 % \begin{function}{\dashundergapssetup}
 %   \begin{syntax}
-% \cs{dashundergapssetup}\Arg{key-value list}
+% \cs{dashundergapssetup}\Arg{comma-separated key-value list}
 %   \end{syntax}
 %   The package can be loaded with a number of options (discussed in
 % Section~\ref{sec:options}). A probably better approach is to set any
@@ -213,25 +215,25 @@
 %
 % All of the package options are implemented as key/value options. In
 % case of boolean options one can just give the option name as a short
-% for setting the option to |true|. Most options can be used during
-% package loading in the optional argument of \cs{usepackage}. However
-% if the value requires some \LaTeX{} code (e.g., \option{gap-font} that
-% expects a font declaration command) then this will not work due to
-% some limitations in the current \LaTeX{} package loader. For such
-% options use
+% form for setting the option to |true|. Most options can be used
+% during package loading in the optional argument of
+% \cs{usepackage}. However if the value requires some \LaTeX{} code
+% (e.g., \option{gap-font} that expects a font declaration command)
+% then this will not work due to some limitations in the current
+% \LaTeX{} package loader. For such options use
 % \cs{dashundergapssetup} instead which will always work.
 %
 % \subsubsection{Gap modus}
 %
 % The general processing mode is defined through the following options:
 % \begin{description}
-% \item[teacher-mode] Boolean that turns on teacher mode (i.e., the gap
+% \item[\option{teacher-mode}] Boolean that turns on teacher mode (i.e., the gap
 %   material will be come visible if set to |true|). It's default is
 %   |false|.
-% \item[gap-mode] Boolean that is the inverse of \option{teacher-mode}
+% \item[\option{gap-mode}] Boolean that is the inverse of \option{teacher-mode}
 %   and just provided for convenience, i.e., you can use it as a short
 %   form for \option{teacher-mode}|=false|.
-% \item[teachermode] Alternative name for \option{teacher-mode} because
+% \item[\option{teachermode}] Alternative name for \option{teacher-mode} because
 %   that is what it was called in the first package release.
 % \end{description}
 %
@@ -239,21 +241,21 @@
 %
 % Formatting of the gaps is handled by the following five options:
 % \begin{description}
-% \item[gap-format] A choice option that defines how the gap is
+% \item[\option{gap-format}] A choice option that defines how the gap is
 %   marked. It accepts the following values: |underline| (default),
 %   |double-underline|,
 %   |dash|, |dot|, |wave| or |blank|.
-% \item[gap-format-adjust] A boolean (default |true|). If set, the
+% \item[\option{gap-format-adjust}] A boolean (default |true|). If set, the
 %     ``line'' below the gap is raised to be roughly at the baseline
 %     which looks normally better when there is no text above the line.
-% \item[teacher-gap-format] Another choice option to be used in case we
-%   are in ``teacher mode''. It accepts the same values, but this time
+% \item[\option{teacher-gap-format}] Another choice option to be used in case we
+%   are in ``teacher mode''. It accepts the same values as \option{gap-format}, but this time
 %   the default is |blank| as normally the gap text is typeset in bold
 %   font and is therefore already identifiable and doesn't additionally
 %   underlining or some sort. However, depending on the circumstances it
 %   might be helpful to keep the underlining (or use a different kind of
 %   underlining) while in ``teacher mode''.
-% \item[gap-font] This option expects a font directive as its value,
+% \item[\option{gap-font}] This option expects a font directive as its value,
 %   e.g., |\bfseries| (which is also the default). Using this option
 %   without suppling a value is equivalent to supplying an empty
 %   value. It will be used to determine the font for the gap material
@@ -263,27 +265,27 @@
 %
 %   For the example puzzle above it was set to |\itshape| which you can
 %   see in the puzzle answer.
-% \item[dash] Short name for \option{gap-format}|=dash|.
-% \item[dot] Short name for \option{gap-format}|=dot|.
+% \item[\option{dash}] Short name for \option{gap-format}|=dash|.
+% \item[\option{dot}] Short name for \option{gap-format}|=dot|.
 % \end{description}
 %
 % \subsubsection{Gap numbers}
 %
 % Producing the gap numbers is handled by the following options:
 % \begin{description}
-% \item[gap-numbers] Boolean that determines whether nor not gap numbers
+% \item[\option{gap-numbers}] Boolean that determines whether nor not gap numbers
 %   are displayed. Default is |true|.
-% \item[gap-number-format] Code that is executed if gap number are
+% \item[\option{gap-number-format}] Code that is executed if gap number are
 %   produced. Default is \verb*|\textnormal{ (\thegapnumber)}|.
-% \item[numbers] Short name for \option{gap-numbers}.
+% \item[\option{numbers}] Short name for \option{gap-numbers}.
 % \end{description}
 %
 % There is also a way to control displaying the total number of gaps:
 % \begin{description}
-% \item[display-total-gaps] Boolean to determine if the total number of
+% \item[\option{display-total-gaps}] Boolean to determine if the total number of
 %   gaps should be shown at the very end of the document. Default is
 %   |false|.
-% \item[displaynbgaps] This is just another name for the same boolean
+% \item[\option{displaynbgaps}] This is just another name for the same boolean
 %   that was used in the first version of the package.
 % \end{description}
 %
@@ -293,16 +295,16 @@
 %
 % Finally, for extending the gap width we have these options:
 % \begin{description}
-% \item[gap-widen] Boolean that decides if the gaps should be made wider
+% \item[\option{gap-widen}] Boolean that decides if the gaps should be made wider
 %   or not (default is |false| but mainly for historical reasons.
-% \item[gap-extend-minimum] Minimum of extra space that should be added
+% \item[\option{gap-extend-minimum}] Minimum of extra space that should be added
 %   to each gap if gap widening is active. Default is |20pt|, i.e.,
 %   |10pt| on either side.
-% \item[gap-extend-percent] Percentage (as a number) by which the gap should be made
+% \item[\option{gap-extend-percent}] Percentage (as a number) by which the gap should be made
 %   wider if widening is active. The result is compared to
 %   \option{gap-extend-minimum} and the larger of the two is
 %   used. Default is |20|.
-% \item[widen] Short name for \option{gap-widen}.
+% \item[\option{widen}] Short name for \option{gap-widen}.
 % \end{description}
 %
 %
@@ -357,8 +359,12 @@
 %   The Use of \cs{label} within the \cs{gap} command argument allows to
 %   later refer to that gap by its number (provided a gap number is typeset);
 % \item The implementation is done with \texttt{expl3} the programming
-%   language for \LaTeX3.
+%   language for \LaTeX3. In some sense that was the main purpose of
+%     the exercise: to see how easy it is to convert a package and use
+%     the extended features of \texttt{expl3}.
 % \end{itemize}
+%
+% \newpage
 %
 % \section{Solution to the puzzle} \label{sec:answer}
 %
@@ -394,6 +400,7 @@
 % \DoNotIndex{\setbox,\string,\UL@hyphenbox,\UL@start}
 % \DoNotIndex{\tl_new:N,\tl_set:Nn,\ifnum,\UL@stop,\dim_set:Nn,\box}
 % \DoNotIndex{\discretionary,\sixly,\p@,\usepackage,\ignorespaces}
+% \DoNotIndex{\cs_set_eq:NN}
 %
 %
 %
@@ -412,7 +419,7 @@
 % the commands like they look in \pkg{ulem} itself.
 %
 %  \begin{macro}{\dotuline}
-%     The dot produce by \cs{dotuline} depends on the current font
+%     The dots produced by \cs{dotuline} depend on the current font
 %     which is a somewhat questionable design (if you underline a part
 %     with a single bold word somewhere inside it will change the
 %     shape of the dot line). So we  always use the \cs{normalfont}
@@ -449,7 +456,7 @@
 %  \begin{macro}[int]{\fmdug@ublank}
 %    \cs{fmdug@ublank} underlines with blanks. Normally not really useful
 %    (which is why we make it internal),
-%    but when we want to have \pkg{ulem} acting---but without actually
+%    but if we want to have \pkg{ulem} acting---but without actually
 %    underlining with something visible---that is the command to use.
 %    \begin{macrocode}
 \def\fmdug@ublank{\bgroup\let\UL@leadtype\@empty\ULon}
@@ -480,20 +487,23 @@
 %    \end{macrocode}
 %  \end{macro}
 %  \end{macro}
-
-
+%
+%
+%
 %  \begin{macro}[int]{\fmdug@box}
-%    By default we output the box, when we don't want to we change the
-%    definition to generate a box with empty content but the right size.
+%    By default we output the box in the commands above, but when we
+%    don't want output anything visible we change the definition to
+%    generate a box with empty content but the right size.
 %    \begin{macrocode}
 \let\fmdug@box\box
 %    \end{macrocode}
 %  \end{macro}
-
-
-
-
-
+%
+%
+%
+%
+%
+%
 %
 %  \subsection{The main implementation part}
 %
@@ -567,7 +577,13 @@
 %
 %
 %  \begin{macro}[int]{\c@totalgapnumber}
-%    We also keep track of all gaps ever made using another user-level counter.
+%    We also keep track of all gaps ever made using another user-level
+%    counter. Since this one is supposed to keep track of the total
+%    number of gaps, it makes little sense to modify it at the
+%    document level. However, there may be use cases even for that and
+%    more importantly, by making it a user-level counter it is
+%    possible to refer to the total number of gaps easily, e.g., via
+%    \cs{thetotalgapnumber}.
 %    \begin{macrocode}
 \newcounter{totalgapnumber}
 %    \end{macrocode}
@@ -579,9 +595,9 @@
 \dim_new:N \l_@@_extend_dim
 %    \end{macrocode}
 %  \end{macro}
-
-
-
+%
+%
+%
 %  \begin{macro}{\l_@@_extra_left_gap_tl}
 %  \begin{macro}{\l_@@_extra_right_gap_tl}
 %    Two scratch token lists to enlarge the gap on the left or right side.
@@ -598,12 +614,10 @@
 %
 %    \begin{macrocode}
 \msg_new:nnn {dashundergaps} {deprecated}
-  {
-    The~ #1~ `#2'~ you~ used~ \msg_line_context: \ is~ deprecated~and~ there~
+  { The~ #1~ `#2'~ you~ used~ \msg_line_context: \ is~ deprecated~and~ there~
     is~ no~ replacement.~ Since~ I~ will~ not~ guarantee~ that~ #1~ `#2'~
     will~ be~ kept~ forever~ I~ strongly~ encourage~ you~ to~ remove~ it~
-    from~ your~ document.
-  }
+    from~ your~ document. }
 %    \end{macrocode}
 %
 %    \begin{macrocode}
@@ -804,15 +818,15 @@
 %    the with of the text and then set \cs{l_@@_extend_dim} to be the
 %    requested percentage divided by two of that width (since we add
 %    it later on both sides.
-
-%    Then compare it to the minimum / 2 and choose whatever is larger.
 %    \begin{macrocode}
     \bool_if:NTF \l_@@_gap_widen_bool
       {
         \settowidth \l_@@_extend_dim {#3}
         \dim_set:Nn \l_@@_extend_dim
                   { \l_@@_gap_percent_tl \l_@@_extend_dim / 200 }
-%
+%    \end{macrocode}
+%    Then compare it to the minimum / 2 and choose whatever is larger.
+%    \begin{macrocode}
        \dim_compare:nNnT \l_@@_extend_dim < { .5\l_@@_gap_min_dim }
           { \dim_set:Nn \l_@@_extend_dim { .5\l_@@_gap_min_dim } }
 %    \end{macrocode}
@@ -867,7 +881,7 @@
     \bool_xor:nnT { #1 } { \l_@@_number_bool }
                   { \l_@@_gapnum_format_tl }
 %    \end{macrocode}
-%
+%    Close the group from above to keepany redefinitions confined.
 %    \begin{macrocode}
   \group_end:
 }
