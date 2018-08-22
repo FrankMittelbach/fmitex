@@ -1,0 +1,3 @@
+2018-08-22  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* package source as copied from CTAN

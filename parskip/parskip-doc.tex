@@ -1,0 +1,58 @@
+\documentclass[pagesize=auto, fontsize=14pt, DIV=10, parskip=half]{scrartcl}
+
+\usepackage{fixltx2e}
+\usepackage{etex}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+\newcommand*{\mail}[1]{\href{mailto:#1}{\texttt{#1}}}
+\newcommand*{\pkg}[1]{\textsf{#1}}
+\newcommand*{\cls}[1]{\textsf{#1}}
+\newcommand*{\cs}[1]{\texttt{\textbackslash#1}}
+\makeatletter
+\newcommand*{\cmd}[1]{\cs{\expandafter\@gobble\string#1}}
+\makeatother
+
+\addtokomafont{title}{\rmfamily}
+
+\title{The \pkg{parskip} package}
+\author{H. Partl\and Robin Fairbairns\thanks{\mail{rf10@cam.ac.uk}}}
+\date{2001/04/09}
+
+
+\begin{document}
+
+\maketitle
+
+This is \texttt{parskip.sty} by H.~Partl, TU Wien, as of 19 Jan 1989.
+Addition (originally from Donald Arseneau) added 2001-12-13 by Robin
+Fairbairns.
+
+Package to be used with any document class at any size.
+It produces the following Paragraph Layout:
+
+\begin{quote}
+  Zero Parindent and non-zero Parskip. The stretchable glue in \cmd{\parskip}
+  helps \LaTeX\ in finding the best place for page breaks.
+\end{quote}
+
+In addition, the package adjusts the skips between list items.
+
+With package option \texttt{parfill}, the package also adjusts
+\cmd\parfillskip{} to impose a minimum space at the end of
+the last line of a paragraph.
+
+This package is no more than quick fix; the `proper' way to achieve
+effects as far-reaching as this is to create a new class.  An
+example class is to be found in the \cls{ntgclass} set:
+\cls{artikel3.cls}
+
+The \cls{koma-script} bundle classes and the \cls{memoir} class all
+provide similar functionality, and their respective documentation
+files discuss the pros (such as they are) and cons of this approach.
+
+\end{document}
