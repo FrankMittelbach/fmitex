@@ -8,3 +8,9 @@ dashundergaps.zip
 dashundergaps/build
 *.pdf
 parskip/build
+*.aux
+*.idx
+*.hd
+*.out
+*.toc
+*.glo
