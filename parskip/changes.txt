@@ -1,3 +1,8 @@
+2018-08-24  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* parskip.dtx version 2.0 with options indent + skip and
+	adjustment for display headings
+
 2018-08-22  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
 
 	* package source as copied from CTAN
