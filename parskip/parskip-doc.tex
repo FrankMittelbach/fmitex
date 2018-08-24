@@ -1,7 +1,5 @@
 \documentclass[pagesize=auto, fontsize=14pt, DIV=10, parskip=half]{scrartcl}
 
-\usepackage{fixltx2e}
-\usepackage{etex}
 \usepackage{lmodern}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
@@ -20,8 +18,8 @@
 \addtokomafont{title}{\rmfamily}
 
 \title{The \pkg{parskip} package}
-\author{H. Partl\and Robin Fairbairns\thanks{\mail{rf10@cam.ac.uk}}}
-\date{2001/04/09}
+\author{H. Partl\and Robin Fairbairns \and Frank Mittelbach}
+\date{2018/08/24}
 
 
 \begin{document}
@@ -30,17 +28,25 @@
 
 This is \texttt{parskip.sty} by H.~Partl, TU Wien, as of 19 Jan 1989.
 Addition (originally from Donald Arseneau) added 2001-12-13 by Robin
-Fairbairns.
+Fairbairns. A reimplementation (adding options) was done 2018-08 by Frank Mittelbach.
 
-Package to be used with any document class at any size.
-It produces the following Paragraph Layout:
+The package can be used with any document class at any size.
+By default it produces the following Paragraph Layout:
 
 \begin{quote}
   Zero Parindent and non-zero Parskip. The stretchable glue in \cmd{\parskip}
   helps \LaTeX\ in finding the best place for page breaks.
 \end{quote}
 
-In addition, the package adjusts the skips between list items.
+In addition, the package adjusts the skips between list items, TOCs and headings.
+
+With the package option \texttt{skip} it is possible to explicitly
+specify the vertical space between paragraphs.
+
+With the package option \texttt{indent} it is possible to explicitly
+the paragraph indentation. Using this option without a value keeps the
+document class indentation. Without the option the indentation is set
+to zero.
 
 With package option \texttt{parfill}, the package also adjusts
 \cmd\parfillskip{} to impose a minimum space at the end of

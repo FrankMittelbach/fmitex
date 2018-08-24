@@ -8,3 +8,6 @@ dashundergaps.zip
 dashundergaps/build
 *.pdf
 parskip/build
+*.synctex.gz
+*.aux
+*.out

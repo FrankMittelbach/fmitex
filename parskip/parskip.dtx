@@ -35,7 +35,7 @@
 %
 % \title{The \texttt{parskip} package\thanks{This is a
 %    reimplementation of a package originally written by Hubert Partl
-% in 1989 and later maintained by Robin Fairbains.}}
+% in 1989 and later maintained by Robin Fairbairns.}}
 % \author{Frank Mittelbach}
 %
 % \maketitle
@@ -45,45 +45,78 @@
 %   where the paragraphs are separated by a vertical space instead of
 %   (or in addition to) indenting them.
 %
-%   the package can be used with any document class at any size.  By
+%   The package can be used with any document class at any size.  By
 %   default it produces the following paragraph layout: Zero
 %   \cs{parindent} and non-zero \cs{parskip}. The stretchable glue in
-%   \cs{parskip} helps \LaTeX\ in finding the best place for page
+%   \cs{parskip} helps \LaTeX{} in finding the best place for page
 %   breaks.
-%
-%   This package is no more than quick fix; the `proper' way to
-%   achieve effects as far-reaching as this is to create a new class.
-%   An example class is to be found in the ntgclass set: \texttt{artikel3.cls}
 %
 % \end{abstract}
 %
+% \section{Introduction}
+%
+% Many \LaTeX{} constructs are internally built by using the paragraph
+% mechanism even if technically there aren't text paragraphs. In most
+% such cases the \LaTeX{} code handles indentation and suppressed it
+% if necessary. But unfortunately this is normally not done for
+% \cs{parskip} (as that is zero in the default layouts) and thus
+% changing it will result in vertical spaces in unexpected places.
+%
+% This package attempts to fix the spacing in table of contents
+% structures, list environments, and around display headings that would
+% get screwed up by a positive \cs{parskip} value.
+% 
+%   It is, however, is no more than quick fix; the `proper' way to
+%   achieve effects as far-reaching as this is to create a new class.
+%
+%
 % \section{The user interface}
 %
-%
-% The \pkg{parskip} package 
-%
-%
+% The \pkg{parskip} package doesn't offer any document user commands
+% and just needs loading with \cs{usepackage}.
 %
 %
 % \subsection{Options to customize the package}\label{sec:options}
 %
 % All of the package options are implemented as key/value options.
+% \begin{description}
+% \item[\option{skip}]
+%    With the package option \texttt{skip} it is possible to explicitly
+%    specify the vertical space between paragraphs. If the option is
+%    not given (or given without a value) then \verb=.5\baselineskip=
+%   plus \texttt{2pt} of stretch is assumed.
+% \item[\option{indent}]
+%    With the package option \texttt{indent} it is possible to explicitly
+%    the paragraph indentation. Using this option without a value keeps the
+%    document class indentation unchanged, if it is specified with a
+%    value then that value is used. If the package is loaded without
+%    this option
+%    the indentation is set
+%    to zero.
+% \item[\option{parfill}]
+%    With package option \texttt{parfill}, the package also adjusts
+%    \cs{parfillskip} to impose a minimum space at the end of
+%    the last line of a paragraph. If specified without a value then
+%    \texttt{30pt} are assumed, if a value is given that that forms the minimum.
+% \end{description}
 %
 %
 % \section{Differences to the original package}
 %
-% The main user interface of the two versions is identical so that it is
-% possible to use the new version as a drop-in replacement for the
-% old. However, the feature set in form of key/value options has be
-% extended offering functionality that have been previously
-% unavailable.
-%
-% \begin{itemize}
-% \item
-% \end{itemize}
-%
+% If the package us used without any options or just with the option
+% \option{parfill} it behaves like the earlier version, except that now
+% the spacing around headings is also adjusted (not adding extra
+% \cs{parskip}).  If this is not desirable when processing an  old
+% document it can be avoided by explicitly
+% requesting version \texttt{v1} as follows:
+%\begin{verbatim}
+%   \usepackage{parskip}[=v1]
+%\end{verbatim}
+% Of course, they new options etc are then also bot available.
 %
 % \section{The Implementation}
+%
+% \setcounter{StandardModuleDepth}{1}  ^^A everything is inside a module
 %
 %    \begin{macrocode}
 %<*package>
@@ -95,8 +128,14 @@
 %
 %
 %    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{parskip}[2018/08/24 non-zero parskip adjustments]
+\NeedsTeXFormat{LaTeX2e}[2018-04-01]
+
+\DeclareRelease{v1}{2001-12-13}{parskip-2001-12-13.sty}
+\DeclareCurrentRelease{}{2018-08-24}
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\ProvidesPackage{parskip}[2018-08-24 non-zero parskip adjustments]
 %    \end{macrocode}
 %
 %
@@ -117,7 +156,7 @@
 \DeclareStringOption[0pt]{indent}[\parindent]
 %    \end{macrocode}
 %
-%   The key \option{parfill} defines a minium amount of white space
+%   The key \option{parfill} defines a minimum amount of white space
 %   that should be left in the last line. By default the last line can
 %   get completely fill up. If given without a value the default (as
 %   before) is to require a minimum of \texttt{30pt}, otherwise the
@@ -143,6 +182,37 @@
 \ProcessKeyvalOptions*
 %    \end{macrocode}
 %
+%    So now we can evaluate the given options and adjust the
+%    parameter settings:
+%    \begin{macrocode}
+\ifx\parskip@skip\@empty
+%    \end{macrocode}
+%    If no \option{skip} was given (or it was empty) set \cs{parskip}
+%    to \verb=.5\baselineskip= plus \texttt{2pt} stretch. This has to
+%    be done in 2 steps as \cs{baselineskip} might already contain a stretch.
+%    \begin{macrocode}
+  \parskip.5\baselineskip
+  \advance\parskip 0pt plus 2pt\relax
+\else
+%    \end{macrocode}
+%    Otherwise set it to the specified value:
+%    \begin{macrocode}
+  \parskip\parskip@skip\relax
+\fi
+%    \end{macrocode}
+%    Setting \cs{parfillskip} was suggested by Donald Arseneau at some
+%    point on comp.text.tex:
+%    \begin{macrocode}
+\parfillskip \parskip@parfill\relax
+\advance\parfillskip 0pt plus 1fil\relax
+%    \end{macrocode}
+%    \cs{parindent} gets whatever was specified. If the key was given
+%    without an option this will essentially reassign the now ``current'' value.
+%    \begin{macrocode}
+\parindent\parskip@indent\relax
+%    \end{macrocode}
+%
+%
 %
 % \subsection{Handling document elements}
 %
@@ -157,31 +227,46 @@
 %
 % \subsubsection{Lists}
 %
-%    \begin{macrocode}
-% To accompany this, the vertical spacing in the list environments is changed
-% to use the same as \parskip in all relevant places (for normalsize only):
+%    To accompany this, the vertical spacing in the list environments is changed
+%    to use the same as \cs{parskip} in all relevant places (for
+%    normalsize only), i.e.
+%\begin{verbatim}
 %   \parsep = \parskip
 %   \itemsep = \z@ % add nothing to \parskip between items
 %   \topsep = \z@ % add nothing to \parskip before first item
-
-\def\@listI{\leftmargin\leftmargini
-   \topsep\z@ \parsep\parskip \itemsep\z@}
-\let\@listi\@listI
-\@listi
-     
-\def\@listii{\leftmargin\leftmarginii
-   \labelwidth\leftmarginii\advance\labelwidth-\labelsep
-   \topsep\z@ \parsep\parskip \itemsep\z@}
-     
-\def\@listiii{\leftmargin\leftmarginiii
-    \labelwidth\leftmarginiii\advance\labelwidth-\labelsep
-    \topsep\z@ \parsep\parskip \itemsep\z@}
-     
-% and, now...
+%\end{verbatim}
+%
+%    However, if the user explicitly asked for a zero parskip (via the \option{skip} option) we
+%    shouldn't do this but rather keep the default list settings, so
+%    we better check for this.
+%
+%    \begin{macrocode}
+\ifdim \parskip > 0pt
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+  \def\@listI{\leftmargin\leftmargini
+     \topsep\z@ \parsep\parskip \itemsep\z@}
+  \let\@listi\@listI
+  \@listi
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+  \def\@listii{\leftmargin\leftmarginii
+     \labelwidth\leftmarginii\advance\labelwidth-\labelsep
+     \topsep\z@ \parsep\parskip \itemsep\z@}
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+  \def\@listiii{\leftmargin\leftmarginiii
+      \labelwidth\leftmarginiii\advance\labelwidth-\labelsep
+      \topsep\z@ \parsep\parskip \itemsep\z@}
+%     
+% and finally ...
 %   \partopsep = \z@ % don't even add anything before first item (beyond 
 %                    % \parskip) even if the list is preceded by a blank line
-\partopsep=\z@
-
+  \partopsep=\z@
+\fi
 %    \end{macrocode}
 %
 %
@@ -205,7 +290,7 @@
 % \subsubsection{Standard headings}
 %
 %  For the same reason we don't want to see an additional \cs{parskip}
-% being added before and after a display heading, so we substract its
+% being added before and after a display heading, so we subtract its
 % value (in two places):
 %    \begin{macrocode}
 \patchcmd\@startsection
@@ -233,7 +318,7 @@
 % document and test for it:
 %    \begin{macrocode}
 \AtBeginDocument{%    
-\ifx\ttl@straight@ii\@undefined\else  % titsec got loaded
+\ifx\ttl@straight@ii\@undefined\else  % titlesec got loaded
 \patchcmd\ttl@straight@ii
     {\addvspace{\@tempskipa}}%
     {\advance\@tempskipa-\parskip \addvspace\@tempskipa}%
@@ -265,38 +350,6 @@
 %
 % \subsection{Closing shop}
 %
-%    At begin of document we evaluate the given options and adjust the
-%    parameter settings:
-%    \begin{macrocode}
-\AtBeginDocument{%
-  \ifx\parskip@skip\@empty
-%    \end{macrocode}
-%    If no \option{skip} was given (or it was empty) set \cs{parskip}
-%    to \verb=.5\baselineskip= plus \texttt{2pt} stretch. This has to
-%    be done in 2 steps as \cs{baselineskip} might already contain a stretch.
-%    \begin{macrocode}
-    \parskip.5\baselineskip
-    \advance\parskip 0pt plus 2pt\relax
-  \else
-%    \end{macrocode}
-%    Otherwise set it to the specified value:
-%    \begin{macrocode}
-    \parskip\parskip@skip\relax
-  \fi
-%    \end{macrocode}
-%    Setting \cs{parfillskip} was suggested by Donald Arseneau at some
-%    point on comp.text.tex:
-%    \begin{macrocode}
-  \parfillskip \parskip@parfill\relax
-  \advance\parfillskip 0pt plus 1fil\relax
-%    \end{macrocode}
-%    \cs{parindent} gets whatever was specified. If the key was given
-%    without an option this will essentially reassign the now ``current'' value.
-%    \begin{macrocode}
-  \parindent\parskip@indent\relax
-}     
-%    \end{macrocode}
-
 
 %    \begin{macrocode}
 %<*package>
