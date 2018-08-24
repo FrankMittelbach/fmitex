@@ -1,0 +1,533 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+(parskip.sty
+(../kvoptions.sty
+(../keyval.sty
+\KV@toks@=\toks...
+)
+(../ltxcmds.sty
+)
+(../kvsetkeys.sty
+(../infwarerr.sty
+)
+(../etexcmds.sty
+(../ifluatex.sty
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(../etoolbox.sty
+\etb@tempcnta=\count...
+))
+(parskip-003.toc)
+\tf@toc=\write...
+Completed box being shipped out [1]
+\vbox(633.0+0.0)x407.0
+.\glue 16.0
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 133.93852fil
+...\write-{}
+...\glue(\topskip) 0.0
+...\hbox(10.0512+0.17279)x345.0, glue set 251.68323fil
+....\hbox(0.0+0.0)x0.0
+.....\glue 0.0
+....\TU/lmr/bx/n/14.4 Contents
+....\penalty 10000
+....\glue(\parfillskip) 30.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 10000
+...\glue -2.087 plus 0.86198
+...\glue 2.087 plus -0.86198
+...\glue 10.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 4.84721
+...\hbox(6.98+0.0)x345.0, glue set 305.80997fil
+....\glue(\leftskip) 15.0
+....\glue -15.0
+....\hbox(6.55+0.0)x15.0, glue set 9.25fil
+.....\TU/lmr/bx/n/10 1
+.....\glue 0.0 plus 1.0fil
+....\TU/lmr/bx/n/10 A
+....\penalty 10000
+....\glue 0.0 plus 1.0fil
+....\penalty 10000
+....\hbox(6.55+0.0)x15.50003, glue set 9.75003fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+.....\TU/lmr/bx/n/10 1
+....\penalty 10000
+....\glue(\parfillskip) -15.50003
+....\glue(\rightskip) 15.50003
+...\penalty -300
+...\glue 10.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 5.14
+...\hbox(6.86+0.0)x345.0, glue set 306.31996fil
+....\glue(\leftskip) 15.0
+....\hbox(0.0+0.0)x0.0
+....\glue -15.0
+....\hbox(6.55+0.0)x15.0, glue set 9.25fil
+.....\TU/lmr/bx/n/10 2
+.....\glue 0.0 plus 1.0fil
+....\TU/lmr/bx/n/10 B
+....\penalty 10000
+....\glue 0.0 plus 1.0fil
+....\penalty 10000
+....\hbox(6.55+0.0)x15.50003, glue set 9.75003fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+.....\TU/lmr/bx/n/10 1
+....\penalty 10000
+....\glue(\parfillskip) -15.50003
+....\glue(\rightskip) 15.50003
+...\penalty -300
+...\glue 3.08499 plus 4.31 minus 0.86198
+...\glue(\parskip) 12.0
+...\glue(\baselineskip) 7.92
+...\hbox(10.08+0.0)x345.0, glue set 280.25282fil
+....\hbox(9.4464+0.0)x22.50719
+.....\glue 0.0
+.....\TU/lmr/bx/n/14.4 1
+.....\glue 14.4
+....\TU/lmr/bx/n/14.4 A
+....\penalty 10000
+....\glue(\parfillskip) 30.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline \ETC.}
+...\penalty 10000
+...\glue -2.087 plus 0.86198
+...\glue(\parskip) 12.0
+...\glue(\baselineskip) 5.06
+...\hbox(6.94+2.05998)x345.0, glue set 189.64998fil
+....\TU/lmr/m/n/10 Here
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 we
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 have
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 a
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 a
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 paragraph.
+....\penalty 10000
+....\glue(\parfillskip) 30.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 12.0
+...\glue(\baselineskip) 2.78001
+...\hbox(7.16+0.10999)x345.0, glue set 169.04fil
+....\hbox(0.0+0.0)x25.0
+....\TU/lmr/m/n/10 And
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 here
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 is
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 the
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 second
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 one.
+....\penalty 10000
+....\glue(\parfillskip) 30.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty -51
+...\glue 12.0
+...\glue -12.0
+...\glue 0.0
+...\glue(\parskip) 12.0
+...\glue(\baselineskip) 4.73001
+...\hbox(7.16+0.0)x320.0, glue set 312.5fil, shifted 25.0
+....\hbox(3.75+0.0)x0.0
+.....\glue 0.0
+.....\glue -20.0
+.....\glue -5.0
+.....\hbox(3.75+0.0)x20.0, glue set 20.0fil
+......\glue 0.0 plus 1.0fil minus 1.0fil
+......\hbox(3.75+0.0)x0.0, glue set - 7.78fil
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+.......\TU/lmr/m/n/10 •
+.....\glue 5.0
+....\penalty 0
+....\TU/lmr/m/n/10 A
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty -51
+...\glue 0.0
+...\glue(\parskip) 12.0
+...\glue(\baselineskip) 5.17
+...\hbox(6.83+0.0)x320.0, glue set 312.92fil, shifted 25.0
+....\hbox(3.75+0.0)x0.0
+.....\glue 0.0
+.....\glue -20.0
+.....\glue -5.0
+.....\hbox(3.75+0.0)x20.0, glue set 20.0fil
+......\glue 0.0 plus 1.0fil minus 1.0fil
+......\hbox(3.75+0.0)x0.0, glue set - 7.78fil
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+.......\TU/lmr/m/n/10 •
+.....\glue 5.0
+....\penalty 0
+....\TU/lmr/m/n/10 B
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty -51
+...\glue 0.0
+...\glue(\parskip) 12.0
+...\glue(\baselineskip) 5.85
+...\hbox(6.15+0.10999)x345.0, glue set 244.65999fil
+....\TU/lmr/m/n/10 some
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 more
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 text.
+....\penalty 10000
+....\glue(\parfillskip) 30.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 12.0
+...\glue(\baselineskip) 4.73001
+...\hbox(7.16+0.10999)x345.0, glue set 176.26999fil
+....\hbox(0.0+0.0)x25.0
+....\TU/lmr/m/n/10 And
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 here
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 is
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 the
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 third
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 one.
+....\penalty 10000
+....\glue(\parfillskip) 30.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty -300
+...\glue 3.08499 plus 4.31 minus 0.86198
+...\glue(\parskip) 12.0
+...\glue(\baselineskip) 8.01161
+...\hbox(9.8784+0.0)x345.0, glue set 280.97282fil
+....\hbox(9.4464+0.0)x22.50719
+.....\glue 0.0
+.....\TU/lmr/bx/n/14.4 2
+.....\glue 14.4
+....\TU/lmr/bx/n/14.4 B
+....\penalty 10000
+....\glue(\parfillskip) 30.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline \ETC.}
+...\penalty 10000
+...\glue -2.087 plus 0.86198
+...\glue(\parskip) 12.0
+...\glue(\baselineskip) 5.06
+...\hbox(6.94+2.05998)x345.0, glue set - 0.47978
+....\TU/lmr/m/n/10 Lorem
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 ipsum
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 dolor
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 sit
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 amet,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 consectetuer
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 adipiscing
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 elit.
+....\glue 4.44 plus 4.99498 minus 0.37
+....\TU/lmr/m/n/10 Ut
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 purus
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 elit,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 vestibu-
+....\glue(\rightskip) 0.0
+...\penalty 10100
+...\glue(\baselineskip) 2.89001
+...\hbox(7.05+2.05998)x345.0, glue set 0.40276
+....\TU/lmr/m/n/10 lum
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 ut,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 placerat
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 ac,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 adipiscing
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 vitae,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 felis.
+....\glue 4.44 plus 4.99498 minus 0.37
+....\TU/lmr/m/n/10 Curabitur
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 dictum
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 gravida
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 mauris.
+....\glue(\rightskip) 0.0
+...\glue(\baselineskip) 3.00002
+...\hbox(6.94+2.05998)x345.0, glue set 0.28275
+....\TU/lmr/m/n/10 Nam
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 arcu
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 libero,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 nonummy
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 eget,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 consectetuer
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 id,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 vulputate
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 a,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 magna.
+....\glue 4.44 plus 4.99498 minus 0.37
+....\TU/lmr/m/n/10 Donec
+....\glue(\rightskip) 0.0
+...\glue(\baselineskip) 3.00002
+...\hbox(6.94+2.05998)x345.0, glue set 0.03554
+....\TU/lmr/m/n/10 vehicula
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 augue
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 eu
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 neque.
+....\glue 4.44 plus 4.99498 minus 0.37
+....\TU/lmr/m/n/10 Pellentesque
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 habitant
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 morbi
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 tristique
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 senectus
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 et
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 ne-
+....\glue(\rightskip) 0.0
+...\penalty 100
+...\glue(\baselineskip) 2.89001
+...\hbox(7.05+2.05998)x345.0, glue set 0.40541
+....\TU/lmr/m/n/10 tus
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 et
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 malesuada
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 fames
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 ac
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 turpis
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 egestas.
+....\glue 4.44 plus 4.99498 minus 0.37
+....\TU/lmr/m/n/10 Mauris
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 ut
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 leo.
+....\glue 4.44 plus 4.99498 minus 0.37
+....\TU/lmr/m/n/10 Cras
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 viverra
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 metus
+....\glue(\rightskip) 0.0
+...\glue(\baselineskip) 2.89001
+...\hbox(7.05+2.05998)x345.0, glue set 0.52039
+....\TU/lmr/m/n/10 rhoncus
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 sem.
+....\glue 4.44 plus 4.99498 minus 0.37
+....\TU/lmr/m/n/10 Nulla
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 et
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 lectus
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 vestibulum
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 urna
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 fringilla
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 ultrices.
+....\glue 4.44 plus 4.99498 minus 0.37
+....\TU/lmr/m/n/10 Phasellus
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 eu
+....\glue(\rightskip) 0.0
+...\glue(\baselineskip) 3.00002
+...\hbox(6.94+2.05998)x345.0, glue set 0.45023
+....\TU/lmr/m/n/10 tellus
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 sit
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 amet
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 tortor
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 gravida
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 placerat.
+....\glue 4.44 plus 4.99498 minus 0.37
+....\TU/lmr/m/n/10 Integer
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 sapien
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 est,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 iaculis
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 in,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 pretium
+....\glue(\rightskip) 0.0
+...\glue(\baselineskip) 2.78001
+...\hbox(7.16+2.05998)x345.0, glue set 0.48862
+....\TU/lmr/m/n/10 quis,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 viverra
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 ac,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 nunc.
+....\glue 4.44 plus 4.99498 minus 0.37
+....\TU/lmr/m/n/10 Praesent
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 eget
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 sem
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 vel
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 leo
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 ultrices
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 bibendum.
+....\glue 4.44 plus 4.99498 minus 0.37
+....\TU/lmr/m/n/10 Aenean
+....\glue(\rightskip) 0.0
+...\glue(\baselineskip) 2.89001
+...\hbox(7.05+1.93999)x345.0, glue set 0.22748
+....\TU/lmr/m/n/10 faucibus.
+....\glue 4.44 plus 4.99498 minus 0.37
+....\TU/lmr/m/n/10 Morbi
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 dolor
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 nulla,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 malesuada
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 eu,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 pulvinar
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 at,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 mollis
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 ac,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 nulla.
+....\glue 4.44 plus 4.99498 minus 0.37
+....\TU/lmr/m/n/10 Cur-
+....\glue(\rightskip) 0.0
+...\penalty 100
+...\glue(\baselineskip) 3.12001
+...\hbox(6.94+2.05998)x345.0, glue set 0.00406
+....\TU/lmr/m/n/10 abitur
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 auctor
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 semper
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 nulla.
+....\glue 4.44 plus 4.99498 minus 0.37
+....\TU/lmr/m/n/10 Donec
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 varius
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 orci
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 eget
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 risus.
+....\glue 4.44 plus 4.99498 minus 0.37
+....\TU/lmr/m/n/10 Duis
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 nibh
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 mi,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 congue
+....\glue(\rightskip) 0.0
+...\glue(\baselineskip) 2.89001
+...\hbox(7.05+2.05998)x345.0, glue set - 0.49355
+....\TU/lmr/m/n/10 eu,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 accumsan
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 eleifend,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 sagittis
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 quis,
+....\glue 3.33 plus 2.08124 minus 0.888
+....\TU/lmr/m/n/10 diam.
+....\glue 4.44 plus 4.99498 minus 0.37
+....\TU/lmr/m/n/10 Duis
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 eget
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 orci
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 sit
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 amet
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 orci
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 dignissim
+....\glue(\rightskip) 0.0
+...\penalty 150
+...\glue(\baselineskip) 3.79002
+...\hbox(6.15+0.10999)x345.0, glue set 281.04fil
+....\TU/lmr/m/n/10 rutrum.
+....\penalty 10000
+....\glue(\parfillskip) 30.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue -0.10999
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.34
+..\hbox(6.66+0.0)x345.0, glue set 170.0fil
+...\glue 0.0 plus 1.0fil
+...\TU/lmr/m/n/10 1
+...\glue 0.0 plus 1.0fil
+(parskip-003.aux)

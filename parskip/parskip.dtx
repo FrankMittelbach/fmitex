@@ -1,0 +1,307 @@
+% \iffalse meta-comment
+%
+%% File: parskip.dtx (C) Copyright 2018 Frank Mittelbach
+%
+% It may be distributed and/or modified under the conditions of the
+% LaTeX Project Public License (LPPL), either version 1.3c of this
+% license or (at your option) any later version.  The latest version
+% of this license is in the file
+%
+%    https://www.latex-project.org/lppl.txt
+%
+%
+% The development version of the bundle can be found below
+%
+%    https://github.com/FrankMittelbach/fmitex/
+%
+% for those people who are interested or want to report an issue.
+%
+%<*driver>
+\documentclass{article}
+\usepackage{doc}
+\EnableCrossrefs
+\CodelineIndex
+\begin{document}
+  \DocInput{parskip.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+%
+% \newcommand\option[1]{\texttt{#1}}
+% \newcommand\cs[1]{\texttt{\bslash#1}}
+% \newcommand\pkg[1]{\textsf{#1}}
+%
+% \title{The \texttt{parskip} package\thanks{This is a
+%    reimplementation of a package originally written by Hubert Partl
+% in 1989 and later maintained by Robin Fairbains.}}
+% \author{Frank Mittelbach}
+%
+% \maketitle
+%
+% \begin{abstract}
+%   The \pkg{parskip} package helps in implementing paragraph layouts
+%   where the paragraphs are separated by a vertical space instead of
+%   (or in addition to) indenting them.
+%
+%   the package can be used with any document class at any size.  By
+%   default it produces the following paragraph layout: Zero
+%   \cs{parindent} and non-zero \cs{parskip}. The stretchable glue in
+%   \cs{parskip} helps \LaTeX\ in finding the best place for page
+%   breaks.
+%
+%   This package is no more than quick fix; the `proper' way to
+%   achieve effects as far-reaching as this is to create a new class.
+%   An example class is to be found in the ntgclass set: \texttt{artikel3.cls}
+%
+% \end{abstract}
+%
+% \section{The user interface}
+%
+%
+% The \pkg{parskip} package 
+%
+%
+%
+%
+% \subsection{Options to customize the package}\label{sec:options}
+%
+% All of the package options are implemented as key/value options.
+%
+%
+% \section{Differences to the original package}
+%
+% The main user interface of the two versions is identical so that it is
+% possible to use the new version as a drop-in replacement for the
+% old. However, the feature set in form of key/value options has be
+% extended offering functionality that have been previously
+% unavailable.
+%
+% \begin{itemize}
+% \item
+% \end{itemize}
+%
+%
+% \section{The Implementation}
+%
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+%
+%
+%  \subsection{The main implementation part}
+%
+%
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{parskip}[2018/08/24 non-zero parskip adjustments]
+%    \end{macrocode}
+%
+%
+%
+% \subsubsection{Option handling}
+%
+% Here we define all option keys for use as package options:
+%    \begin{macrocode}
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{family=parskip,prefix=parskip@}
+%    \end{macrocode}
+%
+%   The key \option{indent} defines the amount of indentation for each
+%   paragraph. If not given the indentation will be zero (default) and
+%   if given without a value then the outer value from the document
+%   class will get used, otherwise the given value is used.
+%    \begin{macrocode}
+\DeclareStringOption[0pt]{indent}[\parindent]
+%    \end{macrocode}
+%
+%   The key \option{parfill} defines a minium amount of white space
+%   that should be left in the last line. By default the last line can
+%   get completely fill up. If given without a value the default (as
+%   before) is to require a minimum of \texttt{30pt}, otherwise the
+%   given value is used.
+%    \begin{macrocode}
+\DeclareStringOption[0pt]{parfill}[30pt]
+%    \end{macrocode}
+%
+%   The key \option{skip} defines the vertical separation between
+%   paragraphs. If not given the default (as before) is to use half a
+%   \cs{baselineskip} plus a stretch of \texttt{2pt} to add some
+%   flexibility. If given, one need to provide an explicit value which
+%   is then used as a separation (and it needs to contain any extra
+%   stretch if that is wanted, i.e., there is no extra stretch added
+%   in this case).
+%    \begin{macrocode}
+\DeclareStringOption{skip}
+%    \end{macrocode}
+%
+%
+%   Execute any package options:
+%    \begin{macrocode}
+\ProcessKeyvalOptions*
+%    \end{macrocode}
+%
+%
+% \subsection{Handling document elements}
+%
+% Setting up a non-zero \cs{parskip} has some side-effects in document
+% elements such as lists or headings etc. Here we try to keep these
+% side-effects somewhat under control.
+%
+% We make use of the \pkg{etoolbox} package to do patching.
+%    \begin{macrocode}
+\RequirePackage{etoolbox}
+%    \end{macrocode}
+%
+% \subsubsection{Lists}
+%
+%    \begin{macrocode}
+% To accompany this, the vertical spacing in the list environments is changed
+% to use the same as \parskip in all relevant places (for normalsize only):
+%   \parsep = \parskip
+%   \itemsep = \z@ % add nothing to \parskip between items
+%   \topsep = \z@ % add nothing to \parskip before first item
+
+\def\@listI{\leftmargin\leftmargini
+   \topsep\z@ \parsep\parskip \itemsep\z@}
+\let\@listi\@listI
+\@listi
+     
+\def\@listii{\leftmargin\leftmarginii
+   \labelwidth\leftmarginii\advance\labelwidth-\labelsep
+   \topsep\z@ \parsep\parskip \itemsep\z@}
+     
+\def\@listiii{\leftmargin\leftmarginiii
+    \labelwidth\leftmarginiii\advance\labelwidth-\labelsep
+    \topsep\z@ \parsep\parskip \itemsep\z@}
+     
+% and, now...
+%   \partopsep = \z@ % don't even add anything before first item (beyond 
+%                    % \parskip) even if the list is preceded by a blank line
+\partopsep=\z@
+
+%    \end{macrocode}
+%
+%
+% \subsubsection{TOCs and similar lists}
+%
+% Within a table of contents or a list of figures we don't want any
+% additional vertical spacing just because the individual lines in
+% such a list are implemented as one-line paragraphs. So we locally
+% set the \cs{parskip} to zero. Should be really something that is
+% done already in \LaTeX{}.
+%    \begin{macrocode}
+\patchcmd\@starttoc
+    {\begingroup \makeatletter}
+    {\begingroup \makeatletter \parskip\z@}
+    {}{\typeout{Couldn't patch \string\@starttoc}}
+%    \end{macrocode}
+%
+%
+%
+%
+% \subsubsection{Standard headings}
+%
+%  For the same reason we don't want to see an additional \cs{parskip}
+% being added before and after a display heading, so we substract its
+% value (in two places):
+%    \begin{macrocode}
+\patchcmd\@startsection
+    {\addvspace\@tempskipa}
+    {\advance\@tempskipa-\parskip\addvspace\@tempskipa}
+    {}{\typeout{Couldn't patch \string\@startsection}}
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\patchcmd\@xsect
+    {\vskip\@tempskipa}
+    {\advance\@tempskipa-\parskip\vskip\@tempskipa}
+    {}{\typeout{Couldn't patch \string\@xsect}}
+%    \end{macrocode}
+%
+%
+%
+%
+% \subsubsection{\pkg{titlesec} headings}
+%
+% If \pkg{titlesec} is used then headings are built using different
+% commands and we have to cancel the \cs{parskip} there. The principle
+% is the same. Of course, the patching should only happen if that
+% package really got loaded, so we defer it to the start of the
+% document and test for it:
+%    \begin{macrocode}
+\AtBeginDocument{%    
+\ifx\ttl@straight@ii\@undefined\else  % titsec got loaded
+\patchcmd\ttl@straight@ii
+    {\addvspace{\@tempskipa}}%
+    {\advance\@tempskipa-\parskip \addvspace\@tempskipa}%
+    {}{\typeout{Couldn't patch \string\ttl@straight@ii}}%
+\patchcmd\ttl@straight@ii
+    {\vspace{\@tempskipb}}%
+    {\advance\@tempskipb-\parskip \vspace\@tempskipb}%
+    {}{\typeout{Couldn't patch \string\ttl@straight@ii}}%
+\patchcmd\ttl@part@ii
+    {\vspace*{\@tempskipa}}%
+    {\advance\@tempskipa-\parskip \vspace*\@tempskipa}%
+    {}{\typeout{Couldn't patch \string\ttl@part@ii}}%
+\patchcmd\ttl@part@ii
+    {\vspace{\@tempskipb}}%
+    {\advance\@tempskipb-\parskip \vspace\@tempskipb}%
+    {}{\typeout{Couldn't patch \string\ttl@part@ii}}%
+\patchcmd\ttl@page@ii
+    {\vspace*{\@tempskipa}}%
+    {\advance\@tempskipa-\parskip \vspace*\@tempskipa}%
+    {}{\typeout{Couldn't patch \string\ttl@page@ii}}%
+\patchcmd\ttl@page@ii
+    {\vspace{\@tempskipb}}%
+    {\advance\@tempskipb-\parskip \vspace\@tempskipb}%
+    {}{\typeout{Couldn't patch \string\ttl@page@ii}}%
+\fi}    
+%    \end{macrocode}
+%
+%
+%
+% \subsection{Closing shop}
+%
+%    At begin of document we evaluate the given options and adjust the
+%    parameter settings:
+%    \begin{macrocode}
+\AtBeginDocument{%
+  \ifx\parskip@skip\@empty
+%    \end{macrocode}
+%    If no \option{skip} was given (or it was empty) set \cs{parskip}
+%    to \verb=.5\baselineskip= plus \texttt{2pt} stretch. This has to
+%    be done in 2 steps as \cs{baselineskip} might already contain a stretch.
+%    \begin{macrocode}
+    \parskip.5\baselineskip
+    \advance\parskip 0pt plus 2pt\relax
+  \else
+%    \end{macrocode}
+%    Otherwise set it to the specified value:
+%    \begin{macrocode}
+    \parskip\parskip@skip\relax
+  \fi
+%    \end{macrocode}
+%    Setting \cs{parfillskip} was suggested by Donald Arseneau at some
+%    point on comp.text.tex:
+%    \begin{macrocode}
+  \parfillskip \parskip@parfill\relax
+  \advance\parfillskip 0pt plus 1fil\relax
+%    \end{macrocode}
+%    \cs{parindent} gets whatever was specified. If the key was given
+%    without an option this will essentially reassign the now ``current'' value.
+%    \begin{macrocode}
+  \parindent\parskip@indent\relax
+}     
+%    \end{macrocode}
+
+
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+% \Finale
+%
+\endinput
