@@ -35,7 +35,7 @@ Completed box being shipped out [1]
 ....\TU/lmr/m/n/10 r
 ....\TU/lmr/m/n/10 i
 ....\TU/lmr/m/n/10 b
-....\kern 0.28
+....\kern0.28
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 s
 ....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
@@ -50,12 +50,12 @@ Completed box being shipped out [1]
 ....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ....\TU/lmr/m/n/10 f
 ....\TU/lmr/m/n/10 o
-....\kern 0.28
+....\kern0.28
 ....\TU/lmr/m/n/10 o
 ....\penalty 10000
 ....\glue(\parfillskip) 0.0 plus 1.0fil
 ....\glue(\rightskip) 0.0
-...\kern -1.94
+...\kern-1.94
 ...\hbox(0.0+0.0)x345.0, glue set 350.0fil, direction TLT
 ....\glue -5.0
 ....\glue -96.0
@@ -132,7 +132,7 @@ Completed box being shipped out [1]
 ....\TU/lmr/m/n/10 n
 ....\discretionary (penalty 50)
 .....< \TU/lmr/m/n/10 -
-.....= \kern -0.28
+.....= \kern-0.28
 ....\TU/lmr/m/n/10 v
 ....\TU/lmr/m/n/10 i
 ....\discretionary (penalty 50)
@@ -145,7 +145,7 @@ Completed box being shipped out [1]
 ....\TU/lmr/m/n/10 m
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 n
-....\kern -0.28
+....\kern-0.28
 ....\TU/lmr/m/n/10 t
 ....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ....\TU/lmr/m/n/10 f
@@ -155,13 +155,13 @@ Completed box being shipped out [1]
 ....\TU/lmr/m/n/10 “ (ligature ``)
 ....\TU/lmr/m/n/10 f
 ....\TU/lmr/m/n/10 o
-....\kern 0.28
+....\kern0.28
 ....\TU/lmr/m/n/10 o
 ....\TU/lmr/m/n/10 ” (ligature '')
 ....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ....\TU/lmr/m/n/10 f
 ....\TU/lmr/m/n/10 o
-....\kern 0.28
+....\kern0.28
 ....\TU/lmr/m/n/10 o
 ....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ....\TU/lmr/m/n/10 =
@@ -223,7 +223,7 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\glue(\parfillskip) 0.0 plus 1.0fil
 ....\glue(\rightskip) 0.0
-...\kern -2.29
+...\kern-2.29
 ...\hbox(0.0+0.0)x345.0, glue set 350.0fil, direction TLT
 ....\glue -5.0
 ....\glue -96.0
@@ -329,7 +329,7 @@ Completed box being shipped out [2]
 ....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ....\TU/lmr/m/n/10 a
 ....\TU/lmr/m/n/10 b
-....\kern 0.28
+....\kern0.28
 ....\TU/lmr/m/n/10 o
 ....\TU/lmr/m/n/10 u
 ....\TU/lmr/m/n/10 t
@@ -362,7 +362,7 @@ Completed box being shipped out [2]
 ....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ....\TU/lmr/m/n/10 c
 ....\TU/lmr/m/n/10 o
-....\kern 0.28
+....\kern0.28
 ....\TU/lmr/m/n/10 d
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 .
@@ -448,14 +448,14 @@ sa\ETC.}
 ....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ....\TU/lmr/m/n/10 “ (ligature ``)
 ....\TU/lmr/m/n/10 m
-....\kern -0.28
+....\kern-0.28
 ....\TU/lmr/m/n/10 y
-....\kern -0.28
+....\kern-0.28
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 n
 ....\discretionary (penalty 50)
 .....< \TU/lmr/m/n/10 -
-.....= \kern -0.28
+.....= \kern-0.28
 ....\TU/lmr/m/n/10 v
 ....\TU/lmr/m/n/10 i
 ....\discretionary (penalty 50)
@@ -468,15 +468,15 @@ sa\ETC.}
 ....\TU/lmr/m/n/10 m
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 n
-....\kern -0.28
+....\kern-0.28
 ....\TU/lmr/m/n/10 t
 ....\TU/lmr/m/n/10 ” (ligature '')
-....\kern -1.39
+....\kern-1.39
 ....\TU/lmr/m/n/10 .
 ....\penalty 10000
 ....\glue(\parfillskip) 0.0 plus 1.0fil
 ....\glue(\rightskip) 0.0
-...\kern -2.05
+...\kern-2.05
 ...\hbox(0.0+0.0)x345.0, glue set 350.0fil, direction TLT
 ....\glue -5.0
 ....\glue -96.0
@@ -578,7 +578,7 @@ Underfull \hbox (badness 5008) in paragraph at lines 42--44
 .\TU/lmr/m/n/9 n
 .\discretionary (penalty 50)
 ..< \TU/lmr/m/n/9 -
-..= \kern -0.261
+..= \kern-0.261
 .\TU/lmr/m/n/9 v
 .\TU/lmr/m/n/9 i
 .\TU/lmr/m/n/9 -
@@ -650,7 +650,7 @@ i\ETC.}
 ....\TU/lmr/m/n/10 i
 ....\TU/lmr/m/n/10 n
 ....\TU/lmr/m/n/10 g
-....\kern 0.0
+....\kern0.0 (italic)
 ....\glue 3.33 plus 1.665 minus 1.11
 ....\TU/lmtt/m/n/10 m
 ....\TU/lmtt/m/n/10 y
@@ -665,7 +665,7 @@ i\ETC.}
 ....\TU/lmtt/m/n/10 e
 ....\TU/lmtt/m/n/10 n
 ....\TU/lmtt/m/n/10 t
-....\kern 0.0
+....\kern0.0 (italic)
 ....\penalty 10000
 ....\glue(\parfillskip) 0.0 plus 1.0fil
 ....\glue(\rightskip) 0.0
@@ -932,9 +932,9 @@ i\ETC.}
 ....\TU/lmr/m/n/10 m
 ....\discretionary (penalty 50)
 .....< \TU/lmr/m/n/10 -
-.....= \kern -0.28
+.....= \kern-0.28
 ....\TU/lmr/m/n/10 b
-....\kern 0.28
+....\kern0.28
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 r
 ....\TU/lmr/m/n/10 s
@@ -1000,7 +1000,7 @@ i\ETC.}
 .....< \TU/lmr/m/n/10 -
 ....\TU/lmr/m/n/10 s
 ....\TU/lmr/m/n/10 p
-....\kern 0.28
+....\kern0.28
 ....\TU/lmr/m/n/10 o
 ....\TU/lmr/m/n/10 n
 ....\TU/lmr/m/n/10 d
@@ -1014,7 +1014,7 @@ i\ETC.}
 ....\TU/lmr/m/n/10 n
 ....\discretionary (penalty 50)
 .....< \TU/lmr/m/n/10 -
-.....= \kern -0.28
+.....= \kern-0.28
 ....\TU/lmr/m/n/10 t
 ....\TU/lmr/m/n/10 r
 ....\TU/lmr/m/n/10 y
@@ -1034,20 +1034,20 @@ i\ETC.}
 ....\TU/lmr/m/n/10 r
 ....\TU/lmr/m/n/10 i
 ....\TU/lmr/m/n/10 b
-....\kern 0.28
+....\kern0.28
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 d
 ....\TU/lmr/m/n/10 ;
 ....\glue(\spaceskip) 3.33 plus 2.49748 minus 0.73999
 ....\TU/lmr/m/n/10 n
-....\kern -0.28
+....\kern-0.28
 ....\TU/lmr/m/n/10 u
 ....\TU/lmr/m/n/10 m
 ....\discretionary (penalty 50)
 .....< \TU/lmr/m/n/10 -
-.....= \kern -0.28
+.....= \kern-0.28
 ....\TU/lmr/m/n/10 b
-....\kern 0.28
+....\kern0.28
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 r
 ....\TU/lmr/m/n/10 s
@@ -1102,14 +1102,14 @@ i\ETC.}
 ....\TU/lmr/m/n/10 ;
 ....\glue(\spaceskip) 3.33 plus 2.49748 minus 0.73999
 ....\TU/lmr/m/n/10 n
-....\kern -0.28
+....\kern-0.28
 ....\TU/lmr/m/n/10 u
 ....\TU/lmr/m/n/10 m
 ....\discretionary (penalty 50)
 .....< \TU/lmr/m/n/10 -
-.....= \kern -0.28
+.....= \kern-0.28
 ....\TU/lmr/m/n/10 b
-....\kern 0.28
+....\kern0.28
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 r
 ....\TU/lmr/m/n/10 s
@@ -1163,7 +1163,7 @@ i\ETC.}
 ....\TU/lmr/m/n/10 n
 ....\discretionary (penalty 50)
 .....< \TU/lmr/m/n/10 -
-.....= \kern -0.28
+.....= \kern-0.28
 ....\TU/lmr/m/n/10 t
 ....\TU/lmr/m/n/10 r
 ....\TU/lmr/m/n/10 y
@@ -1180,7 +1180,7 @@ i\ETC.}
 ....\glue(\parfillskip) 0.0 plus 1.0fil
 ....\glue(\rightskip) 0.0
 ...\glue 12.0 plus 4.0 minus 3.0
-...\kern -0.06
+...\kern-0.06
 ...\mark{{Index}{Index}}
 ...\penalty 10000
 ...\mark{{Index}{Index}}
@@ -1202,9 +1202,9 @@ i\ETC.}
 ......\TU/lmr/bx/n/9 m
 ......\discretionary (penalty 50)
 .......< \TU/lmr/bx/n/9 -
-.......= \kern -0.297
+.......= \kern-0.297
 ......\TU/lmr/bx/n/9 b
-......\kern 0.297
+......\kern0.297
 ......\TU/lmr/bx/n/9 o
 ......\TU/lmr/bx/n/9 l
 ......\TU/lmr/bx/n/9 s
@@ -1294,7 +1294,7 @@ i\ETC.}
 ......\vbox(5.994+2.19789)x4.626, direction TLT
 .......\hbox(5.994+0.198)x4.626, direction TLT
 ........\TU/lmr/m/n/9 3
-.......\kern1.19994
+.......\kern1.19994 (font)
 .......\rule(0.39998+0.0)x*
 ......\mathoff
 ......\penalty 10000
@@ -1384,7 +1384,7 @@ i\ETC.}
 ......\TU/lmr/m/n/9 n
 ......\discretionary (penalty 50)
 .......< \TU/lmr/m/n/9 -
-.......= \kern -0.261
+.......= \kern-0.261
 ......\TU/lmr/m/n/9 v
 ......\TU/lmr/m/n/9 i
 ......\discretionary (penalty 50)
@@ -1397,7 +1397,7 @@ i\ETC.}
 ......\TU/lmr/m/n/9 m
 ......\TU/lmr/m/n/9 e
 ......\TU/lmr/m/n/9 n
-......\kern -0.261
+......\kern-0.261
 ......\TU/lmr/m/n/9 t
 ......\TU/lmr/m/n/9 s
 ......\TU/lmr/m/n/9 :
@@ -1456,7 +1456,7 @@ i\ETC.}
 ......\vbox(5.994+2.19789)x4.626, direction TLT
 .......\hbox(5.994+0.198)x4.626, direction TLT
 ........\TU/lmr/m/n/9 3
-.......\kern1.19994
+.......\kern1.19994 (font)
 .......\rule(0.39998+0.0)x*
 ......\mathoff
 ......\penalty 10000
@@ -1529,7 +1529,7 @@ i\ETC.}
 ......\vbox(5.994+1.9999)x4.626, direction TLT
 .......\hbox(5.994+0.0)x4.626, direction TLT
 ........\TU/lmr/m/n/9 1
-.......\kern1.19994
+.......\kern1.19994 (font)
 .......\rule(0.39998+0.0)x*
 ......\mathoff
 ......\penalty 10000
@@ -1677,7 +1677,7 @@ i\ETC.}
 ......\vbox(5.994+1.9999)x4.626, direction TLT
 .......\hbox(5.994+0.0)x4.626, direction TLT
 ........\TU/lmr/m/n/9 2
-.......\kern1.19994
+.......\kern1.19994 (font)
 .......\rule(0.39998+0.0)x*
 ......\mathoff
 ......\penalty 10000
@@ -1731,7 +1731,7 @@ i\ETC.}
 ......\TU/lmr/m/n/9 n
 ......\discretionary (penalty 50)
 .......< \TU/lmr/m/n/9 -
-.......= \kern -0.261
+.......= \kern-0.261
 ......\TU/lmr/m/n/9 v
 ......\TU/lmr/m/n/9 i
 ......\TU/lmr/m/n/9 -
@@ -1748,7 +1748,7 @@ i\ETC.}
 ......\TU/lmr/m/n/9 m
 ......\TU/lmr/m/n/9 e
 ......\TU/lmr/m/n/9 n
-......\kern -0.261
+......\kern-0.261
 ......\TU/lmr/m/n/9 t
 ......\TU/lmr/m/n/9 )
 ......\penalty 10000
@@ -1775,7 +1775,7 @@ i\ETC.}
 ......\vbox(5.994+2.19789)x4.626, direction TLT
 .......\hbox(5.994+0.198)x4.626, direction TLT
 ........\TU/lmr/m/n/9 3
-.......\kern1.19994
+.......\kern1.19994 (font)
 .......\rule(0.39998+0.0)x*
 ......\mathoff
 ......\penalty 10000
@@ -1873,7 +1873,7 @@ i\ETC.}
 ......\vbox(5.994+1.9999)x4.626, direction TLT
 .......\hbox(5.994+0.0)x4.626, direction TLT
 ........\TU/lmr/m/n/9 2
-.......\kern1.19994
+.......\kern1.19994 (font)
 .......\rule(0.39998+0.0)x*
 ......\mathoff
 ......\penalty 10000
@@ -2001,7 +2001,7 @@ i\ETC.}
 ....\hbox(3.978+1.746)x0.0, glue set - 5.139fil, direction TLT
 .....\hbox(3.978+1.746)x5.139, direction TLT
 .....\glue 0.0 plus 1.0fil minus 1.0fil
-...\kern -3.30003
+...\kern-3.30003
 ...\penalty 0
 ...\penalty 10000
 ...\penalty 0
@@ -2048,7 +2048,7 @@ i\ETC.}
 ...\mark{{{Change History}}{{Change History}}}
 ...\penalty 10000
 ...\glue 12.0 plus 4.0 minus 3.0
-...\kern -0.8944
+...\kern-0.8944
 ...\mark{{Index}{Index}}
 ...\penalty 10000
 ...\mark{{{Change History}}{{Change History}}}
@@ -2095,7 +2095,7 @@ i\ETC.}
 ......\TU/lmr/m/n/9 t
 ......\glue(\spaceskip) 3.087 plus 1.5435 minus 1.029
 ......\TU/lmr/m/n/9 c
-......\kern -0.261
+......\kern-0.261
 ......\TU/lmr/m/n/9 h
 ......\TU/lmr/m/n/9 a
 ......\TU/lmr/m/n/9 n
@@ -2171,7 +2171,7 @@ i\ETC.}
 ......\TU/lmr/m/n/9 i
 ......\TU/lmr/m/n/9 n
 ......\TU/lmr/m/n/9 g
-......\kern 0.0
+......\kern0.0 (italic)
 ......\glue 3.087 plus 1.5435 minus 1.029
 ......\TU/lmtt/m/n/9 \
 ......\TU/lmtt/m/n/9 m
@@ -2182,7 +2182,7 @@ i\ETC.}
 ......\TU/lmtt/m/n/9 g
 ......\TU/lmtt/m/n/9 t
 ......\TU/lmtt/m/n/9 h
-......\kern 0.0
+......\kern0.0 (italic)
 ......\glue(\rightskip) 15.0 plus 1.0fil
 .....\penalty 300
 .....\glue(\baselineskip) 1.24803
@@ -2343,7 +2343,7 @@ i\ETC.}
 ......\TU/lmr/m/n/9 d
 ......\glue(\spaceskip) 3.087 plus 1.5435 minus 1.029
 ......\TU/lmr/m/n/9 c
-......\kern -0.261
+......\kern-0.261
 ......\TU/lmr/m/n/9 h
 ......\TU/lmr/m/n/9 a
 ......\TU/lmr/m/n/9 n
@@ -2373,7 +2373,7 @@ i\ETC.}
 ....\hbox(3.978+1.746)x0.0, glue set - 5.139fil, direction TLT
 .....\hbox(3.978+1.746)x5.139, direction TLT
 .....\glue 0.0 plus 1.0fil minus 1.0fil
-...\kern -3.30003
+...\kern-3.30003
 ...\penalty 0
 ...\penalty 10000
 ...\penalty 0

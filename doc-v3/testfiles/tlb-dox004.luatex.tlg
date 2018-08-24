@@ -5,13 +5,13 @@ Completed box being shipped out [1]
 \vbox(633.0+0.0)x407.0, direction TLT
 .\hbox(0.0+0.0)x0.0, direction TLT
 .\vbox(0.0+0.0)x0.0, glue set - 14.99626fil, direction TLT
-..\kern 0.0
-..\kern 16.0
-..\kern -1.00374
+..\kern0.0
+..\kern16.0
+..\kern-1.00374
 ..\hbox(0.0+0.0)x0.0, glue set - 60.99626fil, direction TLT
-...\kern 0.0
-...\kern 62.0
-...\kern -1.00374
+...\kern0.0
+...\kern62.0
+...\kern-1.00374
 ...\pdfdest name{page.1} xyz
 ...\penalty 10000
 ...\glue 0.0 plus 1.0fil minus 1.0fil
@@ -45,7 +45,7 @@ Completed box being shipped out [1]
 ........\glue 0.0 plus 1.0fil minus 1.0fil
 ........\pdfdest name{HD.2} xyz
 ........\penalty 10000
-........\kern 1.66672
+........\kern1.66672
 .....\write3{\indexentry{foo={\ttfamily foo} (option)|hdclindex{2}{usage}}{\the
 page \ETC.}
 .....\TU/lmr/m/n/10 T
@@ -62,7 +62,7 @@ page \ETC.}
 .....\TU/lmr/m/n/10 r
 .....\TU/lmr/m/n/10 i
 .....\TU/lmr/m/n/10 b
-.....\kern 0.28
+.....\kern0.28
 .....\TU/lmr/m/n/10 e
 .....\TU/lmr/m/n/10 s
 .....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
@@ -77,12 +77,12 @@ page \ETC.}
 .....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 .....\TU/lmr/m/n/10 f
 .....\TU/lmr/m/n/10 o
-.....\kern 0.28
+.....\kern0.28
 .....\TU/lmr/m/n/10 o
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
-....\kern -1.94
+....\kern-1.94
 ....\hbox(0.0+0.0)x345.0, glue set 350.0fil, direction TLT
 .....\glue -5.0
 .....\glue -96.0
@@ -168,7 +168,7 @@ ge \ETC.}
 .....\TU/lmr/m/n/10 n
 .....\discretionary (penalty 50)
 ......< \TU/lmr/m/n/10 -
-......= \kern -0.28
+......= \kern-0.28
 .....\TU/lmr/m/n/10 v
 .....\TU/lmr/m/n/10 i
 .....\discretionary (penalty 50)
@@ -181,7 +181,7 @@ ge \ETC.}
 .....\TU/lmr/m/n/10 m
 .....\TU/lmr/m/n/10 e
 .....\TU/lmr/m/n/10 n
-.....\kern -0.28
+.....\kern-0.28
 .....\TU/lmr/m/n/10 t
 .....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 .....\TU/lmr/m/n/10 f
@@ -191,13 +191,13 @@ ge \ETC.}
 .....\TU/lmr/m/n/10 “ (ligature ``)
 .....\TU/lmr/m/n/10 f
 .....\TU/lmr/m/n/10 o
-.....\kern 0.28
+.....\kern0.28
 .....\TU/lmr/m/n/10 o
 .....\TU/lmr/m/n/10 ” (ligature '')
 .....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 .....\TU/lmr/m/n/10 f
 .....\TU/lmr/m/n/10 o
-.....\kern 0.28
+.....\kern0.28
 .....\TU/lmr/m/n/10 o
 .....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 .....\TU/lmr/m/n/10 =
@@ -225,7 +225,7 @@ ge \ETC.}
 ........\glue 0.0 plus 1.0fil minus 1.0fil
 ........\pdfdest name{HD.5} xyz
 ........\penalty 10000
-........\kern 1.66672
+........\kern1.66672
 .....\write3{\indexentry{mylength=\verb!*+\mylength+ (length)|hdclindex{5}{usag
 e}}\ETC.}
 .....\write3{\indexentry{lengths:>mylength=\verb!*+\mylength+|hdclindex{5}{usag
@@ -268,7 +268,7 @@ e}}\ETC.}
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
-....\kern -2.29
+....\kern-2.29
 ....\hbox(0.0+0.0)x345.0, glue set 350.0fil, direction TLT
 .....\glue -5.0
 .....\glue -96.0
@@ -316,7 +316,7 @@ e}}\ETC.}
 .....\TU/lmr/m/n/10 1
 .....\glue 0.0 plus 1.0fil
 ....\pdfcolorstack 0 pop
-.\kern 0.0
+.\kern0.0
 \indexentry{foo={\ttfamily foo} (option)|hdclindex{2}{usage}}{1}
 \indexentry{foo={\ttfamily foo} (option)|hdpindex{main}}{1}
 \glossaryentry{v1>foo=\verb!*+foo+:>first change|hdpindex{}}{1}
@@ -329,13 +329,13 @@ Not indexing '\mylength'
 Completed box being shipped out [2]
 \vbox(633.0+0.0)x407.0, direction TLT
 .\vbox(0.0+0.0)x0.0, glue set - 14.99626fil, direction TLT
-..\kern 0.0
-..\kern 16.0
-..\kern -1.00374
+..\kern0.0
+..\kern16.0
+..\kern-1.00374
 ..\hbox(0.0+0.0)x0.0, glue set - 60.99626fil, direction TLT
-...\kern 0.0
-...\kern 62.0
-...\kern -1.00374
+...\kern0.0
+...\kern62.0
+...\kern-1.00374
 ...\pdfdest name{page.2} xyz
 ...\penalty 10000
 ...\glue 0.0 plus 1.0fil minus 1.0fil
@@ -404,7 +404,7 @@ hepage \ETC.}
 .....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 .....\TU/lmr/m/n/10 a
 .....\TU/lmr/m/n/10 b
-.....\kern 0.28
+.....\kern0.28
 .....\TU/lmr/m/n/10 o
 .....\TU/lmr/m/n/10 u
 .....\TU/lmr/m/n/10 t
@@ -437,7 +437,7 @@ hepage \ETC.}
 .....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 .....\TU/lmr/m/n/10 c
 .....\TU/lmr/m/n/10 o
-.....\kern 0.28
+.....\kern0.28
 .....\TU/lmr/m/n/10 d
 .....\TU/lmr/m/n/10 e
 .....\TU/lmr/m/n/10 .
@@ -499,7 +499,7 @@ hepage \ETC.}
 ........\glue 0.0 plus 1.0fil minus 1.0fil
 ........\pdfdest name{HD.8} xyz
 ........\penalty 10000
-........\kern 1.66672
+........\kern1.66672
 .....\write3{\indexentry{myenvironment={\ttfamily myenvironment} (environment)|
 hdc\ETC.}
 .....\write3{\indexentry{environments:>myenvironment={\ttfamily myenvironment}|
@@ -530,14 +530,14 @@ hdc\ETC.}
 .....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 .....\TU/lmr/m/n/10 “ (ligature ``)
 .....\TU/lmr/m/n/10 m
-.....\kern -0.28
+.....\kern-0.28
 .....\TU/lmr/m/n/10 y
-.....\kern -0.28
+.....\kern-0.28
 .....\TU/lmr/m/n/10 e
 .....\TU/lmr/m/n/10 n
 .....\discretionary (penalty 50)
 ......< \TU/lmr/m/n/10 -
-......= \kern -0.28
+......= \kern-0.28
 .....\TU/lmr/m/n/10 v
 .....\TU/lmr/m/n/10 i
 .....\discretionary (penalty 50)
@@ -550,15 +550,15 @@ hdc\ETC.}
 .....\TU/lmr/m/n/10 m
 .....\TU/lmr/m/n/10 e
 .....\TU/lmr/m/n/10 n
-.....\kern -0.28
+.....\kern-0.28
 .....\TU/lmr/m/n/10 t
 .....\TU/lmr/m/n/10 ” (ligature '')
-.....\kern -1.39
+.....\kern-1.39
 .....\TU/lmr/m/n/10 .
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
-....\kern -2.05
+....\kern-2.05
 ....\hbox(0.0+0.0)x345.0, glue set 350.0fil, direction TLT
 .....\glue -5.0
 .....\glue -96.0
@@ -634,13 +634,13 @@ Indexing '\relax' (normal)
 Completed box being shipped out [3]
 \vbox(633.0+0.22)x407.0, direction TLT
 .\vbox(0.0+0.0)x0.0, glue set - 14.99626fil, direction TLT
-..\kern 0.0
-..\kern 16.0
-..\kern -1.00374
+..\kern0.0
+..\kern16.0
+..\kern-1.00374
 ..\hbox(0.0+0.0)x0.0, glue set - 60.99626fil, direction TLT
-...\kern 0.0
-...\kern 62.0
-...\kern -1.00374
+...\kern0.0
+...\kern62.0
+...\kern-1.00374
 ...\pdfdest name{page.3} xyz
 ...\penalty 10000
 ...\glue 0.0 plus 1.0fil minus 1.0fil
@@ -719,7 +719,7 @@ e|\ETC.}
 .....\TU/lmr/m/n/10 i
 .....\TU/lmr/m/n/10 n
 .....\TU/lmr/m/n/10 g
-.....\kern 0.0
+.....\kern0.0 (italic)
 .....\glue 3.33 plus 1.665 minus 1.11
 .....\TU/lmtt/m/n/10 m
 .....\TU/lmtt/m/n/10 y
@@ -734,7 +734,7 @@ e|\ETC.}
 .....\TU/lmtt/m/n/10 e
 .....\TU/lmtt/m/n/10 n
 .....\TU/lmtt/m/n/10 t
-.....\kern 0.0
+.....\kern0.0 (italic)
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
@@ -1003,13 +1003,13 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 Completed box being shipped out [4]
 \vbox(633.0+0.0)x407.0, direction TLT
 .\vbox(0.0+0.0)x0.0, glue set - 14.99626fil, direction TLT
-..\kern 0.0
-..\kern 16.0
-..\kern -1.00374
+..\kern0.0
+..\kern16.0
+..\kern-1.00374
 ..\hbox(0.0+0.0)x0.0, glue set - 60.99626fil, direction TLT
-...\kern 0.0
-...\kern 62.0
-...\kern -1.00374
+...\kern0.0
+...\kern62.0
+...\kern-1.00374
 ...\pdfdest name{page.4} xyz
 ...\penalty 10000
 ...\glue 0.0 plus 1.0fil minus 1.0fil
@@ -1045,7 +1045,7 @@ Completed box being shipped out [4]
 .......\hbox(0.0+0.0)x0.0, direction TLT
 ........\glue 0.0
 .......\hbox(0.0+0.0)x0.0, direction TLT
-........\kern 0.0
+........\kern0.0
 ........\penalty 10000
 ........\hbox(0.0+0.0)x0.0, direction TLT
 .........\hbox(0.0+0.0)x0.0, shifted -18.0, direction TLT
@@ -1079,9 +1079,9 @@ Completed box being shipped out [4]
 .......\TU/lmr/m/n/10 m
 .......\discretionary (penalty 50)
 ........< \TU/lmr/m/n/10 -
-........= \kern -0.28
+........= \kern-0.28
 .......\TU/lmr/m/n/10 b
-.......\kern 0.28
+.......\kern0.28
 .......\TU/lmr/m/n/10 e
 .......\TU/lmr/m/n/10 r
 .......\TU/lmr/m/n/10 s
@@ -1147,7 +1147,7 @@ Completed box being shipped out [4]
 ........< \TU/lmr/m/n/10 -
 .......\TU/lmr/m/n/10 s
 .......\TU/lmr/m/n/10 p
-.......\kern 0.28
+.......\kern0.28
 .......\TU/lmr/m/n/10 o
 .......\TU/lmr/m/n/10 n
 .......\TU/lmr/m/n/10 d
@@ -1161,7 +1161,7 @@ Completed box being shipped out [4]
 .......\TU/lmr/m/n/10 n
 .......\discretionary (penalty 50)
 ........< \TU/lmr/m/n/10 -
-........= \kern -0.28
+........= \kern-0.28
 .......\TU/lmr/m/n/10 t
 .......\TU/lmr/m/n/10 r
 .......\TU/lmr/m/n/10 y
@@ -1181,20 +1181,20 @@ Completed box being shipped out [4]
 .......\TU/lmr/m/n/10 r
 .......\TU/lmr/m/n/10 i
 .......\TU/lmr/m/n/10 b
-.......\kern 0.28
+.......\kern0.28
 .......\TU/lmr/m/n/10 e
 .......\TU/lmr/m/n/10 d
 .......\TU/lmr/m/n/10 ;
 .......\glue(\spaceskip) 3.33 plus 2.49748 minus 0.73999
 .......\TU/lmr/m/n/10 n
-.......\kern -0.28
+.......\kern-0.28
 .......\TU/lmr/m/n/10 u
 .......\TU/lmr/m/n/10 m
 .......\discretionary (penalty 50)
 ........< \TU/lmr/m/n/10 -
-........= \kern -0.28
+........= \kern-0.28
 .......\TU/lmr/m/n/10 b
-.......\kern 0.28
+.......\kern0.28
 .......\TU/lmr/m/n/10 e
 .......\TU/lmr/m/n/10 r
 .......\TU/lmr/m/n/10 s
@@ -1249,14 +1249,14 @@ Completed box being shipped out [4]
 .......\TU/lmr/m/n/10 ;
 .......\glue(\spaceskip) 3.33 plus 2.49748 minus 0.73999
 .......\TU/lmr/m/n/10 n
-.......\kern -0.28
+.......\kern-0.28
 .......\TU/lmr/m/n/10 u
 .......\TU/lmr/m/n/10 m
 .......\discretionary (penalty 50)
 ........< \TU/lmr/m/n/10 -
-........= \kern -0.28
+........= \kern-0.28
 .......\TU/lmr/m/n/10 b
-.......\kern 0.28
+.......\kern0.28
 .......\TU/lmr/m/n/10 e
 .......\TU/lmr/m/n/10 r
 .......\TU/lmr/m/n/10 s
@@ -1310,7 +1310,7 @@ Completed box being shipped out [4]
 .......\TU/lmr/m/n/10 n
 .......\discretionary (penalty 50)
 ........< \TU/lmr/m/n/10 -
-........= \kern -0.28
+........= \kern-0.28
 .......\TU/lmr/m/n/10 t
 .......\TU/lmr/m/n/10 r
 .......\TU/lmr/m/n/10 y
@@ -1346,21 +1346,21 @@ Completed box being shipped out [4]
 .........\hbox(0.0+0.0)x0.0, direction TLT
 .........\hbox(0.0+0.0)x0.0, direction TLT
 ..........\hbox(0.0+0.0)x0.0, shifted -11.0, direction TLT
-...........\kern -2.84526
+...........\kern-2.84526
 ...........\write5{\protect \BOOKMARK [2][-]{HD.Symbols.2}{Symbols}{index1.1}% 
 2}
 ...........\pdfdest name{HD.Symbols.2} xyz
 ...........\penalty 10000
-...........\kern 2.84526
+...........\kern2.84526
 .........\glue 0.0 plus 1.0fil
 .........\TU/lmr/bx/n/9 S
 .........\TU/lmr/bx/n/9 y
 .........\TU/lmr/bx/n/9 m
 .........\discretionary (penalty 50)
 ..........< \TU/lmr/bx/n/9 -
-..........= \kern -0.297
+..........= \kern-0.297
 .........\TU/lmr/bx/n/9 b
-.........\kern 0.297
+.........\kern0.297
 .........\TU/lmr/bx/n/9 o
 .........\TU/lmr/bx/n/9 l
 .........\TU/lmr/bx/n/9 s
@@ -1458,7 +1458,7 @@ Completed box being shipped out [4]
 ...........\TU/lmr/m/n/9 3
 ...........\pdfcolorstack 0 pop
 ...........\pdfendlink
-..........\kern1.19994
+..........\kern1.19994 (font)
 ..........\rule(0.39998+0.0)x*
 .........\mathoff
 .........\penalty 10000
@@ -1477,11 +1477,11 @@ Completed box being shipped out [4]
 .........\hbox(0.0+0.0)x0.0, direction TLT
 .........\hbox(0.0+0.0)x0.0, direction TLT
 ..........\hbox(0.0+0.0)x0.0, shifted -11.0, direction TLT
-...........\kern -2.84526
+...........\kern-2.84526
 ...........\write5{\protect \BOOKMARK [2][-]{HD.D.2}{D}{index1.1}% 3}
 ...........\pdfdest name{HD.D.2} xyz
 ...........\penalty 10000
-...........\kern 2.84526
+...........\kern2.84526
 .........\glue 0.0 plus 1.0fil
 .........\TU/lmr/bx/n/9 D
 .........\glue 0.0 plus 1.0fil
@@ -1541,11 +1541,11 @@ Completed box being shipped out [4]
 .........\hbox(0.0+0.0)x0.0, direction TLT
 .........\hbox(0.0+0.0)x0.0, direction TLT
 ..........\hbox(0.0+0.0)x0.0, shifted -11.0, direction TLT
-...........\kern -2.84526
+...........\kern-2.84526
 ...........\write5{\protect \BOOKMARK [2][-]{HD.E.2}{E}{index1.1}% 4}
 ...........\pdfdest name{HD.E.2} xyz
 ...........\penalty 10000
-...........\kern 2.84526
+...........\kern2.84526
 .........\glue 0.0 plus 1.0fil
 .........\TU/lmr/bx/n/9 E
 .........\glue 0.0 plus 1.0fil
@@ -1566,7 +1566,7 @@ Completed box being shipped out [4]
 .........\TU/lmr/m/n/9 n
 .........\discretionary (penalty 50)
 ..........< \TU/lmr/m/n/9 -
-..........= \kern -0.261
+..........= \kern-0.261
 .........\TU/lmr/m/n/9 v
 .........\TU/lmr/m/n/9 i
 .........\discretionary (penalty 50)
@@ -1579,7 +1579,7 @@ Completed box being shipped out [4]
 .........\TU/lmr/m/n/9 m
 .........\TU/lmr/m/n/9 e
 .........\TU/lmr/m/n/9 n
-.........\kern -0.261
+.........\kern-0.261
 .........\TU/lmr/m/n/9 t
 .........\TU/lmr/m/n/9 s
 .........\TU/lmr/m/n/9 :
@@ -1646,7 +1646,7 @@ Completed box being shipped out [4]
 ...........\TU/lmr/m/n/9 3
 ...........\pdfcolorstack 0 pop
 ...........\pdfendlink
-..........\kern1.19994
+..........\kern1.19994 (font)
 ..........\rule(0.39998+0.0)x*
 .........\mathoff
 .........\penalty 10000
@@ -1665,11 +1665,11 @@ Completed box being shipped out [4]
 .........\hbox(0.0+0.0)x0.0, direction TLT
 .........\hbox(0.0+0.0)x0.0, direction TLT
 ..........\hbox(0.0+0.0)x0.0, shifted -11.0, direction TLT
-...........\kern -2.84526
+...........\kern-2.84526
 ...........\write5{\protect \BOOKMARK [2][-]{HD.F.2}{F}{index1.1}% 5}
 ...........\pdfdest name{HD.F.2} xyz
 ...........\penalty 10000
-...........\kern 2.84526
+...........\kern2.84526
 .........\glue 0.0 plus 1.0fil
 .........\TU/lmr/bx/n/9 F
 .........\glue 0.0 plus 1.0fil
@@ -1732,7 +1732,7 @@ Completed box being shipped out [4]
 ...........\TU/lmr/m/n/9 1
 ...........\pdfcolorstack 0 pop
 ...........\pdfendlink
-..........\kern1.19994
+..........\kern1.19994 (font)
 ..........\rule(0.39998+0.0)x*
 .........\mathoff
 .........\penalty 10000
@@ -1751,11 +1751,11 @@ Completed box being shipped out [4]
 .........\hbox(0.0+0.0)x0.0, direction TLT
 .........\hbox(0.0+0.0)x0.0, direction TLT
 ..........\hbox(0.0+0.0)x0.0, shifted -11.0, direction TLT
-...........\kern -2.84526
+...........\kern-2.84526
 ...........\write5{\protect \BOOKMARK [2][-]{HD.H.2}{H}{index1.1}% 6}
 ...........\pdfdest name{HD.H.2} xyz
 ...........\penalty 10000
-...........\kern 2.84526
+...........\kern2.84526
 .........\glue 0.0 plus 1.0fil
 .........\TU/lmr/bx/n/9 H
 .........\glue 0.0 plus 1.0fil
@@ -1817,11 +1817,11 @@ Completed box being shipped out [4]
 .........\hbox(0.0+0.0)x0.0, direction TLT
 .........\hbox(0.0+0.0)x0.0, direction TLT
 ..........\hbox(0.0+0.0)x0.0, shifted -11.0, direction TLT
-...........\kern -2.84526
+...........\kern-2.84526
 ...........\write5{\protect \BOOKMARK [2][-]{HD.L.2}{L}{index1.1}% 7}
 ...........\pdfdest name{HD.L.2} xyz
 ...........\penalty 10000
-...........\kern 2.84526
+...........\kern2.84526
 .........\glue 0.0 plus 1.0fil
 .........\TU/lmr/bx/n/9 L
 .........\glue 0.0 plus 1.0fil
@@ -1906,7 +1906,7 @@ Completed box being shipped out [4]
 ...........\TU/lmr/m/n/9 2
 ...........\pdfcolorstack 0 pop
 ...........\pdfendlink
-..........\kern1.19994
+..........\kern1.19994 (font)
 ..........\rule(0.39998+0.0)x*
 .........\mathoff
 .........\penalty 10000
@@ -1925,11 +1925,11 @@ Completed box being shipped out [4]
 .........\hbox(0.0+0.0)x0.0, direction TLT
 .........\hbox(0.0+0.0)x0.0, direction TLT
 ..........\hbox(0.0+0.0)x0.0, shifted -11.0, direction TLT
-...........\kern -2.84526
+...........\kern-2.84526
 ...........\write5{\protect \BOOKMARK [2][-]{HD.M.2}{M}{index1.1}% 8}
 ...........\pdfdest name{HD.M.2} xyz
 ...........\penalty 10000
-...........\kern 2.84526
+...........\kern2.84526
 .........\glue 0.0 plus 1.0fil
 .........\TU/lmr/bx/n/9 M
 .........\glue 0.0 plus 1.0fil
@@ -1965,7 +1965,7 @@ Completed box being shipped out [4]
 .........\TU/lmr/m/n/9 n
 .........\discretionary (penalty 50)
 ..........< \TU/lmr/m/n/9 -
-..........= \kern -0.261
+..........= \kern-0.261
 .........\TU/lmr/m/n/9 v
 .........\TU/lmr/m/n/9 i
 .........\discretionary (penalty 50)
@@ -1978,7 +1978,7 @@ Completed box being shipped out [4]
 .........\TU/lmr/m/n/9 m
 .........\TU/lmr/m/n/9 e
 .........\TU/lmr/m/n/9 n
-.........\kern -0.261
+.........\kern-0.261
 .........\TU/lmr/m/n/9 t
 .........\TU/lmr/m/n/9 )
 .........\penalty 10000
@@ -2013,7 +2013,7 @@ Completed box being shipped out [4]
 ...........\TU/lmr/m/n/9 3
 ...........\pdfcolorstack 0 pop
 ...........\pdfendlink
-..........\kern1.19994
+..........\kern1.19994 (font)
 ..........\rule(0.39998+0.0)x*
 .........\mathoff
 .........\penalty 10000
@@ -2123,7 +2123,7 @@ Completed box being shipped out [4]
 ...........\TU/lmr/m/n/9 2
 ...........\pdfcolorstack 0 pop
 ...........\pdfendlink
-..........\kern1.19994
+..........\kern1.19994 (font)
 ..........\rule(0.39998+0.0)x*
 .........\mathoff
 .........\penalty 10000
@@ -2142,11 +2142,11 @@ Completed box being shipped out [4]
 .........\hbox(0.0+0.0)x0.0, direction TLT
 .........\hbox(0.0+0.0)x0.0, direction TLT
 ..........\hbox(0.0+0.0)x0.0, shifted -11.0, direction TLT
-...........\kern -2.84526
+...........\kern-2.84526
 ...........\write5{\protect \BOOKMARK [2][-]{HD.N.2}{N}{index1.1}% 9}
 ...........\pdfdest name{HD.N.2} xyz
 ...........\penalty 10000
-...........\kern 2.84526
+...........\kern2.84526
 .........\glue 0.0 plus 1.0fil
 .........\TU/lmr/bx/n/9 N
 .........\glue 0.0 plus 1.0fil
@@ -2217,11 +2217,11 @@ Completed box being shipped out [4]
 .........\hbox(0.0+0.0)x0.0, direction TLT
 .........\hbox(0.0+0.0)x0.0, direction TLT
 ..........\hbox(0.0+0.0)x0.0, shifted -11.0, direction TLT
-...........\kern -2.84526
+...........\kern-2.84526
 ...........\write5{\protect \BOOKMARK [2][-]{HD.R.2}{R}{index1.1}% 10}
 ...........\pdfdest name{HD.R.2} xyz
 ...........\penalty 10000
-...........\kern 2.84526
+...........\kern2.84526
 .........\glue 0.0 plus 1.0fil
 .........\TU/lmr/bx/n/9 R
 .........\glue 0.0 plus 1.0fil
@@ -2301,13 +2301,13 @@ Completed box being shipped out [4]
 Completed box being shipped out [5]
 \vbox(633.0+0.22)x407.0, direction TLT
 .\vbox(0.0+0.0)x0.0, glue set - 14.99626fil, direction TLT
-..\kern 0.0
-..\kern 16.0
-..\kern -1.00374
+..\kern0.0
+..\kern16.0
+..\kern-1.00374
 ..\hbox(0.0+0.0)x0.0, glue set - 60.99626fil, direction TLT
-...\kern 0.0
-...\kern 62.0
-...\kern -1.00374
+...\kern0.0
+...\kern62.0
+...\kern-1.00374
 ...\pdfdest name{page.5} xyz
 ...\penalty 10000
 ...\glue 0.0 plus 1.0fil minus 1.0fil
@@ -2343,7 +2343,7 @@ Completed box being shipped out [5]
 .......\hbox(0.0+0.0)x0.0, direction TLT
 ........\glue 0.0
 .......\hbox(0.0+0.0)x0.0, direction TLT
-........\kern 0.0
+........\kern0.0
 ........\penalty 10000
 ........\hbox(0.0+0.0)x0.0, direction TLT
 .........\hbox(0.0+0.0)x0.0, shifted -18.0, direction TLT
@@ -2424,7 +2424,7 @@ Completed box being shipped out [5]
 .........\TU/lmr/m/n/9 t
 .........\glue(\spaceskip) 3.087 plus 1.5435 minus 1.029
 .........\TU/lmr/m/n/9 c
-.........\kern -0.261
+.........\kern-0.261
 .........\TU/lmr/m/n/9 h
 .........\TU/lmr/m/n/9 a
 .........\TU/lmr/m/n/9 n
@@ -2504,7 +2504,7 @@ Completed box being shipped out [5]
 .........\TU/lmr/m/n/9 i
 .........\TU/lmr/m/n/9 n
 .........\TU/lmr/m/n/9 g
-.........\kern 0.0
+.........\kern0.0 (italic)
 .........\glue 3.087 plus 1.5435 minus 1.029
 .........\TU/lmtt/m/n/9 \
 .........\TU/lmtt/m/n/9 m
@@ -2515,7 +2515,7 @@ Completed box being shipped out [5]
 .........\TU/lmtt/m/n/9 g
 .........\TU/lmtt/m/n/9 t
 .........\TU/lmtt/m/n/9 h
-.........\kern 0.0
+.........\kern0.0 (italic)
 .........\glue(\rightskip) 15.0 plus 1.0fil
 ........\penalty 300
 ........\glue(\baselineskip) 1.24803
@@ -2680,7 +2680,7 @@ Completed box being shipped out [5]
 .........\TU/lmr/m/n/9 d
 .........\glue(\spaceskip) 3.087 plus 1.5435 minus 1.029
 .........\TU/lmr/m/n/9 c
-.........\kern -0.261
+.........\kern-0.261
 .........\TU/lmr/m/n/9 h
 .........\TU/lmr/m/n/9 a
 .........\TU/lmr/m/n/9 n
