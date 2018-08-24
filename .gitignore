@@ -7,3 +7,5 @@ doc-v3/tmp/*
 dashundergaps.zip
 dashundergaps/build
 *.pdf
+*.zip
+parskip/build
