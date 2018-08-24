@@ -1,0 +1,185 @@
+% \iffalse meta-comment
+%
+%% File: widows-and-orphans.dtx (C) Copyright 2017 Frank Mittelbach
+%
+% It may be distributed and/or modified under the conditions of the
+% LaTeX Project Public License (LPPL), either version 1.3c of this
+% license or (at your option) any later version.  The latest version
+% of this license is in the file
+%
+%    http://www.latex-project.org/lppl.txt
+%
+%
+% The development version of the bundle can be found at
+%
+%    https://github.com/FrankMittelbach/fmitex/widows-and-orphans
+%
+% for those people who are interested.
+%
+%<*driver>
+\documentclass[full]{l3doc}
+\usepackage{amstext}
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+%
+
+
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%<@@=fmwao>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\ProvidesExplPackage{widows-and-orphans}{2017/11/09}{}
+  {Detecting widows and orphans (FMi)}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}
+
+\DeclareOption{force}{%
+  \clubpenalty=150
+  \widowpenalty=150
+  \displaywidowpenalty=50
+}
+
+\DeclareOption{avoid}{%
+}
+
+\ProcessOptions
+
+\@tempswafalse
+
+\ifnum \clubpenalty = 150
+  \ifnum \widowpenalty = 150
+    \ifnum \displaywidowpenalty = 50
+      \clubpenalty=152
+      \widowpenalty=153
+      \displaywidowpenalty=51
+    \else \@tempswatrue
+    \fi
+  \else \@tempswatrue
+  \fi
+\else \@tempswatrue
+\fi
+
+\if@tempswa
+\PackageError{widows-and-orphans}{Club, widow or displaywidow penalty
+  \MessageBreak explicitly set by class or in the preamble}
+ {To use this package call it with option [force]!}
+\endinput\fi
+
+
+
+% check if the output penalty was due to orphan or widow or both
+\def\testforwidowsandorphans{%
+  \ifnum\outputpenalty=\widowpenalty
+    \announcewidow{W}%
+  \else
+    \ifnum\outputpenalty=\@clubpenalty
+      \announceorphan
+    \else
+      \ifnum\outputpenalty=\numexpr \widowpenalty+\@clubpenalty \relax
+        \announceorphanandwidow{}%
+      \else
+        \ifnum\outputpenalty=\numexpr \displaywidowpenalty+\@clubpenalty \relax
+          \announceorphanandwidow{display}%
+        \else
+          \ifnum\outputpenalty=\displaywidowpenalty
+            \announcewidow{Display w}%
+          \fi
+        \fi
+      \fi
+    \fi
+ \fi
+}
+
+
+\def\announceorphan{%
+  \typeout{*** Orphan on page \number\c@page 
+               \if@twocolumn
+                 \space (%
+                 \if@firstcolumn
+                    first
+                   \else
+                    (second
+                   \fi
+                    column)%
+                 \fi
+          }}
+
+\def\announcewidow#1{%
+  \typeout{*** #1idow on page \number\numexpr\c@page 
+               \if@twocolumn
+                 \if@firstcolumn
+                    \relax \space (second
+                 \else
+                    +1\relax \space (first
+                 \fi
+                 column)%
+               \else
+                 +1\relax
+               \fi
+          }}
+
+  
+\def\announceorphanandwidow{%
+  \typeout{*** Orphan on page \number\c@page 
+                \space
+                \if@twocolumn
+                 (%
+                 \if@firstcolumn
+                    first
+                   \else
+                    second
+                   \fi
+                    column)
+                 \fi
+                 and widow on page \number\numexpr\c@page 
+               \if@twocolumn
+                 \if@firstcolumn
+                    \relax \space (second
+                 \else
+                    +1\relax \space (first
+                 \fi
+                 column)%
+               \else
+                 +1\relax
+               \fi
+          }}
+
+
+
+\def\announceorphanandwidow#1{%
+  \typeout{*** Orphan 
+                \if@twocolumn
+                  \if@firstcolumn
+                    and #1widow on page \number\c@page \space (first and second column)%
+                 \else
+                    on  \number\c@page \space (second column)
+                    and #1widow on page \number\numexpr\c@page +1\relax
+                    \space (first  column)%
+                 \fi
+               \else
+                 on  page \number\c@page \space
+                 and #1widow on page \number\numexpr\c@page +1\relax
+               \fi
+          }}
+
+
+
+% execute this code at the very beginning of the OR
+\toks0=\output
+\output\expandafter{\expandafter\testforwidowsandorphans
+                                   \the\toks0}
+
+
+%    \end{macrocode}
+
+
+\endinput

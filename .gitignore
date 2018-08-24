@@ -1,0 +1,5 @@
+parskip/build
+doc-v3/build
+*.pdf
+dashundergaps/build
+*.zip
