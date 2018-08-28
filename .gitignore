@@ -4,3 +4,4 @@ doc-v3/build
 dashundergaps/build
 *.zip
 doc-v3/tmp
+*.*~
