@@ -24,8 +24,12 @@
   \[ a_x=\frac{1}{2}^2 \]
 
 
+\WaOsuppress
+
   \stupidpara\stupidpara\stupidpara\stupidpara
-  \verystupidpara\verystupidpara\verystupidpara\verystupidpara
+  \verystupidpara\verystupidpara
+\WaOsuppress
+  \verystupidpara\verystupidpara
 
 
   \twocolumn

@@ -60,44 +60,62 @@
    \the\toks0}
 
 
+\bool_new:N       \g_@@_check_next_bool
+\bool_gset_true:N \g_@@_check_next_bool
+
 
 % check if the output penalty was due to orphan or widow or both
 
       
 \cs_new:Npn \@@_test_for_widows_etc: {
-  \int_case:nn { \outputpenalty - \interlinepenalty }
+  \int_case:nnF { \outputpenalty - \interlinepenalty }
     {
       { \widowpenalty }
-	{ \msg_warning:nnn{widows-and-orphans}{widow}{Widow} }
+	{ \@@_problem_identified:nn{widow}{Widow} }
       { \displaywidowpenalty }
-	{ \msg_warning:nnn{widows-and-orphans}{widow}{Display~ widow} }
+	{ \@@_problem_identified:nn{widow}{Display~ widow} }
       { \@clubpenalty }
-	{ \msg_warning:nn{widows-and-orphans}{orphan} }
+	{ \@@_problem_identified:n{orphan} }
       { \@clubpenalty + \widowpenalty }
-	{ \msg_warning:nnn{widows-and-orphans}{orphan-widow}{} }
+	{ \@@_problem_identified:nn{orphan-widow}{} }
       { \@clubpenalty + \displaywidowpenalty }
-	{ \msg_warning:nnn{widows-and-orphans}{orphan-widow}{display} }
+	{ \@@_problem_identified:nn{orphan-widow}{display} }
 %           
       { \brokenpenalty }
-	{ \msg_warning:nn{widows-and-orphans}{hyphen} }
+	{ \@@_problem_identified:n{hyphen} }
 %           
       { \predisplaypenalty }
-	{ \msg_warning:nnn{widows-and-orphans}{widow}{Lonely~ display} }
+	{ \@@_problem_identified:nn{widow}{Lonely~ display} }
 %           
       { \brokenpenalty + \widowpenalty }
-	{ \msg_warning:nnn{widows-and-orphans}{widow}{Widow} }
+	{ \@@_problem_identified:nn{widow}{Widow} }
       { \brokenpenalty + \displaywidowpenalty }
-	{ \msg_warning:nnn{widows-and-orphans}{widow}{Display~ widow} }
+	{ \@@_problem_identified:nn{widow}{Display~ widow} }
       { \brokenpenalty + \@clubpenalty }
-	{ \msg_warning:nn{widows-and-orphans}{orphan} }
+	{ \@@_problem_identified:n{orphan} }
       { \brokenpenalty + \@clubpenalty + \widowpenalty }
-	{ \msg_warning:nnn{widows-and-orphans}{orphan-widow}{} }
+	{ \@@_problem_identified:nn{orphan-widow}{} }
       { \brokenpenalty + \@clubpenalty + \displaywidowpenalty }
-	{ \msg_warning:nnn{widows-and-orphans}{orphan-widow}{display} }
+	{ \@@_problem_identified:nn{orphan-widow}{display} }
     }
+    {
+      \bool_if:NF \g_@@_check_next_bool
+        {
+	 \msg_error:nn{widows-and-orphans}{no-problem}
+	}
+    }
+  \bool_gset_true:N \g_@@_check_next_bool
 }
 
-%
+\cs_new:Npn \@@_problem_identified:n #1 {
+   \bool_if:NT \g_@@_check_next_bool
+     { \msg_warning:nn{widows-and-orphans}{#1} }
+}
+\cs_new:Npn \@@_problem_identified:nn #1 #2 {
+   \bool_if:NT \g_@@_check_next_bool
+     { \msg_warning:nnn{widows-and-orphans}{#1}{#2} }
+}
+
 
 
 
@@ -118,6 +136,13 @@
 \cs_new:Npn \@@_this_page: { \@@_some_page:n   \c@page       }
 \cs_new:Npn \@@_next_page: { \@@_some_page:n { \c@page + 1 } }  
 
+
+\msg_new:nnnn {widows-and-orphans} {no-problem}
+  { No~ problem~ to~ suppress~ on~ this~ page! }
+  { Supression~ of~ a~ widow~ or~ orphan~ problem~ was~ requested~
+    but~ on~ the~ current~ page~ there~ doesn't~ seem~ to~ be~ any.~
+    Maybe~ the~ text~ was~ changed~ and~ the~ request~ should~ get~ removed?}
+		
 
 \msg_new:nnnn {widows-and-orphans} {orphan}
   { Orphan~ on~ page~ \@@_this_page:
@@ -175,38 +200,39 @@
 
 \prop_new:N \@@_penalties_prop
 
-\int_new:N \@@_int
+\int_new:N \l_@@_int
 
-\bool_new:N \@@_result_bool
+\bool_new:N \l_@@_result_bool
+
 
 % #1 variable
 % #2 clist of test expressions
 
 \cs_new:Npn \@@_decide_penalty:Nn #1 #2 {
 %
-  \bool_set_false:N \@@_result_bool
+  \bool_set_false:N \l_@@_result_bool
 %
-  \bool_do_until:Nn \@@_result_bool
+  \bool_do_until:Nn \l_@@_result_bool
     {
-     \bool_set_true:N \@@_result_bool
+     \bool_set_true:N \l_@@_result_bool
      \clist_map_inline:nn { #2 }
        {
-        \int_set:Nn \@@_int {##1}
-        \prop_get:NVNT \@@_penalties_prop \@@_int \@@_tmp_tl
-            { \clist_map_break:n { \bool_set_false:N \@@_result_bool } }
+        \int_set:Nn \l_@@_int {##1}
+        \prop_get:NVNT \@@_penalties_prop \l_@@_int \@@_tmp_tl
+            { \clist_map_break:n { \bool_set_false:N \l_@@_result_bool } }
        }
-     \bool_if:NTF \@@_result_bool
+     \bool_if:NTF \l_@@_result_bool
        {
 % no immediate conflict found:
         \int_compare:nNnTF #1 = {10000}
 	  { \int_incr:N #1
-   	    \bool_set_false:N \@@_result_bool   % reiterate
+   	    \bool_set_false:N \l_@@_result_bool   % reiterate
 	  }
 % add penalties for all clist items to the prop
           { \clist_map_inline:nn { #2 }
 	    {
-	     \int_set:Nn \@@_int {##1}
-	     \prop_put:NVn \@@_penalties_prop \@@_int { ##1 }
+	     \int_set:Nn \l_@@_int {##1}
+	     \prop_put:NVn \@@_penalties_prop \l_@@_int { ##1 }
 	    }
   	  }
        }
@@ -285,12 +311,12 @@
       ,widows / default 
          .code:n = \int_set:Nn \widowpenalty { 150           }
        % ====================================
-      ,hyphen .choice:
-      ,hyphen / prevent 
+      ,hyphens .choice:
+      ,hyphens / prevent 
          .code:n = \int_set:Nn \brokenpenalty { 10000        }
-      ,hyphen / avoid 
+      ,hyphens / avoid 
          .code:n = \int_set:Nn \brokenpenalty { 2000         }
-      ,hyphen / default 
+      ,hyphens / default 
          .code:n = \int_set:Nn \brokenpenalty { 50           }
        % ====================================
       ,prevent-all 
@@ -305,6 +331,13 @@
 	           \int_set:Nn \widowpenalty {        5000   }
 	           \int_set:Nn \displaywidowpenalty { 2000   }
 	           \int_set:Nn \brokenpenalty{        2000   }
+%	           \int_set:Nn \predisplaypenalty{    9999   }
+	           \int_set:Nn \clubpenalty  { \@clubpenalty }
+      ,default-all 
+         .code:n = \int_set:Nn \@clubpenalty {         150   }
+	           \int_set:Nn \widowpenalty {         150   }
+	           \int_set:Nn \displaywidowpenalty {   50   }
+	           \int_set:Nn \brokenpenalty{         100   }
 	           \int_set:Nn \predisplaypenalty{   10000   }
 	           \int_set:Nn \clubpenalty  { \@clubpenalty }
      }
@@ -313,11 +346,19 @@
 \ProcessKeysPackageOptions{fmwao}
 
 
-\NewDocumentCommand \widowsandorphanssetup { m } {
-  \keys_set:nn {fmwao} {#1}
+\NewDocumentCommand \WaOsetup { m } {
+  \keys_set:nn {fmWaO} {#1}
   \@@_initialize: 
   \ignorespaces }
 
+\NewDocumentCommand \WaOparameters { } {
+  \prop_show:N \@@_penalties_prop
+}
+
+
+\NewDocumentCommand \WaOsuppress { } {
+  \bool_gset_false:N \g_@@_check_next_bool
+}
 
 
 %    \end{macrocode}

@@ -10,4 +10,8 @@
 
 \usepackage[check=error]{widows-and-orphans}
 
+\begin{document}
+
+\WaOparameters
+
 \END
