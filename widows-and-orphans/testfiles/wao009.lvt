@@ -3,7 +3,7 @@
 \input{regression-test}
     
 
-\usepackage{widows-and-orphans}
+\usepackage[avoid-all]{widows-and-orphans}
 
 \newcommand\stupidpara{A first (orphan?) line\\a second line\\and a final (widow?) line.\par}
 \newcommand\verystupidpara{A two-line para\\with (orphan+widow?) or not?\par}

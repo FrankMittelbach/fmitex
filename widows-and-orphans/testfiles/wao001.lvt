@@ -4,8 +4,10 @@
     
 \clubpenalty=152
 
+\RequirePackage{l3keys2e}
+
 \START
 
-\usepackage[force]{widows-and-orphans}
+\usepackage[check=error]{widows-and-orphans}
 
 \END

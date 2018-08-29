@@ -2,6 +2,8 @@
 
 \input{regression-test}
     
+\RequirePackage{l3keys2e}
+
 \clubpenalty=152
 
 \START

@@ -40,161 +40,284 @@
 %    
 %    \begin{macrocode}
 \RequirePackage{xparse,l3keys2e}
+
 \ProvidesExplPackage
     {widows-and-orphans}
-    {2017/11/09}
+    {2018/08/29}
     {v1.0a}
     {Detecting widows and orphans (FMi)}
 %    \end{macrocode}
 
 %    \begin{macrocode}
 
-\DeclareOption{force}{%
-  \clubpenalty=150
-  \widowpenalty=150
-  \displaywidowpenalty=50
-}
-
-\DeclareOption{avoid}{%
-}
-
-\ProcessOptions
-
-\@tempswafalse
-
-\ifnum \clubpenalty = 150
-  \ifnum \widowpenalty = 150
-    \ifnum \displaywidowpenalty = 50
-      \clubpenalty=152
-      \widowpenalty=153
-      \displaywidowpenalty=51
-    \else \@tempswatrue
-    \fi
-  \else \@tempswatrue
-  \fi
-\else \@tempswatrue
-\fi
-
-\if@tempswa
-\PackageError{widows-and-orphans}{Club, widow or displaywidow penalty
-  \MessageBreak explicitly set by class or in the preamble}
- {To use this package call it with option [force]!}
-\endinput\fi
-
-
-
-% check if the output penalty was due to orphan or widow or both
-\def\testforwidowsandorphans{%
-  \ifnum\outputpenalty=\widowpenalty
-    \announcewidow{W}%
-  \else
-    \ifnum\outputpenalty=\@clubpenalty
-      \announceorphan
-    \else
-      \ifnum\outputpenalty=\numexpr \widowpenalty+\@clubpenalty \relax
-        \announceorphanandwidow{}%
-      \else
-        \ifnum\outputpenalty=\numexpr \displaywidowpenalty+\@clubpenalty \relax
-          \announceorphanandwidow{display}%
-        \else
-          \ifnum\outputpenalty=\displaywidowpenalty
-            \announcewidow{Display w}%
-          \fi
-        \fi
-      \fi
-    \fi
- \fi
-}
-
-
-\def\announceorphan{%
-  \typeout{*** Orphan on page \number\c@page 
-               \if@twocolumn
-                 \space (%
-                 \if@firstcolumn
-                    first
-                   \else
-                    (second
-                   \fi
-                    column)%
-                 \fi
-          }}
-
-\def\announcewidow#1{%
-  \typeout{*** #1idow on page \number\numexpr\c@page 
-               \if@twocolumn
-                 \if@firstcolumn
-                    \relax \space (second
-                 \else
-                    +1\relax \space (first
-                 \fi
-                 column)%
-               \else
-                 +1\relax
-               \fi
-          }}
-
-  
-\def\announceorphanandwidow{%
-  \typeout{*** Orphan on page \number\c@page 
-                \space
-                \if@twocolumn
-                 (%
-                 \if@firstcolumn
-                    first
-                   \else
-                    second
-                   \fi
-                    column)
-                 \fi
-                 and widow on page \number\numexpr\c@page 
-               \if@twocolumn
-                 \if@firstcolumn
-                    \relax \space (second
-                 \else
-                    +1\relax \space (first
-                 \fi
-                 column)%
-               \else
-                 +1\relax
-               \fi
-          }}
-
-
-
-\def\announceorphanandwidow#1
- {
-  \typeout{*** Orphan 
-    \@@_if_first_second_or_single_col:nnn
-       {
-         and #1widow on page \number\c@page \space
-         (first and second column)
-       }
-       {
-         on  \number\c@page \space (second column)
-         and #1widow on page \number\numexpr\c@page +1\relax
-         \space (first  column)
-       }
-       {
-         on  page \number\c@page \space
-         and #1widow on page \number\numexpr\c@page +1\relax
-       }
-  }
-
-
-\cs_new:Npn \@@_if_first_second_or_single_col:nnn #1 #2 #3
-   {
-     \if@twocolumn
-       \if@firstcolumn #1 \else: #2 \fi:
-     \else: #3 \fi:
-   }
-   
 
 
 % execute this code at the very beginning of the OR
 \toks0=\output
-\output\expandafter{\expandafter\testforwidowsandorphans
-                                   \the\toks0}
+\expandafter
+\output\expandafter{\expandafter
+   \@@_test_for_widows_etc:
+   \the\toks0}
+
+
+
+% check if the output penalty was due to orphan or widow or both
+
+      
+\cs_new:Npn \@@_test_for_widows_etc: {
+  \int_case:nn { \outputpenalty - \interlinepenalty }
+    {
+      { \widowpenalty }
+	{ \msg_warning:nnn{widows-and-orphans}{widow}{Widow} }
+      { \displaywidowpenalty }
+	{ \msg_warning:nnn{widows-and-orphans}{widow}{Display~ widow} }
+      { \@clubpenalty }
+	{ \msg_warning:nn{widows-and-orphans}{orphan} }
+      { \@clubpenalty + \widowpenalty }
+	{ \msg_warning:nnn{widows-and-orphans}{orphan-widow}{} }
+      { \@clubpenalty + \displaywidowpenalty }
+	{ \msg_warning:nnn{widows-and-orphans}{orphan-widow}{display} }
+%           
+      { \brokenpenalty }
+	{ \msg_warning:nn{widows-and-orphans}{hyphen} }
+%           
+      { \predisplaypenalty }
+	{ \msg_warning:nnn{widows-and-orphans}{widow}{Lonely~ display} }
+%           
+      { \brokenpenalty + \widowpenalty }
+	{ \msg_warning:nnn{widows-and-orphans}{widow}{Widow} }
+      { \brokenpenalty + \displaywidowpenalty }
+	{ \msg_warning:nnn{widows-and-orphans}{widow}{Display~ widow} }
+      { \brokenpenalty + \@clubpenalty }
+	{ \msg_warning:nn{widows-and-orphans}{orphan} }
+      { \brokenpenalty + \@clubpenalty + \widowpenalty }
+	{ \msg_warning:nnn{widows-and-orphans}{orphan-widow}{} }
+      { \brokenpenalty + \@clubpenalty + \displaywidowpenalty }
+	{ \msg_warning:nnn{widows-and-orphans}{orphan-widow}{display} }
+    }
+}
+
+%
+
+
+
+\prg_new_conditional:Npnn \LaTeXe_if_switch:n #1 { p , T , F , TF }
+  { \exp_args:Nc\if_meaning:w { if#1 } \iftrue \prg_return_true:
+                                        \else: \prg_return_false: \fi: }
+
+
+\cs_new_nopar:Npn \@@_roman_thepage: {\csname @roman\endcsname \c@page}
+
+\cs_new:Npn \@@_some_page:n #1 {
+  \cs_if_eq:NNTF \thepage \@@_roman_thepage:
+    { \int_to_roman:n  }
+    { \int_to_arabic:n }
+  { #1 }
+}                               
+
+\cs_new:Npn \@@_this_page: { \@@_some_page:n   \c@page       }
+\cs_new:Npn \@@_next_page: { \@@_some_page:n { \c@page + 1 } }  
+
+
+\msg_new:nnnn {widows-and-orphans} {orphan}
+  { Orphan~ on~ page~ \@@_this_page:
+    \LaTeXe_if_switch:nT {@twocolumn}
+      { \space (
+	\LaTeXe_if_switch:nTF {@firstcolumn}
+	  { first~ } { (second~ }
+	 column)                             }
+  }
+  { Check~ out~ the~ page~ and~ see~ if~ you~ can~ avoid~ the~ orphan.}
+		
+
+\msg_new:nnnn {widows-and-orphans} {hyphen}
+  { Hyphen~ in~ last~ line~ of~ page~ \@@_this_page:
+    \LaTeXe_if_switch:nT {@twocolumn}
+      { \space (
+	\LaTeXe_if_switch:nTF {@firstcolumn}
+	  { first~ } { (second~ }
+	 column) }
+  }
+  { Check~ out~ the~ page~ and~ see~ if~ you~ can~ get~
+    a~ better~ line~ break. }
+
+
+\msg_new:nnnn {widows-and-orphans} {widow}
+  { #1~ on~ page~ 
+    \LaTeXe_if_switch:nTF {@twocolumn}
+      { \LaTeXe_if_switch:nTF {@firstcolumn}
+	  { \@@_this_page: \space (second~ }
+	  { \@@_next_page: \space (first~  }
+	column)                              }
+      { \@@_next_page: }
+  }
+  { Check~ out~ the~ page~ and~ see~ if~ you~ can~ avoid~ the~ widow.}
+
+\msg_new:nnnn {widows-and-orphans} {orphan-widow}
+  { Orphan~
+    \LaTeXe_if_switch:nTF {@twocolumn}
+       { \LaTeXe_if_switch:nTF {@firstcolumn}
+	   { and~ #1 widow~ on~ page~ \@@_this_page: \space
+	     (first~ and~ second~ }
+	   { on~ page~ \@@_this_page: \space (second~ column)~
+	     and~ #1 widow~ on~ page~ \@@_next_page: \space (first~ }
+       }
+       { on~ page~ \@@_this_page: \space (second~ column)~
+	 and~ #1 widow~ on~ page~ \@@_next_page: \space (first~ }
+     column)
+   }
+  { Check~ out~ the~ page~ and~ see~ if~ you~ can~ avoid~ both~
+    orphan~ and~ widow.}
+   
+
+
+
+
+\prop_new:N \@@_penalties_prop
+
+\int_new:N \@@_int
+
+\bool_new:N \@@_result_bool
+
+% #1 variable
+% #2 clist of test expressions
+
+\cs_new:Npn \@@_decide_penalty:Nn #1 #2 {
+%
+  \bool_set_false:N \@@_result_bool
+%
+  \bool_do_until:Nn \@@_result_bool
+    {
+     \bool_set_true:N \@@_result_bool
+     \clist_map_inline:nn { #2 }
+       {
+        \int_set:Nn \@@_int {##1}
+        \prop_get:NVNT \@@_penalties_prop \@@_int \@@_tmp_tl
+            { \clist_map_break:n { \bool_set_false:N \@@_result_bool } }
+       }
+     \bool_if:NTF \@@_result_bool
+       {
+% no immediate conflict found:
+        \int_compare:nNnTF #1 = {10000}
+	  { \int_incr:N #1
+   	    \bool_set_false:N \@@_result_bool   % reiterate
+	  }
+% add penalties for all clist items to the prop
+          { \clist_map_inline:nn { #2 }
+	    {
+	     \int_set:Nn \@@_int {##1}
+	     \prop_put:NVn \@@_penalties_prop \@@_int { ##1 }
+	    }
+  	  }
+       }
+% conflict found: increment and try again
+       { \int_incr:N #1 }
+     }
+}
+
+
+\cs_new:Npn \@@_initialize: {
+  \prop_clear:N  \@@_penalties_prop
+  \prop_put:NVn  \@@_penalties_prop \@lowpenalty  \@lowpenalty
+  \prop_put:NVn  \@@_penalties_prop \@medpenalty  \@medpenalty
+  \prop_put:NVn  \@@_penalties_prop \@highpenalty \@highpenalty
+%
+  \@@_decide_penalty:Nn \@clubpenalty { \@clubpenalty }
+%
+  \@@_decide_penalty:Nn \widowpenalty 
+      { \widowpenalty , 
+	\widowpenalty + \@clubpenalty }
+%
+  \@@_decide_penalty:Nn \displaywidowpenalty 
+      { \displaywidowpenalty , 
+	\displaywidowpenalty + \@clubpenalty }
+%
+  \@@_decide_penalty:Nn \brokenpenalty
+      { \brokenpenalty ,
+	\brokenpenalty + \@clubpenalty ,
+	\brokenpenalty + \widowpenalty , 
+	\brokenpenalty + \widowpenalty + \@clubpenalty,
+	\brokenpenalty + \displaywidowpenalty + \@clubpenalty }
+%
+  \@@_decide_penalty:Nn \predisplaypenalty { \predisplaypenalty }
+%  \prop_show:N \@@_penalties_prop
+}
+
+
+\AtBeginDocument {
+  \@@_initialize:
+%  \prop_show:N \@@_penalties_prop
+}
+
+
+
+
+
+\keys_define:nn {fmwao}
+     {
+       % ====================================
+      ,check .choice:
+      ,check / error
+         .code:n = \msg_redirect_module:nnn { widows-and-orphans } { warning } { error }
+      ,check / info
+         .code:n = \msg_redirect_module:nnn { widows-and-orphans } { warning } { info }
+      ,check / none
+         .code:n = \msg_redirect_module:nnn { widows-and-orphans } { warning } { none }
+      ,check / warning
+         .code:n = \msg_redirect_module:nnn { widows-and-orphans } { warning } { }
+       % ====================================
+      ,orphans .choice:
+      ,orphans / prevent 
+         .code:n = \int_set:Nn \@clubpenalty { 10000         }
+	           \int_set:Nn \clubpenalty  { \@clubpenalty }
+      ,orphans / avoid 
+         .code:n = \int_set:Nn \@clubpenalty { 5000          }
+	           \int_set:Nn \clubpenalty  { \@clubpenalty }
+      ,orphans / default 
+         .code:n = \int_set:Nn \@clubpenalty { 150           }
+	           \int_set:Nn \clubpenalty  { \@clubpenalty }
+       % ====================================
+      ,widows .choice:
+      ,widows / prevent 
+         .code:n = \int_set:Nn \widowpenalty { 10000         }
+      ,widows / avoid 
+         .code:n = \int_set:Nn \widowpenalty { 5000          }
+      ,widows / default 
+         .code:n = \int_set:Nn \widowpenalty { 150           }
+       % ====================================
+      ,hyphen .choice:
+      ,hyphen / prevent 
+         .code:n = \int_set:Nn \brokenpenalty { 10000        }
+      ,hyphen / avoid 
+         .code:n = \int_set:Nn \brokenpenalty { 2000         }
+      ,hyphen / default 
+         .code:n = \int_set:Nn \brokenpenalty { 50           }
+       % ====================================
+      ,prevent-all 
+         .code:n = \int_set:Nn \@clubpenalty {       10000   }
+	           \int_set:Nn \widowpenalty {       10000   }
+	           \int_set:Nn \displaywidowpenalty{ 10000   }
+	           \int_set:Nn \brokenpenalty{       10000   }
+	           \int_set:Nn \predisplaypenalty{   10000   }
+	           \int_set:Nn \clubpenalty  { \@clubpenalty }
+      ,avoid-all 
+         .code:n = \int_set:Nn \@clubpenalty {        5000   }
+	           \int_set:Nn \widowpenalty {        5000   }
+	           \int_set:Nn \displaywidowpenalty { 2000   }
+	           \int_set:Nn \brokenpenalty{        2000   }
+	           \int_set:Nn \predisplaypenalty{   10000   }
+	           \int_set:Nn \clubpenalty  { \@clubpenalty }
+     }
+
+
+\ProcessKeysPackageOptions{fmwao}
+
+
+\NewDocumentCommand \widowsandorphanssetup { m } {
+  \keys_set:nn {fmwao} {#1}
+  \@@_initialize: 
+  \ignorespaces }
+
 
 
 %    \end{macrocode}

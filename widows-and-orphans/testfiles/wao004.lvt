@@ -3,12 +3,14 @@
 \input{regression-test}
     
 
-\usepackage{widows-and-orphans}
+\usepackage[check=error]{widows-and-orphans}
 
 \newcommand\stupidpara{A first (orphan?) line\\a second line\\and a final (widow?) line.\par}
 \newcommand\verystupidpara{A two-line para\\with (orphan+widow?) or not?\par}
 
 \setlength\textheight{5\baselineskip}
+
+\pagenumbering{roman}
 
 \begin{document}
 
@@ -18,10 +20,8 @@
 
   first line \\
   second line \\
-  third line \\
-  fourth line \\
   Widow line before display:
-  \[ a_x=\frac{1}{2}^2 \]
+  \[ a=b \]
 
 
   \stupidpara\stupidpara\stupidpara\stupidpara
