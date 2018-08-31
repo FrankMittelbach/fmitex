@@ -1,0 +1,253 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+(parskip.sty
+(../kvoptions.sty
+(../keyval.sty
+\KV@toks@=\toks...
+)
+(../ltxcmds.sty
+)
+(../kvsetkeys.sty
+(../infwarerr.sty
+)
+(../etexcmds.sty
+(../ifluatex.sty
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(../etoolbox.sty
+\etb@tempcnta=\count...
+))
+(parskip-002.toc)
+\tf@toc=\write...
+Completed box being shipped out [1]
+\vbox(633.0+0.0)x407.0
+.\glue 16.0
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 295.92123fil
+...\write-{}
+...\glue(\topskip) 0.0
+...\hbox(10.0512+0.17279)x345.0, glue set 281.68323fil
+....\hbox(0.0+0.0)x0.0
+.....\glue 0.0
+....\TU/lmr/bx/n/14.4 Contents
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 10000
+...\glue 3.913 plus -1.13802
+...\glue -3.913 plus 1.13802
+...\glue 10.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 4.84721
+...\hbox(6.98+0.0)x345.0, glue set 305.80997fil
+....\glue(\leftskip) 15.0
+....\glue -15.0
+....\hbox(6.55+0.0)x15.0, glue set 9.25fil
+.....\TU/lmr/bx/n/10 1
+.....\glue 0.0 plus 1.0fil
+....\TU/lmr/bx/n/10 A
+....\penalty 10000
+....\glue 0.0 plus 1.0fil
+....\penalty 10000
+....\hbox(6.55+0.0)x15.50003, glue set 9.75003fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+.....\TU/lmr/bx/n/10 1
+....\penalty 10000
+....\glue(\parfillskip) -15.50003
+....\glue(\rightskip) 15.50003
+...\penalty -300
+...\glue 10.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 5.14
+...\hbox(6.86+0.0)x345.0, glue set 306.31996fil
+....\glue(\leftskip) 15.0
+....\hbox(0.0+0.0)x0.0
+....\glue -15.0
+....\hbox(6.55+0.0)x15.0, glue set 9.25fil
+.....\TU/lmr/bx/n/10 2
+.....\glue 0.0 plus 1.0fil
+....\TU/lmr/bx/n/10 B
+....\penalty 10000
+....\glue 0.0 plus 1.0fil
+....\penalty 10000
+....\hbox(6.55+0.0)x15.50003, glue set 9.75003fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+.....\TU/lmr/bx/n/10 1
+....\penalty 10000
+....\glue(\parfillskip) -15.50003
+....\glue(\rightskip) 15.50003
+...\penalty -300
+...\glue 9.08499 plus 2.31 minus 0.86198
+...\glue(\parskip) 6.0 plus 2.0
+...\glue(\baselineskip) 7.92
+...\hbox(10.08+0.0)x345.0, glue set 310.25282fil
+....\hbox(9.4464+0.0)x22.50719
+.....\glue 0.0
+.....\TU/lmr/bx/n/14.4 1
+.....\glue 14.4
+....\TU/lmr/bx/n/14.4 A
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline \ETC.}
+...\penalty 10000
+...\glue 3.913 plus -1.13802
+...\glue(\parskip) 6.0 plus 2.0
+...\glue(\baselineskip) 5.06
+...\hbox(6.94+2.05998)x345.0, glue set 219.64998fil
+....\TU/lmr/m/n/10 Here
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 we
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 have
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 a
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 a
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 paragraph.
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 6.0 plus 2.0
+...\glue(\baselineskip) 2.78001
+...\hbox(7.16+0.10999)x345.0, glue set 209.04fil
+....\hbox(0.0+0.0)x15.0
+....\TU/lmr/m/n/10 And
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 here
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 is
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 the
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 second
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 one.
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty -51
+...\glue 6.0 plus 2.0
+...\glue -6.0 plus -2.0
+...\glue 0.0
+...\glue(\parskip) 6.0 plus 2.0
+...\glue(\baselineskip) 4.73001
+...\hbox(7.16+0.0)x320.0, glue set 312.5fil, shifted 25.0
+....\hbox(3.75+0.0)x0.0
+.....\glue 0.0
+.....\glue -20.0
+.....\glue -5.0
+.....\hbox(3.75+0.0)x20.0, glue set 20.0fil
+......\glue 0.0 plus 1.0fil minus 1.0fil
+......\hbox(3.75+0.0)x0.0, glue set - 7.78fil
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+.......\TU/lmr/m/n/10 •
+.....\glue 5.0
+....\penalty 0
+....\TU/lmr/m/n/10 A
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty -51
+...\glue 0.0
+...\glue(\parskip) 6.0 plus 2.0
+...\glue(\baselineskip) 5.17
+...\hbox(6.83+0.0)x320.0, glue set 312.92fil, shifted 25.0
+....\hbox(3.75+0.0)x0.0
+.....\glue 0.0
+.....\glue -20.0
+.....\glue -5.0
+.....\hbox(3.75+0.0)x20.0, glue set 20.0fil
+......\glue 0.0 plus 1.0fil minus 1.0fil
+......\hbox(3.75+0.0)x0.0, glue set - 7.78fil
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+.......\TU/lmr/m/n/10 •
+.....\glue 5.0
+....\penalty 0
+....\TU/lmr/m/n/10 B
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty -51
+...\glue 0.0
+...\glue(\parskip) 6.0 plus 2.0
+...\glue(\baselineskip) 5.85
+...\hbox(6.15+0.10999)x345.0, glue set 274.65999fil
+....\TU/lmr/m/n/10 some
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 more
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 text.
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 6.0 plus 2.0
+...\glue(\baselineskip) 4.73001
+...\hbox(7.16+0.10999)x345.0, glue set 216.26999fil
+....\hbox(0.0+0.0)x15.0
+....\TU/lmr/m/n/10 And
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 here
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 is
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 the
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 third
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 one.
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty -300
+...\glue 9.08499 plus 2.31 minus 0.86198
+...\glue(\parskip) 6.0 plus 2.0
+...\glue(\baselineskip) 8.01161
+...\hbox(9.8784+0.0)x345.0, glue set 310.97282fil
+....\hbox(9.4464+0.0)x22.50719
+.....\glue 0.0
+.....\TU/lmr/bx/n/14.4 2
+.....\glue 14.4
+....\TU/lmr/bx/n/14.4 B
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline \ETC.}
+...\penalty 10000
+...\glue 3.913 plus -1.13802
+...\glue(\parskip) 6.0 plus 2.0
+...\glue(\baselineskip) 4.84
+...\hbox(7.16+0.10999)x345.0, glue set 236.83fil
+....\TU/lmr/m/n/10 And
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 here
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 is
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 another
+....\glue 3.33 plus 1.665 minus 1.11
+....\TU/lmr/m/n/10 one.
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue -0.10999
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.34
+..\hbox(6.66+0.0)x345.0, glue set 170.0fil
+...\glue 0.0 plus 1.0fil
+...\TU/lmr/m/n/10 1
+...\glue 0.0 plus 1.0fil
+(parskip-002.aux)

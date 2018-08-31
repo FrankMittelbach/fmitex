@@ -1,7 +1,9 @@
 *.*~
+*.aux
 *.log
+*.out
 *.pdf
-*.pdf
+*.synctex.gz
 *.zip
 dashundergaps/build
 doc-v3/build

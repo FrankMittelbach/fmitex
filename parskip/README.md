@@ -2,8 +2,7 @@
 
 -----
 
-This package is (going to be) a reimplementation of a package with the same name
-written by Hubert Partl in 1989 and later maintained by Robin Fairbaines
+This package is (going to be) a reimplementation of a package with the same name written by Hubert Partl in 1989 and later maintained by Robin Fairbairns.
 
 Package source can be found below:
 
