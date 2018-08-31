@@ -61,9 +61,9 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 !...............................................  
 l. ...  \verystupidpara\verystupidpara
 |'''''''''''''''''''''''''''''''''''''''''''''''
-| Supression of a widow or orphan problem was requested but on the current
+| Suppression of a widow or orphan problem was requested but on the current
 | page there doesn't seem to be any. Maybe the text was changed and the
-| request should get removed?
+| request should get (re)moved?
 |...............................................
 [5]
 %% goal height=60.0, max depth=5.0

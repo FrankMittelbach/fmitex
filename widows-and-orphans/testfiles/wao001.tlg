@@ -22,7 +22,7 @@ Don't change this file in any respect.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \WaOsuppress with sig. '' on line ....
+. Defining command \WaOignorenext with sig. '' on line ....
 .................................................
 )
 No file wao001.aux.
@@ -38,21 +38,24 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line ....
 LaTeX Font Info:    ... okay on input line ....
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line ....
 LaTeX Font Info:    ... okay on input line ....
-The property list \__fmwao_penalties_prop contains the pairs (without outer
+The property list \l__fmwao_penalties_prop contains the pairs (without outer
 braces):
+>  {10000}  =>  {10000}
 >  {51}  =>  {\@lowpenalty }
 >  {151}  =>  {\@medpenalty }
 >  {301}  =>  {\@highpenalty }
->  {152}  =>  {\@clubpenalty }
->  {150}  =>  {\widowpenalty }
->  {302}  =>  {\widowpenalty +\@clubpenalty }
->  {50}  =>  {\displaywidowpenalty }
->  {202}  =>  {\displaywidowpenalty +\@clubpenalty }
->  {101}  =>  {\brokenpenalty }
->  {253}  =>  {\brokenpenalty +\@clubpenalty }
->  {251}  =>  {\brokenpenalty +\widowpenalty }
->  {403}  =>  {\brokenpenalty +\widowpenalty +\@clubpenalty }
->  {303}  =>  {\brokenpenalty +\displaywidowpenalty +\@clubpenalty }
+>  {150}  =>  {\clubpenalty +\interlinepenalty }
+>  {152}  =>  {\widowpenalty +\interlinepenalty }
+>  {302}  =>  {\widowpenalty +\clubpenalty +\interlinepenalty }
+>  {50}  =>  {\displaywidowpenalty +\interlinepenalty }
+>  {200}  =>  {\displaywidowpenalty +\clubpenalty +\interlinepenalty }
+>  {100}  =>  {\brokenpenalty +\interlinepenalty }
+>  {250}  =>  {\brokenpenalty +\clubpenalty +\interlinepenalty }
+>  {252}  =>  {\brokenpenalty +\widowpenalty +\interlinepenalty }
+>  {402}  =>  {\brokenpenalty +\widowpenalty +\clubpenalty +\interlinepenalty
+}
+>  {300}  =>  {\brokenpenalty +\displaywidowpenalty +\clubpenalty
++\interlinepenalty }
 >  {10001}  =>  {\predisplaypenalty }.
 <recently read> }
 l. ...\WaOparameters
