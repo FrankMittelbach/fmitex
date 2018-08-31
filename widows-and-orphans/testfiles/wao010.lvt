@@ -1,0 +1,24 @@
+\documentclass {article}
+
+\input{regression-test}
+    
+\RequirePackage[enable-debug ,check-declarations]{expl3}
+\ExplSyntaxOn
+\debug_on:n { deprecation }
+\ExplSyntaxOff
+
+\RequirePackage{l3keys2e}
+
+\START
+
+\interlinepenalty=100
+\displaywidowpenalty=51
+\predisplaypenalty=9999
+
+\usepackage[check=error]{widows-and-orphans}
+
+\begin{document}
+
+\WaOparameters
+
+\END

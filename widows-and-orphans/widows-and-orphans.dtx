@@ -35,6 +35,26 @@
 %</driver>
 % \fi
 %
+% \DoNotIndex{\cs_new:Npn,\cs_new_nopar:Npn,\csname,\endcsname,\fi:,\else:}
+% \DoNotIndex{\tl_new:N,\bool_new:N}
+% \DoNotIndex{\if_meaning:w,\iftrue,\int_new:N,\int_set:Nn}
+% \DoNotIndex{\prop_new:N,\tl_put_left:Nn}
+% \DoNotIndex{\bool_do_until:Nn,\bool_gset_false:N,\bool_gset_true:N}
+% \DoNotIndex{\bool_if:NTF,\bool_set_false:N,\bool_set_true:N}
+% \DoNotIndex{\clist_map_break:n,\clist_map_inline:nn}
+% \DoNotIndex{\cs_if_eq:NNTF,\exp_args:Nc}
+% \DoNotIndex{\int_case:nnTF,\int_case:nnF,\int_case:nnF,\int_incr:N}
+% \DoNotIndex{\int_to_arabic:n,\int_to_roman:n}
+% \DoNotIndex{\keys_define:nn,\keys_set:nn}
+% \DoNotIndex{\msg_err:nn,\msg_new:nnnn,\msg_redirect_module:nnn}
+% \DoNotIndex{\msg_warning:nn,\msg_warning:nnn,\msg_error:nn}
+% \DoNotIndex{\prop_clear:N,\prop_get:NnNTF,\prop_put:Nnn,\prop_show:N}
+% \DoNotIndex{\prg_new_conditional:Npnn}
+% \DoNotIndex{\prg_return_false:,\prg_return_true:}
+% \DoNotIndex{\prop_get:NVNT,\prop_put:NVn,\bool_if:NF,\bool_if:NT}
+% \DoNotIndex{\marginpar,\space,\ignorespaces,\thepage}
+% \DoNotIndex{\RequirePackage,\NeedsTeXFormat,\NewDocumentCommand}
+%
 % \title{The \pkg{windows-and-orphans} package}
 % \author{Frank Mittelbach}
 % \date{Printed \today\thanks{For the package version
@@ -88,7 +108,9 @@
 % \subsection{Options}
 %
 % The package has a number of key/value options to adjust its
-% behavior. The option \option{check} is used to define what happens
+% behavior.
+%
+% The option \option{check} is used to define what happens
 % when an issue is found (default is \ovalue{warning}, other
 % possibilities are \ovalue{error}, \ovalue{info} and \ovalue{none}).
 %
@@ -98,7 +120,7 @@
 % \ovalue{default} (the latter means use standard \LaTeX{} defaults).
 %
 % To set all parameters in one go you can use \option{prevent-all},
-% \option{avoid-all} or \option{default-all}. These options give
+% \option{avoid-all} or \option{default-all}. These options also assign
 % values to \cs{brokenpenalty} and \cs{predisplaypenalty}.
 %
 % \subsection{User commands}
@@ -181,7 +203,7 @@
 %    We add that to the front of \cs{@makecol} the macro that
 %    assembles the actual column. This way it only gets executed if we
 %    make a column or a page but not when the output routine is
-%    triggered because of a float or \cs{marginpar}.
+%    triggered because of a float or \cs[no-index]{marginpar}.
 %    \begin{macrocode}
 \tl_put_left:Nn \@makecol { \@@_test_for_widows_etc: }
 %    \end{macrocode}
@@ -305,7 +327,7 @@
         { \@@_problem_identified:nn{widow}{Lonely~ display} }
     }
 %    \end{macrocode}
-%    The last argument of \cs{int_case:nnF} is executed in the
+%    The last argument of \cs[no-index]{int_case:nnF} is executed in the
 %    ``false'' case, i.e., when no match has been found.
 %    In that case we check the status of \cs{g_@@_check_bool} and if
 %    that is also ``false'' (i.e., if we have been asked not to check
@@ -362,7 +384,7 @@
 
 %  \begin{macro}{\@@_some_page:n}
 %  \begin{macro}{\@@_roman_thepage:}
-%    This macro will first compare \cs{thepage} against the code that
+%    This macro will first compare \cs[no-index]{thepage} against the code that
 %    would be used in case of a roman numeral representation and then
 %    displays its argument using either arabic numbers or roman numerals.
 %    \begin{macrocode}
@@ -373,7 +395,7 @@
 }                               
 %    \end{macrocode}
 %    \cs{@@_roman_thepage:} just stores the default definition of
-%    \cs{thepage} if page numbers are represented by roman numerals
+%    \cs[no-index]{thepage} if page numbers are represented by roman numerals
 %    for use in the comparison above.
 %    \begin{macrocode}
 \cs_new_nopar:Npn \@@_roman_thepage: {\csname @roman\endcsname \c@page}
@@ -384,12 +406,12 @@
 
 
 
-%  \begin{macro}[pTF, int]{\legacy_switch_if:n}
+%  \begin{macro}[TF, int]{\legacy_switch_if:n}
 %    To evaluate \LaTeXe{} boolean switches in a nice way we need a
 %    conditional which will probably make it in the \pkg{expl3} in
 %    this or a similar form, but right now it is missing.
 %    \begin{macrocode}
-\prg_new_conditional:Npnn \legacy_switch_if:n #1 { p , T , F , TF }
+\prg_new_conditional:Npnn \legacy_switch_if:n #1 {p, T , F , TF }
   { \exp_args:Nc\if_meaning:w { if#1 } \iftrue \prg_return_true:
                                         \else: \prg_return_false: \fi: }
 %    \end{macrocode}
@@ -654,14 +676,14 @@
 
 
 
-%  \begin{macro}{\l_@@_int}
+%  \begin{macro}{\l_@@_tmp_int}
 %  \begin{macro}{\l_@@_success_bool}
 %    For doing the actual calculations and insertions into the
 %    property list we also need an integer register, a token list
 %    variable and another boolean variable.
 %    \begin{macrocode}
-\int_new:N  \l_@@_int
-\tl_new:N   \l_@@_tl
+\int_new:N  \l_@@_tmp_int
+\tl_new:N   \l_@@_tmp_tl
 \bool_new:N \l_@@_success_bool
 %    \end{macrocode}
 %  \end{macro}
@@ -700,8 +722,8 @@
 %    no point in testing further.
 %    \begin{macrocode}
      \clist_map_inline:nn { #2 }
-       { \int_set:Nn \l_@@_int {##1}
-         \prop_get:NVNT \l_@@_penalties_prop \l_@@_int \l_@@_tl
+       { \int_set:Nn \l_@@_tmp_int {##1}
+         \prop_get:NVNT \l_@@_penalties_prop \l_@@_tmp_int \l_@@_tmp_tl
             { \clist_map_break:n{\bool_set_false:N\l_@@_success_bool} }
        }
 %    \end{macrocode}
@@ -713,8 +735,8 @@
 %    \begin{macrocode}
      \bool_if:NTF \l_@@_success_bool
        { \clist_map_inline:nn { #2 }
-            { \int_set:Nn \l_@@_int {##1}
-              \prop_put:NVn \l_@@_penalties_prop \l_@@_int { ##1 } }
+            { \int_set:Nn \l_@@_tmp_int {##1}
+              \prop_put:NVn \l_@@_penalties_prop \l_@@_tmp_int { ##1 } }
        }
 %    \end{macrocode}
 %    If we failed we increment the parameter value and retry
@@ -757,7 +779,7 @@
 %    \end{macrocode}
 %    The other options set parameters to some hopefully ``reasonable''
 %   values---no real surprises here. \LaTeX{} internally uses
-%   \cs{@cllubpenalty} so we need to set this too if we change
+%   \cs{@clubpenalty} so we need to set this too, if we change
 %   \cs{clubpenalty}.
 %    \begin{macrocode}
    % ====================================
