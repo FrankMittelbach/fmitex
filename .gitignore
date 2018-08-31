@@ -4,6 +4,7 @@ doc-v3/doc.pdf
 doc-v3/doc-code.pdf
 doc-v3/tmp/*
 *.log
-dashundergaps.zip
 dashundergaps/build
 *.pdf
+*.zip
+parskip/build
