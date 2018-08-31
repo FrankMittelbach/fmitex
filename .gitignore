@@ -1,11 +1,11 @@
 *.*~
-doc-v3/build/
-doc-v3/doc.pdf
-doc-v3/doc-code.pdf
-doc-v3/tmp/*
+*.aux
 *.log
-dashundergaps.zip
-dashundergaps/build
+*.out
 *.pdf
+*.synctex.gz
 *.zip
+dashundergaps/build
+doc-v3/build
+doc-v3/tmp
 parskip/build
