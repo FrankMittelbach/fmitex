@@ -1,0 +1,875 @@
+% \iffalse meta-comment
+%%
+%% File: widows-and-orphans.dtx (C) Copyright 2017-2018 Frank Mittelbach
+%
+% It may be distributed and/or modified under the conditions of the
+% LaTeX Project Public License (LPPL), either version 1.3c of this
+% license or (at your option) any later version.  The latest version
+% of this license is in the file
+%
+%    http://www.latex-project.org/lppl.txt
+%
+%
+% The development version of the bundle can be found at
+%
+%    https://github.com/FrankMittelbach/fmitex/widows-and-orphans
+%
+% for those people who are interested.
+% \fi
+% \iffalse
+%<*driver>
+\documentclass[full]{l3doc}
+\IndexPrologue
+  {\section*{Index}
+    \markboth{Index}{Index}
+    \addcontentsline{toc}{section}{Index}
+    The italic numbers denote the pages where the 
+    corresponding entry is described, 
+    numbers underlined point to the definition, 
+    all others indicate the places where it is used.}
+\EnableCrossrefs
+\CodelineIndex
+\begin{document}
+  \DocInput{widows-and-orphans.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \DoNotIndex{\cs_new:Npn,\cs_new_nopar:Npn,\csname,\endcsname,\fi:,\else:}
+% \DoNotIndex{\tl_new:N,\bool_new:N}
+% \DoNotIndex{\if_meaning:w,\iftrue,\int_new:N,\int_set:Nn}
+% \DoNotIndex{\prop_new:N,\tl_put_left:Nn}
+% \DoNotIndex{\bool_do_until:Nn,\bool_gset_false:N,\bool_gset_true:N}
+% \DoNotIndex{\bool_if:NTF,\bool_set_false:N,\bool_set_true:N}
+% \DoNotIndex{\clist_map_break:n,\clist_map_inline:nn}
+% \DoNotIndex{\cs_if_eq:NNTF,\exp_args:Nc}
+% \DoNotIndex{\int_case:nnTF,\int_case:nnF,\int_case:nnF,\int_incr:N}
+% \DoNotIndex{\int_to_arabic:n,\int_to_roman:n}
+% \DoNotIndex{\keys_define:nn,\keys_set:nn}
+% \DoNotIndex{\msg_err:nn,\msg_new:nnnn,\msg_redirect_module:nnn}
+% \DoNotIndex{\msg_warning:nn,\msg_warning:nnn,\msg_error:nn}
+% \DoNotIndex{\prop_clear:N,\prop_get:NnNTF,\prop_put:Nnn,\prop_show:N}
+% \DoNotIndex{\prg_new_conditional:Npnn}
+% \DoNotIndex{\prg_return_false:,\prg_return_true:}
+% \DoNotIndex{\prop_get:NVNT,\prop_put:NVn,\bool_if:NF,\bool_if:NT}
+% \DoNotIndex{\marginpar,\space,\ignorespaces,\thepage}
+% \DoNotIndex{\RequirePackage,\NeedsTeXFormat,\NewDocumentCommand}
+%
+% \title{The \pkg{windows-and-orphans} package}
+% \author{Frank Mittelbach}
+% \date{Printed \today\thanks{For the package version
+%   see the \texttt{\string\ProvidesExplPackage} line in the code.}}
+% \maketitle
+%
+% \begin{abstract}
+%   The \pkg{windows-and-orphans} package checks page or column breaks
+%   for issues with widow or orphans lines and issues warnings if such
+%   problems are detected. In addition it also checks and complains
+%   about breaks involving hyphenated words and warns about display
+%   formulas directly after a page break (if they are allowed by the
+%   document parameter settings, which by default isn't the case).
+% \end{abstract}
+%
+% \tableofcontents
+%
+% \newcommand\option[1]{\texttt{#1}}
+% \newcommand\ovalue[1]{\texttt{#1}}
+%
+% \section{Overview}
+%
+%
+% To determine if a widow or orphan has occurred at a column/page
+% break the package analyses the \cs{outputpenalty} that triggered the
+% break. As \TeX{} adds special penalties to widow and orphan lines
+% (\cs{widowpenalty} and \cs{clubpenalty}), we can hope to identify
+% them, provided the penalties have unique values so that we don't end
+% up with false positives.
+%
+% The package therefore analyzes the different parameter values and if
+% necessary adjusts the settings slightly so that all possible
+% combinations that can appear in documents have unique values and can
+% thus be identified.
+%
+% All that is necessary then is to hook into the output routine check
+% if \cs{outputpenalty} has a value that matches one of the
+% problematic cases and if so issue a warning or an error.
+%
+% Besides widows and orphans it is possible to detect other cases
+% controlled through penalty parameters, e.g., \cs{brokenpenalty} is
+% added if a line ends in a hyphen. So by including this parameter
+% into the checks we can determine if that happens at the end of a
+% column and issue a warning too.
+%
+% We also do this for \cs{predisplaypenalty} controlling a break just
+% in front of a math display. This is normally set to \texttt{10000}
+% so these breaks can't happen, but if the value is lowered it becomes
+% possible (and is a possible issue to look at).
+%
+% \subsection{Options}
+%
+% The package has a number of key/value options to adjust its
+% behavior.
+%
+% The option \option{check} is used to define what happens
+% when an issue is found (default is \ovalue{warning}, other
+% possibilities are \ovalue{error}, \ovalue{info} and \ovalue{none}).
+%
+% The options \option{orphans} and \option{widows} can be used to set
+% up reasonable parameter values (default is to use whatever the class
+% defines). Possible values are \ovalue{prevent}, \ovalue{avoid} or
+% \ovalue{default} (the latter means use standard \LaTeX{} defaults).
+%
+% To set all parameters in one go you can use \option{prevent-all},
+% \option{avoid-all} or \option{default-all}. These options also assign
+% values to \cs{brokenpenalty} and \cs{predisplaypenalty}.
+%
+% \subsection{User commands}
+%
+% The package provides three user-level commands.
+%
+% \begin{function}{\WaOsetup}
+%   \begin{syntax}
+%     \cs{WaOsetup} \meta{comma list}
+%   \end{syntax}
+%   This command accepts any of the package options and allows
+%   adjusting the package behavior in mid-document if necessary.
+% \end{function}
+
+% \begin{function}{\WaOparameters}
+%   \begin{syntax}
+%     \cs{WaOparameters}
+%   \end{syntax}
+%    With this command a listing of the parameter combinations and
+%    their values is provided.
+% \end{function}
+
+% \begin{function}{\WaOignorenext}
+%   \begin{syntax}
+%     \cs{WaOignorenext}
+%   \end{syntax}
+%   This command will direct the package to not generate warnings for
+%    the current page or columns (if we know that they can't be corrected).
+% \end{function}
+%
+%
+% \StopEventually{\setlength\IndexMin{200pt}  \PrintIndex  }
+%
+%
+% \section{The Implementation}
+%
+% The package is implemented in \pkg{expl3} so the first thing we do
+% is to define a prefix for our internal commands, so that we can
+% write \texttt{@@} in the source when we mean \texttt{__fmwao}
+% indicating that something is internal.\footnote{\texttt{l3docstrip}
+% will expand that for us so in the \texttt{.sty} file we get the
+% longer names with double underscores even though the real source
+% just contains \texttt{@@} all over the place. The same is done by
+% the \texttt{l3doc} class for the printed documentation you are
+% currently reading.}
+%
+%    \begin{macrocode}
+%<@@=fmwao>
+%    \end{macrocode}
+%
+% Then we check that we are running on top of \LaTeXe{} and load the
+% two packages we want to use: \pkg{xparse} for the user interface and
+% \pkg{l3keys2e} for key/val syntax of options. They do load the
+% \pkg{expl3} code so we are ready to roll afterwards.
+%
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}
+\RequirePackage{xparse,l3keys2e}
+%    \end{macrocode}
+%
+% Then we announce the package to the world at large. This declaration
+% will also tell \LaTeX{} that this is an \pkg{expl3} package and that
+% from now on the \pkg{expl3} conventions are to be obeyed, e.g.,
+% \texttt{_} and \texttt{:} can appear in command names and white
+% space is automatically ignored (so no need for \texttt{\%} all over
+% the place).
+%
+%    \begin{macrocode}
+\ProvidesExplPackage{widows-and-orphans}{2018/08/29}{v1.0a}
+                    {Detecting widows and orphans (FMi)}
+%    \end{macrocode}
+%
+%
+%  \begin{macro}[int]{\@makecol}
+%    
+%    As mentioned in the introduction we want to check the value of
+%    \cs{outputpenalty} inside the output routine and for this we need
+%    to add some code to the output routine.
+%
+%    We add that to the front of \cs{@makecol} the macro that
+%    assembles the actual column. This way it only gets executed if we
+%    make a column or a page but not when the output routine is
+%    triggered because of a float or \cs[no-index]{marginpar}.
+%    \begin{macrocode}
+\tl_put_left:Nn \@makecol { \@@_test_for_widows_etc: }
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+% \subsection{Checking \cs{outputpenalty}}
+%
+%
+%  \begin{macro}{\g_@@_check_bool}
+%    To be able to suppress checking we define a global boolean
+%    variable which by default is set to \texttt{true}.
+%    \begin{macrocode}
+\bool_new:N       \g_@@_check_bool
+\bool_gset_true:N \g_@@_check_bool
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%
+%  \begin{macro}{\@@_test_for_widows_etc:}
+%
+%    What are the value related to orphans and widows and the like
+%    that the can appear in \cs{outputpenalty}? Here is the basic list:
+%
+%    \begin{description}
+%
+%    \item[$\cs{widowpenalty} + \cs{interlinepenalty} \to$] if the
+%    break happens on the second last line of a paragraph.
+%
+%    \item[$\cs{displaywidowpenalty} + \cs{interlinepenalty} \to$] if
+%    the break happens on the second last line of a paragraph and the
+%    paragraph is followed by a math display.
+%
+%    \item[$\cs{clubpenalty} + \cs{interlinepenalty} \to$] if the
+%    break happens after the first line of a paragraph.
+%
+%    \item[$\cs{clubpenalty}+\cs{widowpenalty} +
+%    \cs{interlinepenalty} \to$] if the break happens after the first
+%    line of a paragraph in a two line paragraph (thus it is also the
+%    second last line).
+%
+%    \item[$\cs{clubpenalty}+\cs{displaywidowpenalty}  +
+%    \cs{interlinepenalty} \to $] if the
+%    break happens after the first line of a paragraph in a two line
+%    paragraph and a math display follows.
+%
+%    \end{description}
+%
+%    That's it for widows and orphans.
+%    
+%    \begin{macrocode}
+\cs_new:Npn \@@_test_for_widows_etc: {
+%    \end{macrocode}
+%    So here is the main test. We compare \cs{outputpenalty} minus
+%    \cs{interlinepenalty} with each case until we have a hit or run
+%    out of cases (that is a little more efficient than adding it each
+%    time on the other side of the comparison). If we have a hit we
+%    execute the corresponding code which is always
+%    \cs{@@_problem_identified:n} or \cs{@@_problem_identified:nn}
+%    (i.e., one or two arguments) to issue the warning or error
+%    message. The arguments are to customize the warnings, e.g., in
+%    the first case it is a ``widow'' problem and the text in the
+%    message starts with ``\texttt{Widow}'' while in the second case
+%    it is also a ``widow'' problem but the text will say
+%    ``\verb=Display~ widow=''.\footnote{If you haven't seen much
+%    \pkg{expl3} code you may wonder about the \texttt{\string~}. As
+%    the code ignores spaces we have to mark up real spaces and for
+%    this the tilde is used.}  Details on that below where the
+%    commands are defined.
+%    \begin{macrocode}
+  \int_case:nnF { \outputpenalty - \interlinepenalty }
+    {
+      { \widowpenalty }
+        { \@@_problem_identified:nn{widow}{Widow} }
+      { \displaywidowpenalty }
+        { \@@_problem_identified:nn{widow}{Display~ widow} }
+      { \clubpenalty }
+        { \@@_problem_identified:n{orphan} }
+      { \clubpenalty + \widowpenalty }
+        { \@@_problem_identified:nn{orphan-widow}{} }
+      { \clubpenalty + \displaywidowpenalty }
+        { \@@_problem_identified:nn{orphan-widow}{display} }
+%    \end{macrocode}
+%
+%    A similar issue comes from a hyphen at the end of a column or
+%    page in which case \TeX{} adds \cs{brokenpenalty} so we can test
+%    against that:
+%    \begin{macrocode}
+      { \brokenpenalty }
+        { \@@_problem_identified:n{hyphen} }
+%    \end{macrocode}
+%    However, I said ``\TeX{} adds'' which means if a widow line also
+%    ends up in a hyphen then the penalty will be the sum of both
+%    individual penalties. So all the case above need to be repeated
+%    with \cs{brokenpenalty} added to the value.
+%    We generate the same warning, though. That is we will say ``Widow
+%    detected'' and not ``Hyphenated widow line detected'' as the
+%    latter seems to be overkill.
+%    \begin{macrocode}
+      { \brokenpenalty + \widowpenalty }
+        { \@@_problem_identified:nn{widow}{Widow} }
+      { \brokenpenalty + \displaywidowpenalty }
+        { \@@_problem_identified:nn{widow}{Display~ widow} }
+      { \brokenpenalty + \clubpenalty }
+        { \@@_problem_identified:n{orphan} }
+      { \brokenpenalty + \clubpenalty + \widowpenalty }
+        { \@@_problem_identified:nn{orphan-widow}{} }
+      { \brokenpenalty + \clubpenalty + \displaywidowpenalty }
+        { \@@_problem_identified:nn{orphan-widow}{display} }
+%    \end{macrocode}
+%    Finally there is \cs{predisplaypenalty} that we may check as well
+%    (in case it was set to a value lower than \texttt{10000}). If it
+%    appears it means we have a display at the very top of the page.
+%    We reuse the ``widow'' warning but this time say
+%    ``\texttt{Lonely\string~ display}'' in the second argument.
+%    Note, that this does not get \cs{interlinepenalty} added by
+%    \TeX{}, so we have to undo the optimization above.
+%    \begin{macrocode}
+      { \predisplaypenalty - \interlinepenalty }
+        { \@@_problem_identified:nn{widow}{Lonely~ display} }
+    }
+%    \end{macrocode}
+%    The last argument of \cs[no-index]{int_case:nnF} is executed in the
+%    ``false'' case, i.e., when no match has been found.
+%    In that case we check the status of \cs{g_@@_check_bool} and if
+%    that is also ``false'' (i.e., if we have been asked not to check
+%    we issue an error message. Why, because there was nothing wrong
+%    but the user asked us to explicitly ignore the problem on this
+%    page, some something is wrong in his or her document.
+%    \begin{macrocode}
+    { \bool_if:NF \g_@@_check_bool
+        { \msg_error:nn{widows-and-orphans}{no-problem} } }
+%    \end{macrocode}
+%    Finally, we make sure that the next page or column is again
+%    checked.
+%    \begin{macrocode}
+  \bool_gset_true:N \g_@@_check_bool
+}
+%    \end{macrocode}
+%  \end{macro}
+
+
+
+%  \begin{macro}{\@@_problem_identified:n}
+%  \begin{macro}{\@@_problem_identified:nn}
+%    These commands prepare for generating a warning, but only if we
+%    are supposed to check, i.e., if \cs{g_@@_check_bool} is true.
+%    \begin{macrocode}
+\cs_new:Npn \@@_problem_identified:n #1 {
+   \bool_if:NT\g_@@_check_bool{ \msg_warning:nn{widows-and-orphans}{#1} }
+}
+\cs_new:Npn \@@_problem_identified:nn #1 #2 {
+   \bool_if:NT\g_@@_check_bool{ \msg_warning:nnn{widows-and-orphans}{#1}{#2} }
+}
+%    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
+
+      
+% \subsection{The messages to the user}
+%
+%
+%  \begin{macro}{\@@_this_page:}
+%  \begin{macro}{\@@_next_page:}
+%    For displaying nice messages to the user we need a few helper
+%    commands. The two here show the page number of the current or
+%    the next page. They are semi-smart, that is they will recognize
+%    if the document uses roman numerals and if so display the number
+%    as a roman numeral (but in all other cases is will use arabic).
+%    \begin{macrocode}
+\cs_new:Npn \@@_this_page: { \@@_some_page:n   \c@page       }
+\cs_new:Npn \@@_next_page: { \@@_some_page:n { \c@page + 1 } }  
+%    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
+
+
+%  \begin{macro}{\@@_some_page:n}
+%  \begin{macro}{\@@_roman_thepage:}
+%    This macro will first compare \cs[no-index]{thepage} against the code that
+%    would be used in case of a roman numeral representation and then
+%    displays its argument using either arabic numbers or roman numerals.
+%    \begin{macrocode}
+\cs_new:Npn \@@_some_page:n #1 {
+  \cs_if_eq:NNTF \thepage \@@_roman_thepage:
+    { \int_to_roman:n } { \int_to_arabic:n }
+  { #1 }
+}                               
+%    \end{macrocode}
+%    \cs{@@_roman_thepage:} just stores the default definition of
+%    \cs[no-index]{thepage} if page numbers are represented by roman numerals
+%    for use in the comparison above.
+%    \begin{macrocode}
+\cs_new_nopar:Npn \@@_roman_thepage: {\csname @roman\endcsname \c@page}
+%    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
+
+
+
+
+%  \begin{macro}[TF, int]{\legacy_switch_if:n}
+%    To evaluate \LaTeXe{} boolean switches in a nice way we need a
+%    conditional which will probably make it in the \pkg{expl3} in
+%    this or a similar form, but right now it is missing.
+%    \begin{macrocode}
+\prg_new_conditional:Npnn \legacy_switch_if:n #1 {p, T , F , TF }
+  { \exp_args:Nc\if_meaning:w { if#1 } \iftrue \prg_return_true:
+                                        \else: \prg_return_false: \fi: }
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%   \bigskip
+%
+%
+%    The first message is issued if we have been directed to ignore a
+%    problem and there wasn't one:
+%    \begin{macrocode}
+\msg_new:nnnn {widows-and-orphans} {no-problem}
+  { No~ problem~ to~ suppress~ on~ this~ page! }
+  { Suppression~ of~ a~ widow~ or~ orphan~ problem~ was~ requested~
+    but~ on~ the~ current~ page~ there~ doesn't~ seem~ to~ be~ any.~
+    Maybe~ the~ text~ was~ changed~ and~ the~ request~ should~ get~ (re)moved?}
+%    \end{macrocode}
+%
+%
+%   \bigskip
+%
+%
+%
+%
+%    The next message is about orphans. They can appear at the bottom of
+%    the first or the second column of the current page (if we are in
+%    two-column mode so we check for this and adjust the message accordingly.
+%    \begin{macrocode}
+\msg_new:nnnn {widows-and-orphans} {orphan}
+  { Orphan~ on~ page~ \@@_this_page:
+    \legacy_switch_if:nT {@twocolumn}
+      { \space ( \legacy_switch_if:nTF {@firstcolumn}
+                                       { first~ } { (second~ } column) }
+  }
+  { Check~ out~ the~ page~ and~ see~ if~ you~ can~ avoid~ the~ orphan.}
+%    \end{macrocode}
+%
+%
+%   \bigskip
+%
+%
+%    A hyphen at the end of a page or column requires more or less the
+%    same message, so this could have been combined with the previous one.
+%    \begin{macrocode}
+\msg_new:nnnn {widows-and-orphans} {hyphen}
+  { Hyphen~ in~ last~ line~ of~ page~ \@@_this_page:
+    \legacy_switch_if:nT {@twocolumn}
+      { \space ( \legacy_switch_if:nTF {@firstcolumn}
+                                       { first~ } { (second~ } column) } }
+  { Check~ out~ the~ page~ and~ see~ if~ you~ can~ get~
+    a~ better~ line~ break. }
+%    \end{macrocode}
+%
+%
+%   \bigskip
+%
+%
+%    Widows need a different logic since we detect them when cutting a
+%    previous page or column but the widow is on the following one.
+%    This code works for ``widows'', ``display widows'' as well as
+%    math displays by just changing the first word (or words), so here
+%    we use an additional argument:
+%    \begin{macrocode}
+\msg_new:nnnn {widows-and-orphans} {widow}
+  { #1~ on~ page~ 
+    \legacy_switch_if:nTF {@twocolumn}
+      { \legacy_switch_if:nTF {@firstcolumn}
+          { \@@_this_page: \space (second~ }
+          { \@@_next_page: \space (first~  }
+        column)
+      }
+      { \@@_next_page: }
+  }
+  { Check~ out~ the~ page~ and~ see~ if~ you~ can~ avoid~ the~ widow.}
+%    \end{macrocode}
+%
+%
+%   \bigskip
+%
+%
+%    The case of both widow and orphan is similar, but we obviously
+%    need different text so we made it its own message.
+%    \begin{macrocode}
+\msg_new:nnnn {widows-and-orphans} {orphan-widow}
+  { Orphan~
+    \legacy_switch_if:nTF {@twocolumn}
+       { \legacy_switch_if:nTF {@firstcolumn}
+           { and~ #1 widow~ on~ page~ \@@_this_page: \space
+             (first~ and~ second~ }
+           { on~ page~ \@@_this_page: \space (second~ column)~
+             and~ #1 widow~ on~ page~ \@@_next_page: \space (first~ }
+       }
+       { on~ page~ \@@_this_page: \space (second~ column)~
+         and~ #1 widow~ on~ page~ \@@_next_page: \space (first~ }
+     column)
+  }
+  { Check~ out~ the~ page~ and~ see~ if~ you~ can~ avoid~ both~
+    orphan~ and~ widow.}
+%    \end{macrocode}
+%
+%
+%
+%
+%
+%
+% \subsection{Adjusting the parameter values}
+%
+%
+%
+%  Here is an outline of what we do with the parameters:
+% \begin{itemize}
+% \item We set up a property list that will hold penalty values that
+%    can appear in \cs{outputpenalty} inside the output routine. The
+%    penalties are the ``keys'' and the corresponding plist value is
+%    the source how they got produced. For example, the key might be
+%    \texttt{150} and the value \cs{widowpenalty}.
+%
+% \item Initially the property list is empty. So adding the first item
+%    simply means taking the value of one parameter, say \texttt{150}
+%    from \cs{widowpenalty}, as the key and its name as the p-list
+%    value. We omit adding \cs{interlinepenalty} as this needs to
+%    happen in (nearly) all cases so is irrelevant when making
+%    parameter values disjunct. In the cases where it isn't added by
+%    \TeX{} we then have to make a correction.
+%
+% \item For the next parameter, say \cs{clubpenalty}, we check if its
+%   value is already a key in the property list. If that is the case,
+%   then we failed and have to modify the parameter value somehow.
+
+% \item If not, we also have to check any combination of the current
+%   parameter with any parameter processed earlier. If that
+%   combination is possible, e.g., \cs{clubpenalty} (new) and
+%   \cs{widowpenalty} (already processed) then we also have to check
+%   the sum. If that sum is already a key in the property list then we
+%   failed as well.
+%
+% \item If we failed we iterate by incrementing the current parameter
+%   value and try again. Eventually we will get to a value where all
+%   combinations we test work, that is are not yet in the property list.
+%
+% \item We then change the parameter to this value and add all the
+%   combinations we tried before to the property list (that is
+%   \cs{clubpenalty} alone and together with \cs{widowpenalty} in our
+%   example). Thus from now on those are also forbidden values.
+%
+% \item We do all this with a helper command that takes the new
+%   parameter as the first argument and the list of cases to try as a
+%   comma-separated list as a second argument, e.g.,
+%\begin{verbatim}
+%    \__fmwao_decide_penalty:Nn \clubpenalty 
+%             { \clubpenalty , \clubpenalty + \widowpenalty }
+%\end{verbatim}
+%    Actually, all of the above is an oversimplification as in reality
+%    each item in the second argument has an additional
+%    \cs{interlinepenalty} added, as \TeX{} adds that that to every
+%    line.
+%
+% \item This way we are adding all relevant parameters to the property
+%   list and at the same time adjusting their values if needed.
+% \item Once all parameters are handled the property list is no longer
+%   needed as the parameters got changed along the way (but we keep it
+%   around as it allows for a simple display of all settings in one go).
+% \end{itemize}
+%
+%
+
+%  \begin{macro}{\l_@@_penalties_prop}
+%    Here is the property list for our process.
+%    \begin{macrocode}
+\prop_new:N \l_@@_penalties_prop
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%  \begin{macro}{\@@_initialize:}
+%    Now we are ready to go. First action is to clear the property
+%   list as the initialization may happen several times.
+%    \begin{macrocode}
+\cs_new:Npn \@@_initialize: {
+  \prop_clear:N  \l_@@_penalties_prop
+%    \end{macrocode}
+%    When \TeX{} breaks a page at a glue without an explicit penalty
+%    it does set \cs{outputpenalty} to \texttt{10000} in the output
+%    routine to distinguish from a case where an explicit penalty of
+%    \texttt{0} was in the document. That means none of our parameters
+%    or parameter combinations is allowed to have that particular
+%    value, because otherwise we would get for each break at a glue a
+%    fake match and report an issue. So we enter that value first (by
+%    hand) so that it will not be used by a parameter or parameter
+%    combination.
+%    \begin{macrocode}
+  \prop_put:Nnn \l_@@_penalties_prop {10000} {10000}
+%    \end{macrocode}
+%    The next thing is to add the values for \cs{@lowpenalty},
+%    \cs{@medpenalty} and \cs{@highpenalty} to the property list as
+%    they also may show up in \cs{outputpenalty} if a user says, for
+%    example, \verb=\nopagebreak[2]=.
+%
+%    Such a penalty from an explicit page break request does not get
+%    \cs{interlinepenalty} added on top.
+%    \begin{macrocode}
+  \@@_decide_penalty:Nn \@lowpenalty  { \@lowpenalty}
+  \@@_decide_penalty:Nn \@medpenalty  { \@medpenalty}
+  \@@_decide_penalty:Nn \@highpenalty { \@highpenalty}
+%    \end{macrocode}
+%    Then comes the first real parameter for the orphans:
+%    \begin{macrocode}
+  \@@_decide_penalty:Nn \clubpenalty { \clubpenalty + \interlinepenalty }
+%    \end{macrocode}
+%    followed by the one for the widows and the one for the display widows:
+%    \begin{macrocode}
+  \@@_decide_penalty:Nn \widowpenalty 
+      { \widowpenalty + \interlinepenalty ,
+        \widowpenalty + \clubpenalty  + \interlinepenalty }
+  \@@_decide_penalty:Nn \displaywidowpenalty 
+      { \displaywidowpenalty + \interlinepenalty ,
+        \displaywidowpenalty + \clubpenalty + \interlinepenalty }
+%    \end{macrocode}
+%    \cs{brokenpenalty} can appear by it own but also with each and
+%    every combination we have seen before:
+%    \begin{macrocode}
+  \@@_decide_penalty:Nn \brokenpenalty
+      { \brokenpenalty + \interlinepenalty ,
+        \brokenpenalty + \clubpenalty + \interlinepenalty ,
+        \brokenpenalty + \widowpenalty + \interlinepenalty , 
+        \brokenpenalty + \widowpenalty + \clubpenalty + \interlinepenalty ,
+        \brokenpenalty + \displaywidowpenalty + \clubpenalty + \interlinepenalty }
+%    \end{macrocode}
+%    Finally there is the one for lonely displays (again without
+%    \cs{interlinepenalty} being added):
+%    \begin{macrocode}
+  \@@_decide_penalty:Nn \predisplaypenalty { \predisplaypenalty }
+}
+%    \end{macrocode}
+%    If we run the above code with the default parameter settings of \LaTeX{}
+%    in force it will make a few adjustments and the property list
+%    would afterwards contain
+%    the following entries:
+%\begin{small}
+%\begin{verbatim}
+% The property list \l__fmwao_penalties_prop contains the pairs (without
+% outer braces):
+% >  {10000}  =>  {10000}
+% >  {51}  =>  {\@lowpenalty }
+% >  {151}  =>  {\@medpenalty }
+% >  {301}  =>  {\@highpenalty }
+% >  {150}  =>  {\clubpenalty +\interlinepenalty }
+% >  {152}  =>  {\widowpenalty +\interlinepenalty }
+% >  {302}  =>  {\widowpenalty +\clubpenalty +\interlinepenalty }
+% >  {50}  =>  {\displaywidowpenalty +\interlinepenalty }
+% >  {200}  =>  {\displaywidowpenalty +\clubpenalty +\interlinepenalty }
+% >  {100}  =>  {\brokenpenalty +\interlinepenalty }
+% >  {250}  =>  {\brokenpenalty +\clubpenalty +\interlinepenalty }
+% >  {252}  =>  {\brokenpenalty +\widowpenalty +\interlinepenalty }
+% >  {402}  =>  {\brokenpenalty +\widowpenalty +\clubpenalty +\interlinepenalty }
+% >  {300}  =>  {\brokenpenalty +\displaywidowpenalty +\clubpenalty +\interlinepenalty }
+% >  {10001}  =>  {\predisplaypenalty }.
+%\end{verbatim}
+%\end{small}
+%  \end{macro}
+
+
+
+%  \begin{macro}{\l_@@_tmp_int}
+%  \begin{macro}{\l_@@_success_bool}
+%    For doing the actual calculations and insertions into the
+%    property list we also need an integer register, a token list
+%    variable and another boolean variable.
+%    \begin{macrocode}
+\int_new:N  \l_@@_tmp_int
+\tl_new:N   \l_@@_tmp_tl
+\bool_new:N \l_@@_success_bool
+%    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
+%
+%
+%  \begin{macro}{\@@_decide_penalty:Nn}
+%    This is the core command doing the real work. Remember its first
+%    argument is the parameter which we are currently handling and the
+%    second argument is a comma-separated list of cases we need to
+%    check if the result is already in the property list.
+%    \begin{macrocode}
+\cs_new:Npn \@@_decide_penalty:Nn #1 #2 {
+%    \end{macrocode}
+%    We start by setting the boolean to \texttt{false} and then run a
+%    loop until we have found a suitable parameter value and inserted
+%    it into the property list.
+%    \begin{macrocode}
+  \bool_set_false:N \l_@@_success_bool
+  \bool_do_until:Nn \l_@@_success_bool
+    {
+%    \end{macrocode}
+%    Inside the loop we start with the assumption that the current
+%    value of the parameter is fine and then check if that assumption
+%    is true. If yes, we can exit the loop otherwise we may have to
+%    try with a different value.
+%    \begin{macrocode}
+     \bool_set_true:N \l_@@_success_bool
+%    \end{macrocode}
+%    For the verification we try each item in the second parameter to
+%    see if that is already in the property list.
+%    This means evaluating the  expression to get the penalty value
+%    and then looking it up in the property list. If it is there we
+%    failed. So in this case we set the boolean back to false and
+%    break out of the mapping over the second argument since there is
+%    no point in testing further.
+%    \begin{macrocode}
+     \clist_map_inline:nn { #2 }
+       { \int_set:Nn \l_@@_tmp_int {##1}
+         \prop_get:NVNT \l_@@_penalties_prop \l_@@_tmp_int \l_@@_tmp_tl
+            { \clist_map_break:n{\bool_set_false:N\l_@@_success_bool} }
+       }
+%    \end{macrocode}
+%    Once we have finished the boolean will tell us if we are
+%    successful so far. If yes it means there was no conflict.
+%    We can therefore add all combinations with this parameter as from
+%    now on they are forbidden as well. So we map once more over the
+%    second argument and enter them:
+%    \begin{macrocode}
+     \bool_if:NTF \l_@@_success_bool
+       { \clist_map_inline:nn { #2 }
+            { \int_set:Nn \l_@@_tmp_int {##1}
+              \prop_put:NVn \l_@@_penalties_prop \l_@@_tmp_int { ##1 } }
+       }
+%    \end{macrocode}
+%    If we failed we increment the parameter value and retry
+%    \begin{macrocode}
+       { \int_incr:N #1 }
+     }
+}
+%    \end{macrocode}
+%
+%
+%    One place where we will run this code is at the beginning of the
+%    document (so that changes to the parameters in the preamble or
+%    the document class are picked up).
+%    \begin{macrocode}
+\AtBeginDocument { \@@_initialize: }
+%    \end{macrocode}
+%
+%  \end{macro}
+%
+% \subsection{The option setup}
+%
+% The options are fairly straight forward:
+%
+%    \begin{macrocode}
+\keys_define:nn {fmwao} {
+%    \end{macrocode}
+%    By default messages are given as warnings above. If anything else
+%    is wanted the option \option{check} can be used which simply
+%    changes the message class internally:
+%    \begin{macrocode}
+  ,check .choice:
+  ,check / error
+     .code:n = \msg_redirect_module:nnn {widows-and-orphans}{warning}{error}
+  ,check / info
+     .code:n = \msg_redirect_module:nnn {widows-and-orphans}{warning}{info}
+  ,check / none
+     .code:n = \msg_redirect_module:nnn {widows-and-orphans}{warning}{none}
+  ,check / warning
+     .code:n = \msg_redirect_module:nnn {widows-and-orphans}{warning}{ }
+%    \end{macrocode}
+%    The other options set parameters to some hopefully ``reasonable''
+%   values---no real surprises here. \LaTeX{} internally uses
+%   \cs{@clubpenalty} so we need to set this too, if we change
+%   \cs{clubpenalty}.
+%    \begin{macrocode}
+   % ====================================
+  ,orphans .choice:
+  ,orphans / prevent .code:n = \int_set:Nn \clubpenalty  { 10000        }
+   			       \int_set:Nn \@clubpenalty { \clubpenalty }
+  ,orphans / avoid   .code:n = \int_set:Nn \clubpenalty  { 5000         }
+   			       \int_set:Nn \@clubpenalty { \clubpenalty }
+  ,orphans / default .code:n = \int_set:Nn \clubpenalty  { 150          }
+   			       \int_set:Nn \@clubpenalty { \clubpenalty }
+   % ====================================
+  ,widows .choice:
+  ,widows / prevent  .code:n = \int_set:Nn \widowpenalty { 10000 }
+  ,widows / avoid    .code:n = \int_set:Nn \widowpenalty { 5000  }
+  ,widows / default  .code:n = \int_set:Nn \widowpenalty { 150   }
+   % ====================================
+  ,hyphens .choice:
+  ,hyphens / prevent .code:n = \int_set:Nn \brokenpenalty { 10000 }
+  ,hyphens / avoid   .code:n = \int_set:Nn \brokenpenalty { 2000  }
+  ,hyphens / default .code:n = \int_set:Nn \brokenpenalty { 50    }
+   % ====================================
+  ,prevent-all  .code:n = \int_set:Nn \clubpenalty        { 10000   }
+			  \int_set:Nn \widowpenalty       { 10000   }
+			  \int_set:Nn \displaywidowpenalty{ 10000   }
+			  \int_set:Nn \brokenpenalty      { 10000   }
+			  \int_set:Nn \predisplaypenalty  { 10000   }
+			  \int_set:Nn \@clubpenalty  { \clubpenalty }
+%    \end{macrocode}
+%    As an exception option \option{avoid-all} doesn't set
+%    \cs{predisplaypenalty}, maybe it should.
+%    \begin{macrocode}
+  ,avoid-all    .code:n = \int_set:Nn \clubpenalty  {        5000   }
+			  \int_set:Nn \widowpenalty {        5000   }
+			  \int_set:Nn \displaywidowpenalty { 2000   }
+			  \int_set:Nn \brokenpenalty{        2000   }
+%                         \int_set:Nn \predisplaypenalty{    9999   }
+			  \int_set:Nn \@clubpenalty  { \clubpenalty }
+%    \end{macrocode}
+%    \option{default-all} reverts back to the standard \LaTeX{}
+%    default values:
+%    \begin{macrocode}
+  ,default-all  .code:n = \int_set:Nn \clubpenalty  {         150   }
+			  \int_set:Nn \widowpenalty {         150   }
+			  \int_set:Nn \displaywidowpenalty {   50   }
+			  \int_set:Nn \brokenpenalty{         100   }
+			  \int_set:Nn \predisplaypenalty{   10000   }
+			  \int_set:Nn \@clubpenalty  { \clubpenalty }
+
+}
+%    \end{macrocode}
+%    Once declared we evaluate the options given to the package:
+%    \begin{macrocode}
+\ProcessKeysPackageOptions{fmwao}
+%    \end{macrocode}
+%
+%
+% \subsection{Document-level commands}
+%
+% Finally we declare three user-level commands:
+%
+
+%  \begin{macro}{\WaOsetup}
+%    This runs the key setup on the first argument and the
+%    reinitializes the parameter setup accordingly.
+%    \begin{macrocode}
+\NewDocumentCommand\WaOsetup{m}
+  { \keys_set:nn{fmwao}{#1}  \@@_initialize: \ignorespaces }
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+
+%  \begin{macro}{\WaOparameters}
+%    With this parameterless command one can get a display of the
+%    current parameter settings.
+%    \begin{macrocode}
+\NewDocumentCommand\WaOparameters{}{\prop_show:N \l_@@_penalties_prop }
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%  \begin{macro}{\WaOignorenext}
+%    And here is the command that suppresses any warning on the
+%    current page or column:
+%    \begin{macrocode}
+\NewDocumentCommand\WaOignorenext{}{ \bool_gset_false:N\g_@@_check_bool }
+%    \end{macrocode}
+%  \end{macro}
+%
+% \Finale
+%
+
+\endinput

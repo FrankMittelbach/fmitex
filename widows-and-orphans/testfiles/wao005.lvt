@@ -1,0 +1,28 @@
+\documentclass {article}
+
+\input{regression-test}
+    
+\usepackage[check=info]{widows-and-orphans}
+
+\setlength\textheight{3\baselineskip}
+
+
+\begin{document}
+
+\START
+
+\tracingpages1\tracingonline1
+
+  first line \\
+  second line \\
+  third line producing a hyphen 
+  thirdlineproducingahyphen
+  thirdlineproducingahyphen
+  thirdlineproducingahyphen
+  thirdlineproducingahyphen \\
+  and another line.
+
+
+  \twocolumn
+
+\end{document}

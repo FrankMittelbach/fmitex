@@ -1,10 +1,9 @@
 *.*~
-doc-v3/build/
-doc-v3/doc.pdf
-doc-v3/doc-code.pdf
-doc-v3/tmp/*
 *.log
-dashundergaps/build
+*.pdf
 *.pdf
 *.zip
+dashundergaps/build
+doc-v3/build
+doc-v3/tmp
 parskip/build

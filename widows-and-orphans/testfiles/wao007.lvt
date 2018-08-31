@@ -2,6 +2,7 @@
 
 \input{regression-test}
     
+\predisplaypenalty=9000
 
 \usepackage{widows-and-orphans}
 
@@ -19,17 +20,8 @@
   first line \\
   second line \\
   third line \\
-  fourth line \\
-  Widow line before display:
+  last line before display:
   \[ a_x=\frac{1}{2}^2 \]
 
-
-  \stupidpara\stupidpara\stupidpara\stupidpara
-  \verystupidpara\verystupidpara\verystupidpara\verystupidpara
-
-
-  \twocolumn
-  \stupidpara\stupidpara\verystupidpara\stupidpara
-  \stupidpara\verystupidpara\verystupidpara\verystupidpara
 
 \end{document}

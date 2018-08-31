@@ -25,7 +25,7 @@ Don't change this file in any respect.
 . Defining command \WaOignorenext with sig. '' on line ....
 .................................................
 )
-No file wao001.aux.
+No file wao010.aux.
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line ....
 LaTeX Font Info:    ... okay on input line ....
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line ....
@@ -44,18 +44,18 @@ braces):
 >  {51}  =>  {\@lowpenalty }
 >  {151}  =>  {\@medpenalty }
 >  {301}  =>  {\@highpenalty }
->  {150}  =>  {\clubpenalty +\interlinepenalty }
->  {152}  =>  {\widowpenalty +\interlinepenalty }
->  {302}  =>  {\widowpenalty +\clubpenalty +\interlinepenalty }
->  {50}  =>  {\displaywidowpenalty +\interlinepenalty }
->  {200}  =>  {\displaywidowpenalty +\clubpenalty +\interlinepenalty }
->  {100}  =>  {\brokenpenalty +\interlinepenalty }
->  {250}  =>  {\brokenpenalty +\clubpenalty +\interlinepenalty }
->  {252}  =>  {\brokenpenalty +\widowpenalty +\interlinepenalty }
->  {402}  =>  {\brokenpenalty +\widowpenalty +\clubpenalty +\interlinepenalty
+>  {250}  =>  {\clubpenalty +\interlinepenalty }
+>  {251}  =>  {\widowpenalty +\interlinepenalty }
+>  {401}  =>  {\widowpenalty +\clubpenalty +\interlinepenalty }
+>  {152}  =>  {\displaywidowpenalty +\interlinepenalty }
+>  {302}  =>  {\displaywidowpenalty +\clubpenalty +\interlinepenalty }
+>  {200}  =>  {\brokenpenalty +\interlinepenalty }
+>  {350}  =>  {\brokenpenalty +\clubpenalty +\interlinepenalty }
+>  {351}  =>  {\brokenpenalty +\widowpenalty +\interlinepenalty }
+>  {501}  =>  {\brokenpenalty +\widowpenalty +\clubpenalty +\interlinepenalty
 }
->  {300}  =>  {\brokenpenalty +\displaywidowpenalty +\clubpenalty
+>  {402}  =>  {\brokenpenalty +\displaywidowpenalty +\clubpenalty
 +\interlinepenalty }
->  {10001}  =>  {\predisplaypenalty }.
+>  {9999}  =>  {\predisplaypenalty }.
 <recently read> }
 l. ...\WaOparameters

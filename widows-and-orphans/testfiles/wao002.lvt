@@ -2,7 +2,7 @@
 
 \input{regression-test}
     
-\clubpenalty=152
+\RequirePackage{l3keys2e}
 
 \START
 

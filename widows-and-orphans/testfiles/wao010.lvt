@@ -11,6 +11,10 @@
 
 \START
 
+\interlinepenalty=100
+\displaywidowpenalty=51
+\predisplaypenalty=9999
+
 \usepackage[check=error]{widows-and-orphans}
 
 \begin{document}
