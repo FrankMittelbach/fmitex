@@ -40,7 +40,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line ....
 LaTeX Font Info:    ... okay on input line ....
 The property list \l__fmwao_penalties_prop contains the pairs (without outer
 braces):
->  {10000}  =>  {10000}
+>  {10000}  =>  {break at glue}
 >  {51}  =>  {\@lowpenalty }
 >  {151}  =>  {\@medpenalty }
 >  {301}  =>  {\@highpenalty }

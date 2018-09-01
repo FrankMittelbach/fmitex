@@ -53,7 +53,7 @@
 % \DoNotIndex{\prg_return_false:,\prg_return_true:}
 % \DoNotIndex{\prop_get:NVNT,\prop_put:NVn,\bool_if:NF,\bool_if:NT}
 % \DoNotIndex{\marginpar,\space,\ignorespaces,\thepage}
-% \DoNotIndex{\RequirePackage,\NeedsTeXFormat,\NewDocumentCommand}
+% ^^A\DoNotIndex{\RequirePackage,\NeedsTeXFormat,\NewDocumentCommand}
 %
 % \title{The \pkg{windows-and-orphans} package}
 % \author{Frank Mittelbach}
@@ -68,6 +68,10 @@
 %   about breaks involving hyphenated words and warns about display
 %   formulas directly after a page break (if they are allowed by the
 %   document parameter settings, which by default isn't the case).
+%
+%   A general discussion of the problem of widows and orphans and
+%    suggestions how to resolve
+%   it is given in~\cite{tub-wao}.
 % \end{abstract}
 %
 % \tableofcontents
@@ -76,7 +80,6 @@
 % \newcommand\ovalue[1]{\texttt{#1}}
 %
 % \section{Overview}
-%
 %
 % To determine if a widow or orphan has occurred at a column/page
 % break the package analyses the \cs{outputpenalty} that triggered the
@@ -90,20 +93,20 @@
 % combinations that can appear in documents have unique values and can
 % thus be identified.
 %
-% All that is necessary then is to hook into the output routine check
+% All that is necessary then, is to hook into the output routine check
 % if \cs{outputpenalty} has a value that matches one of the
-% problematic cases and if so issue a warning or an error.
+% problematic cases and if so issue a warning.
 %
 % Besides widows and orphans it is possible to detect other cases
-% controlled through penalty parameters, e.g., \cs{brokenpenalty} is
+% controlled through penalty parameters, e.g., \cs{brokenpenalty} that is
 % added if a line ends in a hyphen. So by including this parameter
-% into the checks we can determine if that happens at the end of a
+% into the checks, we can identify when that happens at the end of a
 % column and issue a warning too.
 %
 % We also do this for \cs{predisplaypenalty} controlling a break just
 % in front of a math display. This is normally set to \texttt{10000}
-% so these breaks can't happen, but if the value is lowered it becomes
-% possible (and is a possible issue to look at).
+% so such breaks don't happen in standard \LaTeX{}, but if the value
+% is lowered it becomes possible (and is a possible issue to look at).
 %
 % \subsection{Options}
 %
@@ -152,7 +155,15 @@
 % \end{function}
 %
 %
-% \StopEventually{\setlength\IndexMin{200pt}  \PrintIndex  }
+% \StopEventually{
+% \begin{thebibliography}{1}
+% \bibitem{tub-wao}
+% Frank Mittelbach.
+% \newblock Managing forlorn paragraph lines (a.k.a.\ widows and orphans)
+%  in \LaTeX{}.
+% \newblock TUGboat ???
+% \end{thebibliography}
+% \setlength\IndexMin{200pt}  \PrintIndex  }
 %
 %
 % \section{The Implementation}
@@ -189,7 +200,7 @@
 % the place).
 %
 %    \begin{macrocode}
-\ProvidesExplPackage{widows-and-orphans}{2018/08/29}{v1.0a}
+\ProvidesExplPackage{widows-and-orphans}{2018/09/01}{v1.0a}
                     {Detecting widows and orphans (FMi)}
 %    \end{macrocode}
 %
@@ -213,12 +224,12 @@
 % \subsection{Checking \cs{outputpenalty}}
 %
 %
-%  \begin{macro}{\g_@@_check_bool}
+%  \begin{macro}{\g_@@_gen_warn_bool}
 %    To be able to suppress checking we define a global boolean
 %    variable which by default is set to \texttt{true}.
 %    \begin{macrocode}
-\bool_new:N       \g_@@_check_bool
-\bool_gset_true:N \g_@@_check_bool
+\bool_new:N \g_@@_gen_warn_bool
+\bool_gset_true:N \g_@@_gen_warn_bool
 %    \end{macrocode}
 %  \end{macro}
 %
@@ -226,25 +237,27 @@
 %
 %  \begin{macro}{\@@_test_for_widows_etc:}
 %
-%    What are the value related to orphans and widows and the like
-%    that the can appear in \cs{outputpenalty}? Here is the basic list:
-%
+%    What are the different values related to orphans and widows and
+%    the like that the can appear in \cs{outputpenalty}? Here is the
+%    basic list:
 %    \begin{description}
 %
 %    \item[$\cs{widowpenalty} + \cs{interlinepenalty} \to$] if the
-%    break happens on the second last line of a paragraph.
+%    break happens on the second last line of a paragraph and the
+%    paragraph is not followed by a math display.
 %
 %    \item[$\cs{displaywidowpenalty} + \cs{interlinepenalty} \to$] if
 %    the break happens on the second last line of a paragraph and the
 %    paragraph is followed by a math display.
 %
 %    \item[$\cs{clubpenalty} + \cs{interlinepenalty} \to$] if the
-%    break happens after the first line of a paragraph.
+%    break happens after the first line of a paragraph and the
+%    paragraph has more than two lines.
 %
-%    \item[$\cs{clubpenalty}+\cs{widowpenalty} +
-%    \cs{interlinepenalty} \to$] if the break happens after the first
-%    line of a paragraph in a two line paragraph (thus it is also the
-%    second last line).
+%    \item[$\cs{clubpenalty}+\cs{widowpenalty} + \cs{interlinepenalty}
+%    \to$] if the break happens after the first line of a paragraph in
+%    a two line paragraph (thus this line is also the second last
+%    line).
 %
 %    \item[$\cs{clubpenalty}+\cs{displaywidowpenalty}  +
 %    \cs{interlinepenalty} \to $] if the
@@ -252,28 +265,34 @@
 %    paragraph and a math display follows.
 %
 %    \end{description}
-%
-%    That's it for widows and orphans.
+%    That's it for widows and orphans. If we also consider hyphenated
+%    breaks then we get a further set of cases, namely all of the
+%    above with \cs{brokenpenalty} added in and the case of
+%    \cs{brokenpenalty} on its own (with just \cs{interlinepenalty} added).
 %    
 %    \begin{macrocode}
 \cs_new:Npn \@@_test_for_widows_etc: {
 %    \end{macrocode}
-%    So here is the main test. We compare \cs{outputpenalty} minus
-%    \cs{interlinepenalty} with each case until we have a hit or run
-%    out of cases (that is a little more efficient than adding it each
-%    time on the other side of the comparison). If we have a hit we
-%    execute the corresponding code which is always
-%    \cs{@@_problem_identified:n} or \cs{@@_problem_identified:nn}
-%    (i.e., one or two arguments) to issue the warning or error
-%    message. The arguments are to customize the warnings, e.g., in
-%    the first case it is a ``widow'' problem and the text in the
-%    message starts with ``\texttt{Widow}'' while in the second case
-%    it is also a ``widow'' problem but the text will say
-%    ``\verb=Display~ widow=''.\footnote{If you haven't seen much
-%    \pkg{expl3} code you may wonder about the \texttt{\string~}. As
-%    the code ignores spaces we have to mark up real spaces and for
-%    this the tilde is used.}  Details on that below where the
-%    commands are defined.
+%    So here is the main test. We compare \cs{outputpenalty} with each
+%    case until we have a hit or run out of cases. Instead of adding
+%    \cs{interlinepenalty} to each case we substract it once from
+%    \cs{outputpenalty} as that makes the comparison a little more
+%    efficient.
+%
+%    If we get a hit, we execute the corresponding code which is
+%    always either \cs{@@_problem_identified:n} or
+%    \cs{@@_problem_identified:nn} (i.e., one or two arguments) to
+%    issue the warning. The arguments are to select the right warning
+%    text and customize it further if necessary. For example, in the
+%    first case it is a ``widow'' problem and the text in the message
+%    should start with ``\texttt{Widow}'' while in the second case it
+%    is also a ``widow'' problem but the text will say
+%    ``\texttt{Display\string~ widow}''.\footnote{If you haven't seen
+%    much \pkg{expl3} code you may wonder about the
+%    \texttt{\string~}. As the code ignores spaces we have to mark up
+%    real spaces and for this the tilde is used.}  This just saves a
+%    bit of space when diffeent cases share more or less the same
+%    message text.
 %    \begin{macrocode}
   \int_case:nnF { \outputpenalty - \interlinepenalty }
     {
@@ -300,7 +319,7 @@
 %    ends up in a hyphen then the penalty will be the sum of both
 %    individual penalties. So all the case above need to be repeated
 %    with \cs{brokenpenalty} added to the value.
-%    We generate the same warning, though. That is we will say ``Widow
+%    We generate the same warnings, though---e.g., we will say ``Widow
 %    detected'' and not ``Hyphenated widow line detected'' as the
 %    latter seems to be overkill.
 %    \begin{macrocode}
@@ -320,28 +339,31 @@
 %    appears it means we have a display at the very top of the page.
 %    We reuse the ``widow'' warning but this time say
 %    ``\texttt{Lonely\string~ display}'' in the second argument.
-%    Note, that this does not get \cs{interlinepenalty} added by
+%    Note, that this case does not get \cs{interlinepenalty} added by
 %    \TeX{}, so we have to undo the optimization above.
 %    \begin{macrocode}
       { \predisplaypenalty - \interlinepenalty }
         { \@@_problem_identified:nn{widow}{Lonely~ display} }
     }
 %    \end{macrocode}
-%    The last argument of \cs[no-index]{int_case:nnF} is executed in the
-%    ``false'' case, i.e., when no match has been found.
-%    In that case we check the status of \cs{g_@@_check_bool} and if
-%    that is also ``false'' (i.e., if we have been asked not to check
-%    we issue an error message. Why, because there was nothing wrong
-%    but the user asked us to explicitly ignore the problem on this
-%    page, some something is wrong in his or her document.
+%    The last argument of \cs[no-index]{int_case:nnF} is executed in
+%    the ``false'' case, i.e., when no match has been found.  In that
+%    case we check the status of \cs{g_@@_gen_warn_bool} and
+%    if that is also ``false'' (i.e., if we have been asked not to
+%    generate warnings) we issue an error message. Why?  Because the
+%    user asked us to explicitly, to ignore problems on the current
+%    page, but there was nothing wrong here. This either means a
+%    problem got corrected or the request was really meant for a
+%    different page. Either way it is probably worth checking.
+%
 %    \begin{macrocode}
-    { \bool_if:NF \g_@@_check_bool
+    { \bool_if:NF \g_@@_gen_warn_bool
         { \msg_error:nn{widows-and-orphans}{no-problem} } }
 %    \end{macrocode}
 %    Finally, we make sure that the next page or column is again
 %    checked.
 %    \begin{macrocode}
-  \bool_gset_true:N \g_@@_check_bool
+  \bool_gset_true:N \g_@@_gen_warn_bool
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -351,13 +373,15 @@
 %  \begin{macro}{\@@_problem_identified:n}
 %  \begin{macro}{\@@_problem_identified:nn}
 %    These commands prepare for generating a warning, but only if we
-%    are supposed to check, i.e., if \cs{g_@@_check_bool} is true.
+%    are supposed to, i.e., if \cs{g_@@_gen_warn_bool} is true.
 %    \begin{macrocode}
 \cs_new:Npn \@@_problem_identified:n #1 {
-   \bool_if:NT\g_@@_check_bool{ \msg_warning:nn{widows-and-orphans}{#1} }
+   \bool_if:NT \g_@@_gen_warn_bool
+               { \msg_warning:nn{widows-and-orphans}{#1} }
 }
 \cs_new:Npn \@@_problem_identified:nn #1 #2 {
-   \bool_if:NT\g_@@_check_bool{ \msg_warning:nnn{widows-and-orphans}{#1}{#2} }
+   \bool_if:NT \g_@@_gen_warn_bool
+               { \msg_warning:nnn{widows-and-orphans}{#1}{#2} }
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -407,9 +431,9 @@
 
 
 %  \begin{macro}[TF, int]{\legacy_switch_if:n}
-%    To evaluate \LaTeXe{} boolean switches in a nice way we need a
-%    conditional which will probably make it in the \pkg{expl3} in
-%    this or a similar form, but right now it is missing.
+%    To evaluate \LaTeXe{} boolean switches in a nice way, we need a
+%    conditional which will probably make it into the \pkg{expl3}
+%    code in this or a similar form, but right now it is missing.
 %    \begin{macrocode}
 \prg_new_conditional:Npnn \legacy_switch_if:n #1 {p, T , F , TF }
   { \exp_args:Nc\if_meaning:w { if#1 } \iftrue \prg_return_true:
@@ -520,55 +544,56 @@
 %
 % \subsection{Adjusting the parameter values}
 %
-%
-%
-%  Here is an outline of what we do with the parameters:
+% To avoid (a lot of) false positives during checking it is important
+% that the parameter values are chosen in a way that all possible
+% combinations lead to unique \cs{outputenalty} values. At the same
+% time, we want them to be as close as possible to the values that
+% have been initially requested by the user (or in the document class)
+% and if we deviate too much then this will likely alter the way
+% \TeX{} does the paginiation.
+%  So here is an outline of what we do with the parameters:
 % \begin{itemize}
 % \item We set up a property list that will hold penalty values that
 %    can appear in \cs{outputpenalty} inside the output routine. The
-%    penalties are the ``keys'' and the corresponding plist value is
+%    penalties are the ``keys'' and the corresponding property list value is
 %    the source how they got produced. For example, the key might be
 %    \texttt{150} and the value \cs{widowpenalty}.
 %
 % \item Initially the property list is empty. So adding the first item
 %    simply means taking the value of one parameter, say \texttt{150}
-%    from \cs{widowpenalty}, as the key and its name as the p-list
-%    value. We omit adding \cs{interlinepenalty} as this needs to
-%    happen in (nearly) all cases so is irrelevant when making
-%    parameter values disjunct. In the cases where it isn't added by
-%    \TeX{} we then have to make a correction.
+%    from $\cs{widowpenalty}+\cs{interlinepenalty}$, as the key and
+%    this formula as the property list value.
 %
 % \item For the next parameter, say \cs{clubpenalty}, we check if its
-%   value is already a key in the property list. If that is the case,
-%   then we failed and have to modify the parameter value somehow.
+%    value (or more precisely its value plus \cs{interlinepenalty}) is
+%    already a key in the property list. If that is the case, then we
+%    failed and have to modify the parameter value somehow.
 
 % \item If not, we also have to check any combination of the current
-%   parameter with any parameter processed earlier. If that
-%   combination is possible, e.g., \cs{clubpenalty} (new) and
-%   \cs{widowpenalty} (already processed) then we also have to check
-%   the sum. If that sum is already a key in the property list then we
-%   failed as well.
+%    parameter with any parameter processed earlier. If that
+%    combination is possible, e.g., \cs{clubpenalty} (new) and
+%    \cs{widowpenalty} (already processed) then we also have to check
+%    the sum. If that sum is already a key in the property list then
+%    we failed as well.
 %
 % \item If we failed we iterate by incrementing the current parameter
 %   value and try again. Eventually we will get to a value where all
 %   combinations we test work, that is are not yet in the property list.
 %
 % \item We then change the parameter to this value and add all the
-%   combinations we tried before to the property list (that is
-%   \cs{clubpenalty} alone and together with \cs{widowpenalty} in our
-%   example). Thus from now on those are also forbidden values.
+%    combinations we tried before to the property list (that is
+%    $\cs{clubpenalty}+\cs{interlinepenalty}$ alone and together with
+%    \cs{widowpenalty} in our example). Thus from now on those are
+%    also forbidden values.
 %
 % \item We do all this with a helper command that takes the new
-%   parameter as the first argument and the list of cases to try as a
-%   comma-separated list as a second argument, e.g.,
+%    parameter as the first argument and the list of different cases
+%    to try as a comma-separated list as a second argument, e.g.,
 %\begin{verbatim}
 %    \__fmwao_decide_penalty:Nn \clubpenalty 
-%             { \clubpenalty , \clubpenalty + \widowpenalty }
+%             { \clubpenalty + \interlinepenalty ,
+%               \clubpenalty + \widowpenalty + \interlinepenalty }
 %\end{verbatim}
-%    Actually, all of the above is an oversimplification as in reality
-%    each item in the second argument has an additional
-%    \cs{interlinepenalty} added, as \TeX{} adds that that to every
-%    line.
 %
 % \item This way we are adding all relevant parameters to the property
 %   list and at the same time adjusting their values if needed.
@@ -604,7 +629,7 @@
 %    hand) so that it will not be used by a parameter or parameter
 %    combination.
 %    \begin{macrocode}
-  \prop_put:Nnn \l_@@_penalties_prop {10000} {10000}
+  \prop_put:Nnn \l_@@_penalties_prop {10000} {break~ at~ glue}
 %    \end{macrocode}
 %    The next thing is to add the values for \cs{@lowpenalty},
 %    \cs{@medpenalty} and \cs{@highpenalty} to the property list as
@@ -625,21 +650,21 @@
 %    followed by the one for the widows and the one for the display widows:
 %    \begin{macrocode}
   \@@_decide_penalty:Nn \widowpenalty 
-      { \widowpenalty + \interlinepenalty ,
-        \widowpenalty + \clubpenalty  + \interlinepenalty }
+    { \widowpenalty + \interlinepenalty ,
+      \widowpenalty + \clubpenalty  + \interlinepenalty }
   \@@_decide_penalty:Nn \displaywidowpenalty 
-      { \displaywidowpenalty + \interlinepenalty ,
-        \displaywidowpenalty + \clubpenalty + \interlinepenalty }
+    { \displaywidowpenalty + \interlinepenalty ,
+      \displaywidowpenalty + \clubpenalty + \interlinepenalty }
 %    \end{macrocode}
 %    \cs{brokenpenalty} can appear by it own but also with each and
-%    every combination we have seen before:
+%    every combination we have seen so far:
 %    \begin{macrocode}
   \@@_decide_penalty:Nn \brokenpenalty
-      { \brokenpenalty + \interlinepenalty ,
-        \brokenpenalty + \clubpenalty + \interlinepenalty ,
-        \brokenpenalty + \widowpenalty + \interlinepenalty , 
-        \brokenpenalty + \widowpenalty + \clubpenalty + \interlinepenalty ,
-        \brokenpenalty + \displaywidowpenalty + \clubpenalty + \interlinepenalty }
+    { \brokenpenalty + \interlinepenalty ,
+      \brokenpenalty + \clubpenalty + \interlinepenalty ,
+      \brokenpenalty + \widowpenalty + \interlinepenalty , 
+      \brokenpenalty + \widowpenalty + \clubpenalty + \interlinepenalty ,
+      \brokenpenalty + \displaywidowpenalty + \clubpenalty + \interlinepenalty }
 %    \end{macrocode}
 %    Finally there is the one for lonely displays (again without
 %    \cs{interlinepenalty} being added):
@@ -655,7 +680,7 @@
 %\begin{verbatim}
 % The property list \l__fmwao_penalties_prop contains the pairs (without
 % outer braces):
-% >  {10000}  =>  {10000}
+% >  {10000}  =>  {break at glue}
 % >  {51}  =>  {\@lowpenalty }
 % >  {151}  =>  {\@medpenalty }
 % >  {301}  =>  {\@highpenalty }
@@ -693,14 +718,14 @@
 %  \begin{macro}{\@@_decide_penalty:Nn}
 %    This is the core command doing the real work. Remember its first
 %    argument is the parameter which we are currently handling and the
-%    second argument is a comma-separated list of cases we need to
-%    check if the result is already in the property list.
+%    second argument is a comma-separated list of cases for which we
+%    need make sure that their result is not yet in the property list.
 %    \begin{macrocode}
 \cs_new:Npn \@@_decide_penalty:Nn #1 #2 {
 %    \end{macrocode}
 %    We start by setting the boolean to \texttt{false} and then run a
-%    loop until we have found a suitable parameter value and inserted
-%    it into the property list.
+%    loop until we have found a suitable parameter value that meets
+%    our criteria.
 %    \begin{macrocode}
   \bool_set_false:N \l_@@_success_bool
   \bool_do_until:Nn \l_@@_success_bool
@@ -708,30 +733,31 @@
 %    \end{macrocode}
 %    Inside the loop we start with the assumption that the current
 %    value of the parameter is fine and then check if that assumption
-%    is true. If yes, we can exit the loop otherwise we may have to
+%    is true. If yes, we can exit the loop otherwise we will have to
 %    try with a different value.
 %    \begin{macrocode}
      \bool_set_true:N \l_@@_success_bool
 %    \end{macrocode}
 %    For the verification we try each item in the second parameter to
 %    see if that is already in the property list.
-%    This means evaluating the  expression to get the penalty value
-%    and then looking it up in the property list. If it is there we
+%    This means evaluating the expression to get the penalty value
+%    and then looking it up in the property list. If it is there, we
 %    failed. So in this case we set the boolean back to false and
 %    break out of the mapping over the second argument since there is
 %    no point in testing further.
 %    \begin{macrocode}
      \clist_map_inline:nn { #2 }
        { \int_set:Nn \l_@@_tmp_int {##1}
-         \prop_get:NVNT \l_@@_penalties_prop \l_@@_tmp_int \l_@@_tmp_tl
+         \prop_get:NVNT
+	    \l_@@_penalties_prop \l_@@_tmp_int \l_@@_tmp_tl
             { \clist_map_break:n{\bool_set_false:N\l_@@_success_bool} }
        }
 %    \end{macrocode}
-%    Once we have finished the boolean will tell us if we are
-%    successful so far. If yes it means there was no conflict.
-%    We can therefore add all combinations with this parameter as from
-%    now on they are forbidden as well. So we map once more over the
-%    second argument and enter them:
+%    Once we have finished, the boolean will tell us if we are
+%    successful so far. If yes, it means there was no conflict.  We
+%    can therefore add all combinations with this parameter to the
+%    property list, as from now on they are forbidden as well. So we
+%    map once more over the second argument and enter them:
 %    \begin{macrocode}
      \bool_if:NTF \l_@@_success_bool
        { \clist_map_inline:nn { #2 }
@@ -739,7 +765,7 @@
               \prop_put:NVn \l_@@_penalties_prop \l_@@_tmp_int { ##1 } }
        }
 %    \end{macrocode}
-%    If we failed we increment the parameter value and retry
+%    If we failed we increment the parameter value and retry:
 %    \begin{macrocode}
        { \int_incr:N #1 }
      }
@@ -749,7 +775,9 @@
 %
 %    One place where we will run this code is at the beginning of the
 %    document (so that changes to the parameters in the preamble or
-%    the document class are picked up).
+%    the document class are picked up). The other place is when the
+%    user changes any of the parameters in the middle of the document
+%    via \cs{WaOsetup}.
 %    \begin{macrocode}
 \AtBeginDocument { \@@_initialize: }
 %    \end{macrocode}
@@ -785,11 +813,11 @@
    % ====================================
   ,orphans .choice:
   ,orphans / prevent .code:n = \int_set:Nn \clubpenalty  { 10000        }
-   			       \int_set:Nn \@clubpenalty { \clubpenalty }
+                               \int_set:Nn \@clubpenalty { \clubpenalty }
   ,orphans / avoid   .code:n = \int_set:Nn \clubpenalty  { 5000         }
-   			       \int_set:Nn \@clubpenalty { \clubpenalty }
+                               \int_set:Nn \@clubpenalty { \clubpenalty }
   ,orphans / default .code:n = \int_set:Nn \clubpenalty  { 150          }
-   			       \int_set:Nn \@clubpenalty { \clubpenalty }
+                               \int_set:Nn \@clubpenalty { \clubpenalty }
    % ====================================
   ,widows .choice:
   ,widows / prevent  .code:n = \int_set:Nn \widowpenalty { 10000 }
@@ -802,32 +830,31 @@
   ,hyphens / default .code:n = \int_set:Nn \brokenpenalty { 50    }
    % ====================================
   ,prevent-all  .code:n = \int_set:Nn \clubpenalty        { 10000   }
-			  \int_set:Nn \widowpenalty       { 10000   }
-			  \int_set:Nn \displaywidowpenalty{ 10000   }
-			  \int_set:Nn \brokenpenalty      { 10000   }
-			  \int_set:Nn \predisplaypenalty  { 10000   }
-			  \int_set:Nn \@clubpenalty  { \clubpenalty }
+                          \int_set:Nn \widowpenalty       { 10000   }
+                          \int_set:Nn \displaywidowpenalty{ 10000   }
+                          \int_set:Nn \brokenpenalty      { 10000   }
+                          \int_set:Nn \predisplaypenalty  { 10000   }
+                          \int_set:Nn \@clubpenalty  { \clubpenalty }
 %    \end{macrocode}
 %    As an exception option \option{avoid-all} doesn't set
 %    \cs{predisplaypenalty}, maybe it should.
 %    \begin{macrocode}
   ,avoid-all    .code:n = \int_set:Nn \clubpenalty  {        5000   }
-			  \int_set:Nn \widowpenalty {        5000   }
-			  \int_set:Nn \displaywidowpenalty { 2000   }
-			  \int_set:Nn \brokenpenalty{        2000   }
+                          \int_set:Nn \widowpenalty {        5000   }
+                          \int_set:Nn \displaywidowpenalty { 2000   }
+                          \int_set:Nn \brokenpenalty{        2000   }
 %                         \int_set:Nn \predisplaypenalty{    9999   }
-			  \int_set:Nn \@clubpenalty  { \clubpenalty }
+                          \int_set:Nn \@clubpenalty  { \clubpenalty }
 %    \end{macrocode}
 %    \option{default-all} reverts back to the standard \LaTeX{}
 %    default values:
 %    \begin{macrocode}
   ,default-all  .code:n = \int_set:Nn \clubpenalty  {         150   }
-			  \int_set:Nn \widowpenalty {         150   }
-			  \int_set:Nn \displaywidowpenalty {   50   }
-			  \int_set:Nn \brokenpenalty{         100   }
-			  \int_set:Nn \predisplaypenalty{   10000   }
-			  \int_set:Nn \@clubpenalty  { \clubpenalty }
-
+                          \int_set:Nn \widowpenalty {         150   }
+                          \int_set:Nn \displaywidowpenalty {   50   }
+                          \int_set:Nn \brokenpenalty{         100   }
+                          \int_set:Nn \predisplaypenalty{   10000   }
+                          \int_set:Nn \@clubpenalty  { \clubpenalty }
 }
 %    \end{macrocode}
 %    Once declared we evaluate the options given to the package:
@@ -856,7 +883,7 @@
 %    With this parameterless command one can get a display of the
 %    current parameter settings.
 %    \begin{macrocode}
-\NewDocumentCommand\WaOparameters{}{\prop_show:N \l_@@_penalties_prop }
+\NewDocumentCommand\WaOparameters{}{\prop_show:N \l_@@_penalties_prop}
 %    \end{macrocode}
 %  \end{macro}
 %
@@ -865,7 +892,7 @@
 %    And here is the command that suppresses any warning on the
 %    current page or column:
 %    \begin{macrocode}
-\NewDocumentCommand\WaOignorenext{}{ \bool_gset_false:N\g_@@_check_bool }
+\NewDocumentCommand\WaOignorenext{}{\bool_gset_false:N\g_@@_gen_warn_bool}
 %    \end{macrocode}
 %  \end{macro}
 %
