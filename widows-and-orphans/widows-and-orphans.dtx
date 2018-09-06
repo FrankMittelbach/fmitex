@@ -18,7 +18,12 @@
 % \fi
 % \iffalse
 %<*driver>
-\documentclass[full]{l3doc}
+\documentclass
+%    [final,nonumber]
+    {l3doc-TUB}
+
+\newcommand\bibname{References}  % why???
+
 \IndexPrologue
   {\section*{Index}
     \markboth{Index}{Index}
@@ -30,7 +35,11 @@
 \EnableCrossrefs
 \CodelineIndex
 \begin{document}
-  \DocInput{widows-and-orphans.dtx}
+
+\onecolumn         % ltugboat.sty macro for single-column articles
+\SelfDocumenting   % ltugboat.sty macro that changes page parameters
+\DocInput{widows-and-orphans.dtx}
+\makesignature
 \end{document}
 %</driver>
 % \fi
@@ -59,6 +68,9 @@
 % \author{Frank Mittelbach}
 % \date{Printed \today\thanks{For the package version
 %   see the \texttt{\string\ProvidesExplPackage} line in the code.}}
+% \address{Mainz, Germany}
+% \netaddress{https://www.latex-project.org}
+%
 % \maketitle
 %
 % \begin{abstract}

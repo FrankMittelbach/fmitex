@@ -15,6 +15,8 @@ checkengines   = {"pdftex"}
 -- Documentation is standalone
 typesetfiles = {"*.tex"}
 
+typesetsourcefiles = {"l3doc-TUB.cls"}
+
 
 -- Release a TDS-style zip
 packtdszip  = false
