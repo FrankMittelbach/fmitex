@@ -433,11 +433,27 @@
       }
   }
 \ProcessOptions
-\LoadClass{ltugboat}
+\LoadClass[final]{ltugboat}
 \RequirePackage{doc}
+
+\newcommand\bibname{References}  % otherwise \bibname is undefined at \Finale
+\TBtocsectionspace=0pt plus 1pt
+
+\IndexPrologue
+  {\section*{Index}
+    \markboth{Index}{Index}
+    \addcontentsline{toc}{section}{Index}
+    \noindent
+    Underlined numbers point to the definition, 
+    italicized numbers denote the pages where the 
+    corresponding entry is described, 
+    all others indicate the places where it is used.}
+%\EnableCrossrefs
+%\CodelineIndex
 
 \RequirePackage
   {
+    microtype,
     array,
     alphalph,
     amsmath,
@@ -505,19 +521,19 @@
   { \__codedoc_oldlist:nn {#1} { #2 \dim_zero:N \listparindent } }
 \setlength \parindent  { 2em }
 \setlength \itemindent { 0pt }
-\setlength \parskip    { 0pt plus 3pt minus 0pt }
+\setlength \parskip    { 1pt plus 3pt minus 0pt }
 \tl_gset:Nn \partname {File}
 \@addtoreset{section}{part}
 \cs_gset:Npn \l@section #1#2
   {
     \ifnum \c@tocdepth >\z@
       \addpenalty\@secpenalty
-      \addvspace{1.0em \@plus\p@}
+      \addvspace{\TBtocsectionspace}%
       \setlength\@tempdima{2.5em}  % was 1.5em
       \begingroup
         \parindent \z@ \rightskip \@pnumwidth
         \parfillskip -\@pnumwidth
-        \leavevmode \bfseries
+        \leavevmode \TBtocsectionfont
         \advance\leftskip\@tempdima
         \hskip -\leftskip
         #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
@@ -530,6 +546,8 @@
   {
     \MakeShortVerb \"
     \MakeShortVerb \|
+    \onecolumn
+    \SelfDocumenting
   }
 \AtEndDocument
   {
