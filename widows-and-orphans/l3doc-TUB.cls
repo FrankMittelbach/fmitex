@@ -485,7 +485,7 @@
 \RequirePackage{hypdoc}
 
 %%FMi:
-\hypersetup{pdfborder=0 0 0,allcolors=black}
+\hypersetup{allcolors=black}
   
 \cs_gset:Npn \MakePrivateLetters
   {

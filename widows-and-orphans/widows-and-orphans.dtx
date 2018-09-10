@@ -18,6 +18,8 @@
 % \fi
 % \iffalse
 %<*driver>
+\RequirePackage[nohyphen]{underscore}    % no hyphen after undercore
+                                         %   in csname
 \documentclass
     [final]
     {l3doc-TUB}
@@ -147,6 +149,7 @@
 %
 % The package provides three user-level commands.
 %
+% \vspace*{-4pt}
 % \begin{function}{\WaOsetup}
 %   \begin{syntax}
 %     \cs{WaOsetup} \meta{comma list}
@@ -155,6 +158,7 @@
 %   adjusting the package behavior in mid-document if necessary.
 % \end{function}
 
+% \vspace*{-4pt}
 % \begin{function}{\WaOparameters}
 %   \begin{syntax}
 %     \cs{WaOparameters}
@@ -163,6 +167,7 @@
 %    their values.
 % \end{function}
 
+% \vspace*{-4pt}
 % \begin{function}{\WaOignorenext}
 %   \begin{syntax}
 %     \cs{WaOignorenext}
@@ -179,8 +184,13 @@
 % \newblock Managing forlorn paragraph lines (a.k.a.\ widows and orphans)
 %  in \LaTeX{}.
 % \newblock \textsl{TUG}boat 39:3, 2018.
+% \bibitem{expl3}
+% \LaTeX3 Project Team.
+% \newblock A collection of articles on \pkg{expl3}.\\
+%    \url{https://latex-project.org/publications/indexbytopic/l3-expl3/}
 % \end{thebibliography}
-% \setlength\IndexMin{200pt}  \PrintIndex  }
+% ^^A \setlength\IndexMin{200pt}  \PrintIndex
+% }
 %
 %
 % \section{The implementation}
@@ -205,8 +215,7 @@
 % \pkg{expl3} code so we are ready to roll afterwards.
 %
 %    \begin{macrocode}
-\NeedsTeXFormat{LaTeX2e}
-\RequirePackage{xparse,l3keys2e}
+\NeedsTeXFormat{LaTeX2e}    \RequirePackage{xparse,l3keys2e}
 %    \end{macrocode}
 %
 % Then we announce the package to the world at large. This declaration
@@ -214,7 +223,73 @@
 % from now on the \pkg{expl3} conventions are to be obeyed, e.g.,
 % \texttt{_} and \texttt{:} can appear in command names and whitespace
 % is automatically ignored (so no need for \texttt{\%} all over
-% the place).
+% the place).\footnote{Figure~\ref{fig:expl3} gives a short
+%   introduction to the naming conventions of \pkg{expl3} for those
+%   readers who haven't seen any code written in \pkg{expl3}.
+%   For more details refer to~\cite{expl3}.}
+%
+% \begin{figure}
+%   \centering
+%   \setlength\fboxsep{7pt}
+%   \noindent\hspace{-\marginparwidth}\fbox{\begin{minipage}{1.25\textwidth}
+%    Commands in \pkg{expl3} use the following naming convention:
+%   \begin{tabbing}
+%     \qquad \texttt{\space\space\bslash\meta{module}\_\meta{action}:\meta{arg-spec}}
+%     \quad
+%               \= \% externally available command \\
+%     \qquad \texttt{\bslash\_\_\meta{module}\_\meta{action}:\meta{arg-spec}}
+%               \> \% internal command local to the package
+%   \end{tabbing}
+%
+%   \vspace*{2pt}
+%
+%   \begin{description} \raggedright
+%   \item[\ttfamily\meta{module}] describes area the command belongs to
+%   \item[\ttfamily\meta{action}] describes the (main) action of the command  and
+%   \item[\ttfamily\meta{arg-spec}] shows the expected command
+%     arguments and their preprocessing:\\
+%    \texttt{N} means expect a
+%     single token; \texttt{n} means expect a (normal) braced
+%     argument.\\
+%    \texttt{T} and \texttt{F} also represent braced
+%     arguments indicating the ``true'' and ``false'' code branch in a
+%     conditional. \\
+%    \texttt{V} means expect a single token, interpret it as a
+%     variable and pass on its value to the command.\\
+%    Finally, \texttt{p} stands for a parameter-spec, e.g.,
+%     \texttt{\#1\#2...}  in a definition. There are a number of other
+%     argument types, but they aren't used in the code describe here.
+%   \end{description}
+%
+%   \vspace*{2pt}
+%
+% Examples:
+%   \begin{description} \raggedright
+%   \item[\cs{cs_if_eq:NNTF}] is a conditional from the module
+%     \texttt{cs} (command names) implementing the action \\
+%    \texttt{if\_eq} (if equal) and expecting two single tokens
+%     (commands to compare) and a true and a false branch (one of
+%     which is executed).
+%
+%   \item[\cs{tl_put_left:Nn}] is a function from the module
+%     \texttt{tl} (token lists) implementing \texttt{put\_left} and \\
+%    expecting a single token (a token list variable) and a braced
+%     argument (the data to put on at \\
+%    the front/left in the  variable).
+%   \end{description}
+%
+% \medskip
+%
+%   Variables start with \cs{l_} (for local) or \cs{g_} (for global)
+%   and have the data type as the last part of the name. Variables
+%   internal to the package use two underscores, e.g.,
+%   \cs{l__@@_gen_warn_bool}.
+%
+%   \end{minipage}}
+%
+%   \caption{Crash course in \pkg{expl3} command name conventions}
+%     \label{fig:expl3}
+% \end{figure}
 %
 %    \begin{macrocode}
 \ProvidesExplPackage{widows-and-orphans}{2018/09/01}{v1.0a}
@@ -296,21 +371,21 @@
 %    \cs{outputpenalty} to make the comparison a little more
 %    efficient.
 %
-%    If we get a hit, we execute the corresponding code:
-%    either \cs{@@_problem_identified:n} or
-%    \cs{@@_problem_identified:nn} (i.e., one or two arguments) to
-%    issue the warning. The arguments are to select the correct warning
-%    text and customize it further if necessary. For example, in the
-%    first case it is a ``widow'' problem and the text in the message
-%    should start with ``\texttt{Widow}'' while in the second case it
-%    is also a ``widow'' problem but the text will say
-%    ``\texttt{Display\string~ widow}''.\footnote{If you haven't seen
-%    much \pkg{expl3} code you may wonder about the
-%    \texttt{\string~}. As the code ignores spaces we have to mark up
-%    real spaces and for this the tilde is used. It is not a tie, but
-%    a catcode 10 space character.}  This
-%    just saves a bit of space when different cases share more or less the same
-%    message text.
+%    If we get a hit, we execute the corresponding code: either
+%    \cs{@@_problem_identified:n} or \cs{@@_problem_identified:nn}
+%    (i.e., one or two arguments) to issue the warning. The arguments
+%    are to select the correct warning text and customize it further
+%    if necessary. For example, in the first case it is a ``widow''
+%    problem and the text in the message should start with
+%    ``\texttt{Widow}'' while in the second case it is also a
+%    ``widow'' problem but the text will say ``\texttt{Display\string~
+%    widow}''.\footnote{If you haven't seen much \pkg{expl3} code you
+%    may wonder about the \texttt{\string~}. As the code ignores
+%    spaces we have to mark up real spaces and for this the tilde is
+%    used. In \pkg{expl3} code this does not act as a tie, but simply
+%    as a catcode 10 space character (while normal spaces are
+%    ignored).}  This just saves a bit of space when different cases
+%    share more or less the same message text.
 %    \begin{macrocode}
   \int_case:nnF { \outputpenalty - \interlinepenalty }
     {
@@ -460,7 +535,7 @@
 %  \end{macro}
 %
 %
-%   \bigskip
+%   \pagebreak
 %
 %
 %    The first message is issued if we have been directed to ignore a
@@ -470,7 +545,8 @@
   { No~ problem~ to~ suppress~ on~ this~ page! }
   { Suppression~ of~ a~ widow~ or~ orphan~ problem~ was~ requested~
     but~ on~ the~ current~ page~ there~ doesn't~ seem~ to~ be~ any.~
-    Maybe~ the~ text~ was~ changed~ and~ the~ request~ should~ get~ (re)moved?}
+    Maybe~ the~ text~ was~ changed~ and~ the~ request~ should~ get~
+    (re)moved?}
 %    \end{macrocode}
 %   }
 %
@@ -629,6 +705,7 @@
 %    \end{macrocode}
 %  \end{macro}
 %
+% \pagebreak
 %
 %  \begin{macro}{\@@_initialize:}
 %    Now we are ready to go. The first action is to clear the property
@@ -714,14 +791,14 @@
 % >  {250}  =>  {\brokenpenalty +\clubpenalty +\interlinepenalty }
 % >  {252}  =>  {\brokenpenalty +\widowpenalty +\interlinepenalty }
 % >  {402}  =>  {\brokenpenalty +\widowpenalty +\clubpenalty +\interlinepenalty }
-% >  {300}  =>  {\brokenpenalty +\displaywidowpenalty +\clubpenalty +\interlinepenalty }
+% >  {300}  =>  {\brokenpenalty +\displaywidowpenalty +\clubpenalty
+%                                                            +\interlinepenalty }
 % >  {10001}  =>  {\predisplaypenalty }.
 %\end{verbatim}
 %\end{small}
 %  \end{macro}
-
-
-
+%
+%
 %  \begin{macro}{\l_@@_tmp_int}
 %  \begin{macro}{\l_@@_tmp_tl}
 %  \begin{macro}{\l_@@_success_bool}
@@ -773,21 +850,25 @@
      \clist_map_inline:nn { #2 }
        { \int_set:Nn \l_@@_tmp_int {##1}
          \prop_get:NVNT
-	    \l_@@_penalties_prop \l_@@_tmp_int \l_@@_tmp_tl
+            \l_@@_penalties_prop \l_@@_tmp_int \l_@@_tmp_tl
             { \clist_map_break:n {\bool_set_false:N\l_@@_success_bool} }
        }
 %    \end{macrocode}
 %    Once we have finished, the boolean will tell us if we are
 %    successful so far. If yes, it means there was no conflict.  We
 %    therefore add all combinations with this parameter to the
-%    property list, as from now on they are forbidden as well. So we
+%    property list, as from now on they are forbidden as well.
+%
+%    \pagebreak
+%
+%    So we
 %    map once more over the second argument and enter them:
 %    \begin{macrocode}
      \bool_if:NTF \l_@@_success_bool
        { \clist_map_inline:nn { #2 }
-            { \int_set:Nn \l_@@_tmp_int {##1}
-              \prop_put:NVn \l_@@_penalties_prop \l_@@_tmp_int 
-                                                                { ##1 } }
+           { \int_set:Nn \l_@@_tmp_int {##1}
+             \prop_put:NVn \l_@@_penalties_prop \l_@@_tmp_int {##1}
+	   }
        }
 %    \end{macrocode}
 %    If we failed we increment the parameter value and retry:
@@ -876,7 +957,7 @@
   ,default-all  .code:n = \int_set:Nn \clubpenalty          { 150   }
                           \int_set:Nn \widowpenalty         { 150   }
                           \int_set:Nn \displaywidowpenalty  {  50   }
-                          \int_set:Nn \brokenpenalty{       { 100   }
+                          \int_set:Nn \brokenpenalty        { 100   }
                           \int_set:Nn \predisplaypenalty  { 10000   }
                           \int_set:Nn \@clubpenalty  { \clubpenalty }
 }
