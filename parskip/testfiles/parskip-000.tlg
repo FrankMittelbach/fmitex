@@ -1,0 +1,24 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+(parskip.sty
+(../kvoptions.sty
+(../keyval.sty
+\KV@toks@=\toks...
+)
+(../ltxcmds.sty
+)
+(../kvsetkeys.sty
+(../infwarerr.sty
+)
+(../etexcmds.sty
+(../ifluatex.sty
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(../etoolbox.sty
+\etb@tempcnta=\count...
+))

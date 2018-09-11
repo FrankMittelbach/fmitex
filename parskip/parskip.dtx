@@ -1,6 +1,9 @@
 % \iffalse meta-comment
 %
-%% File: parskip.dtx (C) Copyright 2018 Frank Mittelbach
+%% File: parskip.dtx
+%%   (C) Copyright 1989 H.Partl, TU Wien
+%%   (C) Copyright 2001 Robin Fairbairns
+%%   (C) Copyright 2018 Frank Mittelbach
 %
 % It may be distributed and/or modified under the conditions of the
 % LaTeX Project Public License (LPPL), either version 1.3c of this
@@ -18,7 +21,7 @@
 %
 %<*driver>
 \documentclass{article}
-\usepackage{doc}
+\usepackage{doc,url}
 \EnableCrossrefs
 \CodelineIndex
 \begin{document}
@@ -65,9 +68,28 @@
 % This package attempts to fix the spacing in table of contents
 % structures, list environments, and around display headings that would
 % get screwed up by a positive \cs{parskip} value.
-% 
+%
 %   It is, however, is no more than quick fix; the `proper' way to
 %   achieve effects as far-reaching as this is to create a new class.
+%
+% \subsection{History}
+%
+% This file was originally developed by Hubert Partl in 1989 (i.e.,
+% for \LaTeX\,2.09) to provide a somewhat crude solution to an
+% existing problem (in case no proper document class (back then called
+% document style) support was available.
+%
+% About ten years later Robin Fairbairns picked up the orphaned
+% package and his version was then the one available for \LaTeXe{}
+% during the next 15\textsuperscript{+} years.
+%
+% Finally, while working on the next edition of the \LaTeX{} Companion
+% the current author did a reimplementation, that added support for TOC
+% data and heading structures. Also a few additional key/value options
+% were added to make the package more useful. It still is and will
+% remain an inferior choice compared to a properly designed document
+% class. But it offers a starting point if nothing is around.
+%
 %
 %
 % \section{The user interface}
@@ -109,10 +131,32 @@
 % \cs{parskip}).  If this is not desirable when processing an  old
 % document it can be avoided by explicitly
 % requesting version \texttt{v1} as follows:
-%\begin{verbatim}
-%   \usepackage{parskip}[=v1]
-%\end{verbatim}
-% Of course, they new options etc are then also bot available.
+% \begin{quote}
+%   \verb/\usepackage{parskip}[=v1]/
+% \end{quote}
+% Of course, the new options, etc.\ are then also not available.
+%
+%
+%
+% \section{Sources, bugs and issues}
+%
+% The official production version is available from CTAN.
+% The latest (development) sources are maintained at GitHub at:
+% \begin{quote}
+%   \url{https://github.com/FrankMittelbach/fmitex/tree/parskip/parskip}
+% \end{quote}
+% In case of problems with the package you can report them at
+% \begin{quote}
+%   \url{https://github.com/FrankMittelbach/fmitex/issues}
+% \end{quote}
+% Please provide a minimal test example that can be run and doesn't
+% use packages not in a standard \LaTeX{} distribution (and as little
+% as possible to show the issue).
+%
+% \StopEventually{}
+%
+%
+%
 %
 % \section{The Implementation}
 %
@@ -122,15 +166,13 @@
 %<*package>
 %    \end{macrocode}
 %
-%
-%
 %  \subsection{The main implementation part}
 %
 %
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[2018-04-01]
 
-\DeclareRelease       {v1}{2001-12-13}{parskip-2001-12-13.sty}
+\DeclareRelease       {v1}{2001-04-09}{parskip-2001-04-09.sty}
 \DeclareCurrentRelease{v2}{2018-08-24}
 %    \end{macrocode}
 %
@@ -229,7 +271,7 @@
 %
 %    To accompany this, the vertical spacing in the list environments is changed
 %    to use the same as \cs{parskip} in all relevant places (for
-%    normalsize only), i.e.
+%    \cs{normalsize} only), i.e.
 %\begin{verbatim}
 %   \parsep = \parskip
 %   \itemsep = \z@ % add nothing to \parskip between items
