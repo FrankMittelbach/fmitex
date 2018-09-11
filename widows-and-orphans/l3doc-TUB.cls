@@ -1,10 +1,9 @@
 %%
-%% This is file `l3doc.cls',
-%% generated with the docstrip utility.
+%% This is file `l3doc-TUB.cls'
 %%
 %% The original source files were:
 %%
-%% l3doc.dtx  (with options: `class')
+%% l3doc.dtx  (with options: `class')  + several manual changes!
 %% 
 %% Copyright (C) 1990-2018 The LaTeX3 Project
 %% 
@@ -15,10 +14,22 @@
 %% 
 %%    https://www.latex-project.org/lppl.txt
 %% 
-%% This file is part of the "l3kernel bundle" (The Work in LPPL)
-%% and all files in that bundle must be distributed together.
-%% 
 %% File: l3doc.dtx Copyright (C) 1990-2018 The LaTeX3 project
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% This is really a temporary file intended for a single article
+%% written for TugBoat It is a copy of l3doc.cls with a couple of
+%% changes, nothing more Eventually this will get replaced by a real
+%% class once l3doc.cls gets properly split into a class part and a
+%% support part.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% If you use this for anything other than processing the documents it
+%% was meant for (which so far is 1) you are on your own :-)
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{expl3,xparse,calc}
 \ProvidesExplClass{l3doc-TUB}{2018/02/21}{}
@@ -189,7 +200,7 @@
               \__codedoc_trim_right:Nn \l__codedoc_detect_internals_tl _
               \__codedoc_trim_right:Nn \l__codedoc_detect_internals_tl :
               \__codedoc_trim_right:No \l__codedoc_detect_internals_tl { \token_to_str:N : }
-              \msg_warning:nnxxx { l3doc } { foreign-internal }
+              \msg_warning:nnxxx { l3doc-TUB } { foreign-internal }
                 { \tl_to_str:N \l__codedoc_detect_internals_cs_tl }
                 { \tl_to_str:N \l__codedoc_detect_internals_tl }
                 { \tl_to_str:N \g__codedoc_module_name_tl }
@@ -362,7 +373,7 @@
   }
 \cs_new:Npn \__codedoc_gprop_name:n #1 { g__codedoc ~ \tl_to_str:n {#1} }
 \cs_new:Npn \__codedoc_lseq_name:n #1 { l__codedoc ~ \tl_to_str:n {#1} }
-\msg_new:nnnn { l3doc } { no-signature-TF }
+\msg_new:nnnn { l3doc-TUB } { no-signature-TF }
   { Function/macro~'#1'~cannot~be~turned~into~a~conditional. }
   {
     A~function~or~macro~environment~with~option~pTF,~TF~or~noTF~
@@ -370,23 +381,23 @@
     ':'~hence~it~is~not~clear~where~to~add~'_p'~or~'TF'.~
     Please~follow~expl3~naming~conventions.
   }
-\msg_new:nnn { l3doc } { deprecated-function }
+\msg_new:nnn { l3doc-TUB } { deprecated-function }
   { The~deprecated~function(s)~'#1'~should~have~been~removed~on~#2. }
-\msg_new:nnn { l3doc } { date-format }
+\msg_new:nnn { l3doc-TUB } { date-format }
   { The~date~'#1'~should~be~given~in~YYYY-MM-DD~format. }
-\msg_new:nnn { l3doc } { syntax-nested-function }
+\msg_new:nnn { l3doc-TUB } { syntax-nested-function }
   {
     The~'syntax'~environment~should~be~used~in~the~
     innermost~'function'~environment.
   }
-\msg_new:nnn { l3doc } { multiple-syntax }
+\msg_new:nnn { l3doc-TUB } { multiple-syntax }
   {
     The~'syntax'~environment~should~only~be~used~once~in~
     a~'function'~environment.
   }
-\msg_new:nnn { l3doc } { deprecated-option }
+\msg_new:nnn { l3doc-TUB } { deprecated-option }
   { The~option~'#1'~has~been~deprecated~for~'#2'. }
-\msg_new:nnn { l3doc } { foreign-internal }
+\msg_new:nnn { l3doc-TUB } { foreign-internal }
   {
     A~control~sequence~of~the~form~'...__#1'~was~used.~
     It~should~only~be~used~in~the~module~'#2'
@@ -422,14 +433,14 @@
 \DeclareOption* { \PassOptionsToClass { \CurrentOption } { ltugboat } }
 \ExecuteOptions { full, kernel, nocheck, nochecktest, lm-default }
 %%FMi \PassOptionsToClass { a4paper } { article }
-\msg_new:nnn { l3doc } { input-cfg }
-  { Local~config~file~l3doc.cfg~loaded. }
-\file_if_exist:nT { l3doc.cfg }
+\msg_new:nnn { l3doc-TUB } { input-cfg }
+  { Local~config~file~l3doc-TUB.cfg~loaded. }
+\file_if_exist:nT { l3doc-TUB.cfg }
   {
-    \file_input:nT { l3doc.cfg }
+    \file_input:nT { l3doc-TUB.cfg }
       {
         \cs_if_exist:cF { ExplMakeTitle }
-          { \msg_info:nn { l3doc } { input-cfg } }
+          { \msg_info:nn { l3doc-TUB } { input-cfg } }
       }
   }
 \ProcessOptions
@@ -689,7 +700,7 @@
     argument~specifiers~expect~different~
     \enquote{true}/\enquote{false}~branches.
   }
-\keys_define:nn { l3doc/cmd }
+\keys_define:nn { l3doc-TUB/cmd }
   {
     index     .tl_set:N     = \l__codedoc_cmd_index_tl        ,
     module    .tl_set:N     = \l__codedoc_cmd_module_tl       ,
@@ -702,7 +713,7 @@
     \bool_set_true:N \l__codedoc_cmd_replace_bool
     \tl_set:Nn \l__codedoc_cmd_index_tl { \q_no_value }
     \tl_set:Nn \l__codedoc_cmd_module_tl { \q_no_value }
-    \keys_set:nn { l3doc/cmd } {#1}
+    \keys_set:nn { l3doc-TUB/cmd } {#1}
     \tl_set:Nn \l__codedoc_cmd_tl {#2}
     \bool_if:NT \l__codedoc_cmd_replace_bool
       {
@@ -852,7 +863,7 @@
       }
       {
         \bool_if:NT \l__codedoc_macro_TF_bool
-          { \msg_error:nnx { l3doc } { no-signature-TF } {#4} }
+          { \msg_error:nnx { l3doc-TUB } { no-signature-TF } {#4} }
         \__codedoc_names_parse_aux:nnn {#4} {#4} { \scan_stop: }
       }
   }
@@ -949,7 +960,7 @@
           }
       }
   }
-\keys_define:nn { l3doc/function }
+\keys_define:nn { l3doc-TUB/function }
   {
     TF .value_forbidden:n = true ,
     TF .code:n =
@@ -1001,7 +1012,7 @@
     \regex_replace_once:nnNF
       { \A(\d\d\d\d)[-/](\d\d?)[-/](\d\d?)\Z } { \1-\2-\3 } #1
       {
-        \msg_error:nnn { l3doc } { date-format } {#2}
+        \msg_error:nnn { l3doc-TUB } { date-format } {#2}
         \tl_set:Nn #1 { 1970-01-01 }
       }
   }
@@ -1011,7 +1022,7 @@
     \exp_args:No \__codedoc_date_compare:nNnT
       { \l__codedoc_tmpa_tl } < { \tex_year:D - \tex_month:D - \tex_day:D }
       {
-        \msg_error:nnxx { l3doc } { deprecated-function }
+        \msg_error:nnxx { l3doc-TUB } { deprecated-function }
           { \tl_to_str:N \l__codedoc_macro_argument_tl }
           { \l__codedoc_tmpa_tl }
       }
@@ -1023,7 +1034,7 @@
     \__codedoc_function_typeset_start:
     \__codedoc_function_init:
     \tl_set:Nn \l__codedoc_macro_argument_tl {#2}
-    \keys_set:nn { l3doc/function } {#1}
+    \keys_set:nn { l3doc-TUB/function } {#1}
     \__codedoc_names_get_seq:nN {#2} \l__codedoc_names_seq
     \__codedoc_names_parse:
     \__codedoc_function_typeset:
@@ -1048,7 +1059,7 @@
 \cs_new_protected:Npn \__codedoc_function_init:
   {
     \box_if_empty:NF \g__codedoc_syntax_box
-      { \msg_error:nn { l3doc } { syntax-nested-function } }
+      { \msg_error:nn { l3doc-TUB } { syntax-nested-function } }
     \coffin_clear:N \l__codedoc_descr_coffin
     \box_gclear:N \g__codedoc_syntax_box
     \coffin_clear:N \l__codedoc_syntax_coffin
@@ -1232,7 +1243,7 @@
 \cs_new_protected:Npn \__codedoc_syntax:w
   {
     \box_if_empty:NF \g__codedoc_syntax_box
-      { \msg_error:nn { l3doc } { multiple-syntax } }
+      { \msg_error:nn { l3doc-TUB } { multiple-syntax } }
     \dim_set:Nn \l__codedoc_syntax_dim
       {
         \textwidth
@@ -1263,12 +1274,12 @@
         \end{quote}
       }
   }
-\keys_define:nn { l3doc/macro }
+\keys_define:nn { l3doc-TUB/macro }
   {
     aux .value_forbidden:n = true ,
     aux .code:n =
       {
-        \msg_warning:nnnn { l3doc } { deprecated-option }
+        \msg_warning:nnnn { l3doc-TUB } { deprecated-option }
           { aux } { function/macro }
       } ,
     internal .value_forbidden:n = true ,
@@ -1330,7 +1341,7 @@
   {
     \__codedoc_macro_init:
     \tl_set:Nn \l__codedoc_macro_argument_tl {#2}
-    \keys_set:nn { l3doc/macro } {#1}
+    \keys_set:nn { l3doc-TUB/macro } {#1}
     \__codedoc_names_get_seq:nN {#2} \l__codedoc_names_seq
     \__codedoc_names_parse:
     \__codedoc_macro_save_names:
@@ -2019,7 +2030,7 @@
           {
             \int_set:Nn \l__codedoc_tmpa_int { \etex_interactionmode:D }
             \errorstopmode
-            \ClassError { l3doc } { \l__codedoc_tmpa_tl } { }
+            \ClassError { l3doc-TUB } { \l__codedoc_tmpa_tl } { }
             \int_set:Nn \etex_interactionmode:D { \l__codedoc_tmpa_int }
           }
       }
@@ -2044,14 +2055,14 @@
     \__codedoc_special_index:nn {#1} { }
     \@esphack
   }
-\msg_new:nnn { l3doc } { print-index-howto }
+\msg_new:nnn { l3doc-TUB } { print-index-howto }
   {
     Generate~the~index~by~executing\\
     \iow_indent:n
       { makeindex~-s~gind.ist~-o~\c_sys_jobname_str.ind~\c_sys_jobname_str.idx }
   }
 \tl_gput_right:Nn \PrintIndex
-  { \AtEndDocument { \msg_info:nn { l3doc } { print-index-howto } } }
+  { \AtEndDocument { \msg_info:nn { l3doc-TUB } { print-index-howto } } }
 \cs_gset_protected:Npn \it@is@a #1
   {
     \use:x
@@ -2262,14 +2273,14 @@
     \markboth{Change~History}{Change~History}
     \addcontentsline{toc}{part}{Change~History}
   }
-\msg_new:nnn { l3doc } { print-changes-howto }
+\msg_new:nnn { l3doc-TUB } { print-changes-howto }
   {
     Generate~the~change~list~by~executing\\
     \iow_indent:n
       { makeindex~-s~gglo.ist~-o~\c_sys_jobname_str.gls~\c_sys_jobname_str.glo }
   }
 \tl_gput_right:Nn \PrintChanges
-  { \AtEndDocument { \msg_info:nn { l3doc } { print-changes-howto } } }
+  { \AtEndDocument { \msg_info:nn { l3doc-TUB } { print-changes-howto } } }
 \bool_if:NTF \g__codedoc_typeset_implementation_bool
   {
     \RecordChanges
@@ -2292,4 +2303,4 @@
   
 %% 
 %%
-%% End of file `l3doc.cls'.
+%% End of file `l3doc-TUB.cls'.
