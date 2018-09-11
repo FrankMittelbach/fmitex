@@ -2041,9 +2041,9 @@
 \setcounter { IndexColumns } { 2 }
 \IndexPrologue
   {
-    \part*{Index}
+    \section*{Index}
     \markboth{Index}{Index}
-    \addcontentsline{toc}{part}{Index}
+    \addcontentsline{toc}{section}{Index}
     The~italic~numbers~denote~the~pages~where~the~
     corresponding~entry~is~described,~
     numbers~underlined~point~to~the~definition,~
