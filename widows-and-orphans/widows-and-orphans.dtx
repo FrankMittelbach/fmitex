@@ -183,7 +183,9 @@
 % Frank Mittelbach.
 % \newblock Managing forlorn paragraph lines (a.k.a.\ widows and orphans)
 %  in \LaTeX{}.
-% \newblock \textsl{TUG}boat 39:3, 2018.
+% \newblock \textsl{TUGboat} 39:3,
+%   \ifx\thisissuepageref\undefined \else \thisissuepageref{mitt-widows},\fi
+%   2018.
 % \bibitem{expl3}
 % \LaTeX3 Project Team.
 % \newblock A collection of articles on \pkg{expl3}.\\
@@ -231,7 +233,7 @@
 % \begin{figure}
 %   \centering
 %   \setlength\fboxsep{7pt}
-%   \noindent\hspace{-\marginparwidth}\fbox{\begin{minipage}{1.25\textwidth}
+%   \noindent\hspace{-\marginparwidth}\fbox{\begin{minipage}{1.21\textwidth}
 %    Commands in \pkg{expl3} use the following naming convention:
 %   \begin{tabbing}
 %     \qquad \texttt{\space\space\bslash\meta{module}\_\meta{action}:\meta{arg-spec}}
@@ -244,21 +246,25 @@
 %   \vspace*{2pt}
 %
 %   \begin{description} \raggedright
-%   \item[\ttfamily\meta{module}] describes area the command belongs to
-%   \item[\ttfamily\meta{action}] describes the (main) action of the command  and
+%   \item[\ttfamily\meta{module}] describes the (main) area to which
+%     the command belongs,
+%   \item[\ttfamily\meta{action}] describes the (main) action of the
+%     command, and
 %   \item[\ttfamily\meta{arg-spec}] shows the expected command
 %     arguments and their preprocessing:\\
 %    \texttt{N} means expect a
-%     single token; \texttt{n} means expect a (normal) braced
-%     argument.\\
+%     single token; \\
+%     \texttt{n} means expect a (normal) braced
+%     argument;\\
 %    \texttt{T} and \texttt{F} also represent braced
-%     arguments indicating the ``true'' and ``false'' code branch in a
-%     conditional. \\
+%     arguments, indicating ``true'' and ``false'' branches in a
+%     conditional; \\
 %    \texttt{V} means expect a single token, interpret it as a
-%     variable and pass on its value to the command.\\
-%    Finally, \texttt{p} stands for a parameter-spec, e.g.,
-%     \texttt{\#1\#2...}  in a definition. There are a number of other
-%     argument types, but they aren't used in the code describe here.
+%     variable and pass its value on to the command;\\
+%    Finally, \texttt{p} stands for a (possibly empty) parameter spec, e.g.,
+%     \texttt{\#1\#2...}\ in a definition.
+%     \\There are a number of other
+%     argument types, but they aren't used in the code described here.
 %   \end{description}
 %
 %   \vspace*{2pt}
@@ -274,7 +280,7 @@
 %   \item[\cs{tl_put_left:Nn}] is a function from the module
 %     \texttt{tl} (token lists) implementing \texttt{put\_left} and \\
 %    expecting a single token (a token list variable) and a braced
-%     argument (the data to put on at \\
+%     argument (the data to insert at \\
 %    the front/left in the  variable).
 %   \end{description}
 %
