@@ -1043,7 +1043,7 @@
 %    \begin{macrocode}
 \ifFN@para
   \def\@makecol@preparefootinshook {%
-     \global\setbox\footins\vbox{\makefootnoteparagraph}%
+     \global\setbox\footins\vbox{\FN@makefootnoteparagraph}%
   }
 \fi
 %    \end{macrocode}
@@ -1317,11 +1317,11 @@
 %
 %
  
-% \begin{macro}{\makefootnoteparagraph}
+% \begin{macro}{\FN@makefootnoteparagraph}
 % For use in the output routine
 %    \begin{macrocode}
-  \long\def\makefootnoteparagraph{\unvbox\footins \makehboxofhboxes
-    \setbox\FN@tempboxa=\hbox{\unhbox\FN@tempboxa \removehboxes}%
+  \long\def\FN@makefootnoteparagraph{\unvbox\footins \FN@makehboxofhboxes
+    \setbox\FN@tempboxa=\hbox{\unhbox\FN@tempboxa \FN@removehboxes}%
 %    \end{macrocode}
 % Now we are ready to set the paragraph:
 %    \begin{macrocode}
@@ -1335,20 +1335,20 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\makehboxofhboxes}
-% \begin{macro}{\removehboxes}
-% Support code for \cs{makefootnoteparagraph}
+% \begin{macro}{\FN@makehboxofhboxes}
+% \begin{macro}{\FN@removehboxes}
+% Support code for \cs{FN@makefootnoteparagraph}
 %    \begin{macrocode}
-  \def\makehboxofhboxes{\setbox\FN@tempboxa=\hbox{}%
+  \def\FN@makehboxofhboxes{\setbox\FN@tempboxa=\hbox{}%
     \loop
       \setbox\FN@tempboxb=\lastbox
       \ifhbox\FN@tempboxb
       \setbox\FN@tempboxa=\hbox{\box\FN@tempboxb\unhbox\FN@tempboxa}%
     \repeat
   }
-  \def\removehboxes{\setbox\FN@tempboxa=\lastbox
+  \def\FN@removehboxes{\setbox\FN@tempboxa=\lastbox
     \ifhbox
-      \FN@tempboxa{\removehboxes}%
+      \FN@tempboxa{\FN@removehboxes}%
       \unhbox\FN@tempboxa
     \fi
   }
