@@ -24,24 +24,6 @@
     [final]
     {l3doc-TUB}
 
-% fix for _TF undefined,
-% https://github.com/latex3/latex3/issues/477#issuecomment-419458783
-\ExplSyntaxOn
-\cs_set_protected:Npn \__codedoc_typeset_TF:
-  {
-    \group_begin:
-      \exp_args:No \__codedoc_if_macro_internal:nT \l__codedoc_tmpa_tl
-        { \color[gray]{0.5} }
-      \itshape TF
-\iffalse      \makebox[0pt][r]
-        {
-          \color{red}
-          \underline{\phantom{\itshape TF} \kern-0.1em}
-        } \fi
-    \group_end:
-  }
-\ExplSyntaxOff
-
 \begin{document}
 
 \DocInput{widows-and-orphans.dtx}
@@ -175,6 +157,19 @@
 %   This command directs the package to not generate warnings for
 %    the current page or columns (if we know that they can't be corrected).
 % \end{function}
+%
+%
+%
+% \subsection{Related packages}
+%
+% Package \pkg{nowidow}: This package offers some commands to help
+% pushing lines from one page to another in a simple way by locally
+% requesting no widows or orphans\Dash possibly for several lines. In that
+% respect it is implementing one of the possibilities discussed in the
+% Tugboat article~\cite{tub-wao}. It is however, in many cases not the
+% best solution to get rid of a widow or orphan when the interest is
+% to achive high typographical quality.
+%
 %
 %
 % \StopEventually{
@@ -543,7 +538,6 @@
 %  \end{macro}
 %
 %
-%   \pagebreak
 %
 %
 %    The first message is issued if we have been directed to ignore a
@@ -713,7 +707,6 @@
 %    \end{macrocode}
 %  \end{macro}
 %
-% \pagebreak
 %
 %  \begin{macro}{\@@_initialize:}
 %    Now we are ready to go. The first action is to clear the property
@@ -838,14 +831,13 @@
 %    \begin{macrocode}
   \bool_set_false:N \l_@@_success_bool
   \bool_do_until:Nn \l_@@_success_bool
-    {
 %    \end{macrocode}
 %    Inside the loop we start with the assumption that the current
 %    value of the parameter is fine and then check if that assumption
 %    is true. If yes, we can exit the loop, otherwise we will have to
 %    try with a different value.
 %    \begin{macrocode}
-     \bool_set_true:N \l_@@_success_bool
+   { \bool_set_true:N \l_@@_success_bool
 %    \end{macrocode}
 %    For the verification we try each item in the second parameter to
 %    see if that is already in the property list.
@@ -867,7 +859,6 @@
 %    therefore add all combinations with this parameter to the
 %    property list, as from now on they are forbidden as well.
 %
-%    \pagebreak
 %
 %    So we
 %    map once more over the second argument and enter them:
@@ -876,13 +867,12 @@
        { \clist_map_inline:nn { #2 }
            { \int_set:Nn \l_@@_tmp_int {##1}
              \prop_put:NVn \l_@@_penalties_prop \l_@@_tmp_int {##1}
-	   }
-       }
+           } }
 %    \end{macrocode}
 %    If we failed we increment the parameter value and retry:
 %    \begin{macrocode}
        { \int_incr:N #1 }
-     }
+    }
 }
 %    \end{macrocode}
 %
@@ -931,17 +921,20 @@
                                \int_set:Nn \@clubpenalty { \clubpenalty }
   ,orphans / default .code:n = \int_set:Nn \clubpenalty  {   150        }
                                \int_set:Nn \@clubpenalty { \clubpenalty }
-   % ====================================
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
   ,widows .choice:
   ,widows / prevent  .code:n = \int_set:Nn \widowpenalty { 10000 }
   ,widows / avoid    .code:n = \int_set:Nn \widowpenalty {  5000 }
   ,widows / default  .code:n = \int_set:Nn \widowpenalty {   150 }
-   % ====================================
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
   ,hyphens .choice:
   ,hyphens / prevent .code:n = \int_set:Nn \brokenpenalty { 10000 }
   ,hyphens / avoid   .code:n = \int_set:Nn \brokenpenalty {  2000 }
   ,hyphens / default .code:n = \int_set:Nn \brokenpenalty {    50 }
-   % ====================================
   ,prevent-all  .code:n = \int_set:Nn \clubpenalty        { 10000   }
                           \int_set:Nn \widowpenalty       { 10000   }
                           \int_set:Nn \displaywidowpenalty{ 10000   }

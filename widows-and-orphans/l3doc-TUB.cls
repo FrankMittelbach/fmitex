@@ -805,6 +805,19 @@
           }
       }
   }
+
+% fix for _TF undefined,
+% https://github.com/latex3/latex3/issues/477#issuecomment-419458783
+\cs_set_protected:Npn \__codedoc_typeset_TF:
+  {
+    \group_begin:
+      \exp_args:No \__codedoc_if_macro_internal:nT \l__codedoc_tmpa_tl
+        { \color[gray]{0.5} }
+      \itshape TF
+    \group_end:
+  }
+% END fix for _TF undefined,
+
 \cs_new_protected:Npn \__codedoc_typeset_aux:n #1
   {
     { \color[gray]{0.5} #1 }
