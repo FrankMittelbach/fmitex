@@ -177,7 +177,7 @@
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\ProvidesPackage{parskip}[2018-08-24 v2.0a non-zero parskip adjustments]
+\ProvidesPackage{parskip}[2018-09-17 v2.0b non-zero parskip adjustments]
 %    \end{macrocode}
 %
 %
@@ -388,6 +388,23 @@
 \fi}    
 %    \end{macrocode}
 %
+%
+%
+% \subsubsection{\pkg{amsthm} theorems}
+%
+% The \pkg{amsthm} package is one of the few packages that make an
+% explicit correction for \cs{parskip} which isn't any longer adequate
+% if this \pkg{parskip} package is loaded. We therefore remove that
+% setting from the package if it was loaded.
+% \changes{v2.0b}{2018/09/17}{Support \cs{amsthm} (sx/450551)}
+%    \begin{macrocode}
+\AtBeginDocument{%    
+\ifx\deferred@thm@head\@undefined\else  % amsthm got loaded
+\patchcmd\deferred@thm@head
+  {\addvspace{-\parskip}}{}%
+  {}{\typeout{Couldn't patch \string\deferred@thm@head!}}%
+\fi} 
+%    \end{macrocode}
 %
 %
 % \subsection{Closing shop}

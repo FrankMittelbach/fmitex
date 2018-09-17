@@ -1,0 +1,397 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+(parskip.sty
+(../kvoptions.sty
+(../keyval.sty
+\KV@toks@=\toks...
+)
+(../ltxcmds.sty
+)
+(../kvsetkeys.sty
+(../infwarerr.sty
+)
+(../etexcmds.sty
+(../ifluatex.sty
+Package ifluatex Info: LuaTeX detected.
+))))
+(../etoolbox.sty
+\etb@tempcnta=\count...
+))
+(../amsthm.sty
+\thm@style=\toks...
+\thm@bodyfont=\toks...
+\thm@headfont=\toks...
+\thm@notefont=\toks...
+\thm@headpunct=\toks...
+\thm@preskip=\skip...
+\thm@postskip=\skip...
+\thm@headsep=\skip...
+\dth@everypar=\toks...
+)
+\c@theorem=\count...
+\c@proposition=\count...
+Chapter 1.
+(load luc: ../lmroman17-regular.luc)(load luc: ../lmroman12-bold.luc)(load luc: ../lmroman12-italic.luc)
+Completed box being shipped out [1]
+\vbox(676.8738+0.0)x400.0, direction TLT
+.\glue 23.0
+.\vbox(653.8738+0.0)x390.0, shifted 10.0, direction TLT
+..\vbox(12.0+0.0)x390.0, glue set 12.0fil, direction TLT
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x390.0, direction TLT
+..\glue 19.8738
+..\glue(\lineskip) 0.0
+..\vbox(592.0+0.0)x390.0, glue set 265.0fil, direction TLT
+...\write-{}
+...\write-{}
+...\write1{\@writefile{toc}{\protect \contentsline {chapter}{\protect \numberli
+ne \ETC.}
+...\mark{{\protect \MakeUppercase  {Chapter\ 1. \ Introduction}}{}}
+...\write1{\@writefile{lof}{\protect \addvspace {10\p@ }}}
+...\write1{\@writefile{lot}{\protect \addvspace {10\p@ }}}
+...\glue(\topskip) 12.0
+...\rule(0.0+0.0)x*
+...\penalty 10000
+...\glue 50.0
+...\glue 0.0
+...\glue(\parskip) 7.25 plus 2.0
+...\glue(\baselineskip) 12.63376
+...\hbox(17.36624+4.82672)x390.0, glue set 133.31003fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\hbox(0.0+0.0)x0.0, direction TLT
+....\TU/lmr/bx/n/24.88 C
+....\TU/lmr/bx/n/24.88 h
+....\TU/lmr/bx/n/24.88 a
+....\TU/lmr/bx/n/24.88 p
+....\discretionary (penalty 50)
+.....< \TU/lmr/bx/n/24.88 -
+....\TU/lmr/bx/n/24.88 t
+....\TU/lmr/bx/n/24.88 e
+....\TU/lmr/bx/n/24.88 r
+....\glue(\spaceskip) 9.33 plus 4.66501 minus 3.11
+....\TU/lmr/bx/n/24.88 1
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0 plus 1.0fil
+...\penalty 10000
+...\glue 20.0
+...\glue(\parskip) 7.25 plus 2.0
+...\glue(\baselineskip) 7.90656
+...\hbox(17.26672+0.14928)x390.0, glue set 117.94661fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\hbox(0.0+0.0)x0.0, direction TLT
+....\TU/lmr/bx/n/24.88 I
+....\TU/lmr/bx/n/24.88 n
+....\discretionary (penalty 50)
+.....< \TU/lmr/bx/n/24.88 -
+.....= \kern-0.77129
+....\TU/lmr/bx/n/24.88 t
+....\TU/lmr/bx/n/24.88 r
+....\TU/lmr/bx/n/24.88 o
+....\discretionary (penalty 50)
+.....< \TU/lmr/bx/n/24.88 -
+.....= \kern0.77129
+....\TU/lmr/bx/n/24.88 d
+....\TU/lmr/bx/n/24.88 u
+....\TU/lmr/bx/n/24.88 c
+....\discretionary (penalty 50)
+.....< \TU/lmr/bx/n/24.88 -
+....\TU/lmr/bx/n/24.88 t
+....\TU/lmr/bx/n/24.88 i
+....\TU/lmr/bx/n/24.88 o
+....\TU/lmr/bx/n/24.88 n
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0 plus 1.0fil
+...\penalty 10000
+...\glue 40.0
+...\glue(\parskip) 7.25 plus 2.0
+...\glue(\baselineskip) 6.02272
+...\hbox(8.328+0.12)x390.0, glue set 301.36795fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\TU/lmr/m/n/12 T
+....\TU/lmr/m/n/12 h
+....\TU/lmr/m/n/12 i
+....\TU/lmr/m/n/12 s
+....\glue(\spaceskip) 3.912 plus 1.956 minus 1.304
+....\TU/lmr/m/n/12 i
+....\TU/lmr/m/n/12 s
+....\glue(\spaceskip) 3.912 plus 1.956 minus 1.304
+....\TU/lmr/m/n/12 s
+....\TU/lmr/m/n/12 o
+....\TU/lmr/m/n/12 m
+....\TU/lmr/m/n/12 e
+....\glue(\spaceskip) 3.912 plus 1.956 minus 1.304
+....\TU/lmr/m/n/12 t
+....\TU/lmr/m/n/12 e
+....\TU/lmr/m/n/12 x
+....\TU/lmr/m/n/12 t
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 7.25 plus 2.0
+...\glue(\baselineskip) 6.052
+...\hbox(8.328+2.46)x390.0, glue set 157.72786fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\hbox(0.0+0.0)x0.0, direction TLT
+....\TU/lmr/m/n/12 T
+....\TU/lmr/m/n/12 h
+....\TU/lmr/m/n/12 i
+....\TU/lmr/m/n/12 s
+....\glue(\spaceskip) 3.912 plus 1.956 minus 1.304
+....\TU/lmr/m/n/12 i
+....\TU/lmr/m/n/12 s
+....\glue(\spaceskip) 3.912 plus 1.956 minus 1.304
+....\TU/lmr/m/n/12 s
+....\TU/lmr/m/n/12 o
+....\TU/lmr/m/n/12 m
+....\TU/lmr/m/n/12 e
+....\glue(\spaceskip) 3.912 plus 1.956 minus 1.304
+....\TU/lmr/m/n/12 o
+....\TU/lmr/m/n/12 t
+....\TU/lmr/m/n/12 h
+....\TU/lmr/m/n/12 e
+....\TU/lmr/m/n/12 r
+....\glue(\spaceskip) 3.912 plus 1.956 minus 1.304
+....\TU/lmr/m/n/12 t
+....\TU/lmr/m/n/12 e
+....\TU/lmr/m/n/12 x
+....\TU/lmr/m/n/12 t
+....\glue(\spaceskip) 3.912 plus 1.956 minus 1.304
+....\TU/lmr/m/n/12 i
+....\TU/lmr/m/n/12 n
+....\glue(\spaceskip) 3.912 plus 1.956 minus 1.304
+....\TU/lmr/m/n/12 a
+....\TU/lmr/m/n/12 n
+....\discretionary (penalty 50)
+.....< \TU/lmr/m/n/12 -
+....\TU/lmr/m/n/12 o
+....\TU/lmr/m/n/12 t
+....\TU/lmr/m/n/12 h
+....\TU/lmr/m/n/12 e
+....\TU/lmr/m/n/12 r
+....\glue(\spaceskip) 3.912 plus 1.956 minus 1.304
+....\TU/lmr/m/n/12 p
+....\TU/lmr/m/n/12 a
+....\TU/lmr/m/n/12 r
+....\TU/lmr/m/n/12 a
+....\discretionary (penalty 50)
+.....< \TU/lmr/m/n/12 -
+....\TU/lmr/m/n/12 g
+....\TU/lmr/m/n/12 r
+....\TU/lmr/m/n/12 a
+....\TU/lmr/m/n/12 p
+....\TU/lmr/m/n/12 h
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty -51
+...\glue 0.0
+...\glue(\parskip) 7.25 plus 2.0
+...\glue(\baselineskip) 3.71199
+...\hbox(8.328+2.328)x390.0, glue set 165.12405fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\TU/lmr/bx/n/12 P
+....\TU/lmr/bx/n/12 r
+....\TU/lmr/bx/n/12 o
+....\TU/lmr/bx/n/12 p
+....\kern0.372
+....\TU/lmr/bx/n/12 o
+....\discretionary (penalty 50)
+.....< \TU/lmr/bx/n/12 -
+....\TU/lmr/bx/n/12 s
+....\TU/lmr/bx/n/12 i
+....\discretionary (penalty 50)
+.....< \TU/lmr/bx/n/12 -
+....\TU/lmr/bx/n/12 t
+....\TU/lmr/bx/n/12 i
+....\TU/lmr/bx/n/12 o
+....\TU/lmr/bx/n/12 n
+....\kern0.0 (italic)
+....\glue 4.5 plus 2.25 minus 1.5
+....\TU/lmr/bx/n/12 1
+....\TU/lmr/bx/n/12 .
+....\TU/lmr/bx/n/12 0
+....\TU/lmr/bx/n/12 .
+....\TU/lmr/bx/n/12 1
+....\kern0.0 (italic)
+....\TU/lmr/bx/n/12 .
+....\glue 5.0 plus 1.0 minus 1.0
+....\TU/lmr/m/it/12 T
+....\TU/lmr/m/it/12 h
+....\TU/lmr/m/it/12 i
+....\TU/lmr/m/it/12 s
+....\glue(\spaceskip) 4.2 plus 2.1 minus 1.4
+....\TU/lmr/m/it/12 i
+....\TU/lmr/m/it/12 s
+....\glue(\spaceskip) 4.2 plus 2.1 minus 1.4
+....\TU/lmr/m/it/12 t
+....\TU/lmr/m/it/12 h
+....\TU/lmr/m/it/12 e
+....\glue(\spaceskip) 4.2 plus 2.1 minus 1.4
+....\TU/lmr/m/it/12 p
+....\TU/lmr/m/it/12 r
+....\kern-0.6
+....\TU/lmr/m/it/12 o
+....\TU/lmr/m/it/12 p
+....\kern-0.6
+....\TU/lmr/m/it/12 o
+....\discretionary (penalty 50)
+.....< \TU/lmr/m/it/12 -
+....\TU/lmr/m/it/12 s
+....\TU/lmr/m/it/12 i
+....\discretionary (penalty 50)
+.....< \TU/lmr/m/it/12 -
+....\TU/lmr/m/it/12 t
+....\TU/lmr/m/it/12 i
+....\TU/lmr/m/it/12 o
+....\TU/lmr/m/it/12 n
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty -51
+...\glue 0.0
+...\glue(\parskip) 7.25 plus 2.0
+...\glue(\baselineskip) 3.604
+...\hbox(8.568+0.12)x390.0, glue set 309.38397fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\hbox(0.0+0.0)x0.0, direction TLT
+....\TU/lmr/m/n/12 A
+....\TU/lmr/m/n/12 n
+....\TU/lmr/m/n/12 d
+....\glue(\spaceskip) 3.912 plus 1.956 minus 1.304
+....\TU/lmr/m/n/12 a
+....\glue(\spaceskip) 3.912 plus 1.956 minus 1.304
+....\TU/lmr/m/n/12 t
+....\TU/lmr/m/n/12 h
+....\TU/lmr/m/n/12 e
+....\discretionary (penalty 50)
+.....< \TU/lmr/m/n/12 -
+....\TU/lmr/m/n/12 o
+....\discretionary (penalty 50)
+.....< \TU/lmr/m/n/12 -
+....\TU/lmr/m/n/12 r
+....\TU/lmr/m/n/12 e
+....\TU/lmr/m/n/12 m
+....\TU/lmr/m/n/12 :
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty -51
+...\glue 0.0
+...\glue(\parskip) 7.25 plus 2.0
+...\glue(\baselineskip) 5.38
+...\hbox(9.0+3.012)x390.0, glue set 177.39998fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\TU/lmr/bx/n/12 T
+....\TU/lmr/bx/n/12 h
+....\TU/lmr/bx/n/12 e
+....\discretionary (penalty 50)
+.....< \TU/lmr/bx/n/12 -
+....\TU/lmr/bx/n/12 o
+....\discretionary (penalty 50)
+.....< \TU/lmr/bx/n/12 -
+....\TU/lmr/bx/n/12 r
+....\TU/lmr/bx/n/12 e
+....\TU/lmr/bx/n/12 m
+....\kern0.0 (italic)
+....\glue 4.5 plus 2.25 minus 1.5
+....\TU/lmr/bx/n/12 1
+....\TU/lmr/bx/n/12 .
+....\TU/lmr/bx/n/12 0
+....\TU/lmr/bx/n/12 .
+....\TU/lmr/bx/n/12 1
+....\kern0.0 (italic)
+....\glue(\spaceskip) 4.5 plus 2.25 minus 1.5
+....\TU/lmr/m/n/12 (
+....\TU/lmr/m/n/12 M
+....\TU/lmr/m/n/12 a
+....\TU/lmr/m/n/12 i
+....\TU/lmr/m/n/12 n
+....\TU/lmr/m/n/12 )
+....\TU/lmr/bx/n/12 .
+....\glue 5.0 plus 1.0 minus 1.0
+....\TU/lmr/m/it/12 4
+....\TU/lmr/m/it/12 2
+....\glue(\spaceskip) 4.2 plus 2.1 minus 1.4
+....\TU/lmr/m/it/12 i
+....\TU/lmr/m/it/12 s
+....\glue(\spaceskip) 4.2 plus 2.1 minus 1.4
+....\TU/lmr/m/it/12 i
+....\TU/lmr/m/it/12 m
+....\discretionary (penalty 50)
+.....< \TU/lmr/m/it/12 -
+....\TU/lmr/m/it/12 p
+....\kern-0.6
+....\TU/lmr/m/it/12 o
+....\TU/lmr/m/it/12 r
+....\discretionary (penalty 50)
+.....< \TU/lmr/m/it/12 -
+....\TU/lmr/m/it/12 t
+....\TU/lmr/m/it/12 a
+....\TU/lmr/m/it/12 n
+....\TU/lmr/m/it/12 t
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty -51
+...\glue 0.0
+...\glue(\parskip) 7.25 plus 2.0
+...\glue(\baselineskip) 3.292
+...\hbox(8.196+0.12)x390.0, glue set 335.81995fil, direction TLT
+....\localpar
+.....\localinterlinepenalty=0
+.....\localbrokenpenalty=0
+.....\localleftbox=null
+.....\localrightbox=null
+....\hbox(0.0+0.0)x0.0, direction TLT
+....\TU/lmr/m/n/12 M
+....\TU/lmr/m/n/12 o
+....\TU/lmr/m/n/12 r
+....\TU/lmr/m/n/12 e
+....\glue(\spaceskip) 3.912 plus 1.956 minus 1.304
+....\TU/lmr/m/n/12 t
+....\TU/lmr/m/n/12 e
+....\TU/lmr/m/n/12 x
+....\TU/lmr/m/n/12 t
+....\TU/lmr/m/n/12 .
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue -0.12
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+..\glue(\baselineskip) 22.02
+..\hbox(7.98+0.0)x390.0, glue set 192.06fil, direction TLT
+...\glue 0.0 plus 1.0fil
+...\TU/lmr/m/n/12 1
+...\glue 0.0 plus 1.0fil
+(sx-450551.aux)

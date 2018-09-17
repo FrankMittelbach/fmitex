@@ -1,0 +1,38 @@
+\documentclass[12pt,a4paper]{book}
+
+\input{regression-test}
+
+\START
+
+\usepackage{parskip}
+
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\showoutput
+
+\OMIT
+
+\begin{document}
+
+\TIMO
+
+\chapter{Introduction}
+This is some text
+
+This is some other text in another paragraph
+
+\begin{proposition}
+This is the proposition
+\end{proposition}
+
+And a theorem:
+\begin{theorem}[Main]
+ 42 is important
+\end{theorem}
+
+More text.
+
+\end{document}

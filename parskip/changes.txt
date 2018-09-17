@@ -1,3 +1,10 @@
+2018-09-17  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* parskip.dtx (subsubsection{\pkg{amsthm} theorems}):
+	Support amsthm (sx/450551)
+
+#### placed on CTAN as 2.0a ####
+
 2018-08-24  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
 
 	* parskip.dtx version 2.0 with options indent + skip and
