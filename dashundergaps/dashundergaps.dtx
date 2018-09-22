@@ -17,12 +17,47 @@
 % for those people who are interested or want to report an issue.
 %
 %<*driver>
-\documentclass{l3doc}
+\RequirePackage[nohyphen]{underscore}    % no hyphen after undercore
+                                         %   in csname
+\documentclass
+    [final]
+    {l3doc-TUB}
+
+% fix for _TF undefined,
+% https://github.com/latex3/latex3/issues/477#issuecomment-419458783
+\ExplSyntaxOn
+\cs_set_protected:Npn \__codedoc_typeset_TF:
+  {
+    \group_begin:
+      \exp_args:No \__codedoc_if_macro_internal:nT \l__codedoc_tmpa_tl
+        { \color[gray]{0.5} }
+      \itshape TF
+\iffalse      \makebox[0pt][r]
+        {
+          \color{red}
+          \underline{\phantom{\itshape TF} \kern-0.1em}
+        } \fi
+    \group_end:
+  }
+\ExplSyntaxOff
+
+% fix for doc issue
+\def\pfill{~%
+           \leaders\hbox to.6em{\hss .\hss}\hskip 0em plus 1fill
+           \kern-1.5em
+           \penalty500
+           \kern 1.5em
+           \strut\nobreak
+           \leaders\hbox to.6em{\hss .\hss}\hskip 0em plus 1fil
+           \null~\ignorespaces}%
+
 \usepackage{dashundergaps,multicol}
 \EnableCrossrefs
 \CodelineIndex
 \begin{document}
   \DocInput{dashundergaps.dtx}
+\addtolength\signaturewidth{42pt}
+\makesignature
 \end{document}
 %</driver>
 %
@@ -31,11 +66,16 @@
 %
 % \newcommand\option[1]{\texttt{#1}}
 %
+% \DoNotIndex{}
+%
 % \title{The \texttt{dashundergaps} package\thanks{This is a
 %    reimplementation (using \texttt{expl3}, the \LaTeX3 programming
 %    language) of a package originally written by Luca Merciadri in
 %    2010.}}
 % \author{Frank Mittelbach}
+% \address{Mainz, Germany}
+% \netaddress{https://www.latex-project.org}
+% \personalURL{https://ctan.org/pkg/dashundergaps}
 %
 % \maketitle
 %
@@ -51,7 +91,19 @@
 %
 %   There is also a teacher's mode which shows the normally hidden text
 %   in a special (customizable) format.
+%
+%   \medskip
+%
+%    This is another article in the series of \TUB{} articles
+%    describing small packages to introduce coding practices using the
+%    \pkg{expl3} programming language. See~\cite{tub-wao-code} for the
+%    first article in the series.
+%   For more details on \pkg{expl3} refer to~\cite{expl3}.
+%
 % \end{abstract}
+%
+% \tableofcontents
+%
 %
 % \section{Introduction}
 %
@@ -60,11 +112,13 @@
 % width. To better mark this gap it is underlined in some form (could be
 % a solid line, a dashed or dotted line or even a \uwave{wriggling
 %   line}). Furthermore, some gaps might be numbered to be able to easily
-% refer to it. Here is an example in form of a puzzle:
+% refer to it. Figure~\ref{fig:puzzle} shows an example in form of a
+%    fill-in puzzle.
 %
 %
 % \newcommand\puzzletext{%
 % \begin{quote}
+%   \addtolength\baselineskip{3pt}
 %   The initial `E.' in Donald E. Knuth's name stands for \gap{Erwin}.
 %   The well-known  answer to the Ultimate Question \gap*{of Life, the
 %   Universe, and Everything} is 42 according to \gap{Douglas Adams}.
@@ -74,20 +128,29 @@
 %   \textbf{3}} even though it is a production language these days.
 % \end{quote}}
 %
+
+% \begin{figure}
 % \dashundergapssetup{
-%   ,gap-number-format  = \,\textsuperscript{\normalfont(\thegapnumber)}
+%   ,gap-number-format  = \,\textsuperscript{\normalfont
+%                                            (\thegapnumber)}
 %   ,gap-font           = \itshape
 %   ,teacher-gap-format = underline
 %   ,gap-widen
 % }
 %
+%   \centering
+%   \setlength\fboxsep{10pt}
+%   \noindent\hspace{-\marginparwidth}\fbox{\begin{minipage}{1.21\textwidth}
 % \puzzletext
+%
+% \bigskip
+%
 % And here are some hints for it if you want to fill it out:
 % \begin{quote}
 % \begin{multicols}{2}
 %   \begin{enumerate}
 %   \item If everything would be that easy to answer.
-%   \item The author of ``Last Chance To See'' and a famous
+%   \item The author of the book ``Last Chance To See'' and of a famous
 %     radio~show.
 %   \item Back then known as the doggie book.
 %   \item Old names die hard.\\
@@ -96,7 +159,11 @@
 % \end{multicols}
 % \end{quote}
 % The answer is given in Section~\ref{sec:answer} that shows the gaps
-% filled in, which is due to a, so called, teacher mode that can be activated.
+% filled in, which is due to a, so called, teacher mode that can be
+%    activated or deactivated at any point in the document.
+% \end{minipage}}
+% \caption{A fill-in puzzle using \pkg{dashundergaps}}\label{fig:puzzle}
+% \end{figure}
 %
 % As you see some gaps are numbered with a superscript number (not the
 % default setting) while others aren't. How this is done and how to
@@ -146,7 +213,7 @@
 %
 % \begin{function}{\gap}
 %   \begin{syntax}
-% \cs{gap}*\oarg{type}\Arg{text}
+%      \cs{gap}*\oarg{type}\Arg{text}
 %   \end{syntax}
 %   The main command provided by the package is \cs{gap} which expects a
 %   mandatory \meta{text} argument containing the material that is used
@@ -160,14 +227,16 @@
 %   underlining whatsoever), ``|-|'' for a dash-line (via \cs{dashuline})
 %   and finally ``|.|'' for underlining with dots (via \cs{dotuline}).
 %
-%   By default gaps are numbered using the counter \texttt{gapnumber}
-%   and this number is shown in parentheses after the gap. With the star
-%   form the generation of the number can be toggled, i.e., if it is
-%   normally produced because of the current option settings it will be
-%   suppressed, if it is suppressed through an option it will be
-%   typeset. This way one can select the most convenient setting via an
-%   option for the whole document and use the |*| to toggle it
-%   occasionally.
+% \end{function}  ^^A wrong place but something buggy in the class
+%
+%   In the default configuration gaps are numbered using the counter
+%   \texttt{gapnumber} and this number is shown in parentheses after
+%   the gap. With the star form the generation of the number can be
+%   toggled, i.e., if it would be produced because of the current
+%   option settings it will be suppressed, if it is suppressed through
+%   an option it will be typeset. This way one can select the most
+%   convenient setting via an option for the whole document and use
+%   the |*| to toggle it occasionally.
 %
 %   Since \cs{gap} uses \pkg{ulem} commands it inherits the limitations
 %   of these commands, in that only simple text can be used in the
@@ -175,12 +244,10 @@
 %   in that place (but then that wouldn't make much sense in a gap,
 %   would it?).
 %
-% \end{function}
-%
 % \begin{function}{\TeacherModeOn,\TeacherModeOff}
 %   \begin{syntax}
-%     \cs{TeacherModeOn}  \texttt{\% show gap material}\\
-%     \cs{TeacherModeOff} \texttt{\% stop showing gap material}
+%     \cs{TeacherModeOn}   \texttt{\% show gap material}
+%     \cs{TeacherModeOff}  \texttt{\% do not show gap material}
 %   \end{syntax}
 % There also exists a teacher mode in which the material for the gaps is
 % visible. This can be used to show the expected answers in case \cs{gap}
@@ -364,7 +431,6 @@
 %     the extended features of \texttt{expl3}.
 % \end{itemize}
 %
-% \newpage
 %
 % \section{Solution to the puzzle} \label{sec:answer}
 %
@@ -375,7 +441,8 @@
 % This was produced using the following changes to the defaults:
 % \begin{verbatim}
 %   \dashundergapssetup{
-%     ,gap-number-format  = \,\textsuperscript{\normalfont(\thegapnumber)}
+%     ,gap-number-format  = \,\textsuperscript{\normalfont
+%                                              (\thegapnumber)}
 %     ,gap-font           = \itshape
 %     ,teacher-gap-format = underline
 %     ,gap-widen
@@ -389,7 +456,27 @@
 % is set upright and not in italic shape.
 %
 %
-% \StopEventually{\setlength\IndexMin{200pt}  \PrintIndex  }
+% \StopEventually{
+% \begin{thebibliography}{1}
+%\bibitem{tub-wao-code}
+% Frank Mittelbach.
+% \newblock The \pkg{widows-and-orphans} package.
+% \newblock \textsl{TUG}boat 39:3,
+%   \ifx\thisissuepageref\undefined \else \thisissuepageref{mitt-widows???},\fi
+%   2018.
+% \newblock  \url{https://ctan.org/pkg/widows-and-orphans}
+% \bibitem{expl3}
+% \LaTeX3 Project Team.
+% \newblock A collection of articles on \pkg{expl3}.\\
+%    \url{https://latex-project.org/publications/indexbytopic/l3-expl3/}
+%\end{thebibliography}
+% \ifx\thisissuepageref\undefined    ^^A is this TUB production ??? if not gen index
+%    \setlength\IndexMin{200pt}  \PrintIndex
+% \fi}
+%
+%
+% \newpage
+%
 %
 % \DoNotIndex{\ ,\advance,\begingroup,\bgroup,\def,\else,\endgroup,\fi}
 % \DoNotIndex{\hbox,\ifx,\kern,\let,\lower,\@M,\@empty,\c@gapnumber}
@@ -416,7 +503,7 @@
 %    \end{macrocode}
 %
 % The code in this section follows \LaTeXe{} conventions, i.e., models
-% the commands like they look in \pkg{ulem} itself.
+% the commands like they look in the \pkg{ulem} package.
 %
 %  \begin{macro}{\dotuline}
 %     The dots produced by \cs{dotuline} depend on the current font
@@ -439,7 +526,7 @@
 %
 %
 %  \begin{macro}{\uwave}
-%    The original \cs{uwave} used a hard-wirded value of |3.5pt| for
+%    The original \cs{uwave} used a hard-wired value of |3.5pt| for
 %     the lowering. We change that to make it based on the current
 %     value of \cs{ULdepth} so that the user (or this package here)
 %     can change the placement.
@@ -514,17 +601,20 @@
 %<@@=fmdug>
 %    \end{macrocode}
 %
-% We need \pkg{xparse} and \pkg{l3keys2e}
+% We need the package \pkg{xparse} for specifying the document-level
+%    interface commands and \pkg{l3keys2e} use the \pkg{expl3} key
+%    value  methods within \LaTeXe{}. These packages automatically
+%    require \pkg{expl3} so there is no need to load this explicitly.
 %    \begin{macrocode}
 \RequirePackage{xparse,l3keys2e}
 %    \end{macrocode}
 %
+% Here we introduce the package and specify its version number:
 %    \begin{macrocode}
-\ProvidesExplPackage
-  {dashundergaps}
-  {2018/06/27}
-  {v2.0c}
-  {Dashing and underlining phantom text}
+\ProvidesExplPackage{dashundergaps}
+                    {2018/06/27}
+                    {v2.0c}
+                    {Dashing and underlining phantom text}
 %    \end{macrocode}
 %
 %
@@ -609,23 +699,35 @@
 %  \end{macro}
 %
 %
+%  \begin{macro}{\l_@@_gap_format_tl}
+%  \begin{macro}{\l_@@_teacher_gap_format_tl}
+%    The gap formatting is normally handled by a \pkg{ulem}
+%    command. Which depends on the used options and to record the
+%    choice we store it in a token list (one for normal and one for
+%    teacher mode).
+%    \begin{macrocode}
+\tl_new:N \l_@@_gap_format_tl
+\tl_new:N \l_@@_teacher_gap_format_tl
+%    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
 %
 % \subsubsection{Messages}
 %
 %    \begin{macrocode}
 \msg_new:nnn {dashundergaps} {deprecated}
-  { The~ #1~ `#2'~ you~ used~ \msg_line_context: \ is~ deprecated~and~ there~
-    is~ no~ replacement.~ Since~ I~ will~ not~ guarantee~ that~ #1~ `#2'~
-    will~ be~ kept~ forever~ I~ strongly~ encourage~ you~ to~ remove~ it~
-    from~ your~ document. }
+  { The~ #1~ `#2'~ you~ used~ \msg_line_context: \ is~ deprecated~and~
+    there~ is~ no~ replacement.~ Since~ I~ will~ not~ guarantee~ that~
+    #1~ `#2'~ will~ be~ kept~ forever~ I~ strongly~ encourage~ you~
+    to~ remove~ it~ from~ your~ document. }
 %    \end{macrocode}
 %
 %    \begin{macrocode}
 \msg_new:nnnn {dashundergaps} {nested}
   { The~ \gap command~ can't~ be~ tested! }
-  { Nesting~ doesn't~ make~ much~ sense~ as~ the~ inner~ one~ wouldn't~ be~
-    visible.~ ~ To~ allow~ continuation~ it~ is~ handled~ as~ if~ it~ wasn't~
-    been~ asked~ for. }
+  { Nesting~ doesn't~ make~ much~ sense~ as~ the~ inner~ one~
+    wouldn't~ be~ visible.~ ~ To~ allow~ continuation~ it~ is~
+    handled~ as~ if~ it~ wasn't~ been~ asked~ for. }
 %    \end{macrocode}
 %
 %
@@ -670,7 +772,7 @@
 %
 %     The same is done below when the optional argument is
 %     evaluated. But we don't do this in teacher mode since there we
-%     \emph{will} have text above and don't want to bumpt into that.
+%     \emph{will} have text above and don't want to bump into that.
 %
 %    \begin{macrocode}
       ,gap-format / underline
@@ -681,10 +783,10 @@
                               { \@@_gap_format_adjust:n{2pt} \uuline }
       ,gap-format / dash
          .code:n = \tl_set:Nn \l_@@_gap_format_tl
-                              { \@@_gap_format_adjust:n{0pt} \dashuline }
+                           { \@@_gap_format_adjust:n{0pt} \dashuline }
       ,gap-format / dot
          .code:n = \tl_set:Nn \l_@@_gap_format_tl
-                              { \@@_gap_format_adjust:n{-.08ex} \dotuline }
+                         { \@@_gap_format_adjust:n{-.08ex} \dotuline }
       ,gap-format / wave
          .code:n = \tl_set:Nn \l_@@_gap_format_tl
                               { \@@_gap_format_adjust:n{1pt} \uwave }
@@ -881,7 +983,7 @@
     \bool_xor:nnT { #1 } { \l_@@_number_bool }
                   { \l_@@_gapnum_format_tl }
 %    \end{macrocode}
-%    Close the group from above to keepany redefinitions confined.
+%    Close the group from above to keep any of the redefinitions confined.
 %    \begin{macrocode}
   \group_end:
 }
@@ -913,7 +1015,7 @@
               \@@_display_total_gaps:
 }
 %    \end{macrocode}
-%  So what remains to be done is execute all options passed to the
+%  So what remains to be done is executing all options passed to the
 %    package via \cs{usepackage}.
 %    \begin{macrocode}
 \ProcessKeysPackageOptions{fmdug}
@@ -921,5 +1023,6 @@
 %    \end{macrocode}
 %
 % \Finale
+%
 %
 \endinput
