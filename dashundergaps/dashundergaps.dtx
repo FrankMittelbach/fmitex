@@ -116,14 +116,14 @@
 % argument. To better mark this gap it is underlined in some form (could be
 % a solid line, a dashed or dotted line or even a \uwave{wriggling
 %   line}). Furthermore, gaps can be numbered to be able to easily
-% refer to it. Figure~\ref{fig:puzzle} shows an example in the form of a
+% refer to them. Figure~\ref{fig:puzzle} shows an example in the form of a
 %    fill-in puzzle.
 %
 %
 % \newcommand\puzzletext{%
 % \begin{quote}
 %   \addtolength\baselineskip{3pt}
-%   The initial `E.' in Donald E. Knuth's name stands for \gap{Ervin}.
+%   The initial `E.'\ in Donald E. Knuth's name stands for \gap{Ervin}.
 %   The well-known  answer to the Ultimate Question \gap*{of Life, the
 %   Universe, and Everything} is 42 according to \gap{Douglas Adams}.
 %   The first edition of \gap{The \LaTeX{} Companion} celebrates its silver
@@ -149,7 +149,7 @@
 %
 % \bigskip
 %
-% And here are some hints for it if you want to fill it out:
+% And here are some hints for the puzzle if you want to fill it out:
 % \begin{quote}
 % \begin{multicols}{2}
 %   \begin{enumerate}
@@ -163,7 +163,7 @@
 % \end{multicols}
 % \end{quote}
 % The answers are given in Section~\ref{sec:answer}, showing the gaps
-% filled in due to the so-called teacher mode, which~can be
+% filled in using the so-called teacher mode, which~can be
 %    activated or deactivated at any point in the document.\raggedright
 % \end{minipage}}
 % \caption{A fill-in puzzle using \pkg{dashundergaps}}\label{fig:puzzle}
@@ -176,7 +176,7 @@
 % There also exists a ``teacher mode'' in which the gaps are filled
 % with the text given in the argument. This can be used to show the
 % correct answers of a test (as we do in Section~\ref{sec:answer}) or
-% to give a sample fill-in for a form, to help people to fill it out
+% to give a sample fill-in for a form, to help people fill it out
 % correctly. The ``teacher mode'' produces the same line breaks
 % because it ensures that the fill-ins take the same amount of space as the
 % gaps.
@@ -241,7 +241,7 @@
 %   The optional \meta{style} argument explicitly defines a certain type
 %   of underlining: |u| stands for normal underlining (via \cs{uline}),
 %   |d| for double underlining (via \cs{uuline}),
-%   |w| for a wave line (via \cs{uwave}), |b| for blank (i.e., no
+%   |w| for a wavy line (via \cs{uwave}), |b| for blank (i.e., no
 %   underlining whatsoever), ``|-|'' for a dash-line (via \cs{dashuline})
 %   and finally ``|.|''\ for underlining with dots (via \cs{dotuline}).
 %
@@ -249,7 +249,7 @@
 %   \texttt{gapnumber} and this number is shown in parentheses after
 %   the gap. With the star form the generation of the number is
 %   toggled, i.e., if it would be produced because of the current
-%   option settings it will be suppressed, if it is suppressed through
+%   option settings it will be suppressed; if it is suppressed through
 %   an option it will be typeset. This way one can select the most
 %   convenient setting via an option for the whole document and use
 %   |*| to toggle it as needed.
@@ -282,8 +282,8 @@
 % Section~\ref{sec:options}). A likely better approach is to set any
 % options with the declaration \cs{dashundergapssetup} which is normally
 % used in the preamble, but can be used throughout the document
-% to change settings on the fly. It only changes options explicitly
-% given so can be used to overwrite some defaults but leave everything
+% to change settings on the fly. It only changes explicitly given options
+% so it can be used to overwrite some defaults but leave everything
 % else unchanged.
 % \end{function}
 %
@@ -297,14 +297,14 @@
 % \subsection{Options to customize the gap display}\label{sec:options}
 %
 % All of the package options are implemented as key/value options. 
-% For boolean options one can just give the option name as a short
+% For boolean options one can give just the option name as a short
 % form for setting the option to |true|. Most options can be specified
 % during package loading in the optional argument of
 % \cs{usepackage}. However if the value requires some \LaTeX{} code
 % (e.g., \option{gap-font}, which expects a font declaration command)
 % then this will not work due to some limitations in the current
 % \LaTeX{} package loader. For such options use
-% \cs{dashundergapssetup} instead which will always work.
+% \cs{dashundergapssetup} instead, which will always work.
 %
 % \subsubsection{Gap modes}
 %
@@ -332,9 +332,13 @@
 %     ``line'' below the gap is raised to be roughly at the baseline,
 %     which normally looks better when there is no text above the line.
 %\FMi
+%% \item[\option{teacher-gap-format}] Another choice option, with the
+%%   same values as above, used when we
+%%   are in ``teacher mode''. It accepts the same values as \option{gap-format}, but this time
+%\bb
 % \item[\option{teacher-gap-format}] Another choice option, with the
-%   same values as above, used when we
-%   are in ``teacher mode''. It accepts the same values as \option{gap-format}, but this time
+%   same values as \option{gap-format}, used when we
+%   are in ``teacher mode'', but this time
 %   the default is |blank| as normally the gap text is typeset in the bold
 %   font and is therefore already identifiable, with no need for additional
 %   underlining. However, depending on the circumstances it
@@ -342,7 +346,7 @@
 %   underlining) while in ``teacher mode''.
 % \item[\option{gap-font}] This option expects a font directive as its value,
 %   e.g., |\bfseries| (which is also the default). Using this option
-%   without suppling a value is equivalent to supplying an empty
+%   without supplying a value is equivalent to supplying an empty
 %   value. It will be used to determine the font for the gap material
 %   regardless of the mode. This is important to ensure that the gaps
 %   always have the same width regardless of whether or not the material
@@ -371,8 +375,8 @@
 % \item[\option{display-total-gaps}] Boolean to determine if the total number of
 %   gaps should be shown at the very end of the document. Default is
 %   |false|.
-% \item[\option{displaynbgaps}] This is just another name for the same boolean
-%   that was used in the first version of the package.
+% \item[\option{displaynbgaps}] This is just another name for the same boolean;
+%   it was used in the first version of the package.
 % \end{description}
 %
 %
@@ -402,48 +406,48 @@
 % possible to use the new version as a drop-in replacement for the
 % old. However, the feature set in form of key/value options has been
 % greatly extended, offering functionality previously
-% unavailable.  Furthermore a number of bugs have been corrected (and
+% unavailable.  Furthermore, a number of bugs have been corrected (and
 % possibly new ones introduced).
 %
 % \begin{itemize}
 % \item
 %   Stray spaces in the definition of \cs{gap} (that showed up in
-%   the output) have been eliminated;
+%   the output) have been eliminated.
 % \item
-%   Various combinations of options that didn't work are now possible;
+%   Various combinations of options that didn't work are now possible.
 % \item
-%   Explicit hyphenations |\-| showed up in gap mode, now they can be used;
+%   Explicit hyphenations |\-| showed up in gap mode, now they can be used.
 % \item
 %   Nesting isn't possible for obvious reasons, but the fact is now
 %   detected and catered to by ignoring the inner gap requests after
-%   generating an error;
+%   generating an error.
 % \item
 %   Option names have been normalized (though the original names are
-%   still available);
+%   still available).
 % \item
 %   The option \option{phantomtext} is no longer necessary, though still
-%   supported (with a warning) as a no-op;
+%   supported (with a warning) as a no-op.
 % \item
 %   The names of the \LaTeX{} counters used have changed, so if you
-%   directly addressed them that would need changing;
+%   directly addressed them that would need changing.
 % \item
 %   The font used in teacher mode (by default boldface) is now also
 %   used if gap mode is chosen, to ensure that the output in all
 %   modes produces identical line breaks; for the same reason, the
-%   pkg{ulem} machinery is always used, even if not underlining (or
-%   dashing, etc.);
+%   \pkg{ulem} machinery is always used, even if not underlining (or
+%   dashing, etc.).
 % \item The gaps can be extended by a percentage or by a minimum
 %   amount to ensure that there is enough space to fill in the text
 %   (given that hand-written text is typically wider than typeset
-%   material); the values are adjustable;
+%   material); the values are adjustable.
 % \item
 %   \cs{gap} now has an optional argument through which you can
-%   explicitly request the type on underlining you want to use;
+%   explicitly request the type of underlining you want to use.
 % \item
-%   \cs{gap} also supports a star form which toggles the setting of gap numbers;
+%   \cs{gap} also supports a star form which toggles the setting of gap numbers.
 % \item
 %   The use of \cs{label} within the \cs{gap} command argument allows for
-%   later reference to that gap by its number (provided a gap number is typeset);
+%   later reference to that gap by its number (provided a gap number is typeset).
 % \item The implementation is done with \texttt{expl3}, the programming
 %   language for \LaTeX3. Although invisible to the user, in some sense
 %     that was the main purpose of
@@ -454,7 +458,7 @@
 %
 % \section{Solution to the puzzle} \label{sec:answer}
 %
-% \TeacherModeOn 
+% \TeacherModeOn
 %
 % Here we repeat the puzzle from above with \cs{TeacherModeOn}.
 % \par\smallskip
@@ -474,7 +478,7 @@
 %   }
 % \end{verbatim}
 % As you can see we use |\itshape| for the font (to be able to show
-% the bold face in one of the answers) and also forced underlining in
+% the bold face in one of the answers) and also force underlining in
 % teacher mode to better show the gap widening. The gap number is
 % raised and we separate it a tiny bit from the gap material. We also
 % use \cs{normalfont} in the formatting to ensure that the gap number
@@ -521,7 +525,7 @@
 %
 % \subsection{Loading and fixing/changing \pkg{ulem}}
 %
-% THe first thing to do is to load \pkg{ulem} without changing \cs{emph}
+% The first thing to do is to load \pkg{ulem} without changing \cs{emph}
 % or \cs{em}:
 %    \begin{macrocode}
 %<*package>
@@ -533,7 +537,7 @@
 %
 %  \begin{macro}{\dotuline}
 %     The dots produced by \cs{dotuline} depend on the current font,
-%     which is a somewhat questionable design\Dash if you underline a part
+%     which is a somewhat questionable design\Dash if you underline a text %part
 %     with a single bold word somewhere inside it will change the
 %     shape of the dot line. So we  always use the \cs{normalfont}
 %     dot (this is not done in the original definition).
@@ -789,12 +793,12 @@
          .choice:
 %    \end{macrocode}
 %
-%    In case of dashes and even more so in case of dots, it looks
+%    In the case of dashes and even more so in the case of dots, it looks
 %    fairly ugly if they are below the baseline as if there were text
 %    above. We therefore raise them up a bit if the option
 %    \texttt{gap-format-adjust} is given (which is the default).
 %
-%    In case of dots we undo
+%    In the case of dots we undo
 %    exactly the amount by which they are lowered in \pkg{ulem} so
 %    that they end up precisely at the baseline, in case they are
 %    followed by a real dot. In other cases we stay a bit below the baseline.
@@ -980,9 +984,9 @@
       }
 %    \end{macrocode}
 %    Next comes deciding the gap format. If in teacher mode it will be
-%    whatever is in \cs{l_@@_teacher_gap_tl}. Otherwise it is either
-%    based on the content of the optional argument, or if that is not
-%    given or unknown it will be \cs{l_@@_gap_format_tl}.
+%    whatever is in \cs{l_@@_teacher_gap_tl}. Otherwise, either it is
+%    based on the content of the optional argument or, if that is not
+%    given or unknown, it will be \cs{l_@@_gap_format_tl}.
 %    \begin{macrocode}
     \bool_if:NTF \l_@@_teacher_bool
       { \l_@@_teacher_gap_format_tl }
