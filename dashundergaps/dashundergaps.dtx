@@ -17,8 +17,6 @@
 % for those people who are interested or want to report an issue.
 %
 %<*driver>
-
-\let\FMi\relax % make this error later
 \let\fmipagebreak\pagebreak
 
 \RequirePackage[nohyphen]{underscore}    % no hyphen after undercore
@@ -123,7 +121,7 @@
 % \newcommand\puzzletext{%
 % \begin{quote}
 %   \addtolength\baselineskip{3pt}
-%   The initial `E.'\ in Donald E. Knuth's name stands for \gap{Ervin}.
+%   The initial `E.' in Donald E. Knuth's name stands for \gap{Ervin}.
 %   The well-known  answer to the Ultimate Question \gap*{of Life, the
 %   Universe, and Everything} is 42 according to \gap{Douglas Adams}.
 %   The first edition of \gap{The \LaTeX{} Companion} celebrates its silver
@@ -331,11 +329,6 @@
 % \item[\option{gap-format-adjust}] A boolean (default |true|). If set, the
 %     ``line'' below the gap is raised to be roughly at the baseline,
 %     which normally looks better when there is no text above the line.
-%\FMi
-%% \item[\option{teacher-gap-format}] Another choice option, with the
-%%   same values as above, used when we
-%%   are in ``teacher mode''. It accepts the same values as \option{gap-format}, but this time
-%\bb
 % \item[\option{teacher-gap-format}] Another choice option, with the
 %   same values as \option{gap-format}, used when we
 %   are in ``teacher mode'', but this time
@@ -364,7 +357,7 @@
 % \begin{description}
 % \item[\option{gap-numbers}] Boolean that determines whether or not gap numbers
 %   are displayed. Default is |true|.
-%\FMi
+%
 % \item[\option{gap-number-format}] Code that is executed when a gap number is
 %   produced. Default is \verb*|\textnormal{ (\thegapnumber)}|.
 % \item[\option{numbers}] Short name for \option{gap-numbers}.
