@@ -17,6 +17,10 @@
 % for those people who are interested or want to report an issue.
 %
 %<*driver>
+
+\let\FMi\relax % make this error later
+\let\fmipagebreak\pagebreak
+
 \RequirePackage[nohyphen]{underscore}    % no hyphen after undercore
                                          %   in csname
 \documentclass
@@ -119,7 +123,7 @@
 % \newcommand\puzzletext{%
 % \begin{quote}
 %   \addtolength\baselineskip{3pt}
-%   The initial `E.'\ in Donald E. Knuth's name stands for \gap{Ervin}.
+%   The initial `E.' in Donald E. Knuth's name stands for \gap{Ervin}.
 %   The well-known  answer to the Ultimate Question \gap*{of Life, the
 %   Universe, and Everything} is 42 according to \gap{Douglas Adams}.
 %   The first edition of \gap{The \LaTeX{} Companion} celebrates its silver
@@ -128,7 +132,7 @@
 %   \textbf{3}} even though it is a production language these days.
 % \end{quote}}
 %
-
+%
 % \dashundergapssetup{
 %   ,gap-number-format  = \,\textsuperscript{\normalfont
 %                                            (\thegapnumber)}
@@ -138,7 +142,7 @@
 % }
 %
 % \begin{figure}
-%   \centering
+%  \centering
 %   \setlength\fboxsep{10pt}
 %   \noindent\hspace{-\marginparwidth}\fbox{\begin{minipage}{1.20\textwidth}
 % \puzzletext
@@ -203,11 +207,11 @@
 %   words, empty boxes of the same width are used by \pkg{ulem}. This
 %   way we get underlined gaps of the right size.
 %
-% \end{function}
-%
 % By default, \pkg{ulem} changes \cs{emph} to underline text, so
 % for this application, it is loaded with the option \texttt{normalem} to
 % prevent that from happening.
+%
+% \end{function}
 %
 %
 %
@@ -215,10 +219,24 @@
 %   \begin{syntax}
 %      \cs{gap}*\oarg{style}\Arg{text}
 %   \end{syntax}
+%   \noindent\llap{\small\smash{\begin{tabular}[t]{r@{ = }l} ^^A really low-level hacked
+%     \multicolumn{2}{c}{}\\
+%     \multicolumn{2}{c}{\hspace*{-1.2pc}Possible \meta{style}s:}\\[3pt]
+%     \texttt{u} & \cs{uline} \\
+%     \texttt{d} & \cs{uuline} \\
+%     \texttt{w} & \cs{uwave} \\
+%     \texttt{b} & \meta{blank} \\
+%     \texttt{-} & \cs{dashuline} \\
+%     \texttt{.} & \cs{dotuline}
+%   \end{tabular}}\ }^^A
 %   The main command provided by the package is \cs{gap} which expects a
 %   mandatory \meta{text} argument containing the material that is used
 %   to produce the gap (and is normally invisible). By default the gap is
 %   underlined, though that can be changed.
+% \end{function}    ^^A not really meant for no parindent and positive
+%                   ^^A parskip ...
+% \vspace{\parskip} ^^A ... thus manual fix for now
+%
 %
 %   The optional \meta{style} argument explicitly defines a certain type
 %   of underlining: |u| stands for normal underlining (via \cs{uline}),
@@ -226,8 +244,6 @@
 %   |w| for a wave line (via \cs{uwave}), |b| for blank (i.e., no
 %   underlining whatsoever), ``|-|'' for a dash-line (via \cs{dashuline})
 %   and finally ``|.|''\ for underlining with dots (via \cs{dotuline}).
-%
-% \end{function}  ^^A wrong place but something buggy in the class
 %
 %   In the default configuration gaps are numbered using the counter
 %   \texttt{gapnumber} and this number is shown in parentheses after
@@ -306,7 +322,7 @@
 %
 % \subsubsection{Gap formatting}
 %
-% Formatting of the gaps is handled by the following five options:
+% Formatting of the gaps is handled by the following six options:
 % \begin{description}
 % \item[\option{gap-format}] A choice option defining how the gap is
 %   marked. It accepts the following values: |underline| (default),
@@ -315,6 +331,7 @@
 % \item[\option{gap-format-adjust}] A boolean (default |true|). If set, the
 %     ``line'' below the gap is raised to be roughly at the baseline,
 %     which normally looks better when there is no text above the line.
+%\FMi
 % \item[\option{teacher-gap-format}] Another choice option, with the
 %   same values as above, used when we
 %   are in ``teacher mode''. It accepts the same values as \option{gap-format}, but this time
@@ -343,7 +360,8 @@
 % \begin{description}
 % \item[\option{gap-numbers}] Boolean that determines whether or not gap numbers
 %   are displayed. Default is |true|.
-% \item[\option{gap-number-format}] Code that is executed when a gap number are
+%\FMi
+% \item[\option{gap-number-format}] Code that is executed when a gap number is
 %   produced. Default is \verb*|\textnormal{ (\thegapnumber)}|.
 % \item[\option{numbers}] Short name for \option{gap-numbers}.
 % \end{description}
@@ -436,10 +454,15 @@
 %
 % \section{Solution to the puzzle} \label{sec:answer}
 %
-% \TeacherModeOn
+% \TeacherModeOn 
 %
 % Here we repeat the puzzle from above with \cs{TeacherModeOn}.
-% \puzzletext
+% \par\smallskip
+% \noindent\hfill\llap{\setlength\fboxsep{10pt}
+%                      \fbox{\begin{minipage}{1.2\textwidth}
+%                      \puzzletext
+% \end{minipage}\hskip\marginparsep}}
+% \par\smallskip
 % This was produced using the following changes to the defaults:
 % \begin{verbatim}
 %   \dashundergapssetup{
@@ -464,7 +487,7 @@
 % Frank Mittelbach.
 % \newblock The \pkg{widows-and-orphans} package.
 % \newblock \textsl{TUG}boat 39:3,
-%   \ifx\thisissuepageref\undefined % empty if non-TUGboat
+%   \ifx\thisissuepageref\undefined % undefined if non-TUGboat
 %   \else \thisissuepageref{mitt-widows-code}, \fi
 %   2018.
 % \newblock  \url{https://ctan.org/pkg/widows-and-orphans}
@@ -615,8 +638,8 @@
 % Here we introduce the package and specify its version number:
 %    \begin{macrocode}
 \ProvidesExplPackage{dashundergaps}
-                    {2018/06/27}
-                    {v2.0c}
+                    {2018/11/09}
+                    {v2.0d}
                     {Dashing and underlining phantom text}
 %    \end{macrocode}
 %
@@ -625,8 +648,8 @@
 %
 
 %  \begin{macro}{\gap}
-%    Gap takes a star, optional and mandatory
-%    argument and calls \cs{@@_gap:nnn} to do the work.
+%    The \cs{gap} command parses for a star, optional and mandatory
+%    argument and then calls \cs{@@_gap:nnn} to do the work.
 %    \begin{macrocode}
 \DeclareDocumentCommand \gap { som } { \@@_gap:nnn {#1}{#2}{#3} }
 %    \end{macrocode}
@@ -649,7 +672,7 @@
 \DeclareDocumentCommand \TeacherModeOn  {}
                         { \bool_set_true:N \l_@@_teacher_bool }
 \DeclareDocumentCommand \TeacherModeOff {}
-                        { \bool_set_true:N \l_@@_teacher_bool }
+                        { \bool_set_false:N \l_@@_teacher_bool }
 %    \end{macrocode}
 %  \end{macro}
 %  \end{macro}
@@ -675,8 +698,10 @@
 %    number of gaps, it makes little sense to modify it at the
 %    document level. However, there may be use cases even for that and
 %    more importantly, by making it a user-level counter it is
+%\fmipagebreak
 %    possible to refer to the total number of gaps easily, e.g., via
 %    \cs{thetotalgapnumber}.
+% ^^A\makeatletter\@endparpenalty=10000\makeatother
 %    \begin{macrocode}
 \newcounter{totalgapnumber}
 %    \end{macrocode}
@@ -730,7 +755,7 @@
   { The~ \gap command~ can't~ be~ nested! }
   { Nesting~ doesn't~ make~ much~ sense~ as~ the~ inner~ one~
     wouldn't~ be~ visible.~ ~ To~ allow~ further~ processing~ it~ is~
-    handled~ as~ if~ it~ wasn't~ been~ asked~ for. }
+    handled~ as~ if~ it~ hasn't~ been~ asked~ for. }
 %    \end{macrocode}
 %
 %
