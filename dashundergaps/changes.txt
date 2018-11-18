@@ -1,6 +1,6 @@
 2018-11-09  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
 
-	* dashundergaps.dtx
+	* dashundergaps.dtx v2.0d
 
 	\TeacherModeOff was a copy of \TeacherModeOn and never turned
 	anything off.
