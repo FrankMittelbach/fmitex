@@ -16,6 +16,10 @@
 %
 % for those people who are interested or want to report an issue.
 %
+
+\def\dashundergapsdate   {2018/11/18}
+\def\dashundergapsversion{v2.0d}
+
 %<*driver>
 \let\fmipagebreak\pagebreak
 
@@ -24,6 +28,9 @@
 \documentclass
     [final]
     {l3doc-TUB}
+
+
+\setcounter{page}{1}       
 
 % fix for _TF undefined,
 % https://github.com/latex3/latex3/issues/477#issuecomment-419458783
@@ -34,16 +41,11 @@
       \exp_args:No \__codedoc_if_macro_internal:nT \l__codedoc_tmpa_tl
         { \color[gray]{0.5} }
       \itshape TF
-\iffalse      \makebox[0pt][r]
-        {
-          \color{red}
-          \underline{\phantom{\itshape TF} \kern-0.1em}
-        } \fi
     \group_end:
   }
 \ExplSyntaxOff
 
-% fix for doc issue
+% fix for doc/ltugboat issue
 \def\pfill{~%
            \leaders\hbox to.6em{\hss .\hss}\hskip 0em plus 1fill
            \kern-1.5em
@@ -73,7 +75,8 @@
 % \title{The \texttt{dashundergaps} package\thanks{This is a
 %    reimplementation (using \texttt{expl3}, the \LaTeX3 programming
 %    language) of a package originally written by Luca Merciadri in
-%    2010.\raggedright}}
+%    2010. The current package version is \dashundergapsversion\
+%    dated \dashundergapsdate.}}
 % \author{Frank Mittelbach}
 % \address{Mainz, Germany}
 % \netaddress{https://www.latex-project.org}
@@ -484,9 +487,9 @@
 % Frank Mittelbach.
 % \newblock The \pkg{widows-and-orphans} package.
 % \newblock \textsl{TUG}boat 39:3,
-%   \ifx\thisissuepageref\undefined % undefined if non-TUGboat
-%   \else \thisissuepageref{mitt-widows-code}, \fi
-%   2018.
+%   \ifx\thisissuepageref\undefined ^^A undefined if non-TUGboat
+%     20018.\\
+%   \else \thisissuepageref{mitt-widows-code}, 2018.\fi
 % \newblock  \url{https://ctan.org/pkg/widows-and-orphans}
 % \bibitem{expl3}
 % \LaTeX3 Project Team.
@@ -635,8 +638,8 @@
 % Here we introduce the package and specify its version number:
 %    \begin{macrocode}
 \ProvidesExplPackage{dashundergaps}
-                    {2018/11/09}
-                    {v2.0d}
+                    {\dashundergapsdate}
+                    {\dashundergapsversion}
                     {Dashing and underlining phantom text}
 %    \end{macrocode}
 %

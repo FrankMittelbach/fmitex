@@ -2,7 +2,7 @@
 
 	* dashundergaps.dtx
 
-	\TeachModeOff was a copy of \TeacherModeOn and never turned
+	\TeacherModeOff was a copy of \TeacherModeOn and never turned
 	anything off.
 
 2018-06-27  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
