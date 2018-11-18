@@ -1,0 +1,5 @@
+2018-11-18    <Frank.Mittelbach@latex-project.org>
+
+	* widows-and-orphans.dtx: Surplus open parenthese in message,
+	spotted by Barbara Beeton's eagle eyes.
+

@@ -508,7 +508,7 @@
 \@addtoreset{CodelineNo}{part}
 \tl_replace_once:Nnn \theCodelineNo
   { \HDorg@theCodelineNo }
-  { \textcolor[gray]{0.5} { \sffamily\tiny\arabic{CodelineNo} } }
+  { \textcolor[gray]{0.45} { \sffamily\tiny\arabic{CodelineNo} } }
 \fvset{gobble=2}
 \cs_gset_eq:NN \verbatim \Verbatim
 \cs_gset_eq:NN \endverbatim \endVerbatim
@@ -805,22 +805,9 @@
           }
       }
   }
-
-% fix for _TF undefined,
-% https://github.com/latex3/latex3/issues/477#issuecomment-419458783
-\cs_set_protected:Npn \__codedoc_typeset_TF:
-  {
-    \group_begin:
-      \exp_args:No \__codedoc_if_macro_internal:nT \l__codedoc_tmpa_tl
-        { \color[gray]{0.5} }
-      \itshape TF
-    \group_end:
-  }
-% END fix for _TF undefined,
-
 \cs_new_protected:Npn \__codedoc_typeset_aux:n #1
   {
-    { \color[gray]{0.5} #1 }
+    { \color[gray]{0.45} #1 }
   }
 \cs_new_protected:Npn \__codedoc_get_hyper_target:nN #1#2
   {
@@ -1486,7 +1473,7 @@
       { \exp_last_unbraced:NNo \hyperref [ \l__codedoc_tmpa_tl ] }
       { \use:n }
       {
-        \int_compare:nTF { \str_count:n {#1} <= 28 }
+        \int_compare:nTF { \str_count:n {#1} <= 0 }
           { \MacroFont } { \MacroLongFont }
         \tl_set:Nn \l__codedoc_tmpa_tl {#1}
         \tl_replace_all:Nno \l__codedoc_tmpa_tl
@@ -1505,7 +1492,7 @@
   { \bool_if:NTF #1 { \__codedoc_typeset_TF: } { } }
 \providecommand \MacroLongFont
   {
-    \fontfamily{lmtt}\fontseries{lc}\small
+    \fontfamily{lmtt}\fontseries{m}\footnotesize
   }
 \cs_new_protected:Npn \__codedoc_print_testfile:n #1
   {
