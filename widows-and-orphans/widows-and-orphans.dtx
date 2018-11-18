@@ -24,6 +24,8 @@
     [final]
     {l3doc-TUB}
 
+\setcounter{page}{1}
+
 % fix for _TF undefined,
 % https://github.com/latex3/latex3/issues/477#issuecomment-419458783
 \ExplSyntaxOn
@@ -40,7 +42,22 @@
         } \fi
     \group_end:
   }
+
+\NewDocumentCommand \TypesetImplementationTF { m m }
+  {
+    \bool_if:NTF \g__codedoc_typeset_implementation_bool
+      { #1 }
+      { #2 }
+  }
+
 \ExplSyntaxOff
+
+\makeatletter  % fix for ltugboat issue with doc (if old doc is used)
+\def\dotfill{\leaders\hbox to.6em{\hss .\hss}\hskip\z@ plus  1fill\kern\z@}%
+\def\dotfil{\leaders\hbox to.6em{\hss .\hss}\hfil\kern\z@}%
+\def\pfill{\unskip~\dotfill\penalty500\strut\nobreak
+               \dotfil~\ignorespaces}%
+\makeatother
 
 \begin{document}
 
@@ -83,7 +100,7 @@
 %
 % \begin{abstract}
 %   The \pkg{widows-and-orphans} package checks page or column breaks
-%   for issues with widow or orphans lines and issues warnings if such
+%   for issues with widow or orphan lines and issues warnings if such
 %   problems are detected. In addition, it checks and complains
 %   about breaks involving hyphenated words and warns about display
 %   formulas directly after a page break\Dash if they are allowed by the
@@ -100,12 +117,14 @@
 %
 % \section{Overview}
 %
-% To determine if a widow or orphan has occurred at a column/page
-% break the package analyses the \cs{outputpenalty} that triggered the
+% To determine if a widow or orphan has occurred at a column or page
+% break, the package analyzes the \cs{outputpenalty} that triggered the
 % break. As \TeX{} adds special penalties to widow and orphan lines
 % (\cs{widowpenalty} and \cs{clubpenalty}), we can hope to identify
 % them, provided the penalties have unique values so that we don't end
 % up with false positives.
+%
+% \TypesetImplementationTF {\enlargethispage*{2\baselineskip}}{}
 %
 % The package therefore analyzes the different parameter values and if
 % necessary adjusts the settings slightly so that all possible
@@ -131,7 +150,6 @@
 %
 % The package has a number of key/value options to adjust its
 % behavior.
-%
 % The option \option{check} defines what happens
 % when an issue is found: default is \ovalue{warning}, other
 % possibilities are \ovalue{error}, \ovalue{info} and \ovalue{none}.
@@ -144,6 +162,9 @@
 % To set all parameters in one go you can use \option{prevent-all},
 % \option{avoid-all} or \option{default-all}. These options also assign
 % values to \cs{brokenpenalty} and \cs{predisplaypenalty}.
+%
+% \TypesetImplementationTF {\pagebreak}{}
+%
 %
 % \subsection{User commands}
 %
@@ -177,6 +198,19 @@
 % \end{function}
 %
 %
+%
+% \subsection{Related packages}
+%
+% Package \pkg{nowidow}: This package offers some commands to help
+% pushing lines from one page to another by locally
+% requesting no widows or orphans\Dash possibly for several lines. In that
+% respect it implements one of the possibilities discussed in the
+% \TUB\ article~\cite{tub-wao}. This is, however, in many cases not the
+% best solution to get rid of a widow or orphan when the interest is
+% to achieve high typographical quality.
+%
+%
+%
 % \StopEventually{
 % \begin{thebibliography}{1}
 % \bibitem{tub-wao}
@@ -184,7 +218,7 @@
 % \newblock Managing forlorn paragraph lines (a.k.a.\ widows and orphans)
 %  in \LaTeX{}.
 % \newblock \textsl{TUGboat} 39:3,
-%   \ifx\thisissuepageref\undefined \else \thisissuepageref{mitt-widows},\fi
+%   \ifx\thisissuepageref\undefined \else \thisissuepageref{mitt-widows} ,\fi
 %   2018.
 % \bibitem{expl3}
 % \LaTeX3 Project Team.
@@ -192,7 +226,7 @@
 %    \url{https://latex-project.org/publications/indexbytopic/l3-expl3/}
 % \end{thebibliography}
 % \ifx\thisissuepageref\undefined    ^^A is this TUB production ??? if not gen index
-%    \setlength\IndexMin{200pt}  \PrintIndex
+%     \setlength\IndexMin{200pt}  \PrintIndex
 % \fi
 % }
 %
@@ -300,7 +334,7 @@
 % \end{figure}
 %
 %    \begin{macrocode}
-\ProvidesExplPackage{widows-and-orphans}{2018/09/01}{v1.0a}
+\ProvidesExplPackage{widows-and-orphans}{2018/11/18}{v1.0b}
                     {Detecting widows and orphans (FMi)}
 %    \end{macrocode}
 %
@@ -417,7 +451,7 @@
         { \@@_problem_identified:n{hyphen} }
 %    \end{macrocode}
 %    However, I said ``\TeX{} adds'', which means if a widow line also
-%    ends up in a hyphen then the penalty will be the sum of both
+%    ends in a hyphen then the penalty will be the sum of both
 %    individual penalties. So all the cases above need to be repeated
 %    with \cs{brokenpenalty} added to the value.
 %    We generate the same warnings, though\Dash e.g., we will say ``Widow
@@ -489,7 +523,7 @@
 %  \end{macro}
 
       
-% \subsection{The messages to the user}
+% \subsection{Messages to the user}
 %
 %
 %  \begin{macro}{\@@_this_page:}
@@ -543,7 +577,6 @@
 %  \end{macro}
 %
 %
-%   \pagebreak
 %
 %
 %    The first message is issued if we have been directed to ignore a
@@ -571,7 +604,7 @@
   { Orphan~ on~ page~ \@@_this_page:
     \legacy_switch_if:nT {@twocolumn}
       { \space ( \legacy_switch_if:nTF {@firstcolumn}
-                                       { first~ } { (second~ } column) }
+                                       { first~ } { second~ } column) }
   }
   { Check~ out~ the~ page~ and~ see~ if~ you~ can~ avoid~ the~ orphan.}
 %    \end{macrocode}
@@ -587,7 +620,8 @@
   { Hyphen~ in~ last~ line~ of~ page~ \@@_this_page:
     \legacy_switch_if:nT {@twocolumn}
       { \space ( \legacy_switch_if:nTF {@firstcolumn}
-                                       { first~ } { (second~ } column) } }
+                                       { first~ } { second~ } column) }
+  }
   { Check~ out~ the~ page~ and~ see~ if~ you~ can~ get~
     a~ better~ line~ break. }
 %    \end{macrocode}
@@ -713,7 +747,6 @@
 %    \end{macrocode}
 %  \end{macro}
 %
-% \pagebreak
 %
 %  \begin{macro}{\@@_initialize:}
 %    Now we are ready to go. The first action is to clear the property
@@ -724,7 +757,7 @@
 %    \end{macrocode}
 %    When \TeX{} breaks a page at a glue item with no explicit penalty involved
 %    it sets \cs{outputpenalty} to \texttt{10000} in the output
-%    routine to distinguish from a case where an explicit penalty of
+%    routine to distinguish it from a case where an explicit penalty of
 %    \texttt{0} was in the document. That means none of our parameters
 %    or parameter combinations can be allowed to have that particular
 %    value, because otherwise we would get a false match for each break
@@ -838,14 +871,13 @@
 %    \begin{macrocode}
   \bool_set_false:N \l_@@_success_bool
   \bool_do_until:Nn \l_@@_success_bool
-    {
 %    \end{macrocode}
 %    Inside the loop we start with the assumption that the current
 %    value of the parameter is fine and then check if that assumption
 %    is true. If yes, we can exit the loop, otherwise we will have to
 %    try with a different value.
 %    \begin{macrocode}
-     \bool_set_true:N \l_@@_success_bool
+   { \bool_set_true:N \l_@@_success_bool
 %    \end{macrocode}
 %    For the verification we try each item in the second parameter to
 %    see if that is already in the property list.
@@ -867,7 +899,6 @@
 %    therefore add all combinations with this parameter to the
 %    property list, as from now on they are forbidden as well.
 %
-%    \pagebreak
 %
 %    So we
 %    map once more over the second argument and enter them:
@@ -876,8 +907,7 @@
        { \clist_map_inline:nn { #2 }
            { \int_set:Nn \l_@@_tmp_int {##1}
              \prop_put:NVn \l_@@_penalties_prop \l_@@_tmp_int {##1}
-	   }
-       }
+           } }
 %    \end{macrocode}
 %    If we failed we increment the parameter value and retry:
 %    \begin{macrocode}
@@ -888,8 +918,8 @@
 %
 %
 %    One place where we will run this code is at the beginning of the
-%    document (so that changes to the parameters in the preamble or
-%    the document class are picked up). The other place is when the
+%    document (so that changes to the parameters in the document class or
+%    the preamble are picked up). The other place is when the
 %    user changes any of the parameters in the middle of the document
 %    via \cs{WaOsetup}.
 %    \begin{macrocode}
@@ -931,17 +961,20 @@
                                \int_set:Nn \@clubpenalty { \clubpenalty }
   ,orphans / default .code:n = \int_set:Nn \clubpenalty  {   150        }
                                \int_set:Nn \@clubpenalty { \clubpenalty }
-   % ====================================
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
   ,widows .choice:
-  ,widows / prevent  .code:n = \int_set:Nn \widowpenalty { 10000 }
-  ,widows / avoid    .code:n = \int_set:Nn \widowpenalty {  5000 }
-  ,widows / default  .code:n = \int_set:Nn \widowpenalty {   150 }
-   % ====================================
+  ,widows / prevent  .code:n = \int_set:Nn \widowpenalty  { 10000   }
+  ,widows / avoid    .code:n = \int_set:Nn \widowpenalty  {  5000   }
+  ,widows / default  .code:n = \int_set:Nn \widowpenalty  {   150   }
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
   ,hyphens .choice:
-  ,hyphens / prevent .code:n = \int_set:Nn \brokenpenalty { 10000 }
-  ,hyphens / avoid   .code:n = \int_set:Nn \brokenpenalty {  2000 }
-  ,hyphens / default .code:n = \int_set:Nn \brokenpenalty {    50 }
-   % ====================================
+  ,hyphens / prevent .code:n = \int_set:Nn \brokenpenalty { 10000   }
+  ,hyphens / avoid   .code:n = \int_set:Nn \brokenpenalty {  2000   }
+  ,hyphens / default .code:n = \int_set:Nn \brokenpenalty {    50   }
   ,prevent-all  .code:n = \int_set:Nn \clubpenalty        { 10000   }
                           \int_set:Nn \widowpenalty       { 10000   }
                           \int_set:Nn \displaywidowpenalty{ 10000   }
@@ -1006,7 +1039,7 @@
 %    current page or column:
 %    \begin{macrocode}
 \NewDocumentCommand\WaOignorenext{}
-  { \bool_gset_false:N\g_@@_gen_warn_bool }
+  { \bool_gset_false:N \g_@@_gen_warn_bool }
 %    \end{macrocode}
 %  \end{macro}
 %
