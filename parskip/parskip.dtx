@@ -3,7 +3,7 @@
 %% File: parskip.dtx
 %%   (C) Copyright 1989 H.Partl, TU Wien
 %%   (C) Copyright 2001 Robin Fairbairns
-%%   (C) Copyright 2018 Frank Mittelbach
+%%   (C) Copyright 2018-2019 Frank Mittelbach
 %
 % It may be distributed and/or modified under the conditions of the
 % LaTeX Project Public License (LPPL), either version 1.3c of this
@@ -177,7 +177,7 @@
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\ProvidesPackage{parskip}[2018-08-24 v2.0a non-zero parskip adjustments]
+\ProvidesPackage{parskip}[2019-01-16 v2.0c non-zero parskip adjustments]
 %    \end{macrocode}
 %
 %
@@ -238,20 +238,22 @@
 \else
 %    \end{macrocode}
 %    Otherwise set it to the specified value:
+% \changes{v2.0c}{2019/02/16}{Support calc by using \cs{setlength}
+%                             for assignments}
 %    \begin{macrocode}
-  \parskip\parskip@skip\relax
+  \setlength\parskip\parskip@skip
 \fi
 %    \end{macrocode}
 %    Setting \cs{parfillskip} was suggested by Donald Arseneau at some
 %    point on comp.text.tex:
 %    \begin{macrocode}
-\parfillskip \parskip@parfill\relax
+\setlength\parfillskip\parskip@parfill
 \advance\parfillskip 0pt plus 1fil\relax
 %    \end{macrocode}
 %    \cs{parindent} gets whatever was specified. If the key was given
 %    without an option this will essentially reassign the now ``current'' value.
 %    \begin{macrocode}
-\parindent\parskip@indent\relax
+\setlength\parindent\parskip@indent
 %    \end{macrocode}
 %
 %
@@ -388,6 +390,23 @@
 \fi}    
 %    \end{macrocode}
 %
+%
+%
+% \subsubsection{\pkg{amsthm} theorems}
+%
+% The \pkg{amsthm} package is one of the few packages that make an
+% explicit correction for \cs{parskip} which isn't any longer adequate
+% if this \pkg{parskip} package is loaded. We therefore remove that
+% setting from the package if it was loaded.
+% \changes{v2.0b}{2018/09/17}{Support \cs{amsthm} (sx/450551)}
+%    \begin{macrocode}
+\AtBeginDocument{%    
+\ifx\deferred@thm@head\@undefined\else  % amsthm got loaded
+\patchcmd\deferred@thm@head
+  {\addvspace{-\parskip}}{}%
+  {}{\typeout{Couldn't patch \string\deferred@thm@head!}}%
+\fi} 
+%    \end{macrocode}
 %
 %
 % \subsection{Closing shop}

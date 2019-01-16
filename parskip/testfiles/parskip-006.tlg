@@ -31,7 +31,7 @@ Package etexcmds Info: Could not find \expanded.
 Package: etoolbox ....-..-.. v... e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count...
 ))
-(parskip-003.toc)
+(parskip-006.toc)
 \tf@toc=\write...
 LaTeX Font Info:    Try loading font information for OMS+lmr on input line ....
 LaTeX Font Info:    Try loading font information for OMS+lmsy on input line ....
@@ -46,7 +46,7 @@ Completed box being shipped out [1]
 ...\hbox(0.0+0.0)x345.0
 ..\glue 25.0
 ..\glue(\lineskip) 0.0
-..\vbox(550.0+0.0)x345.0, glue set 134.04193fil
+..\vbox(550.0+0.0)x345.0, glue set 14.05475fil
 ...\write-{}
 ...\glue(\topskip) 0.30101
 ...\hbox(9.69899+0.0)x345.0, glue set 251.71814fil
@@ -66,8 +66,8 @@ Completed box being shipped out [1]
 ....\glue(\parfillskip) 30.0 plus 1.0fil
 ....\glue(\rightskip) 0.0
 ...\penalty 10000
-...\glue -2.09735 plus 0.86108
-...\glue 2.09735 plus -0.86108
+...\glue -26.09735 plus 0.86108
+...\glue 26.09735 plus -0.86108
 ...\glue 10.0 plus 1.0
 ...\glue(\parskip) 0.0
 ...\glue(\baselineskip) 5.14276
@@ -113,8 +113,8 @@ Completed box being shipped out [1]
 ....\glue(\parfillskip) -15.50003
 ....\glue(\rightskip) 15.50003
 ...\penalty -300
-...\glue 3.06923 plus 4.3055 minus 0.86108
-...\glue(\parskip) 12.0
+...\glue -20.93077 plus 4.3055 minus 0.86108
+...\glue(\parskip) 36.0
 ...\glue(\baselineskip) 8.30101
 ...\hbox(9.69899+0.0)x345.0, glue set 278.46724fil
 ....\hbox(9.14008+0.0)x24.29997
@@ -127,8 +127,8 @@ Completed box being shipped out [1]
 ....\glue(\rightskip) 0.0
 ...\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline \ETC.}
 ...\penalty 10000
-...\glue -2.09735 plus 0.86108
-...\glue(\parskip) 12.0
+...\glue -26.09735 plus 0.86108
+...\glue(\parskip) 36.0
 ...\glue(\baselineskip) 5.11125
 ...\hbox(6.88875+1.94443)x345.0, glue set 189.63896fil
 ....\OT1/lmr/m/n/10 H
@@ -164,10 +164,10 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\glue(\parfillskip) 30.0 plus 1.0fil
 ....\glue(\rightskip) 0.0
-...\glue(\parskip) 12.0
+...\glue(\parskip) 36.0
 ...\glue(\baselineskip) 3.16682
-...\hbox(6.88875+0.0)x345.0, glue set 169.0277fil
-....\hbox(0.0+0.0)x25.0
+...\hbox(6.88875+0.0)x345.0, glue set 154.0277fil
+....\hbox(0.0+0.0)x40.0
 ....\OT1/lmr/m/n/10 A
 ....\OT1/lmr/m/n/10 n
 ....\OT1/lmr/m/n/10 d
@@ -199,10 +199,10 @@ Completed box being shipped out [1]
 ....\glue(\parfillskip) 30.0 plus 1.0fil
 ....\glue(\rightskip) 0.0
 ...\penalty -51
-...\glue 12.0
-...\glue -12.0
+...\glue 36.0
+...\glue -36.0
 ...\glue 0.0
-...\glue(\parskip) 12.0
+...\glue(\parskip) 36.0
 ...\glue(\baselineskip) 5.11125
 ...\hbox(6.88875+0.0)x319.99997, glue set 312.49997fil, shifted 25.00003
 ....\hbox(4.44444+0.0)x0.0
@@ -222,7 +222,7 @@ Completed box being shipped out [1]
 ....\glue(\rightskip) 0.0
 ...\penalty -51
 ...\glue 0.0
-...\glue(\parskip) 12.0
+...\glue(\parskip) 36.0
 ...\glue(\baselineskip) 5.11125
 ...\hbox(6.88875+0.0)x319.99997, glue set 312.91698fil, shifted 25.00003
 ....\hbox(4.44444+0.0)x0.0
@@ -242,7 +242,7 @@ Completed box being shipped out [1]
 ....\glue(\rightskip) 0.0
 ...\penalty -51
 ...\glue 0.0
-...\glue(\parskip) 12.0
+...\glue(\parskip) 36.0
 ...\glue(\baselineskip) 5.70276
 ...\hbox(6.29724+0.0)x345.0, glue set 244.63893fil
 ....\OT1/lmr/m/n/10 s
@@ -263,10 +263,10 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\glue(\parfillskip) 30.0 plus 1.0fil
 ....\glue(\rightskip) 0.0
-...\glue(\parskip) 12.0
+...\glue(\parskip) 36.0
 ...\glue(\baselineskip) 5.11125
-...\hbox(6.88875+0.0)x345.0, glue set 176.27776fil
-....\hbox(0.0+0.0)x25.0
+...\hbox(6.88875+0.0)x345.0, glue set 161.27776fil
+....\hbox(0.0+0.0)x40.0
 ....\OT1/lmr/m/n/10 A
 ....\OT1/lmr/m/n/10 n
 ....\OT1/lmr/m/n/10 d
@@ -297,8 +297,8 @@ Completed box being shipped out [1]
 ....\glue(\parfillskip) 30.0 plus 1.0fil
 ....\glue(\rightskip) 0.0
 ...\penalty -300
-...\glue 3.06923 plus 4.3055 minus 0.86108
-...\glue(\parskip) 12.0
+...\glue -20.93077 plus 4.3055 minus 0.86108
+...\glue(\parskip) 36.0
 ...\glue(\baselineskip) 8.30101
 ...\hbox(9.69899+0.0)x345.0, glue set 279.18364fil
 ....\hbox(9.14008+0.0)x24.29997
@@ -311,8 +311,8 @@ Completed box being shipped out [1]
 ....\glue(\rightskip) 0.0
 ...\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline \ETC.}
 ...\penalty 10000
-...\glue -2.09735 plus 0.86108
-...\glue(\parskip) 12.0
+...\glue -26.09735 plus 0.86108
+...\glue(\parskip) 36.0
 ...\glue(\baselineskip) 5.11125
 ...\hbox(6.88875+1.94443)x345.0, glue set - 0.4807
 ....\OT1/lmr/m/n/10 L
@@ -1377,4 +1377,4 @@ Completed box being shipped out [1]
 ...\glue 0.0 plus 1.0fil
 ...\OT1/lmr/m/n/10 1
 ...\glue 0.0 plus 1.0fil
-(parskip-003.aux)
+(parskip-006.aux)

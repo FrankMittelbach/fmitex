@@ -1,0 +1,38 @@
+\documentclass{article}
+
+\input{regression-test}
+
+\usepackage{lmodern,lipsum,calc}
+
+\START
+
+\usepackage[indent=20pt+20pt,skip=\baselineskip*3,parfill]{parskip}
+
+\showoutput
+
+\OMIT
+
+\begin{document}
+
+\TIMO
+
+\tableofcontents
+
+\section{A}
+
+Here we have a a paragraph.
+
+And here is the second one.
+\begin{itemize}
+\item A
+\item B
+\end{itemize}
+some more text.
+
+And here is the third one.
+
+\section{B}
+
+\lipsum[1]
+
+\end{document}
