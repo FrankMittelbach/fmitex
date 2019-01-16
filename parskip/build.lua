@@ -7,6 +7,8 @@
 
 module = "parskip"
 
+checkengines = { "pdftex" }
+
 typesetfiles  = {"*.tex"}
 
 checkruns     = 2
