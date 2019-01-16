@@ -1,17 +1,25 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 (parskip.sty
+Package: parskip ....-..-.. v... non-zero parskip adjustments
 (../kvoptions.sty
+Package: kvoptions ....-..-.. v... Key value format for package options (HO)
 (../keyval.sty
+Package: keyval ....-..-.. v... key=value parser (DPC)
 \KV@toks@=\toks...
 )
 (../ltxcmds.sty
+Package: ltxcmds ....-..-.. v... LaTeX kernel commands for general use (HO)
 )
 (../kvsetkeys.sty
+Package: kvsetkeys ....-..-.. v... Key value parser (HO)
 (../infwarerr.sty
+Package: infwarerr ....-..-.. v... Providing info/warning/error messages (HO)
 )
 (../etexcmds.sty
+Package: etexcmds ....-..-.. v... Avoid name clashes with e-TeX commands (HO)
 (../ifluatex.sty
+Package: ifluatex ....-..-.. v... Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
 Package etexcmds Info: Could not find \expanded.
@@ -20,6 +28,7 @@ Package etexcmds Info: Could not find \expanded.
 (etexcmds)             In the latter case, load this package earlier.
 )))
 (../etoolbox.sty
+Package: etoolbox ....-..-.. v... e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count...
 ))
 (parskip-001.toc)
@@ -75,6 +84,8 @@ Completed box being shipped out [1]
 ....\hbox(6.52725+0.0)x17.825, glue set 12.07501fil
 .....\glue 0.0 plus 1.0fil minus 1.0fil
 .....\OT1/lmr/bx/n/10 1
+.....\kern -1.0
+.....\kern 1.0
 ....\penalty 10000
 ....\glue(\parfillskip) -15.50003
 ....\glue(\rightskip) 15.50003
@@ -96,6 +107,8 @@ Completed box being shipped out [1]
 ....\hbox(6.52725+0.0)x17.825, glue set 12.07501fil
 .....\glue 0.0 plus 1.0fil minus 1.0fil
 .....\OT1/lmr/bx/n/10 1
+.....\kern -1.0
+.....\kern 1.0
 ....\penalty 10000
 ....\glue(\parfillskip) -15.50003
 ....\glue(\rightskip) 15.50003
