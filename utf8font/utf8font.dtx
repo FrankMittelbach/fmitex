@@ -1,0 +1,379 @@
+% \iffalse meta-comment
+%
+%% File: utf8font.dtx (C) Copyright 2019 Frank Mittelbach
+%
+% It may be distributed and/or modified under the conditions of the
+% LaTeX Project Public License (LPPL), either version 1.3c of this
+% license or (at your option) any later version.  The latest version
+% of this license is in the file
+%
+%    https://www.latex-project.org/lppl.txt
+%
+%
+% The development version of the bundle can be found below
+%
+%    https://github.com/FrankMittelbach/fmitex/
+%
+% for those people who are interested or want to report an issue.
+%
+%<*driver>
+\documentclass{l3doc}
+\usepackage{utf8font}
+\EnableCrossrefs
+\CodelineIndex
+\begin{document}
+  \DocInput{utf8font.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+
+% \title{The \texttt{utf8font} package\thanks{}}
+% \author{Frank Mittelbach}
+%
+% \maketitle
+%
+%
+% \begin{abstract}
+% \end{abstract}
+%
+% \section{Introduction}
+%
+%
+% \StopEventually{\setlength\IndexMin{200pt}  \PrintIndex  }
+%
+%
+% \section{The Implementation}
+%
+% \subsection{The package}
+%
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+
+
+\RequirePackage{xparse,color,longtable,caption}
+
+\RequirePackage{trace}
+
+\ExplSyntaxOn
+
+\clist_const:Nn\c_hex_digits_clist{0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F}
+
+\int_new:N \g_glyph_int
+
+\tl_new:N \g_line_tl
+\tl_new:N \g_title_tl
+\tl_new:N \g_plane_tl
+
+\bool_new:N \g_char_seen_bool
+\bool_new:N \g_line_missing_bool
+
+\bool_gset_true:N \g_line_missing_bool
+
+\DeclareDocumentCommand \glyphcount {}
+  { \int_use:N \g_glyph_int }
+
+\DeclareDocumentCommand \producetablecells {}
+  { \int_gzero:N \g_glyph_int 
+    \clist_map_function:NN \c_hex_digits_clist \usymbolA }
+
+
+\cs_new:Npn \usymbolA #1 {
+   \tl_gset:Nn\A{#1}
+   \clist_map_function:NN \c_hex_digits_clist\usymbolB
+}
+\cs_new:Npn \usymbolB #1 {
+   \tl_gset:Nn\B{#1}
+   \clist_map_function:NN \c_hex_digits_clist \usymbolC
+}
+\cs_new:Npn \usymbolC #1 {
+  \bool_if:NTF \g_char_seen_bool
+       {
+  \tl_if_empty:NF \g_plane_tl
+     { \\[-6pt]
+       \multicolumn{17}{c}{\normalfont\bfseries \tl_use:N \g_plane_tl}
+       \tl_gclear:N \g_plane_tl
+       \\*
+    & \hf{0} & \hf{1} & \hf{2} & \hf{3} & \hf{4} & \hf{5} &
+    \hf{6} & \hf{7} & \hf{8} & \hf{9} & \hf{A} & \hf{B} &
+    \hf{C} & \hf{D} & \hf{E} & \hf{F}
+       \\*
+     }  
+         \bool_gset_false:N \g_char_seen_bool     
+         \bool_gset_false:N \g_line_missing_bool
+         \texttt{
+           \footnotesize
+           \tl_use:N \g_title_tl
+         }
+         \tl_use:N \g_line_tl
+         \\
+       }
+       {
+         \bool_if:NF \g_line_missing_bool
+              {
+                \bool_gset_true:N \g_line_missing_bool
+                \\
+              }
+       }
+%
+  \tl_gset:Nn\C{#1}
+%  \traceon   
+  \tl_gset:Nx \g_plane_tl {
+    \int_case:nnF{ "\A\B\C }
+       {
+         { 0 }  { Basic~ Latin }
+         { 8 }  { Latin-1~ Supplement }
+         { "10 }{ Latin~ Extended-A }
+         { "18 }{ Latin~ Extended-B }
+         { "25 }{ IPA~ Extension }
+         { "2B }{ Spacing~ Modifier~ Letters }
+         { "30 }{ Combining~ Diacritical~ Marks }
+         { "37 }{ Greek~ and~ Coptic }
+         { "40 }{ Cyrillic }
+         { "53 }{ Armenian }
+         { "59 }{ Hebrew }
+         { "60 }{ Arabic }
+         { "70 }{ Syriac }
+         { "75 }{ Arabic~ Supplement }
+         { "78 }{ Thaana }
+         { "7C }{ NKo }
+         { "90 }{ Devanagari }
+         { "98 }{ Bengali }
+         { "A0 }{ Gurmukhi }
+         { "A8 }{ Gujarati }
+         { "B0 }{ Oriya }
+         { "B8 }{ Tamil }
+         { "C0 }{ Telugu }
+         { "C8 }{ Kannada }
+         { "D0 }{ Malayalm }
+         { "D8 }{ Sinhala }
+         { "E0 }{ Thai }
+         { "E8 }{ Lao }
+         { "F0 }{ Tibetan }
+         { "100 }{ Myanmar }
+         { "10A }{ Georgian }
+         { "110 }{ Hangul~ Jamo }
+         { "120 }{ Ethiopic  }
+         { "138 }{ Ethiopic~ Supplement }
+         { "13A }{ Cherokee }
+         { "140 }{ Unified~ Canadian~ Aboriginal~ Syllabics }
+         { "168 }{ Ogham }
+         { "16A }{ Runic }
+         { "170 }{ Tagalog }
+         { "172 }{ Hanunoo }
+         { "174 }{ Buhid }
+         { "176 }{ Tagbanwa }
+         { "178 }{ Khmer }
+         { "180 }{ Mongolian }
+         { "190 }{ Limbu }
+         { "195 }{ Tai~ Le }
+         { "198 }{ New~ Tai~ Le }
+         { "19E }{ Khmer~ Symbols }
+         { "1A0 }{ Buginese }
+         { "1B0 }{ Balinese }
+         { "1D0 }{ Phonetic~ Extensions }
+         { "1D8 }{ Phonetic~ Extensions~ Supplement }
+         { "1DC }{ Combining~ Diacritical~ Marks~ Supplement }
+         { "1E0 }{ Latin~ Extended~ Additional }
+         { "1F0 }{ Greek~ Extended }
+         { "200 }{ General~ Punctuation }
+         { "207 }{ Superscripts~ and~ Subscripts }
+         { "20A }{ Currency~ Symbols }
+         { "20D }{ Combining~ Diacritical~ Marks~ for~ Symbols }
+         { "210 }{ Letterlike~ Symbols }
+         { "215 }{ Number~ Forms }
+         { "219 }{ Arrows }
+         { "220 }{ Mathematical~ Operators }
+         { "230 }{ Miscellaneous~ Technical }
+         { "240 }{ Control~ Pictures }
+         { "244 }{ Optical~ Character~ Recognition }
+         { "246 }{ Enclosed~ Alphanumerics }
+         { "250 }{ Box~ Drawing }
+         { "258 }{ Block~ Elements }
+         { "25A }{ Geometric~ Shapes }
+         { "260 }{ Miscellaneous~ Shapes }
+         { "270 }{ Dingbats }
+         { "27C }{ Miscellaneous~ Mathematical~ Symbols-A }
+         { "280 }{ Braille~ Patterns }
+         { "290 }{ Supplement~ Arrows-B }
+         { "298 }{ Miscellaneous~ Mathematical~ Symbols-B }
+         { "2A0 }{ Supplement~ Mathematical~ Operators }
+         { "2B0 }{ Miscellaneous~ Symbols~ and~ Arrows }
+         { "2C0 }{ Glagolitic }
+         { "2C6 }{ Latin~ Extended-C }
+         { "2C8 }{ Coptic }
+         { "2D0 }{ Georgian~ Supplement }
+         { "2D3 }{ Tifinagh }
+         { "2D8 }{ Ethiopic~ Extended }
+         { "2E8 }{ CJK~ Radicals~ Supplement }
+         { "2F0 }{ Kangxi~ Radicals }
+         { "2FF }{ Ideographic~ Description~ Characters }
+         { "300 }{ CJK~ Symbols~ and~ Punctuation }
+         { "304 }{ Hiragana }
+         { "30A }{ Katakana }
+         { "310 }{ Bopomofo }
+         { "313 }{ Hangul~ Compatibility~ Jamo }
+         { "319 }{ Kanbun }
+         { "31A }{ Bopomofo~ Extended }
+         { "31C }{ CJK~ Strokes }
+         { "31F }{ Katakana~ Phonetic~ Extensions }
+         { "320 }{ Enclosed~ CJK~ Letters~ and~ Months }
+         { "330 }{ CJK~ Compatibility }
+         { "4DC }{ Yijing~ Hexagram~ Symbols }
+         { "A00 }{ Yi~ Syllables }
+         { "A49 }{ Yi~ Radicals }
+         { "A70 }{ Modifier~ Tone~ Letters }
+         { "A72 }{ Latin~ Extended-D }
+%...         
+         { "A80 }{ \ldots }
+         { "A80 }{  }
+%...         
+         { "E00 }{ Private~ Use~ Area }
+         { "FB0 }{ Alphabetic~ Presentation~ Forms }
+         { "FB5 }{ Arabic~ Presentation~ Forms-A }
+         { "FE0 }{ Variation~ Selectors }
+         { "FE1 }{ Vertical~ Forms }
+%...         
+         { "F8F }{ Others~ \ldots }
+       }{ \tl_use:N \g_plane_tl }
+  }
+  \tl_gset:Nn\g_title_tl{\color{red}}
+  \tl_gput_right:Nx \g_title_tl
+     {
+       U+\A\B\C0 \, - \, \A\B\C F
+     }
+  \tl_gclear:N\g_line_tl
+  \clist_map_function:NN \c_hex_digits_clist \usymbolD
+}
+\cs_new:Npn \usymbolD #1 {
+   \tl_gset:Nn\D{#1}
+   \tex_iffontchar:D \tex_font:D "\A\B\C\D \scan_stop:
+     \tl_gput_right:Nx \g_line_tl
+        {
+          &
+          \hbox_to_wd:nn{5.4pt}
+               {
+                 \hss
+                 \symbol{"\A\B\C\D}
+                 \hss
+               }
+        }
+     \bool_gset_true:N \g_char_seen_bool
+     \int_gincr:N\g_glyph_int
+   \else:
+     \tl_gput_right:Nn \g_line_tl
+        {
+          &
+          \hbox_to_wd:nn{5.4pt}{\hss
+                                \hf{-}%
+                                \hss}
+        }
+   \fi:
+%  \show\g_line_tl
+}
+
+\ExplSyntaxOff
+
+
+\newcommand\hf[1]{\texttt{\scriptsize\color{red} #1}}
+
+%\traceon
+
+\NewDocumentCommand\displaytable {m o}{%
+  \fontspec{#1}[#2]
+  \begin{longtable}{@{}c@{\quad}*{16}{c}@{}}
+    \IfValueTF{#2}
+            { \caption{#1 (features: \texttt{\small#2})}}
+            { \caption{#1}}
+  \\[6pt]
+  \endfirsthead
+    \caption[]{#1 \emph{cont.}}
+  \\[6pt]
+  \endhead
+  \endfoot
+  \endlastfoot
+  \producetablecells
+  \\*[-16pt]
+  \multicolumn{10}{l}{\normalfont Total number of gyphs in #1: \glyphcount}
+  \end{longtable}}
+ 
+
+
+%    \end{macrocode}
+%
+%
+%    \begin{macrocode}
+%</package>
+%    \end{macrocode}
+%
+
+
+
+%
+% \subsection{The samples file}
+%
+%    \begin{macrocode}
+%<*samples>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%<<VERBATIMLINE
+%!TEX program = lualatex
+
+%VERBATIMLINE
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\documentclass{article}
+
+\usepackage{xparse,color,trace}
+
+\usepackage{fontspec}
+
+\setmainfont{Linux Biolinum O}
+\setmonofont{SourceCodePro}
+
+\usepackage{utf8font}
+
+\begin{document}
+
+\displaytable{Latin Modern Sans}
+\newpage
+\displaytable{TeX Gyre Pagella}[Numbers=OldStyle]
+
+\end{document}
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%</samples>
+%    \end{macrocode}
+
+
+
+%
+%
+% \subsection{The standalone file}
+%
+%    \begin{macrocode}
+%<*standalone>
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\typeout{CODE here}
+%    \end{macrocode}
+%
+%
+%    \begin{macrocode}
+%</standalone>
+%    \end{macrocode}
+
+
+%
+% \Finale
+%
+
+

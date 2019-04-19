@@ -13,3 +13,5 @@ footmisc/build
 ftnright/build
 parskip/build
 widows-and-orphans/build/
+00-change-name.sh
+utf8font/build
