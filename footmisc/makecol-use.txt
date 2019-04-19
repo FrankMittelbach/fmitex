@@ -1,0 +1,229 @@
+
+% where is \@makecol used/changed across TL18
+
+./aastex/aastex62.cls  --- ok         only appends to \@makecol
+
+
+./arydshln/arydshln.sty  --- ok
+
+
+./jpsj/jpsj2.cls  --- ok (independent redef)
+
+
+./fix2col/fix2col.sty  --- ok
+
+
+./tools/longtable.sty  --- ok
+
+
+
+./tools/multicol-2017-04-11.sty   --- ok
+
+
+\def\@makecol{\if@firstcolumn
+./tools/ftnright.sty  -- check
+
+
+./tools/multicol.sty   --- ok
+
+./longfigure/longfigure.sty   --- ok
+
+
+\let\marginfit@makecol\@makecol
+\def\@makecol{%
+    \marginfit@makecol%
+./marginfit/marginfit.sty   --- ok
+
+
+./oberdiek/pdfcolmk.sty  --- ok (false positive)
+
+
+    Missing e-TeX for patching \string\@makecol
+      Patching \string\@makecol\space macros (#1)%
+  \pdfcolfoot@patch\@makecol
+  \pdfcolfoot@patch\@makecol@pptt
+  \pdfcolfoot@patch\mem@makecol
+  \pdfcolfoot@patch\mem@makecolbf
+  \pdfcolfoot@patch\ltx@makecol
+  \pdfcolfoot@patch\dfn@latex@makecol
+  \pdfcolfoot@patch\latex@makecol
+  \pdfcolfoot@patch\LS@makecol
+  \pdfcolfoot@patch\@LN@orig@makecol
+  \pdfcolfoot@patch\org@makecol
+  \pdfcolfoot@patch\fn@makecol
+./oberdiek/pdfcolfoot.sty   --- check
+
+
+./fnpara/fnpara.sty -- ok (independent redef but could be updated -- maintainer Chris)
+
+
+./glossaries/styles/glossary-longbooktabs.sty
+
+
+./xwatermark/xwatermark.sty  --- ok (false positive)
+
+./revtex/ltxgrid.sty  -- ok (ignores LaTeX std code anyway)
+./revtex/revtex4-1.cls  -- ok (ignores LaTeX std code anyway)
+
+
+./fancyhdr/fancyhdr.sty  -- check (could improve by update)
+
+
+./rotpages/rotpages.sty  -- ok (only appends)
+
+./arabi/fmultico.sty --- ok
+
+./changebar/changebar.sty --- should be ok
+
+./eledmac/eledmac.sty    --- ok (independent overwrite, but could use new code)
+
+./yafoot/fnpos.sty   --- ok, independed impl, but could be simplified
+
+
+\def\dfn@makecol{{\ifvoid\footins\else
+        \let\footnoterule\relax \dfn@latex@makecol
+        \let\dfn@latex@makecol\@makecol
+        \let\@makecol\dfn@makecol}
+        \let\@makecol\dfn@latex@makecol
+        \let\@makecol\dfn@makecol
+./yafoot/dblfnote.sty    --- check
+
+
+\newcommand{\led@error@fail@patch@@makecol}{%
+  \reledmac@error{Fail to patch \string\@makecol\space command}{\@ehc}%
+    and test {\ifdef{\latex@makecol}}%
+      {\latex@makecol}%
+      {\led@error@fail@patch@@makecol}%
+      {\@makecol}%
+      {\led@error@fail@patch@@makecol}%
+./reledmac/reledmac.sty                      --- check this may need update (perhaps)
+
+
+./hypdvips/hypdvips.sty         -- ok, but could use prehook
+
+
+    \@makecol\@opcol
+  %   \@makecol\@opcol
+\newcommand*{\m@m@makecolfloats}{%
+\newcommand*{\m@m@makecoltext}{%
+\newcommand*{\m@m@makecolintro}{}
+ % \gdef\mem@makecol{%
+ %   \m@m@makecolintro
+ %   \m@m@makecolfloats
+ %   \m@m@makecoltext
+ % \gdef\mem@makecolbf{%
+ %   \m@m@makecolintro
+ %   \m@m@makecolfloats
+ %   \m@m@makecoltext
+\gdef\mem@makecoldblf{%
+  \m@m@makecolintro
+  \m@m@makecolfloats
+  \m@m@makecoltext
+\newcommand{\feetabovefloat}{\gdef\@makecol{\mem@makecol}}
+\newcommand{\feetbelowfloat}{\gdef\@makecol{\mem@makecolbf}}
+\gdef\mem@makecol{%
+  \m@m@makecolintro
+  \m@m@makecolfloats
+  \m@m@makecoltext
+\gdef\mem@makecolbf{%
+  \m@m@makecolintro
+  \m@m@makecolfloats
+  \m@m@makecoltext
+./memoir/memoir.cls
+
+
+./dblfloatfix/dblfloatfix.sty  -- ok
+
+\renewcommand{\@makecol}{%
+./flowfram/flowfram.sty       --- check, why does that have a redefinition? does it redefine anything????
+
+%   * \@makecol is redefined
+  \@makecol
+\def\@makecol{%
+./platex-tools/pxftnright.sty
+
+
+    \@makecol\@opcol
+./nidanfloat/nidanfloat.sty
+  \vbox{}\clearpage\fi\fi\else\setbox\@cclv\vbox{\box\@cclv\vfil}\@makecol
+\@tempa\@makecol{\ifvoid\footins\setbox\@outputbox\box\@cclv\else\setbox
+    \@makecol\@opcol
+\def \@makecol {%
+./footbib/footbib.sty
+    \@makecol
+./sttools/cuted.sty
+            \@makecol\@opcol
+            \@makecol\@opcol
+\global\let\org@makecol\@makecol
+\gdef\fn@makecol{%
+\def\fnbelowfloat{\global\let\@makecol\fn@makecol}
+\def\fnunderfloat{\global\let\@makecol\org@makecol}
+./sttools/stfloats.sty
+    \if@twocolumn \let\@makecol\@LN@makecol \fi
+  \let\@LN@orig@makecol\@makecol} 
+\def\@LN@makecol{%
+   \@LN@orig@makecol
+./lineno/lineno.sty
+          \@makecol
+    \@makecol
+./seminar/seminar.bg2
+  \@makecol\csname output@column@\thepagegrid\endcsname
+\def\@makecol{%
+ \@makecol
+ \@makecol
+\@makecol
+./revtex4/revtex4.cls
+\let\LS@makecol=\@makecol
+  \def\@makecol{\LS@makecol\LS@rot}%
+./graphics/lscape.sty
+
+
+
+./footmisx/footmisx.sty --- ok, but package should vanish anyway
+
+
+\let\NCC@fancymakecol\@makecol
+  \def\@makecol{%
+./ncctools/nccfancyhdr.sty
+
+
+./ncctools/manyfoot.sty  --- ok (base prepend but could now be done via hook)
+
+
+
+./ledmac/ledmac.sty --- ok indedepent overwrite
+
+
+
+./footmisc/footmisc.sty  --- ok, that's why I do this
+
+
+
+./base/fixltx2e.sty  -- ok, use
+
+./base/fltrace.sty  -- ok, use
+
+./base/latexrelease.sty  -- ok, use
+
+
+
+
+    \pcol@makecol
+    \@makecol
+\def\pcol@@makecol#1{\@makecol
+\def\pcol@makecol{\let\pcol@textbottom\@textbottom
+      \pcol@Log\pcol@makecol{save}\footins
+      \pcol@Log\pcol@makecol{discard}\footins
+  \pcol@Logstart\pcol@makecol
+  \ifvoid\footins\else \pcol@Log\@makecol{put}\footins \fi
+  \@makecol
+  \pcol@Logend\pcol@makecol
+    \setbox\@cclv\box\@holdpg \@makecol
+    \@makecol
+      \pcol@@makecol\@maxdepth
+          \ifpcol@lastpage \pcol@@makecol\z@ \else \pcol@@makecol\@maxdepth \fi
+./paracol/paracol.sty
+
+
+
+./beilstein/beilstein.cls --- should be ok (independent overwrite)

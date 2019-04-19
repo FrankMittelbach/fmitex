@@ -1,0 +1,428 @@
+%%%%%%%%%%%%%%%%%%% etex can be assumed these days and fixltx2e is in the kernel
+
+
+% \begin{macro}{\TextOrMath}
+% This is a stripped down (e-\TeX{} only) version of what appears in
+% fixltx2e.  If the command's already defined, we assume it's that
+% version.
+%    \begin{macrocode}
+\@ifundefined{TextOrMath}{%
+  \@ifundefined{eTeXversion}{%
+    \PackageError{footmisc}{Can't define commands for footnote symbol}%
+                           {Use e-LaTeX, or load package fixltx2e before 
+                             footmisc}%
+  }{%
+    \protected\expandafter\def\csname TextOrMath\space\endcsname{%
+      \ifmmode \expandafter\@secondoftwo
+      \else    \expandafter\@firstoftwo   \fi
+    }
+    \edef\TextOrMath#1#2{%
+      \expandafter\noexpand\csname TextOrMath\space\endcsname
+	{#1}{#2}%
+    }%
+  }%
+}{}
+%    \end{macrocode}
+% \end{macro}
+
+
+%%%%%%%%%%%%%%%%%%% etex can be assumed these days
+
+% \begin{macro}{\ifFN@etex}
+% Check whether we're using etex
+%    \begin{macrocode}
+\newif\ifFN@etex
+\ifx\dimexpr\undefined
+  \FN@etexfalse
+\else
+  \FN@etextrue
+\fi
+%    \end{macrocode}
+% \end{macro}
+
+
+        \ifFN@etex
+          \ht\FN@tempboxa=\dimexpr\wd\FN@tempboxa *
+                          \footnotebaselineskip / \columnwidth\relax
+        \else
+          \ht\FN@tempboxa=\fudgefactor\wd\FN@tempboxa
+        \fi
+
+
+% \begin{macro}{\fudgefactor}
+% Now we derive a fudge factor from the baselineskip we've just
+% established (we use \cs{dimexpr} if we're in etex, so there's no need
+% for the fudge factor in that case).
+%    \begin{macrocode}
+  \ifFN@etex
+  \else
+    \@tempdima=\footnotebaselineskip \multiply\@tempdima by 1024
+    \divide \@tempdima by \columnwidth \multiply\@tempdima by 64
+    \xdef\fudgefactor{\strip@pt\@tempdima }%
+  \fi
+%    \end{macrocode}
+% \end{macro}
+        
+
+
+  %%%%%%%%%%%%%%%%%%% perpage done externally
+
+
+% \begin{macro}{\ifFN@pp@footnotehint}
+% A conditional needed by the perpage code: must be defined outside
+% the \textsl{perpage} conditional
+%    \begin{macrocode}
+\newif\ifFN@pp@footnotehint
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@pp@next@reset}
+% Counter used to store information about the next reset of the
+% footnote number, in perpage mode.
+%    \begin{macrocode}
+\newcounter{pp@next@reset}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ifFN@pp@towrite}
+% A conditional that mediates the interaction between the
+% \texttt{perpage} option and the \texttt{multiple} option.
+%    \begin{macrocode}
+%\newif\ifFN@pp@towrite
+%\FN@pp@towritefalse
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ifFN@pp@lastseq}
+% We prevent endless processions of diagnostics `footnote sequence
+% lost' by using this conditional (again, needs to be defined outside
+% the \textsl{perpage} conditional:
+%    \begin{macrocode}
+%<*PPdebug>
+\newif\ifFN@pp@lastseq
+\global\FN@pp@lastseqfalse
+%</PPdebug>
+%    \end{macrocode}
+% \end{macro}
+  
+
+% Now, do we need to patch \cs{footnote} for per-page footnotes?
+%    \begin{macrocode}
+\ifFN@perpage
+  \CheckCommand*\footnote{\@ifnextchar [%]
+    \@xfootnote
+    {%
+      \stepcounter\@mpfn \protected@xdef\@thefnmark{\thempfn}%
+      \@footnotemark \@footnotetext
+    }%
+  }
+  \renewcommand*\footnote{\@ifnextchar [%]
+    \@xfootnote
+    {%
+      \stepcounter\@mpfn \protected@xdef\@thefnmark{\thempfn}%
+      \FN@pp@footnote\@footnotemark
+%    \end{macrocode}
+%
+% In case that we're \emph{not} running \texttt{multiple} option,
+% \cs{@footnotemark} \emph{won't} have written details to the |.aux|
+% file, so do it now:
+%    \begin{macrocode}
+      \ifFN@pp@towrite
+        \FN@pp@writetemp
+        \FN@pp@towritefalse
+      \fi
+      \@footnotetext
+    }%
+  }
+%    \end{macrocode}
+%
+% And the analagous change for \cs{footnotemark}
+%    \begin{macrocode}
+  \CheckCommand*\footnotemark{%
+    \@ifnextchar [%]
+    \@xfootnotemark
+    {%
+      \stepcounter{footnote}%
+      \protected@xdef\@thefnmark{\thefootnote}%
+      \@footnotemark
+    }%
+  }
+  \renewcommand*\footnotemark{%
+    \@ifnextchar [%]
+    \@xfootnotemark
+    {%
+      \stepcounter{footnote}%
+      \protected@xdef\@thefnmark{\thefootnote}%
+      \FN@pp@footnote\@footnotemark
+%    \end{macrocode}
+%
+% again, tidy up if we're not doing \texttt{multiple} option
+%    \begin{macrocode}
+      \ifFN@pp@towrite
+        \FN@pp@writetemp
+        \FN@pp@towritefalse
+      \fi
+    }%
+  }
+%    \end{macrocode}
+%
+% \begin{macro}{\FN@pp@initialstab}
+% Now the supporting commands\dots
+%
+% if we encounter no information in the |.aux| file, we make a first
+% stab resetting footnote on the page number counter
+%    \begin{macrocode}
+  \gdef\FN@pp@initial@stab{\@addtoreset{footnote}{page}}
+  \AtBeginDocument{\FN@pp@initial@stab}
+%    \end{macrocode}
+% \end{macro}
+%
+% We use a counter to keep pace with the footnotes: this counter is
+% used in the data that's written to the |.aux| file, and matched to
+% create the correct footnote numbers on the second and subsequent
+% passes.
+%    \begin{macrocode}
+  \newcounter{@fnserial}
+%    \end{macrocode}
+%
+% \begin{macro}{\FN@pp@cpage}
+% The package requires a ``knowledge'' of the current page number.
+% It's kept in \cs{FN@pp@cpage}
+%    \begin{macrocode}
+  \def\FN@pp@cpage{0}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\footnotehint}
+% However, the progress of page numbers isn't predictable, so we have
+% a flag saying `reset footnote number'.  The flag is for indirect use
+% by people who diddle with the page number, via the \cs{footnotehint}
+% command, as well as various places where we \emph{know} there could
+% be a discontinuity.
+%    \begin{macrocode}
+  \FN@pp@footnotehinttrue
+  \newcommand{\footnotehint}{%
+    \setcounter{footnote}{0}%
+    \protected@writeaux\relax{\protect\FN@pp@footnotehinttrue}%
+    \@tempcnta\c@@fnserial
+    \advance\@tempcnta\@ne
+    \global\c@pp@next@reset\@tempcnta
+  }
+  \AtBeginDocument{\protected@writeaux\relax{%
+      \protect\providecommand{\protect\FN@pp@footnotehinttrue}{}%
+    }%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\FN@pp@lastfoot}
+% Dummy value for the number of the last footnote we came across.
+%    \begin{macrocode}
+\def\FN@pp@lastfoot{-1}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\FN@pp@footnote@aux}
+% The command \cs{FN@pp@footnote@aux} is written to the |.aux| file
+% for every footnote counter allocated (other than in minipages):\\
+% |#1| is the footnote serial number\\
+% |#2| is the page the footnote was actually written on
+%    \begin{macrocode}
+  \newcommand{\FN@pp@footnote@aux}[2]{%
+    \ifnum\FN@pp@lastfoot<#1
+      \ifFN@pp@footnotehint
+        \FN@pp@resetfn{#1}{#2}%
+        \FN@pp@footnotehintfalse
+      \else
+        \gdef\@tempa{#2}%
+        \ifx\@tempa\FN@pp@cpage
+        \else
+          \FN@pp@resetfn{#1}{#2}%
+        \fi
+      \fi
+      \def\FN@pp@lastfoot{#1}%
+%<*PPdebug>
+    \else
+      \ifFN@pp@debug
+        \typeout{not considering footnote serial number #1
+          (last valid was \FN@pp@lastfoot)}%
+      \fi
+%</PPdebug>
+    \fi
+%    \end{macrocode}
+%
+% Since we've now had at least one item of footnote information from
+% a |.aux| file, we can't allow footnote resetting per page.
+%    \begin{macrocode}
+    \global\let\FN@pp@initial@stab\relax
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\FN@pp@resetfn}
+% Set the flag to reset the footnote number; this constructs a chain
+% through the footnote serial numbers at the start of each page
+%    \begin{macrocode}
+  \newcommand{\FN@pp@resetfn}[2]{%
+    \gdef\FN@pp@cpage{#2}%
+    \expandafter\gdef
+      \csname FN@pp@next-\FN@pp@prev@foot\endcsname{#1}%
+    \def\FN@pp@prev@foot{#1}%
+    \expandafter\xdef
+      \csname FN@pp@next-\FN@pp@prev@foot\endcsname{\the\@MM}%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\FN@pp@prev@foot}
+% The base of the footnote serial number chain (this element is never
+% looked at: footnote serial 1 must always have number 1)
+%    \begin{macrocode}
+  \newcommand{\FN@pp@prev@foot}{root}
+%    \end{macrocode}
+% \end{macro}
+%
+% again, avoid confusion; also establish \cs{FN@pp@footnote@aux} in the
+% |.aux| file
+%    \begin{macrocode}
+  \AtBeginDocument{\protected@writeaux\relax{%
+      \protect\providecommand{\protect\FN@pp@footnote@aux}[2]{}}%
+    \c@pp@next@reset\@ne
+  }
+%    \end{macrocode}
+%
+% At end document, establish a new \cs{FN@pp@footnote@aux} which 
+% checks whether numbers have changed during the scan of the |.aux|
+% files for changed labels and the like
+%    \begin{macrocode}
+  \AtEndDocument{\let\FN@pp@footnote@aux\FN@pp@footnote@endaux
+    \def\FN@pp@lastfoot{-1}%
+    \FN@pp@footnotehintfalse
+    \renewcommand{\FN@pp@prev@foot}{root}
+  }
+%    \end{macrocode}
+%
+% \begin{macro}{\FN@pp@footnote@endaux}
+% The footnote analysis command for end document
+%    \begin{macrocode}
+  \newcommand{\FN@pp@footnote@endaux}[2]{%
+    \ifnum\FN@pp@lastfoot<#1
+      \ifFN@pp@footnotehint
+        \FN@pp@resetfn@end{#1}{#2}%
+        \FN@pp@footnotehintfalse
+      \else
+        \gdef\@tempa{#2}%
+        \ifx\@tempa\FN@pp@cpage
+        \else
+          \FN@pp@resetfn@end{#1}{#2}%
+        \fi
+      \fi
+      \def\FN@pp@lastfoot{#1}%
+%<*PPdebug>
+    \else
+      \ifFN@pp@debug
+        \typeout{not considering footnote serial number #1
+          (last valid was \FN@pp@lastfoot)}%
+      \fi
+%</PPdebug>
+    \fi
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\FN@pp@resetfn@end}
+% Deal with the \verb'.aux' file footnote details, at end document
+%    \begin{macrocode}
+  \newcommand{\FN@pp@resetfn@end}[2]{%
+    \def\@tempa{#1}%
+    \expandafter\ifx\csname FN@pp@next-\FN@pp@prev@foot\endcsname\@tempa%
+    \else
+      \@tempswatrue
+%<*PPdebug>
+      \ifFN@pp@debug
+        \expandafter\ifx\csname FN@pp@next-\FN@pp@prev@foot\endcsname\relax
+          \ifFN@pp@lastseq\else
+            \typeout{footnote sequence lost between pages
+              \FN@pp@cpage\space and #2}%
+            \global\FN@pp@lastseqtrue
+          \fi
+        \else
+          \typeout{footnotes changed between pages \FN@pp@cpage\space and #2:
+            next was \csname FN@pp@next-\FN@pp@prev@foot\endcsname, now #1}%
+          \global\FN@pp@lastseqfalse
+        \fi
+      \fi
+%</PPdebug>
+    \fi
+    \gdef\FN@pp@prev@foot{#1}%
+    \gdef\FN@pp@cpage{#2}%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\clearpage}
+% \begin{macro}{\FN@pp@@clearpage}
+% Now, how do we cope with \cs{include}d documents?  We can't insert
+% anything (the |includex| package offers \cs{AtBeginIncludedDocument}
+% but there's no corresponding command for files included by the
+% kernel \cs{include}.  So we insert a footnote hint at every
+% \cs{clearpage}
+%    \begin{macrocode}
+\let\FN@pp@@clearpage\clearpage
+\renewcommand{\clearpage}{\footnotehint\FN@pp@@clearpage}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\FN@pp@footnote}
+% The business end of the option: a macro to decide on footnote
+% numbers, called from \cs{footnote} and \cs{footnotemark} (see
+% above).
+%    \begin{macrocode}
+\def\FN@pp@footnote{%
+  \if@minipage\else
+    \global\advance\c@@fnserial\@ne
+    \if@filesw
+%    \end{macrocode}
+%
+% In case we're also doing \texttt{multiple} option, we now save up
+% the command to write to the |.aux| file, and mark we've done so
+%    \begin{macrocode}
+      \xdef\FN@pp@writetemp{%
+        \noexpand\protected@writeaux\relax{%
+          \string\FN@pp@footnote@aux
+            {\the\c@@fnserial}{\noexpand\thepage}%
+        }%
+      }%
+      \FN@pp@towritetrue
+    \fi
+    \ifnum\c@pp@next@reset>\c@@fnserial
+    \else
+      \global\expandafter\csname c@\@mpfn\endcsname\@ne
+      \protected@xdef\@thefnmark{\thempfn}%
+%    \end{macrocode}
+%
+% Now look at the next element in the chain:
+%    \begin{macrocode}
+      \expandafter\let\expandafter\@tempa
+        \csname FN@pp@next-\number\c@pp@next@reset\endcsname
+%    \end{macrocode}
+%
+% If the chain is broken here, set the next reset point to something
+% (one hopes) infeasibly large\dots{} a weak point?
+%    \begin{macrocode}
+      \ifx\@tempa\relax
+        \global\c@pp@next@reset\@MM
+      \else
+        \global\c@pp@next@reset\@tempa
+      \fi
+    \fi
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% End of code loaded when \texttt{perpage} option is given
+%    \begin{macrocode}
+\fi
+%    \end{macrocode}

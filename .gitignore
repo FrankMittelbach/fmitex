@@ -12,3 +12,5 @@ parskip/build
 TEMPLATE
 footmisc/build
 ftnright/build
+00-change-name.sh
+footmisc/tmp
