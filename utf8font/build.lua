@@ -13,8 +13,8 @@ typesetexe    = "lualatex"
 
 stdengine     = "luatex"
 
-checkengines  = { "luatex", "xetex" }
-checkruns     = 1
+checkengines  = { "luatex" }   -- for now
+checkruns     = 2
 
 if not release_date then
    dofile(kpse.lookup("l3build.lua"))

@@ -1,0 +1,180 @@
+\documentclass{ltugboat}
+
+
+\usepackage{amssymb}
+
+\newcommand\LPack[1]{\texttt{#1}}
+\newcommand\Prog[1]{\texttt{#1}}
+\newcommand\pdfTeX{pdf\TeX}
+
+\newcommand\tofu{$\square$}
+
+
+\author{Frank Mittelbach}
+\title{Preventing Tofu with \pdfTeX{} and Unicode engines}
+\address{Mainz, Germany}
+\netaddress{https://www.latex-project.org}
+\personalURL{https://ctan.org/pkg/utf8font}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+\tableofcontents
+
+\section{Tofu through the years}
+
+Tofu is not just an essential ingredient for many Asian dishes, it is
+also the nick name for little squeres that are produced by many
+bowsers when they got asked to render a character for which they glyph
+available.
+
+Especially in the early days of of the World Wide Web,
+websites in foreign langages (from the perspective of your computer)
+got often littered with such squares making text comprehension quite
+difficult if not impossible in some cases. So instead of getting
+\begin{quote}
+  ?`But aren't Kafka's Schlo{\ss} \&
+  {\AE}sop's {\OE}uvres often na{\"\i}ve vis-\`{a}-vis the d{\ae}monic
+  \textit{ph{\oe}nix's official r\^{o}le} in fluffy souffl\'{e}s?
+\end{quote}
+you might see something like
+\begin{quote}
+  \tofu But aren't Kafka's Schlo{\tofu} \tofu{} {\tofu}sop's
+  \tofu{}uvres often na{\tofu}ve vis-\tofu{}-vis the d{\tofu}monic
+  \textit{ph{\tofu}nix's official r\tofu{}le} in fluffy
+  souffl\tofu{}s?
+\end{quote}
+Over the years the situation with browsers improved, but even nowadays
+you may find tofu-littered sites or perhaps worse those that think they
+can show you the glyphs but render the wrong ones.
+
+While with browswers you may accept a certain imperfection in the
+rendering, tofu in printed material is quite inacceptable and
+typesetting systems should always use the correct glyphs or at least
+tell you very explicitly if for some reason they are unable to do so,
+so that you can apply some corrective actions. In the remainder of
+this article we will discuss how \TeX{} and in particular \LaTeX{} is
+doing in this respect and what a user can or has to do to avoid some
+capital blunder.
+
+\subsection{The first \TeX{} years}
+
+In the early days of \TeX{} the use of fonts was easy as you could use
+any font you wanted as long as it was called Computer Modern.
+
+In other words there was essentially only one set of fonts available
+and the glyphs it contained and how to address them was described in
+the \TeX{}book~\cite{}. Furthermore, all fonts only contained 128
+glyphs, i.e., essentially the base Latin characters, a few accents to
+construct diacritical characters using the \cs{accent} primitive and a
+few other symbols such as \textdagger, \$ and so forth to be accessed
+through command names.
+
+Thus, once you learned the construction methods and memorized the
+control sequences for accessing the existing symbols you could be sure
+that the characters you used would faithfully appear in the printed
+result. Of course, part of the reason was that the glyph set was
+fairly limited and already for any Latin-based language other than
+English posed series issues, be it that necessary glyphs where missing
+or only available as constructed characters (whenever accents where
+involved) which prevented \TeX{} from applying hyphenation.
+
+So when \TeX{} got more and more polular outside the English-speaking
+world there was considerable preasure on Don Knuth (largely by
+European user groups) to extend \TeX{} so that it could better handle
+languages with larger character sets. At the 1989 \TeX{} conference in
+Stanford we finally managed to convince Don to reopen (in a limited
+way) \TeX{} development and produce \TeX~3. This version of \TeX{} was
+then able to deal with more than one language within a document (use
+multiple hyphenation patterns) support 8-bit input output (that is 256
+characters in a font).
+
+While this enabled use of different input codepages as common in in
+those days in computers depending on the country and solved the
+problem of hyphenating words containing accented characters (by using
+fonts with precomposed glyphs) it also posed new challenges.
+
+Depending on the codepage used in the computer when writing a document
+the same keyboard character might be associated with a different
+number (between 0 and 255) and that number had to be mapped to the
+right slot in a font to produce the glyph that was originally
+intended. So the days of input number equals font glyph position was
+definitely over and the \TeX{} world had to come up with a more
+elaborate scheme to translate one into the other to avoid missing or
+wrong characters in the output.
+
+\subsection{The \LaTeXe{} solution}
+
+For \LaTeX{} the solution came in form of the New Font Selection
+Scheme (NFSS)~\cite{} and in particular withith the packages
+\LPack{inputenc} (for managing input in different codepages and
+mapping it to a standard internal representation) and \LPack{fontenc}
+(for translating this internal representation to the correct glyph
+positions in different fonts).
+
+\subsubsection{Introducing font encodings}
+
+\LaTeX{} classified the font encodings and gave them names such as
+\texttt{OT1}, \texttt{T1}, \texttt{T2A}, \texttt{T2B}, etc. Each such
+font encoding defined which glyphs are in a font using that encoding
+and where each glyph is stored in the font. Thus, if you had two
+different fonts with the same encoding you could exchange one for the
+other and still be one hundred percent sure\footnote{Well, more 99\%
+  because sometimes fonts claimed to be in one encoding but didn't
+  faithfully follow its specification, e.g., didn't provide all
+  glyphs or sometimes even placed wrong glyphs into some slots.}
+that your document would still typeset correctly without any missing
+or incorrect glyphs in the output.
+
+In practice only a small number of font encodings ever got used and
+new fonts usually were made available in these ``popular'' encodings
+by providing the necesary font reencodings through the virtual font
+mechanism or through reencodings done by device drivers such as
+\Prog{dvips} or directly in the engine (in case of \Prog{pdftex}).
+
+As overall result, life for \LaTeX{} users got again fairly easy after
+1994 and remained this way well into this century as just by
+specifying which font encoding to use documents normally would typeset
+without any defects regardless of the font family that got used. And
+due to the fact that users writing in Latin-based languages
+essentially every font available was evailable in \texttt{T1} encoding
+it was also clear which glyphs were available and those were than
+available universally.
+
+\subsubsection{Pitfalls with missing input encodings}
+
+Of course, there was also the need to specify the input encoding---at
+least if one wanted to input accented characters directly from the
+keyboard instead of using constructs like \verb=\"a=. One problem in
+this respect was that, depending on the language you were writing in,
+it sometimes worked even without specifying the input encoding. This
+was possible as the \texttt{T1} font encoding was nearly identical to
+the quite common \texttt{latin1} input encoding.\footnote{For example,
+  with French texts it worked throughout. However, with German only
+  the ``umlauts'' worked, but the sharp s ``ß'' generated a different
+  character.}  Years later, ommitting the input encoding declaration
+even when it worked initially finally backfired: once \LaTeX{} moved
+on to make UTF-8 the default encoding, documents stored in legacy
+encodings failed if they didn't contain an input
+declaration.\footnote{The remedy for such old documents is then to
+  either add the missing declaration or reencode the old source and
+  store them in UTF-8.}
+
+
+\section{Unicode}
+
+One of the goals of Unicode was to uniquely identify each and every
+glyph and thereby avoiding some of the possible translation problems
+that occured because a text was written under the assumption of one
+(8-bit) encoding but interpreted later on under a different encoding.
+
+\vfill
+
+\makesignature
+
+\end{document}

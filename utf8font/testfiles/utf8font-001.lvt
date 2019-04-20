@@ -1,0 +1,16 @@
+\documentclass{article}
+
+\input{regression-test}
+
+\usepackage{utf8font}
+
+\begin{document}
+
+\START
+
+\showoutput
+
+\displaytable{lmsans10-regular.otf}  % use font not family name for xetex
+
+
+\end{document}

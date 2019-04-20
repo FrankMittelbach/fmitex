@@ -16,9 +16,14 @@
 %
 % for those people who are interested or want to report an issue.
 %
+
+\def\utfviiifontdate   {2019/04/19}
+\def\utfviiifontversion{v0.9a}
+
+
 %<*driver>
 \documentclass{l3doc}
-\usepackage{utf8font}
+%\usepackage{utf8font}
 \EnableCrossrefs
 \CodelineIndex
 \begin{document}
@@ -55,75 +60,177 @@
 %    \begin{macrocode}
 
 
-\RequirePackage{xparse,color,longtable,caption}
+\RequirePackage{color}
 
 \RequirePackage{trace}
+%    \end{macrocode}
+%
 
-\ExplSyntaxOn
+%    \begin{macrocode}
+%<@@=fmutf>
+%    \end{macrocode}
+%
+% We need the package \pkg{xparse} for specifying the document-level
+%    interface commands and \pkg{l3keys2e} to use the \pkg{expl3} key
+%    value  methods within \LaTeXe{}. These packages automatically
+%    require \pkg{expl3} so there is no need to load that explicitly.
+%    \begin{macrocode}
+\RequirePackage{xparse,l3keys2e}
+%    \end{macrocode}
+%
+% Here we introduce the package and specify its version number:
+%    \begin{macrocode}
+\ProvidesExplPackage{utf8font}
+                    {\utfviiifontdate}
+                    {\utfviiifontversion}
+                    {Producing font tables for Unicode engines}
+%    \end{macrocode}
+%
+%  \newcommand\hex[1]{$\langle\textit{hex}_{#1}\rangle$}
+%
+%
+%  Unicode is organized in named blocks such as ``Basic Latin'',
+%  ``Latin-1~Supplement'', etc.\ typically consisting of 265
+%  characters each.\footnote{Some blocks are smaller and those containing
+%  the Asian idiographs are much larger.}
+%
+%  A common way to represent the number of a single Unicode character is
+%  \texttt{U+} followed by four hexdecimals. For example
+%  \texttt{U+0041} represents the letter ``A'' and \texttt{U+20AC} the
+%  Euro currency symbol ``\texteuro''.
+%
+%  A named Unicode block
 
-\clist_const:Nn\c_hex_digits_clist{0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F}
 
-\int_new:N \g_glyph_int
 
-\tl_new:N \g_line_tl
-\tl_new:N \g_title_tl
-\tl_new:N \g_plane_tl
+% \subsubsection{User interface commands}
+%
 
-\bool_new:N \g_char_seen_bool
-\bool_new:N \g_line_missing_bool
+%  \begin{macro}{\displaytable}
+%    
+%    \begin{macrocode}
+\NewDocumentCommand\displaytable {m o}{%
+  \fontspec{#1}[#2]
+  \begin{longtable}{@{}c@{\quad}*{16}{c}@{}}
+    \IfValueTF{#2}
+            { \caption{#1 (features:~ \texttt{\small#2})}}
+            { \caption{#1}}
+    \\*[6pt]
+    \bool_if:NF \l_@@_blockwise_hex_digits_bool \_@@_display_hex_digits:
+  \endfirsthead
+    \caption[]{#1 \emph{cont.}}
+    \\*[6pt]
+    \bool_if:NF \l_@@_blockwise_hex_digits_bool \_@@_display_hex_digits:
+  \endhead
+  \endfoot
+  \endlastfoot
+  \_@@_produce_table_rows:
+  \\*[-16pt]
+  \multicolumn{17}{l}{\normalfont Total~ number~ of~ gyphs~ in~ #1:~ \glyphcount}
+  \end{longtable}}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%  \begin{macro}{}
+%    
+%    \begin{macrocode}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%  \begin{macro}{\utfviifontsetup}
+%    Change options anywhere.
+%    \begin{macrocode}
+\NewDocumentCommand \utfviifontsetup { m }
+  { \keys_set:nn {fmutf} {#1} \ignorespaces }
+%    \end{macrocode}
+%  \end{macro}
+%
 
-\bool_gset_true:N \g_line_missing_bool
+%
+%
+% \subsubsection{Option handling}
+%
+% Here we define all the possible option keys for use either as package
+% options or inside
+% \cs{utf8font}. These are all straightforward assignments
+% to variables. These internal variables are declared by the key
+% declarations if unknown, so they are not separately declared beforehand.
+%    \begin{macrocode}
+\keys_define:nn {fmutf}
+     {
+       % ====================================
+       % ====================================
+     }
+%    \end{macrocode}
+%
+%
+%    \begin{macrocode}
+
+\clist_const:Nn\c_@@_hex_digits_clist{0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F}
+
+\int_new:N \g_@@_glyph_int
+
+\tl_new:N \g_@@_row_tl
+\tl_new:N \g_@@_block_tl
+
+\tl_new:N \g_@@_hex_A_tl
+\tl_new:N \g_@@_hex_B_tl
+\tl_new:N \g_@@_hex_C_tl
+
+
+\bool_new:N \g_@@_char_seen_bool
+\bool_new:N \g_@@_row_missing_bool
+
+\bool_new:N \l_@@_blockwise_hex_digits_bool
+
+
+\bool_gset_true:N \g_@@_row_missing_bool
 
 \DeclareDocumentCommand \glyphcount {}
-  { \int_use:N \g_glyph_int }
+  { \int_use:N \g_@@_glyph_int }
 
-\DeclareDocumentCommand \producetablecells {}
-  { \int_gzero:N \g_glyph_int 
-    \clist_map_function:NN \c_hex_digits_clist \usymbolA }
+\DeclareDocumentCommand \_@@_produce_table_rows: {}
+  { \int_gzero:N \g_@@_glyph_int 
+    \clist_map_function:NN \c_@@_hex_digits_clist \_@@_handle_hex_A:n }
 
 
-\cs_new:Npn \usymbolA #1 {
-   \tl_gset:Nn\A{#1}
-   \clist_map_function:NN \c_hex_digits_clist\usymbolB
+\cs_new:Npn \_@@_handle_hex_A:n #1 {
+   \tl_gset:Nn\g_@@_hex_A_tl{#1}
+   \clist_map_function:NN \c_@@_hex_digits_clist\_@@_handle_hex_B:n
 }
-\cs_new:Npn \usymbolB #1 {
-   \tl_gset:Nn\B{#1}
-   \clist_map_function:NN \c_hex_digits_clist \usymbolC
+\cs_new:Npn \_@@_handle_hex_B:n #1 {
+   \tl_gset:Nn\g_@@_hex_B_tl{#1}
+   \clist_map_function:NN \c_@@_hex_digits_clist \_@@_handle_hex_C:n
 }
-\cs_new:Npn \usymbolC #1 {
-  \bool_if:NTF \g_char_seen_bool
-       {
-  \tl_if_empty:NF \g_plane_tl
-     { \\[-6pt]
-       \multicolumn{17}{c}{\normalfont\bfseries \tl_use:N \g_plane_tl}
-       \tl_gclear:N \g_plane_tl
-       \\*
-    & \hf{0} & \hf{1} & \hf{2} & \hf{3} & \hf{4} & \hf{5} &
-    \hf{6} & \hf{7} & \hf{8} & \hf{9} & \hf{A} & \hf{B} &
-    \hf{C} & \hf{D} & \hf{E} & \hf{F}
-       \\*
-     }  
-         \bool_gset_false:N \g_char_seen_bool     
-         \bool_gset_false:N \g_line_missing_bool
-         \texttt{
-           \footnotesize
-           \tl_use:N \g_title_tl
-         }
-         \tl_use:N \g_line_tl
-         \\
-       }
-       {
-         \bool_if:NF \g_line_missing_bool
-              {
-                \bool_gset_true:N \g_line_missing_bool
-                \\
-              }
-       }
+\cs_new:Npn \_@@_handle_hex_C:n #1 {
+  \bool_if:NTF \g_@@_char_seen_bool
+    {
+      \tl_if_empty:NF \g_@@_block_tl
+	{ \\[-6pt]
+	  \multicolumn{17}{c}{\normalfont\bfseries \tl_use:N \g_@@_block_tl}
+	  \tl_gclear:N \g_@@_block_tl
+          \bool_if:NTF \l_@@_blockwise_hex_digits_bool
+	    { \\* \_@@_display_hex_digits: }
+            { \\*[4pt] }
+	}  
+      \bool_gset_false:N \g_@@_char_seen_bool     
+      \bool_gset_false:N \g_@@_row_missing_bool
+      \tl_use:N \g_@@_row_tl
+      \\
+    }
+    {
+      \bool_if:NF \g_@@_row_missing_bool
+	   {
+	     \bool_gset_true:N \g_@@_row_missing_bool
+	     \\
+	   }
+    }
 %
-  \tl_gset:Nn\C{#1}
-%  \traceon   
-  \tl_gset:Nx \g_plane_tl {
-    \int_case:nnF{ "\A\B\C }
+  \tl_gset:Nn\g_@@_hex_C_tl{#1}
+  \tl_gset:Nx \g_@@_block_tl {
+    \int_case:nnF{ "\g_@@_hex_A_tl \g_@@_hex_B_tl \g_@@_hex_C_tl }
        {
          { 0 }  { Basic~ Latin }
          { 8 }  { Latin-1~ Supplement }
@@ -239,80 +346,90 @@
          { "FE1 }{ Vertical~ Forms }
 %...         
          { "F8F }{ Others~ \ldots }
-       }{ \tl_use:N \g_plane_tl }
+       }
+%    \end{macrocode}
+%    If none of the above has matched we are somewhere within a block
+%    so we keep the current name. However, since the case sstatement was
+%    executed within a |\tl_gset:Nx| we pass the current block name
+%    back as the result.
+%    \begin{macrocode}
+       { \tl_use:N \g_@@_block_tl }
   }
-  \tl_gset:Nn\g_title_tl{\color{red}}
-  \tl_gput_right:Nx \g_title_tl
+  \tl_gset:Nx \g_@@_row_tl
      {
-       U+\A\B\C0 \, - \, \A\B\C F
+       \exp_not:N \_@@_row_title_format:n
+         { \g_@@_hex_A_tl \g_@@_hex_B_tl \g_@@_hex_C_tl  }
      }
-  \tl_gclear:N\g_line_tl
-  \clist_map_function:NN \c_hex_digits_clist \usymbolD
+  \clist_map_function:NN \c_@@_hex_digits_clist \_@@_handle_hex_D:n
 }
-\cs_new:Npn \usymbolD #1 {
-   \tl_gset:Nn\D{#1}
-   \tex_iffontchar:D \tex_font:D "\A\B\C\D \scan_stop:
-     \tl_gput_right:Nx \g_line_tl
-        {
-          &
-          \hbox_to_wd:nn{5.4pt}
-               {
-                 \hss
-                 \symbol{"\A\B\C\D}
-                 \hss
-               }
-        }
-     \bool_gset_true:N \g_char_seen_bool
-     \int_gincr:N\g_glyph_int
-   \else:
-     \tl_gput_right:Nn \g_line_tl
-        {
-          &
-          \hbox_to_wd:nn{5.4pt}{\hss
-                                \hf{-}%
-                                \hss}
-        }
-   \fi:
-%  \show\g_line_tl
+\cs_new:Npn \_@@_handle_hex_D:n #1 {
+   \_@@_if_uchar_exists:nTF
+     { \g_@@_hex_A_tl \g_@@_hex_B_tl \g_@@_hex_C_tl #1 }
+     {
+       \tl_gput_right:Nx \g_@@_row_tl
+	  { & \exp_not:N \_@@_glyph_format:n 
+		  { \g_@@_hex_A_tl \g_@@_hex_B_tl \g_@@_hex_C_tl #1 } }
+       \bool_gset_true:N \g_@@_char_seen_bool
+       \int_gincr:N\g_@@_glyph_int
+     }
+     { \tl_gput_right:Nn \g_@@_row_tl { & \_@@_noglyph_format: } }
 }
+
+
+\prg_set_conditional:Npnn \_@@_if_uchar_exists:n #1 { TF }
+  {
+    \tex_iffontchar:D \tex_font:D "#1 \scan_stop:
+      \prg_return_true:
+    \else:
+      \prg_return_false:
+    \fi:
+  }
+
+
+\cs_new:Npn \_@@_display_hex_digits: {
+    & \hf{0} & \hf{1} & \hf{2} & \hf{3} & \hf{4} & \hf{5} &
+      \hf{6} & \hf{7} & \hf{8} & \hf{9} & \hf{A} & \hf{B} &
+      \hf{C} & \hf{D} & \hf{E} & \hf{F}
+    \\*
+}
+
+\cs_new:Npn \_@@_row_title_format:n #1 {
+  \texttt { \footnotesize \color{red} U+#1 0 \, - \, #1 F }
+}
+
+\cs_new:Npn \_@@_glyph_format:n #1 {
+  \hbox_to_wd:nn {6pt} { \tex_hss:D \symbol{ " #1} \tex_hss:D }
+}
+\cs_new:Npn \_@@_noglyph_format: {
+  \hbox_to_wd:nn {6pt} { \tex_hss:D \hf{-} \tex_hss:D }
+}
+
 
 \ExplSyntaxOff
 
 
 \newcommand\hf[1]{\texttt{\scriptsize\color{red} #1}}
 
-%\traceon
 
-\NewDocumentCommand\displaytable {m o}{%
-  \fontspec{#1}[#2]
-  \begin{longtable}{@{}c@{\quad}*{16}{c}@{}}
-    \IfValueTF{#2}
-            { \caption{#1 (features: \texttt{\small#2})}}
-            { \caption{#1}}
-  \\[6pt]
-  \endfirsthead
-    \caption[]{#1 \emph{cont.}}
-  \\[6pt]
-  \endhead
-  \endfoot
-  \endlastfoot
-  \producetablecells
-  \\*[-16pt]
-  \multicolumn{10}{l}{\normalfont Total number of gyphs in #1: \glyphcount}
-  \end{longtable}}
- 
+
+\RequirePackage{longtable,caption,fontspec}
+
+
 
 
 %    \end{macrocode}
 %
 %
+%  So what remains to be done is executing all options passed to the
+%    package via \cs{usepackage}.
 %    \begin{macrocode}
+\ProcessKeysPackageOptions{fmutf}
 %</package>
 %    \end{macrocode}
 %
-
-
-
+%
+%
+%
 %
 % \subsection{The samples file}
 %
@@ -370,8 +487,6 @@
 %    \begin{macrocode}
 %</standalone>
 %    \end{macrocode}
-
-
 %
 % \Finale
 %

@@ -15,3 +15,7 @@ parskip/build
 widows-and-orphans/build/
 00-change-name.sh
 utf8font/build
+*.toc
+*.glo
+*.hd
+*.idx
