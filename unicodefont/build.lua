@@ -5,7 +5,7 @@
      see l3build.pdf
 --]]
 
-module = "utf8font"
+module = "unicodefont"
 
 typesetfiles  = {"*.tex"}
 

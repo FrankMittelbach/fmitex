@@ -11,6 +11,16 @@ Package fontspec Info: Font family 'lmsans10-regular.otf(0)' created for font
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <->"[lmsans10-regular.otf]:mode=node;script=latn;language=DFLT;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+Processing Basic Latin
+Processing Latin-1 Supplement
+Processing Latin Extended-A
+Processing Latin Extended-B
+Processing IPA Extension
+Processing Spacing Modifier Letters
+Processing Combining Diacritical Marks
+Processing Greek and Coptic
+Processing Thai
+Processing Latin Extended Additional
 Completed box being shipped out [1]
 \vbox(633.0+0.0)x407.0, direction TLT
 .\glue 16.0
@@ -6525,6 +6535,12 @@ ine \ETC.}
 ....\TU/lmr/m/n/10 1
 ....\glue 0.0 plus 1.0fil
 ...\pdfcolorstack 0 pop
+Processing General Punctuation
+Processing Currency Symbols
+Processing Letterlike Symbols
+Processing Arrows
+Processing Mathematical Operators
+Processing Miscellaneous Technical
 Completed box being shipped out [2]
 \vbox(633.0+0.0)x407.0, direction TLT
 .\glue 16.0
@@ -6561,7 +6577,7 @@ Completed box being shipped out [2]
 .........\hbox(0.0+0.0)x0.0, direction TLT
 .........\glue 0.0
 .........\vbox(8.39996+3.60004)x345.0, direction TLT
-..........\hbox(8.39996+3.60004)x345.0, glue set 97.92fil, direction TLT
+..........\hbox(8.39996+3.60004)x345.0, glue set 96.25499fil, direction TLT
 ...........\glue(\leftskip) 0.0 plus 1.0fil
 ...........\localpar
 ............\localinterlinepenalty=0
@@ -6609,6 +6625,7 @@ Completed box being shipped out [2]
 ...........\TU/lmr/m/n/10 o
 ...........\TU/lmr/m/n/10 t
 ...........\TU/lmr/m/n/10 f
+...........\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ...........\TU/lmr/m/it/10 c
 ...........\kern-0.51 (font)
 ...........\TU/lmr/m/it/10 o
@@ -12126,6 +12143,11 @@ Completed box being shipped out [2]
 ....\TU/lmr/m/n/10 2
 ....\glue 0.0 plus 1.0fil
 ...\pdfcolorstack 0 pop
+Processing Control Pictures
+Processing Geometric Shapes
+Processing Miscellaneous Shapes
+Processing Miscellaneous Mathematical Symbols-A
+Processing Private Use Area
 Completed box being shipped out [3]
 \vbox(633.0+0.22)x407.0, direction TLT
 .\glue 16.0
@@ -12162,7 +12184,7 @@ Completed box being shipped out [3]
 .........\hbox(0.0+0.0)x0.0, direction TLT
 .........\glue 0.0
 .........\vbox(8.39996+3.60004)x345.0, direction TLT
-..........\hbox(8.39996+3.60004)x345.0, glue set 97.92fil, direction TLT
+..........\hbox(8.39996+3.60004)x345.0, glue set 96.25499fil, direction TLT
 ...........\glue(\leftskip) 0.0 plus 1.0fil
 ...........\localpar
 ............\localinterlinepenalty=0
@@ -12210,6 +12232,7 @@ Completed box being shipped out [3]
 ...........\TU/lmr/m/n/10 o
 ...........\TU/lmr/m/n/10 t
 ...........\TU/lmr/m/n/10 f
+...........\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ...........\TU/lmr/m/it/10 c
 ...........\kern-0.51 (font)
 ...........\TU/lmr/m/it/10 o
@@ -16854,6 +16877,7 @@ Completed box being shipped out [3]
 ....\TU/lmr/m/n/10 3
 ....\glue 0.0 plus 1.0fil
 ...\pdfcolorstack 0 pop
+Processing Alphabetic Presentation Forms
 Completed box being shipped out [4]
 \vbox(633.0+0.0)x407.0, direction TLT
 .\glue 16.0
@@ -16890,7 +16914,7 @@ Completed box being shipped out [4]
 .........\hbox(0.0+0.0)x0.0, direction TLT
 .........\glue 0.0
 .........\vbox(8.39996+3.60004)x345.0, direction TLT
-..........\hbox(8.39996+3.60004)x345.0, glue set 97.92fil, direction TLT
+..........\hbox(8.39996+3.60004)x345.0, glue set 96.25499fil, direction TLT
 ...........\glue(\leftskip) 0.0 plus 1.0fil
 ...........\localpar
 ............\localinterlinepenalty=0
@@ -16938,6 +16962,7 @@ Completed box being shipped out [4]
 ...........\TU/lmr/m/n/10 o
 ...........\TU/lmr/m/n/10 t
 ...........\TU/lmr/m/n/10 f
+...........\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ...........\TU/lmr/m/it/10 c
 ...........\kern-0.51 (font)
 ...........\TU/lmr/m/it/10 o
@@ -22765,7 +22790,7 @@ Completed box being shipped out [5]
 ..........\hbox(0.0+0.0)x0.0, direction TLT
 ..........\glue 0.0
 ..........\vbox(8.39996+3.60004)x345.0, direction TLT
-...........\hbox(8.39996+3.60004)x345.0, glue set 97.92fil, direction TLT
+...........\hbox(8.39996+3.60004)x345.0, glue set 96.25499fil, direction TLT
 ............\glue(\leftskip) 0.0 plus 1.0fil
 ............\localpar
 .............\localinterlinepenalty=0
@@ -22813,6 +22838,7 @@ Completed box being shipped out [5]
 ............\TU/lmr/m/n/10 o
 ............\TU/lmr/m/n/10 t
 ............\TU/lmr/m/n/10 f
+............\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ............\TU/lmr/m/it/10 c
 ............\kern-0.51 (font)
 ............\TU/lmr/m/it/10 o
@@ -23467,4 +23493,4 @@ Completed box being shipped out [5]
 ....\TU/lmr/m/n/10 5
 ....\glue 0.0 plus 1.0fil
 ...\pdfcolorstack 0 pop
-(utf8font-001.aux)
+(unicodefont-001.aux)

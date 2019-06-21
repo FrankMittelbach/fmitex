@@ -12,6 +12,6 @@
 
 \START
 
-\usepackage{utf8font}
+\usepackage{unicodefont}
 
 \END

@@ -1,4 +1,4 @@
-# utf8font package
+# unicodefont package
 
 -----
 

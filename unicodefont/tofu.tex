@@ -14,7 +14,7 @@
 \title{Preventing Tofu with \pdfTeX{} and Unicode engines}
 \address{Mainz, Germany}
 \netaddress{https://www.latex-project.org}
-\personalURL{https://ctan.org/pkg/utf8font}
+\personalURL{https://ctan.org/pkg/unicodefont}
 
 \begin{document}
 
@@ -29,11 +29,11 @@
 \section{Tofu through the years}
 
 Tofu is not just an essential ingredient for many Asian dishes, it is
-also the nick name for little squeres that are produced by many
+also the nick name for little squares that are produced by many
 bowsers when they got asked to render a character for which they glyph
 available.
 
-Especially in the early days of of the World Wide Web,
+Especially in the early days of the World Wide Web,
 websites in foreign langages (from the perspective of your computer)
 got often littered with such squares making text comprehension quite
 difficult if not impossible in some cases. So instead of getting
@@ -89,40 +89,42 @@ world there was considerable preasure on Don Knuth (largely by
 European user groups) to extend \TeX{} so that it could better handle
 languages with larger character sets. At the 1989 \TeX{} conference in
 Stanford we finally managed to convince Don to reopen (in a limited
-way) \TeX{} development and produce \TeX~3. This version of \TeX{} was
-then able to deal with more than one language within a document (use
-multiple hyphenation patterns) support 8-bit input output (that is 256
-characters in a font).
+way) \TeX{} development and to produce \TeX~3. This version of \TeX{}
+was then able to deal with more than one language within a document
+(use multiple hyphenation patterns) and support 8-bit input and output
+(that is 256 characters in a font).
 
-While this enabled use of different input codepages as common in in
+While this enabled the use of different input code pages, as common in
 those days in computers depending on the country and solved the
 problem of hyphenating words containing accented characters (by using
-fonts with precomposed glyphs) it also posed new challenges.
+fonts with precomposed glyphs), it also posed new challenges.
 
-Depending on the codepage used in the computer when writing a document
-the same keyboard character might be associated with a different
-number (between 0 and 255) and that number had to be mapped to the
-right slot in a font to produce the glyph that was originally
+Depending on the code page used in the computer when writing a
+document the same keyboard character might got associated with a
+different number (between 0 and 255) and that number had to be mapped
+to the right slot in a font to produce the glyph that was originally
 intended. So the days of input number equals font glyph position was
 definitely over and the \TeX{} world had to come up with a more
 elaborate scheme to translate one into the other to avoid missing or
 wrong characters in the output.
 
+
 \subsection{The \LaTeXe{} solution}
 
 For \LaTeX{} the solution came in form of the New Font Selection
 Scheme (NFSS)~\cite{} and in particular withith the packages
-\LPack{inputenc} (for managing input in different codepages and
+\LPack{inputenc} (for managing input in different code pages and
 mapping it to a standard internal representation) and \LPack{fontenc}
 (for translating this internal representation to the correct glyph
 positions in different fonts).
+
 
 \subsubsection{Introducing font encodings}
 
 \LaTeX{} classified the font encodings and gave them names such as
 \texttt{OT1}, \texttt{T1}, \texttt{T2A}, \texttt{T2B}, etc. Each such
 font encoding defined which glyphs are in a font using that encoding
-and where each glyph is stored in the font. Thus, if you had two
+and where each glyph was stored in the font. Thus, if you had two
 different fonts with the same encoding you could exchange one for the
 other and still be one hundred percent sure\footnote{Well, more 99\%
   because sometimes fonts claimed to be in one encoding but didn't
