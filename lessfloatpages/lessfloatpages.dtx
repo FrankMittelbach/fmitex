@@ -1,0 +1,193 @@
+% \iffalse meta-comment
+%
+%% File: lessfloatpages.dtx (C) Copyright 2019 Frank Mittelbach
+%
+% It may be distributed and/or modified under the conditions of the
+% LaTeX Project Public License (LPPL), either version 1.3c of this
+% license or (at your option) any later version.  The latest version
+% of this license is in the file
+%
+%    https://www.latex-project.org/lppl.txt
+%
+%
+% The development version of the bundle can be found below
+%
+%    https://github.com/FrankMittelbach/fmitex/
+%
+% for those people who are interested or want to report an issue.
+%
+%<*driver>
+\documentclass{l3doc}
+\usepackage{lessfloatpages}
+\EnableCrossrefs
+\CodelineIndex
+\begin{document}
+  \DocInput{lessfloatpages.dtx}
+\end{document}
+%</driver>
+%
+% \fi
+%
+
+% \title{The \texttt{lessfloatpages} package\thanks{}}
+% \author{Frank Mittelbach}
+%
+% \maketitle
+%
+%
+% \begin{abstract}
+% \end{abstract}
+%
+% \section{Introduction}
+%
+%
+% \StopEventually{\setlength\IndexMin{200pt}  \PrintIndex  }
+%
+%
+% \section{The Implementation}
+%
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+%
+%
+%
+%  \begin{macro}{fl@trace}
+%    
+%    \begin{macrocode}
+%<*trace>
+\providecommand\fl@trace[1]{{\let\@elt\@empty\typeout{lessfloatpages: #1}}}
+%</trace>
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%
+
+%  \begin{macro}{\fp@unused@space}
+%    
+%    \begin{macrocode}
+\def\fp@unused@space{}
+%    \end{macrocode}
+%  \end{macro}
+
+%  \begin{macro}{\@ytryfc}
+%    
+%    \begin{macrocode}
+\def\@ytryfc #1{%
+  \begingroup
+    \gdef\@flsucceed{\@elt #1}%
+    \global\let\@flfail\@empty
+    \@tempdima\ht #1%
+    \let\@elt\@ztryfc
+    \@trylist
+    \ifdim \@tempdima >\@fpmin
+      \global\@fcolmadetrue
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+      \@tempdimb\@colht
+      \advance\@tempdimb-\@tempdima
+      \xdef\fp@unused@space{\the\@tempdimb}%
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+    \else
+      \@cons\@failedlist #1%
+    \fi
+  \endgroup
+  \if@fcolmade
+    \let\@elt\@gobble
+  \fi}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%  \begin{macro}{\@tryfcolumn}
+%    
+%    \begin{macrocode}
+\def \@tryfcolumn #1{%
+  \global \@fcolmadefalse
+  \ifx #1\@empty
+  \else
+%<*trace>
+    \fl@trace{PAGE: try float \if@twocolumn column/page\else page\fi
+                  ---\string #1}%
+    \fl@trace{----- \string #1: #1}%
+%</trace>
+    \xdef\@trylist{#1}%
+    \global \let \@failedlist \@empty
+    \begingroup
+      \let \@elt \@xtryfc \@trylist
+    \endgroup
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+    \if@fcolmade
+      \ifx\@flfail\@empty
+%<*trace>
+        \fl@trace{----- all floats placed on float page(s)}%
+%</trace>
+        \global \@fcolmadefalse
+        \let\@elt\check@for@only@p
+        \@flsucceed
+        \let\@elt\relax
+        \if@fcolmade
+        \else
+          \@tempdima\textfraction\@colht
+          \ifdim \fp@unused@space >\@tempdima
+%<*trace>
+            \fl@trace{----- last float page unraveled^^J%
+                      \@spaces\@spaces\@spaces\space\space\space
+                      (free space \fp@unused@space\space > \the\@tempdima)}%
+%</trace>
+            \xdef #1{\@failedlist\@flsucceed}%
+          \else
+            \global \@fcolmadetrue
+%<*trace>
+            \fl@trace{----- last float page kept, full enough^^J%
+                      \@spaces\@spaces\@spaces\space\space\space
+                      (free space \fp@unused@space\space < \the\@tempdima)}%
+%</trace>
+          \fi
+        \fi
+      \fi
+    \fi
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+    \if@fcolmade
+        \@vtryfc #1%
+    \fi
+  \fi
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%  \begin{macro}{\check@for@only@p}
+%    
+%    \begin{macrocode}
+\def\check@for@only@p#1{%
+  \@tempcnta\count#1%
+  \divide\@tempcnta 8\relax
+  \multiply\@tempcnta 8\relax
+%
+  \ifnum \count#1=\@tempcnta
+    \global \@fcolmadetrue
+  \fi
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+% \Finale
+%
+
+
