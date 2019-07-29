@@ -1,0 +1,23 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+[1
+]
+lessfloatpages: PAGE: trying to make a float page
+lessfloatpages: ----- \@deferlist: \bx@B \bx@C \bx@D \bx@E \bx@F \bx@G \bx@H 
+lessfloatpages: ----- all floats placed on float page(s)
+lessfloatpages: ----- current float page kept, contains many floats
+(at least 5 > 4)
+[2] [3]
+lessfloatpages: PAGE: trying to make a float page
+lessfloatpages: ----- \@deferlist: \bx@I \bx@J 
+lessfloatpages: ----- no float page made
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line ....
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line ....
+[4]
+lessfloatpages: PAGE: trying to make a float page
+lessfloatpages: ----- \@deferlist: \bx@I \bx@J \bx@K 
+lessfloatpages: ----- all floats placed on float page(s)
+lessfloatpages: ----- current float page kept, contains a [p] float
+[5] [6] (lessfloatpages-002.aux)

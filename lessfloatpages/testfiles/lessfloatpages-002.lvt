@@ -15,22 +15,31 @@
 
 Some text \ldots
 
-\fig{.6\textheight}{1}
+\fig{.6\textheight}{A}
 
 
-\fig{.35\textheight}{A}
-\tab{.1\textheight}{B}
-\tab{.65\textheight}{C}
+\fig{.35\textheight}{B}
+\fig{.05\textheight}{C}
+\fig{.05\textheight}{D}
+\fig{.05\textheight}{E}
+\fig{.05\textheight}{F}
+\fig{.05\textheight}{G}
+\fig{.05\textheight}{H}
 
 \lipsum[3-4]
 
-\fig{.3\textheight}{D}
-\fig{.1\textheight}{E}
-\tab{.3\textheight}{F}
-\tab{.3\textheight}{G}
-\tab{.3\textheight}{H}
+\fig[p]{.05\textheight}{I}
+\fig{.05\textheight}{J}
+
+\lipsum[1-5]
+
+\[ *** \]
+
+\fig{.5\textheight}{K}
 
 \lipsum
+
+
 
 
 \end{document}

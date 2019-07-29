@@ -4,10 +4,14 @@
 
 \usepackage{lipsum}
 
-\usepackage{lessfloatpages}
+% testing that fltrace afterwards doesn't kill the package
+
+\usepackage{lessfloatpages,fltrace}
 
 \newcommand\fig[3][tbp]{\begin{figure}[#1]\frame{\vbox to#2{\vfil #3 (fig)\vfil}}\end{figure}}
 \newcommand\tab[3][tbp]{\begin{table}[#1]\frame{\vbox to#2{\vfil #3 (tab)\vfil}}\end{table}}
+
+\tracefloats
 
 \begin{document}
 
