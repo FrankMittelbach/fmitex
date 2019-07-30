@@ -247,6 +247,8 @@
 %  [1]
 %  lessfloatpages: PAGE: trying to make a float page
 %  lessfloatpages: ----- \@deferlist: \bx@B \bx@D 
+%  lessfloatpages:  starting with \bx@B
+%  lessfloatpages:  --> success: \bx@B \bx@D 
 %  lessfloatpages: ----- all floats placed on float page(s)
 %  lessfloatpages: ----- current float page unraveled
 %                 (free space 192.50336pt > 109.99832pt)
@@ -254,7 +256,7 @@
 %\end{verbatim}
 %   which means that the algorithm is trying to make a float page from
 %   the defer-list which at that point contained two floats (the float
-%   boxes \cs{bx@B} and \cs{bx@C}), that it was ables to place all
+%   boxes \cs{bx@B} and \cs{bx@C}), that it was able to place all
 %   floats onto the float page and that the extended algorithm then
 %   decided to unravel that last float page, because it has a free
 %   space of \texttt{192.5pt} and with the current
@@ -264,6 +266,8 @@
 %\begin{verbatim}
 %  lessfloatpages: PAGE: trying to make a float page
 %  lessfloatpages: ----- \@deferlist: \bx@D \bx@F \bx@G \bx@H \bx@I 
+%  lessfloatpages:  starting with \bx@D
+%  lessfloatpages:  --> success: \bx@D \bx@F 
 %  lessfloatpages: ----- unplaceable floats: \bx@G \bx@H \bx@I 
 %  lessfloatpages: ----- too many unplaced floats for unraveling (> 2)
 %  [3]
@@ -288,6 +292,8 @@
 %\begin{verbatim}
 %  lessfloatpages: PAGE: trying to make a float page
 %  lessfloatpages: ----- \@deferlist: \bx@G \bx@H \bx@I 
+%  lessfloatpages:  starting with \bx@G
+%  lessfloatpages:  --> success: \bx@G \bx@H \bx@I 
 %  lessfloatpages: ----- all floats placed on float page(s)
 %  lessfloatpages: ----- current float page kept, full enough
 %                 (free space 38.99496pt < 109.99832pt)
@@ -306,6 +312,7 @@
 %  [1]
 %  lessfloatpages: PAGE: trying to make a float page
 %  lessfloatpages: ----- \@deferlist: \bx@B \bx@C \bx@D \bx@E \bx@F \bx@G \bx@H 
+%  lessfloatpages:  --> success: \bx@B \bx@C \bx@D \bx@E \bx@F \bx@G \bx@H 
 %  lessfloatpages: ----- all floats placed on float page(s)
 %  lessfloatpages: ----- current float page kept, contains many floats
 %                        (at least 5 > 4)
@@ -326,7 +333,11 @@
 %\begin{verbatim}
 %  lessfloatpages: PAGE: trying to make a float page
 %  lessfloatpages: ----- \@deferlist: \bx@I \bx@J 
-%  lessfloatpages: ----- no float page made
+%  lessfloatpages:  starting with \bx@I
+%  lessfloatpages:  --> fail
+%  lessfloatpages:  starting with \bx@J
+%  lessfloatpages:  --> fail
+%  lessfloatpages:  --> fail: no float page made
 %  [4]
 %\end{verbatim}
 %   So no float page was made, but for some reason (that becomes clear
@@ -339,6 +350,8 @@
 %\begin{verbatim}
 %  lessfloatpages: PAGE: trying to make a float page
 %  lessfloatpages: ----- \@deferlist: \bx@I \bx@J \bx@K 
+%  lessfloatpages:  starting with \bx@I
+%  lessfloatpages:  --> success: \bx@I \bx@J \bx@K 
 %  lessfloatpages: ----- all floats placed on float page(s)
 %  lessfloatpages: ----- current float page kept, contains a [p] float
 %  [5]
@@ -542,7 +555,7 @@
 %    Up to this point the definition is the same as in the original
 %    algorithm. At this point the  switch \cs{if@fcolmade}  tells us if making a
 %    float page was successful and the original algorithm then called
-%    \cs{@vtryfc} and remov the used floats from the defer-list.
+%    \cs{@vtryfc} and remove the used floats from the defer-list.
 %
 %    In the extended algorithm this is the place where things start to
 %    differ as we may not want that float page to actually come into
@@ -551,22 +564,25 @@
     \if@fcolmade
 %    \end{macrocode}
 %    So we want to make some checks to see if it should get
-%    unraveled. For this we count the floats that are still unplaced
+%    unraveled. For this we count the floats that are unplaced. In
+%    \cs{@failedlist} we have floats that didn't work as starting
+%    floats in earlier loops and in \cs{@flfail} we have those
+%    rejected in the current attempt.
 %    and record that number in \cs{count@}.
-%\mnote{needs to account for \cs{@failedlist} too! not done}
 %    \begin{macrocode}
       \count@\z@
-      \ifx\@flfail\@empty
+      \edef\@tempa{\@failedlist\@flfail}%
+      \ifx\@tempa\@empty
         \fl@trace{----- all floats placed on float page(s)}%
       \else
-        \fl@trace{----- unplaceable floats: \@flfail}%
+        \fl@trace{----- unplaceable floats: \@tempa}%
         \def\@elt##1{\advance\count@\@ne}%
-          \@flfail
+          \@tempa
         \let\@elt\relax
       \fi
 %    \end{macrocode}
-%    Now we compare the numebr of unplaced floats to the number of
-%    allowed unplaced floats and if it is too high we keep the float
+%    Now we compare the number of unplaced floats to the number of
+%    allowed unplaced floats and if it is too high, we keep the float
 %    page.
 %    \begin{macrocode}
       \ifnum \count@>\c@floatpageunplaced
@@ -575,7 +591,7 @@
 %    \end{macrocode}
 %
 %    Otherwise we do a bit more testing. First we set \cs{if@fcolmade}
-%    back to false assuming we don't want to keep the float page.If
+%    back to false, i.e., our goal is not to  keep the float page. If
 %    during the tests we decide otherwise we set it back to true which
 %    then signals that it should stay.
 %
@@ -638,7 +654,7 @@
 %    we are tracing the algorithm, we want to tell the user about this.
 %    \begin{macrocode}
     \else
-      \fl@trace{----- no float page made}%
+      \fl@trace{ --> fail: no float page made}%
     \fi
 %    \end{macrocode}
 %    
@@ -663,7 +679,6 @@
 %    pages. Again we make this change at \verb=\begin{document}= so
 %    that we replace any change done by \pkg{fltrace}.
 %    \begin{macrocode}
-\iffalse
 \def\@makefcolumn #1{%
   \begingroup
     \@fpmin -\maxdimen
@@ -691,7 +706,6 @@
     \fi
   \endgroup
 }%
-\fi
 }             % -- END \AtBeginDocument
 %    \end{macrocode}
 %  \end{macro}
@@ -710,6 +724,32 @@
 %  \end{macro}
 
 
+
+
+%  \begin{macro}{}
+%    For fltrace
+%    \begin{macrocode}
+\def\@xtryfc #1{%
+  \fl@trace{ starting with \string#1}%
+  \@next\reserved@a\@trylist{}{}%
+  \@currtype \count #1%
+  \divide\@currtype\@xxxii
+  \multiply\@currtype\@xxxii
+  \@bitor \@currtype \@failedlist
+  \@testfp #1%
+  \@testwrongwidth #1%
+  \ifdim \ht #1>\@colht
+     \@testtrue
+  \fi
+  \if@test
+    \@cons\@failedlist #1%
+    \fl@trace{ --> fail}%
+  \else
+    \@ytryfc #1%
+  \fi
+}%
+%    \end{macrocode}
+%  \end{macro}
 
 
 
@@ -736,10 +776,12 @@
 %    \begin{macrocode}
     \else
       \@cons\@failedlist #1%
+      \fl@trace{ --> fail}%
     \fi
   \endgroup
   \if@fcolmade
     \let\@elt\@gobble
+    \fl@trace{ --> success: \@flsucceed}%
   \fi}
 %    \end{macrocode}
 %  \end{macro}

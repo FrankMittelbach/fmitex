@@ -110,12 +110,25 @@ LaTeX2e: deferlist: \bx@B \bx@D : (addtocurcol-after)
 LaTeX2e: PAGE: one column (float? see above) page completed
 LaTeX2e: PAGE: trying to make a float page
 LaTeX2e: ----- \@deferlist: \bx@B \bx@D 
+LaTeX2e:  starting with \bx@B
 LaTeX2e: \bx@B single column float -- ok
 LaTeX2e: \bx@D single column float -- ok
+LaTeX2e:  --> fail
+LaTeX2e:  starting with \bx@D
 LaTeX2e: \bx@D single column float -- ok
-LaTeX2e: ----- all floats placed on float page(s)
-LaTeX2e: ----- current float page unraveled
-(free space 192.50336pt > 109.99832pt)
+LaTeX2e:  --> success: \bx@D 
+LaTeX2e: ----- unplaceable floats: \bx@B 
+LaTeX2e: ----- too many unplaced floats for unraveling (> 0)
+LaTeX2e: PAGE: float page completed
+LaTeX2e: PAGE: float page completed
+[2]
+LaTeX2e: PAGE: one column (float? see above) page completed
+LaTeX2e: PAGE: trying to make a float page
+LaTeX2e: ----- \@deferlist: \bx@B 
+LaTeX2e:  starting with \bx@B
+LaTeX2e: \bx@B single column float -- ok
+LaTeX2e:  --> fail
+LaTeX2e:  --> fail: no float page made
 LaTeX2e: ***Start addtonextcol
 LaTeX2e: (mod 32) fpstype: 30
 LaTeX2e: (mult of 32) currtype: 32
@@ -147,23 +160,6 @@ LaTeX2e: End of addtonextcol -- locally counts:
 LaTeX2e: col: 2. top: 1. bot: 1.
 LaTeX2e: End of addtonextcol -- globally counts:
 LaTeX2e: col: 2. top: 1. bot: 1.
-LaTeX2e: ***Start addtonextcol
-LaTeX2e: (mod 32) fpstype: 30
-LaTeX2e: (mult of 32) currtype: 64
-LaTeX2e: ORD float
-LaTeX2e: fpstype: 30(flsettextmin)
-LaTeX2e: ORD textmin = 109.99832pt
-LaTeX2e: text-so-far: 0pt (top of col)
-LaTeX2e: float size: 357.49664pt(addtonextcol)
-LaTeX2e: colroom = 337.49664pt(addtonextcol)
-LaTeX2e: reqcolroom = 467.49496pt(addtonextcol)
-LaTeX2e: Fail---no room: fl box ht: 357.49664pt(addtonextcol)
-LaTeX2e: put back on deferlist (addtonextcol)
-LaTeX2e: deferlist: \bx@D : (addtonextcol-after)
-LaTeX2e: End of addtonextcol -- locally counts:
-LaTeX2e: col: 2. top: 1. bot: 1.
-LaTeX2e: End of addtonextcol -- globally counts:
-LaTeX2e: col: 2. top: 1. bot: 1.
 LaTeX2e: ***Start addtocurcol
 LaTeX2e: (mod 32) fpstype: 30
 LaTeX2e: (mult of 32) currtype: 32
@@ -180,7 +176,7 @@ LaTeX2e: reqcolroom = 275.0pt(addtocurcol)
 LaTeX2e: fpstype: 30(flsetnum \@colnum)
 LaTeX2e: \@colnum  (before) = 2
 LaTeX2e: \@currbox single column float -- ok
-LaTeX2e: deferlist: \bx@D : (addtocurcol-before)
+LaTeX2e: deferlist: : (addtocurcol-before)
 LaTeX2e: botlist: : (addtocurcol-before)
 LaTeX2e: fpstype not here: 30
 LaTeX2e: not here: sent to addtotoporbot
@@ -211,7 +207,7 @@ LaTeX2e: colroom = 160.49496pt(addtocurcol)
 LaTeX2e: reqcolroom = 165.00168pt(addtocurcol)
 LaTeX2e: Fail---no room: fl box ht: 55.00336pt(addtocurcol)
 LaTeX2e: put on deferlist (addtocurcol)
-LaTeX2e: deferlist: \bx@D \bx@F : (addtocurcol-after)
+LaTeX2e: deferlist: \bx@F : (addtocurcol-after)
 LaTeX2e: ***Start addtocurcol
 LaTeX2e: (mod 32) fpstype: 30
 LaTeX2e: (mult of 32) currtype: 64
@@ -227,7 +223,7 @@ LaTeX2e: colroom = 160.49496pt(addtocurcol)
 LaTeX2e: reqcolroom = 275.0pt(addtocurcol)
 LaTeX2e: Fail---no room: fl box ht: 165.00168pt(addtocurcol)
 LaTeX2e: put on deferlist (addtocurcol)
-LaTeX2e: deferlist: \bx@D \bx@F \bx@G : (addtocurcol-after)
+LaTeX2e: deferlist: \bx@F \bx@G : (addtocurcol-after)
 LaTeX2e: ***Start addtocurcol
 LaTeX2e: (mod 32) fpstype: 30
 LaTeX2e: (mult of 32) currtype: 64
@@ -243,7 +239,7 @@ LaTeX2e: colroom = 160.49496pt(addtocurcol)
 LaTeX2e: reqcolroom = 275.0pt(addtocurcol)
 LaTeX2e: Fail---no room: fl box ht: 165.00168pt(addtocurcol)
 LaTeX2e: put on deferlist (addtocurcol)
-LaTeX2e: deferlist: \bx@D \bx@F \bx@G \bx@H : (addtocurcol-after)
+LaTeX2e: deferlist: \bx@F \bx@G \bx@H : (addtocurcol-after)
 LaTeX2e: ***Start addtocurcol
 LaTeX2e: (mod 32) fpstype: 30
 LaTeX2e: (mult of 32) currtype: 64
@@ -259,34 +255,60 @@ LaTeX2e: colroom = 160.49496pt(addtocurcol)
 LaTeX2e: reqcolroom = 275.0pt(addtocurcol)
 LaTeX2e: Fail---no room: fl box ht: 165.00168pt(addtocurcol)
 LaTeX2e: put on deferlist (addtocurcol)
-LaTeX2e: deferlist: \bx@D \bx@F \bx@G \bx@H \bx@I : (addtocurcol-after)
-[2]
+LaTeX2e: deferlist: \bx@F \bx@G \bx@H \bx@I : (addtocurcol-after)
+[3]
 LaTeX2e: PAGE: one column (float? see above) page completed
 LaTeX2e: PAGE: trying to make a float page
-LaTeX2e: ----- \@deferlist: \bx@D \bx@F \bx@G \bx@H \bx@I 
-LaTeX2e: \bx@D single column float -- ok
+LaTeX2e: ----- \@deferlist: \bx@F \bx@G \bx@H \bx@I 
+LaTeX2e:  starting with \bx@F
 LaTeX2e: \bx@F single column float -- ok
 LaTeX2e: \bx@G single column float -- ok
 LaTeX2e: \bx@H single column float -- ok
 LaTeX2e: \bx@I single column float -- ok
-LaTeX2e: ----- unplaceable floats: \bx@G \bx@H \bx@I 
+LaTeX2e:  --> success: \bx@F \bx@G \bx@H 
+LaTeX2e: ----- unplaceable floats: \bx@I 
 LaTeX2e: ----- too many unplaced floats for unraveling (> 0)
-LaTeX2e: PAGE: float page completed
-LaTeX2e: PAGE: float page completed
-[3]
-LaTeX2e: PAGE: one column (float? see above) page completed
-LaTeX2e: PAGE: trying to make a float page
-LaTeX2e: ----- \@deferlist: \bx@G \bx@H \bx@I 
-LaTeX2e: \bx@G single column float -- ok
-LaTeX2e: \bx@H single column float -- ok
-LaTeX2e: \bx@I single column float -- ok
-LaTeX2e: ----- all floats placed on float page(s)
-LaTeX2e: ----- current float page kept, full enough
-(free space 38.99496pt < 109.99832pt)
 LaTeX2e: PAGE: float page completed
 LaTeX2e: PAGE: float page completed
 [4]
 LaTeX2e: PAGE: one column (float? see above) page completed
+LaTeX2e: PAGE: trying to make a float page
+LaTeX2e: ----- \@deferlist: \bx@I 
+LaTeX2e:  starting with \bx@I
+LaTeX2e: \bx@I single column float -- ok
+LaTeX2e:  --> fail
+LaTeX2e:  --> fail: no float page made
+LaTeX2e: ***Start addtonextcol
+LaTeX2e: (mod 32) fpstype: 30
+LaTeX2e: (mult of 32) currtype: 64
+LaTeX2e: ORD float
+LaTeX2e: fpstype: 30(flsettextmin)
+LaTeX2e: ORD textmin = 109.99832pt
+LaTeX2e: text-so-far: 0pt (top of col)
+LaTeX2e: float size: 165.00168pt(addtonextcol)
+LaTeX2e: colroom = 550.0pt(addtonextcol)
+LaTeX2e: reqcolroom = 275.0pt(addtonextcol)
+LaTeX2e: fpstype: 30(flsetnum \@colnum)
+LaTeX2e: \@colnum  (before) = 3
+LaTeX2e: deferlist: : (addtonextcol-before)
+LaTeX2e: \@currbox single column float -- ok
+LaTeX2e: sent to addtotoporbot (addtonextcol)
+LaTeX2e: ***Start addtotoporbot
+LaTeX2e: fpstype OK top: 30
+LaTeX2e: fpstype: 30(flsetnum \@topnum)
+LaTeX2e: \@topnum  (before) = 2
+LaTeX2e: colroom = 550.0pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: reqcolroom = 295.0pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: Space OK: \@toproom  = 384.99832pt > 165.00168pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: (mid+bot)list: , : (addtotoporbot-before)
+LaTeX2e: colroom (after-top) = 364.99832pt
+LaTeX2e: colnum (after-top) = 2
+LaTeX2e: topnum (after-top) = 1
+LaTeX2e: ***Success: top
+LaTeX2e: End of addtonextcol -- locally counts:
+LaTeX2e: col: 2. top: 1. bot: 1.
+LaTeX2e: End of addtonextcol -- globally counts:
+LaTeX2e: col: 2. top: 1. bot: 1.
 [5]
 LaTeX2e: PAGE: one column (float? see above) page completed
 [6]

@@ -4,12 +4,16 @@ Don't change this file in any respect.
 ]
 lessfloatpages: PAGE: trying to make a float page
 lessfloatpages: ----- \@deferlist: \bx@B \bx@C \bx@D \bx@E 
+lessfloatpages:  starting with \bx@B
+lessfloatpages:  --> success: \bx@B \bx@C 
 lessfloatpages: ----- unplaceable floats: \bx@D \bx@E 
 lessfloatpages: ----- current float page unraveled
 (free space 184.49496pt > 109.99832pt)
 [2]
 lessfloatpages: PAGE: trying to make a float page
 lessfloatpages: ----- \@deferlist: \bx@D \bx@E 
+lessfloatpages:  starting with \bx@D
+lessfloatpages:  --> success: \bx@D \bx@E 
 lessfloatpages: ----- all floats placed on float page(s)
 lessfloatpages: ----- current float page unraveled
 (free space 212.00504pt > 109.99832pt)
@@ -20,11 +24,15 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [3]
 lessfloatpages: PAGE: trying to make a float page
 lessfloatpages: ----- \@deferlist: \bx@F \bx@G \bx@H \bx@I \bx@J 
+lessfloatpages:  starting with \bx@F
+lessfloatpages:  --> success: \bx@F \bx@G 
 lessfloatpages: ----- unplaceable floats: \bx@H \bx@I \bx@J 
 lessfloatpages: ----- too many unplaced floats for unraveling (> 2)
 [4]
 lessfloatpages: PAGE: trying to make a float page
 lessfloatpages: ----- \@deferlist: \bx@H \bx@I \bx@J 
+lessfloatpages:  starting with \bx@H
+lessfloatpages:  --> success: \bx@H \bx@I \bx@J 
 lessfloatpages: ----- all floats placed on float page(s)
 lessfloatpages: ----- current float page kept, full enough
 (free space 93.99832pt < 109.99832pt)
