@@ -4,9 +4,10 @@
 
 \usepackage{lipsum}
 
-% testing that fltrace afterwards doesn't kill the package and full tracing happens
+% testing that fltrace owns the tracing even if it is specified first
 
-\usepackage{lessfloatpages,fltrace}
+\usepackage{fltrace}
+\usepackage[trace]{lessfloatpages}
 
 \newcommand\fig[3][tbp]{\begin{figure}[#1]\frame{\vbox to#2{\vfil #3 (fig)\vfil}}\end{figure}}
 \newcommand\tab[3][tbp]{\begin{table}[#1]\frame{\vbox to#2{\vfil #3 (tab)\vfil}}\end{table}}
@@ -19,7 +20,7 @@
 
 Some text \ldots
 
-\fig{.6\textheight}{1}            % why oes this give different tracing with xetex/luatex???
+\fig{.6\textheight}{1}
 
 
 \fig{.35\textheight}{A}

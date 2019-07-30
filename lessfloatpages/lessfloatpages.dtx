@@ -60,7 +60,7 @@
 %
 % \section{Introduction}
 %
-% \subsection{Overview of the float algorithm}
+% \subsection{A quick overview of \LaTeX's float algorithm}
 %
 %   \LaTeX{}'s output routine uses a greedy algorithm to place floats
 %   near to their appearance in the source document. The decision how
@@ -104,59 +104,60 @@
 %   Why is this the case? In a nutshell, because a higher percentage
 %   makes it much more likely that there is a float that can't be
 %   placed, because by itself it is not big enough to be used on its
-%   own and there are no other floats that can be combined with it,
-%   because their combination violates some other restriction, e.g.,
-%   together they are bigger than a page, etc. The moment that happens
-%   this floats prevents all other floats of the same class (i.e., all
-%   figures) from being placed too and disaster is ensured. In most
+%   own and there are no other floats nearby that can be combined with
+%   it, because their combination violates some other restriction,
+%   e.g., together they are bigger than a page, not all of them are
+%   allowed to go on float pages, etc. The moment that happens this
+%   floats prevents the placement of all other floats of the same
+%   class too (i.e., all figures) and disaster is ensured. In most
 %   cases these floats will then never get placed, because they need a
 %   float of the right size from a different class to appear, which
 %   may in theory happen but is, unfortunately, unlikely.
 %
 %   Thus, while tempting, tinkering with this parameter by making it
-%   larger is usually not a good idea unless you are prepared to place
+%   larger is usually not a good idea, unless you are prepared to place
 %   most if not all of your floats manually, by overwriting the
 %   placement algorithm on the level of individual floats (e.g., using
-%   \texttt{!} syntax and/or shifting its placement in the source
+%   \texttt{!} syntax and/or shifting its position in the source
 %   document).
 %
 %
 % \section{Improvements to the float page algorithm}
 %
-%   A possible way to improve on the the existing algorithm without
+%   A possible way to improve on the the existing algorithm, without
 %   compromising its main goal of placing the floats as fast as
-%   possible and as close as possible to their call-outs is the
+%   possible and as close as possible to their call-outs, is the
 %   following: as long as there are many floats waiting to be placed
-%   generate float pages as necessary (using the current algorithm and
-%   its parameters) to get them placed. However, once we are unable to
-%   build further float places, do some level of backtracking by
+%   generate float pages as necessary to get them placed (using the
+%   current algorithm and its parameters). However, once we are unable
+%   to build further float places, do some level of backtracking by
 %   checking if we have actually succeeded in placing all floats.
 %
 %   If there are still floats waiting to be placed then assume that
-%   what as been done so far is the best possible way to places as
-%   many floats as possible (which it probably is). However, if we
-%   have been able to place all floats onto float pages then
-%   check if the last float page is sufficiently full and if not
-%   undo the it and instead redistribute its  floats
-%   into top and bottom area of the next upcoming page. This way the
-%   floats will be combined with further text and we avoid a possible
-%   half-empty float page.
+%   what as been done so far is the best possible way to place as many
+%   floats as possible (which it probably is). However, if we have
+%   been able to place all floats onto float pages then check if the
+%   last float page is sufficiently full and if not undo the it and
+%   instead redistribute its floats into the top and bottom area of
+%   the next upcoming page. This way the floats will be combined with
+%   further text and we avoid a possible half-empty float page.
 %
 %   This approach will not resolve all kind problematical scenarios
 %   where we find that \LaTeX{} has decided to favor fairly empty
 %   float pages over some tighter type of placement. It will, however,
 %   help to improve typical cases that do not involve too many floats.
-%   For a example, if a single (larger) float appears near the end of
-%   a page, then using the standard algorithm it can't be immediately
-%   placed (since there isn't enough free space on the current
-%   page). It is therefore moved to the defer-list and at the page
-%   break it is then placed onto a float page (possibly by its own, if
-%   it is large enough to allow for that) even though it could
+%   For\mnote{A typical case where we don't really want \LaTeX{} to
+%   make a float page} a example, if a single (larger) float appears
+%   near the end of a page, then using the standard algorithm it can't
+%   be immediately placed (since there isn't enough free space on the
+%   current page). It is therefore moved to the defer-list and at the
+%   page break it is then placed onto a float page (possibly by its
+%   own, if it is large enough to allow for that) even though it could
 %   perfectly well go into the top or bottom area of the next page and
 %   thus be combined with textual material on that page.
 %
 %   With the new algorithm this float page is reexamined and unless it
-%   is pretty much filled up already, it is unraveled and the floats
+%   is pretty much filled up already, it is unraveled and its floats
 %   are redistributed into the top and bottom areas of the next page.
 %   If, however, we have many floats waiting on the defer-list, the
 %   normal float page algorithm will first place as many of them as
@@ -347,10 +348,21 @@
 %   lot of white space) because of the fact that one of them (in fact
 %   the first though that can only be deduced implicitly) was
 %   specified as a \enquote{float page only} float. This explains why
-%   on page for \vs{bx@I} couldn't be placed into the top or bottom
+%   on page~4 \cs{bx@I} couldn't be placed into the top or bottom
 %   area and there all following floats of the same class (the test
 %   document only contained \env{figure} floats) couldn't be placed
 %   either.
+%
+%   If\mnote{Detailed tracing of the complete algorithm} you want
+%   detailed tracing of the complete algorithm, also load the
+%   \pkg{fltrace} package and enable the tracing with
+%   \cs{tracefloatson} anywhere in your document. Note, however, that
+%   the resulting output is very detailed but rather low-level and
+%   unpolished.
+%
+%
+%
+%
 %
 % \subsection{Local adjustments}
 %
@@ -376,12 +388,13 @@
 %     prevents the algorithm to unravel the float page which contains
 %     that float.
 %   \end{itemize}
-%   As an alternative you can, of course, temporarily alter the values
-%   of \cs{floatpagekeepfraction} or the two counters in mid-document but
-%   remember that they are not looked at when a float is encounteredin
-%   the source but when we are at a page break and \LaTeX{} attempts
-%   to empty the defer-list which is usually later and unfortunately
-%   somewhat asynchonous, i.e., not easy to predict.
+%   As an alternative you can, of course, temporarily alter the
+%   definition of the command \cs{floatpagekeepfraction} or the values
+%   of two counters in mid-document, but remember that they are not
+%   looked at when a float is encounteredin the source but when we are
+%   at a page break and \LaTeX{} attempts to empty the defer-list
+%   which is usually later and unfortunately somewhat asynchonous,
+%   i.e., not easy to predict.
 %
 %
 % \StopEventually{\setlength\IndexMin{200pt}  \PrintIndex  }
@@ -389,56 +402,318 @@
 %
 % \section{The Implementation}
 %
+%    We start of with package announcement. Requiring a fairly new
+%    \LaTeX{} kernel is not absolutely necessary but it will help to
+%    ensure that we patch what we think we patch and in the future it
+%    means that will can be asured that the rollback functionality of
+%    the kernel is available in case will need to support several
+%    releases of the package.
 %    \begin{macrocode}
 %<*package>
+\NeedsTeXFormat{LaTeX2e}[2018-04-01]
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\ProvidesPackage{lessfloatpages}
+                [2019-07-29 prerelease  improve float page generation (FMi)]
+%    \end{macrocode}
+%
+% \subsection{Option handling}
+%                
+%    This release the package has only a single option
+%    \texttt{trace}. It enables tracing of the algorithm and is
+%    implemented by giving the command \cs{fl@trace} (which is also
+%    used by the \pkg{fltrace} package) a suitable definition.
+%
+%    to cater for the case that the \pkg{fltrace} package is loaded
+%    first, we use \cs{providecommand}, so that its definition is not
+%    overwritten but used if is already in place. If the package is
+%    loaded later everything works fine because it unconditionally
+%    defines \cs{fl@trace}.
+%
+%    \begin{macrocode}
+\DeclareOption{trace}
+              {\providecommand\fl@trace[1]%
+                {{\let\@elt\@empty\typeout{lessfloatpages: #1}}}}
+\ProcessOptions
 %    \end{macrocode}
 %
 %
-%
-%
-%  \begin{macro}{fl@trace}
-%    
+% \subsection{Tracing code}
+%                
+%  \begin{macro}[internal]{fl@trace}
+%    The command \cs{fl@trace} is used to output tracing information.
+%    By default the tracing of the algorithm is turned off, so
+%    \cs{fl@trace} will simply swallow its argument. But if
+%    \pkg{fltrace} is loaded or the option \texttt{trace} is given
+%    then the command already has a definition so we don't change it
+%    here.
 %    \begin{macrocode}
-%<*trace>
-\providecommand\fl@trace[1]{{\let\@elt\@empty\typeout{lessfloatpages: #1}}}
-%</trace>
+\providecommand\fl@trace[1]{}
 %    \end{macrocode}
 %  \end{macro}
 %
 %
+% \subsection{User-level interfaces}
 %
-%  \begin{macro}{\floatpagekeepfraction}
-%    
+%    For the most part the packages provides internal code that
+%    extends the float algorithm of \LaTeX{}. There are, however, also
+%    three new parameters the guide this algorithm, they are defined
+%    in this section.
+%
+%  \begin{macro}[var]{\floatpagekeepfraction}
+%    The fraction that the algorithm uses to decide that a given float
+%    page is so full that it would be pointless to unravel it for the
+%    reasons outlined above. The default is whatever fraction has been
+%    chosen as the minim amount of text that need to be on a normal
+%    page (i.e., \cs{textfraction}).
 %    \begin{macrocode}
 \newcommand\floatpagekeepfraction{\textfraction}
 %    \end{macrocode}
 %  \end{macro}
 %
 %
-%  \begin{macro}{\c@floatpagenumber}
-%    
+%  \begin{macro}[var]{\c@floatpagenumber}
+%    A float page that contains more floats than \ctr{floatpagenumber}
+%    will also be unraveled. The default is one more than the standard
+%    value for \ctr{topnumber} (which is 3).
+%
+%    There is a good chsnce that a float page with 4 or less floats is
+%    still fairly empty. In that case it might be better to unravel
+%    it, even if that means that one of the floats (or perhaps two)
+%    can't be placed on the current page but have to move a page
+%    further away.  Of course, one could set this parameter to a
+%    higher values but then one has to be aware that more floats drift
+%    away from their call-out positions.
 %    \begin{macrocode}
 \newcounter{floatpagenumber}
 \setcounter{floatpagenumber}{4}
 %    \end{macrocode}
 %  \end{macro}
 
-%  \begin{macro}{\c@floatpageunplaced}
-%    
+%  \begin{macro}[var]{\c@floatpageunplaced}
+%    By default the algorithm will only ever unravel the last float
+%    page in a sequence of float pages. However, if the
+%    \ctr{floatpageunplaced} counter is set to a positive number, then
+%    other float pages come candidates too as long as the number
+%    floats waiting to be placed in the defer-list are less or equal
+%    to this number.  The default is currently \texttt{0} but perhaps
+%    using \texttt{1} or even \texttt{2} might be a better
+%    choice. This needs to be evaluated in the field with a suitable
+%    number of real test documents.
 %    \begin{macrocode}
 \newcounter{floatpageunplaced}
 \setcounter{floatpageunplaced}{0}
 %    \end{macrocode}
 %  \end{macro}
 
-%  \begin{macro}{\fp@unused@space}
+
+
+
+
+
+
+
+
+
+%
+%  \begin{macro}[internal]{\@tryfcolumn}
+%    The main macro we have to patch to extend \LaTeX's algorithm is
+%    \cs{@tryfcolumn}. That command is changed when \pkg{fltrace}
+%    gets loaded, so we make our definition as late as possible to
+%    ensure that it will survive.
+%    \begin{macrocode}
+\AtBeginDocument{%
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+\def \@tryfcolumn #1{%
+  \global \@fcolmadefalse
+  \ifx #1\@empty
+  \else
+    \fl@trace{PAGE: trying to make a float \if@twocolumn column/page\else page\fi}%
+    \fl@trace{----- \string #1: #1}%
+    \xdef\@trylist{#1}%
+    \global \let \@failedlist \@empty
+    \begingroup
+      \let \@elt \@xtryfc \@trylist
+    \endgroup
+%    \end{macrocode}
+%    Up to this point the definition is the same as in the original
+%    algorithm. At this point the  switch \cs{if@fcolmade}  tells us if making a
+%    float page was successful and the original algorithm then called
+%    \cs{@vtryfc} and remov the used floats from the defer-list.
+%
+%    In the extended algorithm this is the place where things start to
+%    differ as we may not want that float page to actually come into
+%    existence.
+%    \begin{macrocode}
+    \if@fcolmade
+%    \end{macrocode}
+%    So we want to make some checks to see if it should get
+%    unraveled. For this we count the floats that are still unplaced
+%    and record that number in \cs{count@}.
+%\mnote{needs to account for \cs{@failedlist} too! not done}
+%    \begin{macrocode}
+      \count@\z@
+      \ifx\@flfail\@empty
+        \fl@trace{----- all floats placed on float page(s)}%
+      \else
+        \fl@trace{----- unplaceable floats: \@flfail}%
+        \def\@elt##1{\advance\count@\@ne}%
+          \@flfail
+        \let\@elt\relax
+      \fi
+%    \end{macrocode}
+%    Now we compare the numebr of unplaced floats to the number of
+%    allowed unplaced floats and if it is too high we keep the float
+%    page.
+%    \begin{macrocode}
+      \ifnum \count@>\c@floatpageunplaced
+        \fl@trace{----- too many unplaced floats for unraveling
+	                (> \the\c@floatpageunplaced)}%
+%    \end{macrocode}
+%
+%    Otherwise we do a bit more testing. First we set \cs{if@fcolmade}
+%    back to false assuming we don't want to keep the float page.If
+%    during the tests we decide otherwise we set it back to true which
+%    then signals that it should stay.
+%
+%    We also count the floats on the float page and use \cs{count@}
+%    for that.
+%    \begin{macrocode}
+      \else
+        \global \@fcolmadefalse
+        \count@\z@
+%    \end{macrocode}
+%    The actually checking is done with
+%    \cs{analyse@floats@for@unraveling} and it loops over
+%    \cs{@flsucceed}, i.e., the floats for that float page.
+%    \begin{macrocode}
+        \let\@elt\analyse@floats@for@unraveling
+          \@flsucceed
+        \let\@elt\relax
+%    \end{macrocode}
+%    Now we recheck the state of the switch and if it still says
+%    \texttt{false} all tests indicated that we don't want the float
+%    page.
+%    \begin{macrocode}
+        \if@fcolmade
+        \else
+%    \end{macrocode}
+%    But we aren't done yet: the float page might be nicely filled in
+%    which case it would be a shame to unravel it. During the above
+%    loop we also measured the free space on the float page and stored
+%    it in \cs{fp@unused@space}. We now compare that to the maximum
+%    free space that we consider to be still okay and if there is more
+%    we finally do the unraveling.
+%    \begin{macrocode}
+          \@tempdima\floatpagekeepfraction\@colht
+          \ifdim \fp@unused@space >\@tempdima
+            \fl@trace{----- current float page unraveled^^J%
+                      \@spaces\@spaces\@spaces\space\space\space
+                      (free space \fp@unused@space\space > \the\@tempdima)}%
+%    \end{macrocode}
+%    For this be basically return all floats back to the
+%    defer-list. The switch is still \texttt{false} so it doesn't need
+%    changing.
+%    \begin{macrocode}
+            \xdef #1{\@failedlist\@flsucceed\@flfail}%
+          \else
+%    \end{macrocode}
+%    But if we want to keep the float page after all, we have to set
+%    the switch back to \texttt{true} so that the rest of the
+%    algorithm proceeds correctly.
+%    \begin{macrocode}
+            \global \@fcolmadetrue
+            \fl@trace{----- current float page kept, full enough^^J%
+                      \@spaces\@spaces\@spaces\space\space\space
+                      (free space \fp@unused@space\space < \the\@tempdima)}%
+          \fi
+        \fi
+      \fi
+%    \end{macrocode}
+%    The next \cs{else} matches the first \cs{if@fcolmade}, i.e., the
+%    case that the algorithm wasn't able to make any float page and if
+%    we are tracing the algorithm, we want to tell the user about this.
+%    \begin{macrocode}
+    \else
+      \fl@trace{----- no float page made}%
+    \fi
+%    \end{macrocode}
+%    
+%    At this point we are back in the original algorithm. Now the
+%    switch tells the truth about whether or not we want to make a float
+%    page and if so we go ahead and produce it.
+%    \begin{macrocode}
+    \if@fcolmade
+        \@vtryfc #1%
+    \fi
+  \fi
+}%
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%  \begin{macro}[internal]{\@makefcolumn}
+%    In contrast to \cs{@tryfcolumn} this macro will always make float
+%    pages out of the deferred floats. It is used by \cs{clearpage}
+%    when we really need the floats to get out and there is no further
+%    text coming up. Thus in that case we should not unravel the float
+%    pages. Again we make this change at \verb=\begin{document}= so
+%    that we replace any change done by \pkg{fltrace}.
+%    \begin{macrocode}
+\iffalse
+\def\@makefcolumn #1{%
+  \begingroup
+    \@fpmin -\maxdimen
+    \let \@testfp \@gobble
+%    \end{macrocode}
+%    At this point the original definition called \cs{@tryfcolumn} and
+%    the lines aboved ensured that it was always succeeding in making
+%    a float page. Since we have changed that command to do unraveling
+%    we better not use. Instead we replace it by its original
+%    definition (with the addition of two tracing lines.
+%    \begin{macrocode}
+    \global \@fcolmadefalse
+    \ifx #1\@empty
+    \else
+      \fl@trace{PAGE: trying to make a float \if@twocolumn column/page\else page\fi}%
+      \fl@trace{----- \string #1: #1}%
+      \xdef\@trylist{#1}%
+      \global \let \@failedlist \@empty
+      \begingroup
+	\let \@elt \@xtryfc \@trylist
+      \endgroup
+      \if@fcolmade
+	\@vtryfc #1%
+      \fi
+    \fi
+  \endgroup
+}%
+\fi
+}             % -- END \AtBeginDocument
+%    \end{macrocode}
+%  \end{macro}
+
+
+
+
+
+
+
+%  \begin{macro}[internal]{\fp@unused@space}
 %    
 %    \begin{macrocode}
 \def\fp@unused@space{}
 %    \end{macrocode}
 %  \end{macro}
 
-%  \begin{macro}{\@ytryfc}
+
+
+
+
+%  \begin{macro}[internal]{\@ytryfc}
 %    
 %    \begin{macrocode}
 \def\@ytryfc #1{%
@@ -470,89 +745,7 @@
 %  \end{macro}
 %
 %
-%  \begin{macro}{\@tryfcolumn}
-%    
-%    \begin{macrocode}
-\AtBeginDocument{%
-\def \@tryfcolumn #1{%
-  \global \@fcolmadefalse
-  \ifx #1\@empty
-  \else
-%<*trace>
-    \fl@trace{PAGE: trying to make a float \if@twocolumn column/page\else page\fi}%
-    \fl@trace{----- \string #1: #1}%
-%</trace>
-    \xdef\@trylist{#1}%
-    \global \let \@failedlist \@empty
-    \begingroup
-      \let \@elt \@xtryfc \@trylist
-    \endgroup
-%    \end{macrocode}
-%    
-%    \begin{macrocode}
-    \if@fcolmade
-      \count@\z@
-      \ifx\@flfail\@empty
-%<*trace>
-        \fl@trace{----- all floats placed on float page(s)}%
-%</trace>
-      \else
-%<*trace>
-        \fl@trace{----- unplaceable floats: \@flfail}%
-        \def\@elt##1{\advance\count@\@ne}%
-          \@flfail
-        \let\@elt\relax
-%</trace>
-      \fi
-      \ifnum \count@>\c@floatpageunplaced
-%<*trace>
-        \fl@trace{----- too many unplaced floats for unraveling (> \the\c@floatpageunplaced)}%
-%</trace>
-      \else
-        \global \@fcolmadefalse
-        \count@\z@
-        \let\@elt\analyse@floats@for@unraveling
-          \@flsucceed
-        \let\@elt\relax
-        \if@fcolmade
-        \else
-          \@tempdima\floatpagekeepfraction\@colht
-          \ifdim \fp@unused@space >\@tempdima
-%<*trace>
-            \fl@trace{----- current float page unraveled^^J%
-                      \@spaces\@spaces\@spaces\space\space\space
-                      (free space \fp@unused@space\space > \the\@tempdima)}%
-%</trace>
-            \xdef #1{\@failedlist\@flsucceed\@flfail}%
-          \else
-            \global \@fcolmadetrue
-%<*trace>
-            \fl@trace{----- current float page kept, full enough^^J%
-                      \@spaces\@spaces\@spaces\space\space\space
-                      (free space \fp@unused@space\space < \the\@tempdima)}%
-%</trace>
-          \fi
-        \fi
-      \fi
-    \else
-%<*trace>
-      \fl@trace{----- no float page made}%
-%</trace>
-    \fi
-%    \end{macrocode}
-%    
-%    \begin{macrocode}
-    \if@fcolmade
-        \@vtryfc #1%
-    \fi
-  \fi
-}%
-}             % -- END \AtBeginDocument
-%    \end{macrocode}
-%  \end{macro}
-%
-%
-%  \begin{macro}{\analyse@floats@for@unraveling}
+%  \begin{macro}[internal]{\analyse@floats@for@unraveling}
 %    
 %    \begin{macrocode}
 \def\analyse@floats@for@unraveling#1{%
@@ -560,11 +753,9 @@
   \ifnum \count@ >\c@floatpagenumber
     \global \@fcolmadetrue
     \let\@elt\@gobble
-%<*trace>
     \fl@trace{----- current float page kept, contains many floats^^J%
                       \@spaces\@spaces\@spaces\space\space\space
                       (at least \the\count@\space > \the\c@floatpagenumber)}%
-%</trace>
   \else
     \@tempcntb\count#1%
     \divide\@tempcntb 8\relax
@@ -573,9 +764,7 @@
     \ifnum \count#1=\@tempcntb
       \global \@fcolmadetrue
       \let\@elt\@gobble
-%<*trace>
     \fl@trace{----- current float page kept, contains a [p] float}%
-%</trace>
     \fi
   \fi
 }

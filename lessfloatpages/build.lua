@@ -10,7 +10,7 @@ module = "lessfloatpages"
 typesetfiles  = {"*.tex"}
 
 checkruns     = 1
-typesetruns   = 2
+typesetruns   = 3
 
 
 -- Upload meta data
