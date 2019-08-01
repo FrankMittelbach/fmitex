@@ -9,31 +9,44 @@
 %
 %    https://www.latex-project.org/lppl.txt
 %
-%
 % The development version of the bundle can be found below
 %
 %    https://github.com/FrankMittelbach/fmitex/
 %
 % for those people who are interested or want to report an issue.
 %
+
+\def\lessfloatpagesdate   {2019/08/01}
+\def\lessfloatpagesversion{prerelease}     %{v1.0a}
+
+
 %<*driver>
-\documentclass{l3doc}
+\documentclass
+    [final]
+    {l3doc-TUB}
+
+
+\setcounter{page}{1}       
 
 \newcommand\ctr[1]{\texttt{#1}}
 \newcommand\mnote[1]{\marginpar{\raggedleft\em #1}}
 
-\usepackage{csquotes,lessfloatpages}
+\usepackage{csquotes}
 \EnableCrossrefs
 \CodelineIndex
 \begin{document}
   \DocInput{lessfloatpages.dtx}
+\addtolength\signaturewidth{42pt}
+\makesignature
 \end{document}
 %</driver>
 %
 % \fi
 %
 %
-% \title{The \texttt{lessfloatpages} package\thanks{}}
+% \title{The \texttt{lessfloatpages} package\thanks{The current
+%   package version is \texttt{\lessfloatpagesversion} dated
+%   \lessfloatpagesdate.}}
 % \author{Frank Mittelbach}
 %
 % \maketitle
@@ -44,7 +57,7 @@
 %   \LaTeX{}'s float algorithm has the tendency to produce fairly
 %   empty float pages, i.e., pages containing only floats but with a
 %   lot of free space remaining to could easily be filled with nearby
-%   text. There are good reasons for this behavior, nevertheless the
+%   text. There are good reasons for this behavior\Dash nevertheless the
 %   results look unappealing and in many cases documents are
 %   unnecessarily enlarged.
 %
@@ -428,7 +441,9 @@
 %
 %    \begin{macrocode}
 \ProvidesPackage{lessfloatpages}
-                [2019-07-29 prerelease  improve float page generation (FMi)]
+                [\lessfloatpagesdate\space
+                 \lessfloatpagesversion\space
+                 improve float page generation (FMi)]
 %    \end{macrocode}
 %
 % \subsection{Option handling}
@@ -526,6 +541,8 @@
 
 
 
+\newcount\fc@float@candidates
+\def\c@floatpagedeferlimit{\c@floatpageunplaced}
 
 
 
@@ -555,7 +572,7 @@
 %    Up to this point the definition is the same as in the original
 %    algorithm. At this point the  switch \cs{if@fcolmade}  tells us if making a
 %    float page was successful and the original algorithm then called
-%    \cs{@vtryfc} and remove the used floats from the defer-list.
+%    \cs{@vtryfc} and removed the floats used for this float page from the defer-list.
 %
 %    In the extended algorithm this is the place where things start to
 %    differ as we may not want that float page to actually come into
@@ -662,6 +679,55 @@
 %    switch tells the truth about whether or not we want to make a float
 %    page and if so we go ahead and produce it.
 %    \begin{macrocode}
+    \if@fcolmade
+        \@vtryfc #1%
+    \fi
+  \fi
+}%
+\def \@tryfcolumn #1{%
+  \global \@fcolmadefalse
+  \ifx #1\@empty
+  \else
+    \fc@float@candidates\z@
+    \def\@elt##1{\advance\fc@float@candidates\@ne}%
+      #1%
+    \let\@elt\relax
+    \fl@trace{PAGE: trying to make a float \if@twocolumn column/page\else page\fi}%
+    \fl@trace{----- \string #1: #1}%
+    \xdef\@trylist{#1}%
+    \global \let \@failedlist \@empty
+    \begingroup
+      \let \@elt \@xtryfc \@trylist
+    \endgroup
+    \if@fcolmade
+      \ifnum \fc@float@candidates >\c@floatpagedeferlimit
+        \fl@trace{----- too many deferred floats for unraveling
+                        (\the\fc@float@candidates\space> \the\c@floatpageunplaced)}%
+      \else
+        \global \@fcolmadefalse
+        \count@\z@
+        \let\@elt\analyse@floats@for@unraveling
+          \@flsucceed
+        \let\@elt\relax
+        \if@fcolmade
+        \else
+          \@tempdima\floatpagekeepfraction\@colht
+          \ifdim \fp@unused@space >\@tempdima
+            \fl@trace{----- current float page unraveled^^J%
+                      \@spaces\@spaces\@spaces\space\space\space
+                      (free space \fp@unused@space\space > \the\@tempdima)}%
+            \xdef #1{\@failedlist\@flsucceed\@flfail}%
+          \else
+            \global \@fcolmadetrue
+            \fl@trace{----- current float page kept, full enough^^J%
+                      \@spaces\@spaces\@spaces\space\space\space
+                      (free space \fp@unused@space\space < \the\@tempdima)}%
+          \fi
+        \fi
+      \fi
+    \else
+      \fl@trace{ --> fail: no float page made}%
+    \fi
     \if@fcolmade
         \@vtryfc #1%
     \fi

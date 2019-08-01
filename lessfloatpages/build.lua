@@ -7,6 +7,8 @@
 
 module = "lessfloatpages"
 
+sourcefiles = {"*.dtx", "*.ins", "*-????-??-??.sty", "l3doc-TUB.cls"}
+
 typesetfiles  = {"*.tex"}
 
 checkruns     = 1

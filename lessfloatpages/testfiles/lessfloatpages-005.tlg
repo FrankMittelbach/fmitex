@@ -117,8 +117,7 @@ LaTeX2e:  --> fail
 LaTeX2e:  starting with \bx@D
 LaTeX2e: \bx@D single column float -- ok
 LaTeX2e:  --> success: \bx@D 
-LaTeX2e: ----- unplaceable floats: \bx@B 
-LaTeX2e: ----- too many unplaced floats for unraveling (> 0)
+LaTeX2e: ----- too many deferred floats for unraveling (2 > 0)
 LaTeX2e: PAGE: float page completed
 LaTeX2e: PAGE: float page completed
 [2]
@@ -266,8 +265,7 @@ LaTeX2e: \bx@G single column float -- ok
 LaTeX2e: \bx@H single column float -- ok
 LaTeX2e: \bx@I single column float -- ok
 LaTeX2e:  --> success: \bx@F \bx@G \bx@H 
-LaTeX2e: ----- unplaceable floats: \bx@I 
-LaTeX2e: ----- too many unplaced floats for unraveling (> 0)
+LaTeX2e: ----- too many deferred floats for unraveling (4 > 0)
 LaTeX2e: PAGE: float page completed
 LaTeX2e: PAGE: float page completed
 [4]
