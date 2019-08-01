@@ -8,7 +8,7 @@ lessfloatpages:  starting with \bx@B
 lessfloatpages:  --> fail
 lessfloatpages:  starting with \bx@C
 lessfloatpages:  --> success: \bx@C \bx@D 
-lessfloatpages: ----- too many deferred floats for unraveling (3 > 0)
+lessfloatpages: ----- current float page kept, contains a [p] float
 [2]
 lessfloatpages: PAGE: trying to make a float page
 lessfloatpages: ----- \@deferlist: \bx@B 

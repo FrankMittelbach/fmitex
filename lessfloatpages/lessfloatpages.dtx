@@ -25,7 +25,10 @@
     [final]
     {l3doc-TUB}
 
-
+\makeatletter
+  \@mparswitchfalse
+\makeatother
+    
 \setcounter{page}{1}       
 
 \newcommand\ctr[1]{\texttt{#1}}
@@ -179,41 +182,67 @@
 %
 % \subsection{Details on the extended algorithm}
 %
-%   The main idea of the extended algorithm is to avoid cases of
-%   single float pages if those float pages are fairly
-%   empty.\mnote{Don't unravel a float page if there are still
-%   unplaced floats on the defer-list} More
-%   exactly, it will consider unraveling the last float page in a
-%   sequence of such pages. Why only the last? Because the main goal
+%   The main idea of the extended algorithm is to avoid unnecessary cases of
+%   float pages especially if those float pages are fairly
+%   empty.\mnote{Don't unravel a float page if there are too many
+%    floats on the defer-list}
+%   Natural candidates are single float pages, but even in cases where
+%   the current \LaTeX{} algorithm  produces several a sequence float
+%   pages the extended algorithm may decide to replace them by normal
+%   pages under certain conditions.
+%   However, the main goal
 %   is and should remain to place as many floats as soon as possible
-%   and so generating float pages when many float are waiting is
-%   essential.
+%   and so generating float pages when many floats are waiting is
+%   usually essential.
 %
-%   \DescribeMacro{\c@floatpageunplaced}
+%   \DescribeMacro{floatpagedeferlimit}
 % ^^A
-%   Actually, you can ask the algorithm to unravel float pages even if
-%   there are further floats waiting to be placed. This is controlled
-%   by the counter \ctr{floatpageunplaced} and as long as there are more
-%   floats waiting than this number,  float pages are not considered for
-%   unraveling. The default is \texttt{0}, i.e., with that setting
-%   only the last float page in sequence is considered and only if
-%   the defer-list got completely emptied. If your documents do not
-%   contain too many floats then setting this counter to \texttt{1} or
-%   \texttt{2} might improve the placement in many cases.
+%   Whether or not unraveling for a float page is considered at all,
+%   is guided by the counter \ctr{floatpagedeferlimit} and as long as
+%   there are more floats waiting on the defer-list than this number,
+%   float pages are not considered for unraveling.  The default is
+%   \texttt{3} which corresponds to the default value for
+%   \ctr{totalnumber}, i.e., with that setting the unraveling a
+%   floating page has a fighting chance to place all floats into the
+%   top and bottom areas on the current page.
+%   It would also resolve cases such as up to three floats, each larger than
+%   \cs{floatepagefraction}, where standard \LaTeX{} algorithm would
+%   produce three individual float pages.
 %
-%   There are a number of other situations, hoewever, in which we shouldn't
-%   unravel a float page.\mnote{Don't unravel if the
-%   float page contains at least one \texttt{\upshape [p]} float} The
-%   most important one is the case when it contains at least one float
-%   that is \emph{only} allowed on float pages (i.e., has a
-%   \texttt{[p]} argument). Since such a float would not be placeable
-%   in the top/bottom area of the next page it would be send back to
-%   the defer-list.
+%   If you set the counter to \texttt{1} then only the last float page
+%   in a sequence is considered and only if it contains only a single
+%   float and if there are no other floats that are still waiting to
+%   be placed.  If you set it to \texttt{0}, then the extension
+%   is disabled since float pages are only produced if there was at
+%   least one float on the defer-list.
+%
+%   \DescribeMacro{floatpagekeeplimit}
+% ^^A
+%   Even if we set \ctr{floatpagedeferlimit} to a fairly high value,
+%   we may not want to unravel float pages that contain many
+%   floats. To support this case there is a second counter that guides the
+%   algorithm in this respect. Whenever\mnote{Don't unravel if the float page contains many
+%   floats} the float page contains at least
+%   \ctr{floatpagekeeplimit} floats it will not be unraveled. The
+%   default is also \texttt{3} so that float pages with three or more
+%   floats are not touched. Obviously the counter can have only any
+%   effect if it has a value less or equal to
+%   \ctr{floatpagedeferlimit} since this is tested first.
+%
+%   There are, hoewever, a number of other situations in which we
+%   shouldn't unravel a float page even if the above check for the
+%   size of the defer-list was passed successfully.\mnote{Don't
+%   unravel if the float page contains at least one \texttt{\upshape
+%   [p]} float} The most important one is the case when it contains at
+%   least one float that is \emph{only} allowed on float pages (i.e.,
+%   has a \texttt{[p]} argument). Since such a float would not be
+%   placeable in a top/bottom area on any page and thus would be send
+%   back to the defer-list.
 %
 %   The other case where unraveling would normally be
-%   counterproductive is when the particular float page is completely
-%   filled up with floats.\mnote{Don't unravel if the float page is
-%   nearly filled} If we would unravel it, then it is certain
+%   counterproductive is when the particular float page is nearly or
+%   completely filled up with floats.\mnote{Don't unravel if the float
+%   page is nearly filled} If we would unravel it, then it is certain
 %   that we can only place some of the floats into the top or bottom
 %   area of the next page and some would end up on the
 %   defer-list. That in turn means that these defered floats float
@@ -228,29 +257,53 @@
 %   enough to stay. \cs{textfraction} defines the minimum amount of
 %   space that has to be occupied by text on a normal page, thus if
 %   all floats together need so much space that this amount of text
-%   could not be fitted in then trying to place the all floats onto a
+%   could not be fitted in, then trying to place all floats onto a
 %   normal page can't succeed and some of them would get deferred for
 %   sure.  To allow for some further flexibility the algorithm uses
 %   the variable \cs{floatpagekeepfraction} (defaulting to
 %   \cs{textfraction}) so if desired a lower (or even a higher)
 %   boundary can be set.
 %
-%   There are, however, other reasons why we might be unable to place
-%   all floats of a float page into the top and bottom area of the
-%   next page.\mnote{Don't unravel if the float page contains many
-%   floats} For example, the counter \texttt{totalnumber} (default
-%   value 3) limits the number of floats that can be placed on a
-%   normal page, while for float pages there is no such limit.
-
-%   \DescribeMacro{\c@floatpagenumber}
-% ^^A
-%   To account for this scenario the algorithm offers the counter
-%   \ctr{floatpagenumber} and whenever a float page contains more
-%   floats than this number, then it is not unraveled either. The
-%   default is \texttt{4} (\texttt{totalnumber+1}), i.e., we unravel
-%   even if there are too many floats, but only if a few can't be
-%   placed (so that chances that they are placed on the page after is
-%   very high).
+%   The above parameters give some reasonable configuration
+%   possibilities to guide the algorithm when and when not to unravel
+%   a possible float page and instead produce further normal pages.
+%   It should be noted, however, that except for the case of setting
+%   \ctr{floatpagedeferlimit} to \texttt{1}, there is always a chance
+%   that floats drift further away from their call-outs, because the
+%   may not be immediately placeable due to other parameter settings
+%   of the float algorithm.  For example, the counter
+%   \texttt{topnumber} (default value 2) limits the number of floats
+%   that can be placed in the top area on a normal page and if more
+%   remain after unraveling only two can immediately go in this area.
+%
+%
+% \subsection{Possible pitfalls}
+%
+%   The algorithm detects if a float is only allowed on float pages
+%   (i.e., is given in the source as \texttt{[p]} and it will ensure
+%   that float pages containing such floats are not unraveled.
+%
+%   However, if you have a float with the default specifier
+%   \texttt{[tbp]} whose size is larger than the allowed size of the
+%   top or bottom area (e.g., larger than \cs{topfraction}
+%   \texttimes{} \cs{textheight}), then this effectively means it can
+%   only be placed on float pages. Nevertheless the algorithm will
+%   happily consider runraveling a float page with such a float and
+%   trying to places it. As that doesn't work the float is moved from
+%   one page to the next, most likely messing up the whole float
+%   placement.
+%
+%   In this case the remedy is to either explicitly specify
+%   \texttt{[p]} for such a float (because that is what it is) or add
+%   an exclamation specifier, e.g., \texttt{[!tp]} so that \LaTeX{}
+%   doesn't use the size restrictions in its
+%   algorithm.\footnote{Another possibility is a further extension of
+%   the algorithm: we could automatically remove \texttt{t} or
+%   \texttt{b} specifiers if the float is to large for them to ever
+%   apply or we could automatically add a \texttt{!} to floats when
+%   they are taken off float pages. Neither extension is currently
+%   implemented, though.}
+%
 %
 % \subsection{Tracing the algorithm}
 %
@@ -261,19 +314,18 @@
 %  lessfloatpages: PAGE: trying to make a float page
 %  lessfloatpages: ----- \@deferlist: \bx@B \bx@D 
 %  lessfloatpages:  starting with \bx@B
-%  lessfloatpages:  --> success: \bx@B \bx@D 
-%  lessfloatpages: ----- all floats placed on float page(s)
+%  lessfloatpages:  --> success:  \bx@B \bx@D 
 %  lessfloatpages: ----- current float page unraveled
-%                 (free space 192.50336pt > 109.99832pt)
+%                  (free space 192.50336pt > 109.99832pt)
 %  [2]
 %\end{verbatim}
 %   which means that the algorithm is trying to make a float page from
 %   the defer-list which at that point contained two floats (the float
-%   boxes \cs{bx@B} and \cs{bx@C}), that it was able to place all
-%   floats onto the float page and that the extended algorithm then
-%   decided to unravel that last float page, because it has a free
+%   boxes \cs{bx@B} and \cs{bx@D}), that it was able to produce a
+%   float page just containing  \cs{bx@D} and that the extended algorithm then
+%   decided to unravel that float page, because it has an unused
 %   space of \texttt{192.5pt} and with the current
-%   \cs{floatpagekeepfraction} it is too much.
+%   \cs{floatpagekeepfraction} that is too much.
 %
 %   Or it might say
 %\begin{verbatim}
@@ -281,15 +333,15 @@
 %  lessfloatpages: ----- \@deferlist: \bx@D \bx@F \bx@G \bx@H \bx@I 
 %  lessfloatpages:  starting with \bx@D
 %  lessfloatpages:  --> success: \bx@D \bx@F 
-%  lessfloatpages: ----- unplaceable floats: \bx@G \bx@H \bx@I 
-%  lessfloatpages: ----- too many unplaced floats for unraveling (> 2)
+%  lessfloatpages: ----- too many deferred floats for unraveling (5 > 3)
 %  [3]
 %\end{verbatim}
 %   which means that the algorithm made a float page out of the first
-%   two floats from the defer-list (i.e., 3 remained) and that the
-%   counter \ctr{floatpageunplaced} was changed from its default
-%   (\texttt{0}) to \texttt{2} but since that is less than 3, the float
-%   page was kept regardless of the amount of free space it contained.
+%   two floats from the defer-list (i.e., 3 remained).
+%   That
+%   page was kept regardless of the amount of free space it contained
+%   because we have a total of 5 floats on the deferlist and the
+%   counter \ctr{floatpagedeferlimit} has its default values o \texttt{3}.
 %
 %   The above message examples are actually from the same test
 %   document. What they also show (implicitly) is that the unraveling
@@ -309,7 +361,7 @@
 %  lessfloatpages:  --> success: \bx@G \bx@H \bx@I 
 %  lessfloatpages: ----- all floats placed on float page(s)
 %  lessfloatpages: ----- current float page kept, full enough
-%                 (free space 38.99496pt < 109.99832pt)
+%                        (free space 38.99496pt < 109.99832pt)
 %  [4]
 %\end{verbatim}
 %   This means that the remaining floats (that were left unplaced
@@ -320,25 +372,22 @@
 %   of free space left on that page.
 %
 %   Three other possible messages are shown in this sequence of
-%   typeouts from a second test document:
+%   typeouts from a second test document (which is using some uncommon
+%   settings (\ctr{floatpagedeferlimit} is \texttt{10} and
+%   \ctr{floatpagekeeplimit} is \texttt{5}):
 %\begin{verbatim}
 %  [1]
 %  lessfloatpages: PAGE: trying to make a float page
 %  lessfloatpages: ----- \@deferlist: \bx@B \bx@C \bx@D \bx@E \bx@F \bx@G \bx@H 
+%  lessfloatpages:  starting with \bx@B
 %  lessfloatpages:  --> success: \bx@B \bx@C \bx@D \bx@E \bx@F \bx@G \bx@H 
-%  lessfloatpages: ----- all floats placed on float page(s)
-%  lessfloatpages: ----- current float page kept, contains many floats
-%                        (at least 5 > 4)
+%  lessfloatpages: ----- current float page kept (contains at least 5 floats)
 %  [2] [3]
 %\end{verbatim}
 %   In this case 7 floats have been waiting on the defer-list and the
-%   algorithm was able to construct a float page that contained more
-%   than 4 floats from it (where 4 is the current value of the
-%   \ctr{floatpagenumber} counter). It was actually able to put all
-%   seven floats onto that page, which we can deduce from the fact that no
-%   further float page attempts were made. However, since 5 is
-%   already more than what was allowed for unraveling, the algorithm
-%   stopped checking for efficiency reasons.
+%   algorithm was able to construct a float page using all of them.
+%   The algorithm then keeps that page because it has 5 or more floats
+%   in it (the value of the\ctr{floatpagekeeplimit} counter).
 %
 %   The next message in that test document then shows what happens
 %   when there are not enough floats waiting or they are simply too
@@ -365,17 +414,16 @@
 %  lessfloatpages: ----- \@deferlist: \bx@I \bx@J \bx@K 
 %  lessfloatpages:  starting with \bx@I
 %  lessfloatpages:  --> success: \bx@I \bx@J \bx@K 
-%  lessfloatpages: ----- all floats placed on float page(s)
 %  lessfloatpages: ----- current float page kept, contains a [p] float
 %  [5]
 %\end{verbatim}
 %   This time all floats could be placed, but again the float page
-%   wasn't raveled (even though in the test document it contained a
-%   lot of white space) because of the fact that one of them (in fact
+%   wasn't unraveled (even though in the test document it contained a
+%   lot of white space) because of the fact that one of its floats (in fact
 %   the first though that can only be deduced implicitly) was
 %   specified as a \enquote{float page only} float. This explains why
 %   on page~4 \cs{bx@I} couldn't be placed into the top or bottom
-%   area and there all following floats of the same class (the test
+%   area and then all following floats of the same class (the test
 %   document only contained \env{figure} floats) couldn't be placed
 %   either.
 %
@@ -394,21 +442,21 @@
 %
 %   If the extended algorithm is used you will get less float pages
 %   that contain a noticeable amount of white space. By adjusting
-%   \cs{floatpagekeepfraction} and the counters \ctr{floatpagenumber} and
-%   \ctr{floatpageunplaced} direct the algorithm to unravel more or
+%   \cs{floatpagekeepfraction} and the counters \ctr{floatpagekeeplimit} and
+%   \ctr{floatpagedeferlimit} you can direct the algorithm to unravel more or
 %   less of the otherwise generate float pages. However, in some cases
-%   it might happen that redistribution of the float into the top and
+%   it might happen that redistribution of the floats into the top and
 %   bottom areas of the next page(s) may result in some of them
 %   drifting too far away from their call-outs. If that happen you can
 %   either try to change the general parameters or you could help the
-%   algorithm along by using the optional argument of individual floar
+%   algorithm along by using the optional argument of individual float
 %   environments.
 %   The two main tools at your disposal are
 %   \begin{itemize}
 %   \item
 %     using the \texttt{[!..]} notation to allow the float to go into
 %     the top or bottom area even if it would be normally prevented by
-%     other restrictions
+%     other restrictions;
 %   \item
 %     using \texttt{[p]} to force a float into a float page as that
 %     prevents the algorithm to unravel the float page which contains
@@ -417,8 +465,8 @@
 %   As an alternative you can, of course, temporarily alter the
 %   definition of the command \cs{floatpagekeepfraction} or the values
 %   of two counters in mid-document, but remember that they are not
-%   looked at when a float is encounteredin the source but when we are
-%   at a page break and \LaTeX{} attempts to empty the defer-list
+%   looked at when a float is encountered in the source but when we are
+%   at a page break and \LaTeX{} attempts to empty the defer-list,
 %   which is usually later and unfortunately somewhat asynchonous,
 %   i.e., not easy to predict.
 %
@@ -448,16 +496,17 @@
 %
 % \subsection{Option handling}
 %                
-%    This release the package has only a single option
+%    This release of the package has only a single option
 %    \texttt{trace}. It enables tracing of the algorithm and is
 %    implemented by giving the command \cs{fl@trace} (which is also
 %    used by the \pkg{fltrace} package) a suitable definition.
 %
-%    to cater for the case that the \pkg{fltrace} package is loaded
+%    To cater for the case that the \pkg{fltrace} package is loaded
 %    first, we use \cs{providecommand}, so that its definition is not
-%    overwritten but used if is already in place. If the package is
+%    overwritten, but used if it is already in available. If the package is
 %    loaded later everything works fine because it unconditionally
-%    defines \cs{fl@trace}.
+%    defines \cs{fl@trace}, i.e., overwrites whatever
+%   \pkg{lessfloatpages} has defined.
 %
 %    \begin{macrocode}
 \DeclareOption{trace}
@@ -501,28 +550,10 @@
 %  \end{macro}
 %
 %
-%  \begin{macro}[var]{\c@floatpagenumber}
-%    A float page that contains more floats than \ctr{floatpagenumber}
-%    will also be unraveled. The default is one more than the standard
-%    value for \ctr{topnumber} (which is 3).
-%
-%    There is a good chsnce that a float page with 4 or less floats is
-%    still fairly empty. In that case it might be better to unravel
-%    it, even if that means that one of the floats (or perhaps two)
-%    can't be placed on the current page but have to move a page
-%    further away.  Of course, one could set this parameter to a
-%    higher values but then one has to be aware that more floats drift
-%    away from their call-out positions.
-%    \begin{macrocode}
-\newcounter{floatpagenumber}
-\setcounter{floatpagenumber}{4}
-%    \end{macrocode}
-%  \end{macro}
-
-%  \begin{macro}[var]{\c@floatpageunplaced}
+%  \begin{macro}[var]{\c@floatpagedeferlimit}
 %    By default the algorithm will only ever unravel the last float
 %    page in a sequence of float pages. However, if the
-%    \ctr{floatpageunplaced} counter is set to a positive number, then
+%    \ctr{floatpagedeferlimit} counter is set to a positive number, then
 %    other float pages come candidates too as long as the number
 %    floats waiting to be placed in the defer-list are less or equal
 %    to this number.  The default is currently \texttt{0} but perhaps
@@ -530,8 +561,28 @@
 %    choice. This needs to be evaluated in the field with a suitable
 %    number of real test documents.
 %    \begin{macrocode}
-\newcounter{floatpageunplaced}
-\setcounter{floatpageunplaced}{0}
+\newcounter{floatpagedeferlimit}
+\setcounter{floatpagedeferlimit}{3}
+%    \end{macrocode}
+%  \end{macro}
+
+
+
+%  \begin{macro}[var]{\c@floatpagekeeplimit}
+%    A float page that contains more floats than \ctr{floatpagekeeplimit}
+%    will also be unraveled. The default is one more than the standard
+%    value for \ctr{topnumber} (which is 3).
+%
+%    There is a good chance that a float page with 2 or less floats is
+%    still fairly empty. In that case it might be better to unravel
+%    it, even if that means that one of the floats (or perhaps two)
+%    can't be placed on the current page but have to move a page
+%    further away.  Of course, one could set this parameter to a
+%    higher values but then one has to be aware that more floats drift
+%    away from their call-out positions.
+%    \begin{macrocode}
+\newcounter{floatpagekeeplimit}
+\setcounter{floatpagekeeplimit}{3}
 %    \end{macrocode}
 %  \end{macro}
 
@@ -539,10 +590,12 @@
 
 
 
-
-
+%  \begin{macro}[internal]{fc@float@candidates}
+%    We use an internal counter to count the number of floats in the defer-list.
+%    \begin{macrocode}
 \newcount\fc@float@candidates
-\def\c@floatpagedeferlimit{\c@floatpageunplaced}
+%    \end{macrocode}
+%  \end{macro}
 
 
 
@@ -602,9 +655,9 @@
 %    allowed unplaced floats and if it is too high, we keep the float
 %    page.
 %    \begin{macrocode}
-      \ifnum \count@>\c@floatpageunplaced
+      \ifnum \count@>\c@floatpagedeferlimit
         \fl@trace{----- too many unplaced floats for unraveling
-	                (> \the\c@floatpageunplaced)}%
+	                (> \the\c@floatpagedeferlimit)}%
 %    \end{macrocode}
 %
 %    Otherwise we do a bit more testing. First we set \cs{if@fcolmade}
@@ -688,10 +741,6 @@
   \global \@fcolmadefalse
   \ifx #1\@empty
   \else
-    \fc@float@candidates\z@
-    \def\@elt##1{\advance\fc@float@candidates\@ne}%
-      #1%
-    \let\@elt\relax
     \fl@trace{PAGE: trying to make a float \if@twocolumn column/page\else page\fi}%
     \fl@trace{----- \string #1: #1}%
     \xdef\@trylist{#1}%
@@ -700,9 +749,13 @@
       \let \@elt \@xtryfc \@trylist
     \endgroup
     \if@fcolmade
+      \fc@float@candidates\z@
+      \def\@elt##1{\advance\fc@float@candidates\@ne}%
+        #1%
+      \let\@elt\relax
       \ifnum \fc@float@candidates >\c@floatpagedeferlimit
         \fl@trace{----- too many deferred floats for unraveling
-                        (\the\fc@float@candidates\space> \the\c@floatpageunplaced)}%
+                        (\the\fc@float@candidates\space> \the\c@floatpagedeferlimit)}%
       \else
         \global \@fcolmadefalse
         \count@\z@
@@ -858,13 +911,7 @@
 %    \begin{macrocode}
 \def\analyse@floats@for@unraveling#1{%
   \advance\count@\@ne
-  \ifnum \count@ >\c@floatpagenumber
-    \global \@fcolmadetrue
-    \let\@elt\@gobble
-    \fl@trace{----- current float page kept, contains many floats^^J%
-                      \@spaces\@spaces\@spaces\space\space\space
-                      (at least \the\count@\space > \the\c@floatpagenumber)}%
-  \else
+  \ifnum \count@ <\c@floatpagekeeplimit
     \@tempcntb\count#1%
     \divide\@tempcntb 8\relax
     \multiply\@tempcntb 8\relax
@@ -874,6 +921,11 @@
       \let\@elt\@gobble
     \fl@trace{----- current float page kept, contains a [p] float}%
     \fi
+  \else
+    \global \@fcolmadetrue
+    \let\@elt\@gobble
+    \fl@trace{----- current float page kept (contains at least
+       \the\count@\space floats)}%
   \fi
 }
 %    \end{macrocode}

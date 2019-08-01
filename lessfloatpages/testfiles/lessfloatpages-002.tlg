@@ -6,7 +6,7 @@ lessfloatpages: PAGE: trying to make a float page
 lessfloatpages: ----- \@deferlist: \bx@B \bx@C \bx@D \bx@E \bx@F \bx@G \bx@H 
 lessfloatpages:  starting with \bx@B
 lessfloatpages:  --> success: \bx@B \bx@C \bx@D \bx@E \bx@F \bx@G \bx@H 
-lessfloatpages: ----- too many deferred floats for unraveling (7 > 3)
+lessfloatpages: ----- current float page kept (contains at least 5 floats)
 [2] [3]
 lessfloatpages: PAGE: trying to make a float page
 lessfloatpages: ----- \@deferlist: \bx@I \bx@J 
