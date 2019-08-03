@@ -11,7 +11,8 @@ lessfloatpages:  starting with \bx@A
 lessfloatpages:  --> fail
 lessfloatpages:  starting with \bx@B
 lessfloatpages:  --> success: \bx@B 
-lessfloatpages: ----- current float page kept, contains a [p] float
+lessfloatpages: ----- current float page kept, contains a float
+lessfloatpages:       with p but no t or b specifier
 [2]
 lessfloatpages: PAGE: trying to make a float page
 lessfloatpages: ----- \@deferlist: \bx@A 
@@ -23,7 +24,8 @@ lessfloatpages: PAGE: trying to make a float page
 lessfloatpages: ----- \@deferlist: \bx@A \bx@C 
 lessfloatpages:  starting with \bx@A
 lessfloatpages:  --> success: \bx@A \bx@C 
-lessfloatpages: ----- current float page kept, contains a [p] float
+lessfloatpages: ----- current float page kept, contains a float
+lessfloatpages:       with p but no t or b specifier
 [4] [5]
 lessfloatpages: PAGE: trying to make a float page
 lessfloatpages: ----- \@deferlist: \bx@E 

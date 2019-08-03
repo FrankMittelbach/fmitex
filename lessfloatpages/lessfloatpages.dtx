@@ -38,6 +38,8 @@
 \usepackage{csquotes}
 \EnableCrossrefs
 \CodelineIndex
+
+
 \begin{document}
  \DocInput{lessfloatpages.dtx}
 \addtolength\signaturewidth{42pt}
@@ -52,6 +54,9 @@
 %   package version is \texttt{\lessfloatpagesversion} dated
 %   \lessfloatpagesdate.}}
 % \author{Frank Mittelbach}
+% \address{Mainz, Germany}
+% \netaddress{https://www.latex-project.org}
+% \personalURL{https://ctan.org/pkg/lessfloatpages}
 %
 % \maketitle
 %
@@ -65,7 +70,7 @@
 %   results look unappealing and in many cases documents are
 %   unnecessarily enlarged.
 %
-%   the \pkg{lessfloatpages} package provides an extended algorithm
+%   The \pkg{lessfloatpages} package provides an extended algorithm
 %   that improves on this without the need for manual interventions by
 %   the user.
 %
@@ -73,6 +78,68 @@
 %
 % \tableofcontents
 %
+% \DoNotIndex{\@fpmin}
+% \DoNotIndex{\@testwrongwidth}
+% \DoNotIndex{\@cons}
+% \DoNotIndex{\@currbox}
+% \DoNotIndex{\@currtype}
+% \DoNotIndex{\@elt}
+% \DoNotIndex{\@empty}
+% \DoNotIndex{\@gobble}
+% \DoNotIndex{\@ne}
+% \DoNotIndex{\@next}
+% \DoNotIndex{\@spaces}
+% \DoNotIndex{\@tempcnta}
+% \DoNotIndex{\@tempcntb}
+% \DoNotIndex{\@tempdima}
+% \DoNotIndex{\@tempdimb}
+% \DoNotIndex{\@testtrue}
+% \DoNotIndex{\@undefined}
+% \DoNotIndex{\@vtryfc}
+% \DoNotIndex{\@xxxii}
+% \DoNotIndex{\@ztryfc}
+% \DoNotIndex{\fl@trace}
+% \DoNotIndex{\@bitor}
+% \DoNotIndex{\NeedsTeXFormat}
+% \DoNotIndex{\TeX}
+% \DoNotIndex{\advance}
+% \DoNotIndex{\begingroup}
+% \DoNotIndex{\bx@B}
+% \DoNotIndex{\bx@D}
+% \DoNotIndex{\bx@I}
+% \DoNotIndex{\count}
+% \DoNotIndex{\def}
+% \DoNotIndex{\divide}
+% \DoNotIndex{\else}
+% \DoNotIndex{\endgroup}
+% \DoNotIndex{\fi}
+% \DoNotIndex{\gdef}
+% \DoNotIndex{\global}
+% \DoNotIndex{\ht}
+% \DoNotIndex{\if@test}
+% \DoNotIndex{\if@twocolumn}
+% \DoNotIndex{\ifdim}
+% \DoNotIndex{\ifnum}
+% \DoNotIndex{\ifodd}
+% \DoNotIndex{\ifx}
+% \DoNotIndex{\let}
+% \DoNotIndex{\maxdimen}
+% \DoNotIndex{\multiply}
+% \DoNotIndex{\newcommand}
+% \DoNotIndex{\newcount}
+% \DoNotIndex{\newcounter}
+% \DoNotIndex{\providecommand}
+% \DoNotIndex{\relax}
+% \DoNotIndex{\renewcommand}
+% \DoNotIndex{\reserved@a}
+% \DoNotIndex{\sixt@@n}
+% \DoNotIndex{\space}
+% \DoNotIndex{\string}
+% \DoNotIndex{\the}
+% \DoNotIndex{\tw@}
+% \DoNotIndex{\typeout}
+% \DoNotIndex{\xdef}
+% \DoNotIndex{\z@}
 %
 %
 % \section{Introduction}
@@ -196,8 +263,10 @@
 %   and so generating float pages when many floats are waiting is
 %   usually essential.
 %
-%   \DescribeMacro{floatpagedeferlimit}
-% ^^A
+% \begin{variable}{floatpagedeferlimit}
+%   \begin{syntax}
+%   \cs{setcounter}\{floatpagedeferlimit\}\Arg{number}
+%   \end{syntax}
 %   Whether or not unraveling for a float page is considered at all,
 %   is guided by the counter \ctr{floatpagedeferlimit} and as long as
 %   there are more floats waiting on the defer list than this number,
@@ -207,8 +276,9 @@
 %   floating page has a fighting chance to place all floats into the
 %   top and bottom areas on the current page.
 %   It would also resolve cases such as up to three floats, each larger than
-%   \cs{floatepagefraction}, where standard \LaTeX{} algorithm would
+%   \cs{floatpagefraction}, where standard \LaTeX{} algorithm would
 %   produce three individual float pages.
+% \end{variable}
 %
 %   If you set the counter to \texttt{1} then only the last float page
 %   in a sequence is considered and only if it contains only a single
@@ -217,18 +287,24 @@
 %   is disabled since float pages are only produced if there was at
 %   least one float on the defer list.
 %
-%   \DescribeMacro{floatpagekeeplimit}
-% ^^A
-%   Even if we set \ctr{floatpagedeferlimit} to a fairly high value,
+%   Even\mnote{Don't unravel if the float page contains many
+%   floats} if we set \ctr{floatpagedeferlimit} to a fairly high value,
 %   we may not want to unravel float pages that contain many
 %   floats. To support this case there is a second counter that guides the
-%   algorithm in this respect. Whenever\mnote{Don't unravel if the float page contains many
-%   floats} the float page contains at least
+%   algorithm in this respect.
+%
+% \begin{variable}{floatpagekeeplimit}
+%   \begin{syntax}
+%   \cs{setcounter}\{floatpagekeeplimit\}\Arg{number}
+%   \end{syntax}
+%   Whenever the float page contains at least
 %   \ctr{floatpagekeeplimit} floats it will not be unraveled. The
 %   default is also \texttt{3} so that float pages with three or more
 %   floats are not touched. Obviously the counter can have only any
 %   effect if it has a value less or equal to
 %   \ctr{floatpagedeferlimit} since this is tested first.
+% \end{variable}
+%
 %
 %   There are, however, a number of other situations in which we
 %   shouldn't unravel a float page even if the above check for the
@@ -250,8 +326,10 @@
 %   even further away from their call-out positions than they have to
 %   be.
 %
-%   \DescribeMacro\floatpagekeepfraction
-% ^^A
+% \begin{function}{\floatpagekeepfraction}
+% \begin{syntax}
+%   \cs{renewcommand}\cs{floatpagekeepfraction}\Arg{decimal}
+% \end{syntax}
 %   So what is a good way to determine if a float page is ``full
 %   enough''?  A possible answer is that if the remaining free space
 %   on that page is less than \cs{textfraction} we consider it full
@@ -264,6 +342,7 @@
 %   the variable \cs{floatpagekeepfraction} (defaulting to
 %   \cs{textfraction}) so if desired a lower (or even a higher)
 %   boundary can be set.
+% \end{function}
 %
 %   The above parameters give some reasonable configuration
 %   possibilities to guide the algorithm when and when not to unravel
@@ -300,13 +379,17 @@
 %   There\mnote{\option{checktb} (option)} are two possible ways how
 %   the algorithm could be improved to avoid this disaster. One way
 %   would be to check the float size when it is initially encountered
-%   and and removed any specifiers that are technically not possible
+%   and  remove any specifiers that are technically not possible
 %   because of the parameter settings and the float size. The
-%   disadvantage of this approach that we will get more floats that
-%   have only a \texttt{p} specifier, i.e., that will be more float
+%   disadvantage of this approach is that we will get more floats that
+%   have only a \texttt{p} specifiers, i.e., that there will be more float
 %   pages in the end.
 %   If you prefer the first approach
-%   specify the option \option{checktb}.
+%   specify the option \option{checktb}. In that case you might see
+%    warnings like
+%\begin{verbatim}
+% LaTeX Warning: Float too large for top area: t changed to p on line ...
+%\end{verbatim}
 %
 %   Another\mnote{Default action is to add \texttt{!}\@ specifiers
 %   during unraveling} possibility is that we automatically add a
@@ -319,13 +402,13 @@
 %   If\mnote{\option{nobang} (option)} you prefer neither automatic
 %   specifier change add the option \option{nobang}.
 %
-%   In this case you might find floats of certain sizes to be
+%   In this case you might find that floats of certain sizes to be
 %   unplaceable and thus getting delayed to the end of the document.
 %   If that happens the remedy is to either explicitly specify
-%   \texttt{[p]} for such a float (to ensure that they aren't subject
-%   to unraveling) or to manually add an exclamation specifier, e.g.,
-%   \texttt{[!tp]} so that \LaTeX{} doesn't use the size restrictions
-%   in its algorithm.
+%   \texttt{[p]} or \texttt{[hp]}for such a float (to ensure that they
+%   aren't subject to unraveling) or to manually add an exclamation
+%   specifier, e.g., \texttt{[!tp]} so that \LaTeX{} doesn't use the
+%   size restrictions in its algorithm.
 %
 %
 %
@@ -345,8 +428,8 @@
 %\end{verbatim}
 %   which means that the algorithm is trying to make a float page from
 %   the defer list which at that point contained two floats (the float
-%   boxes \cs{bx@B} and \cs{bx@D}), that it was able to produce a
-%   float page just containing  \cs{bx@D} and that the extended algorithm then
+%   boxes \cs[no-index]{bx@B} and \cs[no-index]{bx@D}), that it was able to produce a
+%   float page just containing  \cs[no-index]{bx@D} and that the extended algorithm then
 %   decided to unravel that float page, because it has an unused
 %   space of \texttt{192.5pt} and with the current
 %   \cs{floatpagekeepfraction} that is too much.
@@ -369,8 +452,8 @@
 %
 %   The above message examples are actually from the same test
 %   document. What they also show (implicitly) is that the unraveling
-%   that happened after page~1 resulted in only one float (\cs{bx@B})
-%   being placed on page~2, because we see the second one (\cs{bx@D})
+%   that happened after page~1 resulted in only one float (\cs[no-index]{bx@B})
+%   being placed on page~2, because we see the second one (\cs[no-index]{bx@D})
 %   reappearing in the defer list after page~2 got finished. In other
 %   words it was moved one page further away from its call-out: the
 %   price for getting a nicely filled page~2 instead of a fairly empty
@@ -438,7 +521,8 @@
 %  lessfloatpages: ----- \@deferlist: \bx@I \bx@J \bx@K 
 %  lessfloatpages:  starting with \bx@I
 %  lessfloatpages:  --> success: \bx@I \bx@J \bx@K 
-%  lessfloatpages: ----- current float page kept, contains a [p] float
+%  lessfloatpages: ----- current float page kept, contains a float
+%  lessfloatpages:       with p but no t or b specifier
 %  [5]
 %\end{verbatim}
 %   This time all floats could be placed, but again the float page
@@ -446,7 +530,7 @@
 %   lot of white space) because of the fact that one of its floats (in fact
 %   the first though that can only be deduced implicitly) was
 %   specified as a \enquote{float page only} float. This explains why
-%   on page~4 \cs{bx@I} couldn't be placed into the top or bottom
+%   on page~4 \cs[no-index]{bx@I} couldn't be placed into the top or bottom
 %   area and then all following floats of the same class (the test
 %   document only contained \env{figure} floats) couldn't be placed
 %   either.
@@ -489,13 +573,29 @@
 %   As an alternative you can, of course, temporarily alter the
 %   definition of the command \cs{floatpagekeepfraction} or the values
 %   of two counters in mid-document, but remember that they are not
-%   looked at when a float is encountered in the source but when we are
-%   at a page break and \LaTeX{} attempts to empty the defer list,
+%   looked at when a float is encountered in the source but when we
+%   are at a page break and \LaTeX{} attempts to empty the defer list,
 %   which is usually later and unfortunately somewhat asynchronous,
 %   i.e., not easy to predict.
 %
 %
-% \StopEventually{\setlength\IndexMin{200pt}  \PrintIndex  }
+% \StopEventually{
+% \begin{thebibliography}{1}
+% \raggedright
+% \bibitem{fmi:floatplacement}
+% Frank Mittelbach.
+% \newblock How to influence the position of float environments like figure and table in \LaTeX?
+% \newblock \textsl{TUG}boat 35:3, 2014.\\
+% \newblock \url{https://www.latex-project.org/publications/indexbytopic/2e-floats/}
+% \bibitem{source2e}
+% \LaTeX{} Project Team.
+% \newblock The \LaTeXe{} Sources (660+ pages), 2018.\\
+% \newblock \url{https://www.latex-project.org/help/documentation}
+%\end{thebibliography}
+% \ifx\thisissuepageref\undefined    ^^A is this TUB production ??? if not gen index
+%    \setlength\IndexMin{200pt}  \PrintIndex
+% \fi}
+%
 %
 %
 % \section{The Implementation}
@@ -527,14 +627,14 @@
 %    impossible to places the floats.
 %                
 %    The option \option{trace} enables tracing of the algorithm and is
-%    implemented by giving the command \cs{fl@trace} (which is also
+%    implemented by giving the command \cs[no-index]{fl@trace} (which is also
 %    used by the \pkg{fltrace} package) a suitable definition.
 %
 %    To cater for the case that the \pkg{fltrace} package is loaded
-%    first, we use \cs{providecommand}, so that its definition is not
+%    first, we use \cs[no-index]{providecommand}, so that its definition is not
 %    overwritten, but used if it is already in available. If the package is
 %    loaded later everything works fine because it unconditionally
-%    defines \cs{fl@trace}, i.e., overwrites whatever
+%    defines \cs[no-index]{fl@trace}, i.e., overwrites whatever
 %   \pkg{lessfloatpages} has defined.
 %
 %    \begin{macrocode}
@@ -558,9 +658,13 @@
 %    the bottom area any \texttt{t} or \texttt{b} specifier is
 %    replaced by \texttt{p} (or dropped if \texttt{p} is already
 %    specified). This option implies \option{nobang}.
+%
+%    The real definition for \cs{fp@maybe@check@tb} is done later, be
+%    setting it to \cs[no-index]{relax} we are only signalling here that the
+%    option was given.               
 %    \begin{macrocode}
 \DeclareOption{checktb}
-              {\let\fp@maybe@checktb\relax
+              {\let\fp@maybe@check@tb\relax
                \let\fp@maybe@add@bang\@gobble}
 \ProcessOptions
 %    \end{macrocode}
@@ -569,9 +673,9 @@
 % \subsection{Tracing code}
 %                
 %  \begin{macro}[internal]{fl@trace}
-%    The command \cs{fl@trace} is used to output tracing information.
+%    The command \cs[no-index]{fl@trace} is used to output tracing information.
 %    By default the tracing of the algorithm is turned off, so
-%    \cs{fl@trace} will simply swallow its argument. But if
+%    \cs[no-index]{fl@trace} will simply swallow its argument. But if
 %    \pkg{fltrace} is loaded or the option \option{trace} is given
 %    then the command already has a definition so we don't change it
 %    here.
@@ -600,11 +704,11 @@
 %  \end{macro}
 %
 %
-%  \begin{macro}[var]{\c@floatpagedeferlimit}
+%  \begin{macro}[var]{floatpagedeferlimit,\c@floatpagedeferlimit}
 
 %    The algorithm will only consider unraveling float pages if are
-%    aren't too many floats on the defer list. The definition of
-%    \enquote{too many} is given by the counter
+%    are not too many floats on the defer list. The definition of
+%    \enquote{too many} is provided through the counter
 %    \ctr{floatpagedeferlimit} if there are more floats waiting to be
 %    placed, float pages are generated until their number falls below
 %    this level. Thus, a value of \texttt{0} will disable the whole
@@ -619,7 +723,7 @@
 
 
 
-%  \begin{macro}[var]{\c@floatpagekeeplimit}
+%  \begin{macro}[var]{floatpagekeeplimit,\c@floatpagekeeplimit}
 %
 %    A float page that contains at least this number of floats will
 %    also be kept. The default is \texttt{3} but if you have a lot of
@@ -664,7 +768,7 @@
     \endgroup
 %    \end{macrocode}
 %    Up to this point the definition is the same as in the original
-%    algorithm. At this point the  switch \cs{if@fcolmade}  tells us if making a
+%    algorithm. At this point the  switch \cs[no-index]{if@fcolmade}  tells us if making a
 %    float page was successful and the original algorithm then called
 %    \cs{@vtryfc} and removed the floats used for this float page from the defer list.
 %
@@ -695,25 +799,25 @@
       \else
 %    \end{macrocode}
 %
-%    Otherwise we do a bit more testing. First we set \cs{if@fcolmade}
+%    Otherwise we do a bit more testing. First we set \cs[no-index]{if@fcolmade}
 %    back to false, after all our goal is to not  keep the float page. If
 %    during the tests we decide otherwise we set it back to true which
 %    then signals that it should stay.
 %
-%    We also count the floats on the float page and use \cs{count@}
-%    for that which us why we initialize it to zero.
+%    We also count the floats on the float page and reuse \cs{fp@candidates}
+%    for that which is why we initialize it to zero.
 %    \begin{macrocode}
-        \global \@fcolmadefalse
-        \count@\z@
+        \global\@fcolmadefalse
+        \fp@candidates\z@
 %    \end{macrocode}
 %    The actually checking is done with
-%    \cs{analyse@floats@for@unraveling} and it loops over
+%    \cs{fp@analyse@floats@for@unraveling} and it loops over
 %    \cs{@flsucceed}, i.e., the floats for that float page. This
 %    checks if any float has only a \texttt{[p]} specifier and if so
-%    sets \cs{if@fcolmade} back to \texttt{true} and as a side effect also does
+%    sets \cs[no-index]{if@fcolmade} back to \texttt{true} and as a side effect also does
 %    the counting for us.
 %    \begin{macrocode}
-        \let\@elt\analyse@floats@for@unraveling
+        \let\@elt\fp@analyse@floats@for@unraveling
           \@flsucceed
         \let\@elt\relax
 %    \end{macrocode}
@@ -727,9 +831,9 @@
 %    But we aren't done yet: the float page might be nicely filled,
 %    which case it would be a shame to unravel it. During the above
 %    loop we also measured the free space on the float page and stored
-%    it in \cs{fp@unused@space}. We now compare that to the maximum
-%    free space that we consider to be still okay and if there is more
-%    we finally do the unraveling.
+%    it in \cs{fp@unused@space} (see \cs{@xtryfc} below). We now
+%    compare that to the maximum free space that we consider to be
+%    still okay and if there is more we finally do the unraveling.
 %    \begin{macrocode}
           \@tempdima\floatpagekeepfraction\@colht
           \ifdim \fp@unused@space >\@tempdima
@@ -747,8 +851,8 @@
 %    the floats (unless the user specified the \option{nobang} option)
 %    so we loop over all the floats once more to get this
 %    done.\footnote{This could have been integrated with
-%    \cs{analyse@floats@for@unraveling} but there is not much gain if
-%    any and this way the prcessing logic seems clearer to me.}
+%    \cs{fp@analyse@floats@for@unraveling} but there is not much gain if
+%    any and keeping it separate the processing logic seems clearer to me.}
 %    \begin{macrocode}
             \let\@elt\fp@maybe@add@bang
               \@flsucceed
@@ -767,7 +871,7 @@
         \fi
       \fi
 %    \end{macrocode}
-%    The next \cs{else} matches the first \cs{if@fcolmade}, i.e., the
+%    The next \cs[no-index]{else} matches the first \cs[no-index]{if@fcolmade}, i.e., the
 %    case that the algorithm wasn't able to make any float page and if
 %    we are tracing the algorithm, we want to tell the user about this.
 %    \begin{macrocode}
@@ -785,6 +889,7 @@
     \fi
   \fi
 }%
+}    % -- END of \AtBeginDocument
 %    \end{macrocode}
 %  \end{macro}
 %
@@ -794,13 +899,17 @@
 %    In contrast to \cs{@tryfcolumn} this macro will always make float
 %    pages out of the deferred floats. It is used by \cs{clearpage}
 %    when we really need the floats to get out and there is no further
-%    text coming up. Thus, in that case we should not unravel the float
-%    pages which would happen if we use the kernel definition of \cs{@makefcolumn}.
+%    text coming up. Thus, in that case we should not unravel the
+%    float pages. That would happen with the kernel definition of
+%    \cs{@makefcolumn} as that calls \cs{@tryfcolumn} which we just
+%    changed above. We therefore modify its definition to use the
+%    original code for \cs{@tryfcolumn} instead of calling our updated
+%    version.
 %
-%
-%    Again we make this change at \verb=\begin{document}= so
-%    that we replace any change done by \pkg{fltrace}.
+%    Again this change is made at \verb=\begin{document}= so that it
+%    is not overwritten in case \pkg{fltrace} is loaded afterwards.
 %    \begin{macrocode}
+\AtBeginDocument{%
 \def\@makefcolumn #1{%
   \begingroup
     \@fpmin -\maxdimen
@@ -808,8 +917,8 @@
 %    \end{macrocode}
 %    At this point the original definition called \cs{@tryfcolumn} and
 %    the lines above ensured that it was always succeeding in making
-%    a float page. Since we have changed that command to do unraveling
-%    we better not use it. Instead we replace it by its original
+%    a float page. However, since we have changed that command to do unraveling
+%    we better not use it any more. Instead we replace it by its original
 %    definition (with the addition of two tracing lines).
 %    \begin{macrocode}
     \global \@fcolmadefalse
@@ -821,193 +930,29 @@
       \xdef\@trylist{#1}%
       \global \let \@failedlist \@empty
       \begingroup
-	\let \@elt \@xtryfc \@trylist
+        \let \@elt \@xtryfc \@trylist
       \endgroup
       \if@fcolmade
-	\@vtryfc #1%
+        \@vtryfc #1%
       \fi
     \fi
   \endgroup
 }%
-}             % -- END \AtBeginDocument
-%    \end{macrocode}
-%  \end{macro}
-
-
-
-
-
-% \subsection{Aux helpers}
-%                
-%
-%  \begin{macro}[internal]{fp@candidates}
-%    We use an internal counter to count the number of floats in the defer list.
-%    \begin{macrocode}
-\newcount\fp@candidates
-%    \end{macrocode}
-%  \end{macro}
-
-
-
-
-%  \begin{macro}[internal]{\fp@unused@space}
-%    
-%    \begin{macrocode}
-\def\fp@unused@space{}
-%    \end{macrocode}
-%  \end{macro}
-
-
-
-%  \begin{macro}[internal]{\@ytryfc}
-%    
-%    \begin{macrocode}
-\def\@ytryfc #1{%
-  \begingroup
-    \gdef\@flsucceed{\@elt #1}%
-    \global\let\@flfail\@empty
-    \@tempdima\ht #1%
-    \let\@elt\@ztryfc
-    \@trylist
-    \ifdim \@tempdima >\@fpmin
-      \global\@fcolmadetrue
-%    \end{macrocode}
-%    
-%    \begin{macrocode}
-      \@tempdimb\@colht
-      \advance\@tempdimb-\@tempdima
-      \xdef\fp@unused@space{\the\@tempdimb}%
-%    \end{macrocode}
-%    
-%    \begin{macrocode}
-    \else
-      \@cons\@failedlist #1%
-      \fl@trace{ --> fail}%
-    \fi
-  \endgroup
-  \if@fcolmade
-    \let\@elt\@gobble
-    \fl@trace{ --> success: \@flsucceed}%
-  \fi}
+}  % -- END of \AtBeginDocument
 %    \end{macrocode}
 %  \end{macro}
 %
 %
-%  \begin{macro}[internal]{\analyse@floats@for@unraveling}
-%    
-%    \begin{macrocode}
-\def\analyse@floats@for@unraveling#1{%
-  \advance\count@\@ne
-  \ifnum \count@ <\c@floatpagekeeplimit
-    \@tempcntb\count#1%
-    \divide\@tempcntb 8\relax
-    \multiply\@tempcntb 8\relax
 %
-    \ifnum \count#1=\@tempcntb
-      \global \@fcolmadetrue
-      \let\@elt\@gobble
-    \fl@trace{----- current float page kept, contains a [p] float}%
-    \fi
-  \else
-    \global \@fcolmadetrue
-    \let\@elt\@gobble
-    \fl@trace{----- current float page kept (contains at least
-       \the\count@\space floats)}%
-  \fi
 %
-}
-%    \end{macrocode}
-%  \end{macro}
+%  \begin{macro}[internal]{\@xtryfc}
+%    The only change to \cs{@xtryfc} is the addition of the
+%    \cs[no-index]{fl@trace} calls. But this extra tracing info is generally
+%    useful and should also be done in the \pkg{fltrace} package.
 %
-
-%  \begin{macro}[internal]{\fp@maybe@add@bang}
-%    
-%    \begin{macrocode}
-\ifx\fp@maybe@add@bang\@undefined
-\def\fp@maybe@add@bang#1{%
-  \@boxfpsbit #1\sixt@@n
-  \ifodd \@tempcnta
-    \global\advance\count#1-\sixt@@n
-  \fi
-}
-\fi
-%    \end{macrocode}
-%  \end{macro}
-%
-
-
-
-%  \begin{macro}[internal]{\@largefloatcheck}
-%    
-%    \begin{macrocode}
-\def \@largefloatcheck{%
-  \ifdim \ht\@currbox>\textheight
-    \@tempdima -\textheight
-    \advance \@tempdima \ht\@currbox
-    \@latex@warning {Float too large for page by \the\@tempdima}%
-    \ht\@currbox \textheight
-  \fi    
-%    \end{macrocode}
-%    
-%    \begin{macrocode}
-  \fp@maybe@checktb
-}
-%    \end{macrocode}
-%  \end{macro}
-
-
-%  \begin{macro}[internal]{\fp@maybe@checktb}
-%    
-%    \begin{macrocode}
-\ifx\fp@maybe@checktb\@undefined
-  \let\fp@maybe@checktb\relax
-\else
-  \def\fp@maybe@checktb{%
-    \@getfpsbit \sixt@@n
-    \ifodd \@tempcnta
-      \ifdim \ht\@currbox>\topfraction\textheight
-	\@getfpsbit \tw@
-	\ifodd \@tempcnta
-	  \global\advance\count\@currbox -\tw@
-	  \fp@add@p@bit
-	  \@latex@warning {Float too large for top area: t changed to p}%
-	\fi
-      \fi
-      \ifdim \ht\@currbox>\bottomfraction\textheight
-	\@getfpsbit 4\relax
-	\ifodd \@tempcnta 
-	  \global\advance\count\@currbox -4\relax
-	  \fp@add@p@bit
-	  \@latex@warning {Float too large for bottom area:
-			   b changed to p}%
-	\fi
-      \fi
-    \fi
-  }
-\fi  
-%    \end{macrocode}
-%  \end{macro}
-
-
-%  \begin{macro}{\fp@add@p@bit}
-%    
-%    \begin{macrocode}
-\def\fp@add@p@bit{%
-   \@getfpsbit 8\relax
-   \ifodd \@tempcnta
-   \else
-     \global\advance\count\@currbox 8\relax
-   \fi
-}
-%    \end{macrocode}
-%  \end{macro}
-
-
-
-% \subsection{Updates that will go into \pkg{fltrace} eventually}
-
-%  \begin{macro}{\@xtryfc}
-%    The only change here is the addition of the \cs{fl@trace} info.
+%    The macro initiates a float page trial starting with the first
+%    float in \cs{@trylist}. More detailed explanations can be found
+%    in the documented sources of the \LaTeX{} kernel~\cite{source2e}.
 %    \begin{macrocode}
 \def\@xtryfc #1{%
   \fl@trace{ starting with \string#1}%
@@ -1030,9 +975,333 @@
 }%
 %    \end{macrocode}
 %  \end{macro}
-
-
-
+%
+%
+%
+%
+%
+%
+%  \begin{macro}[internal]{\@ytryfc}
+%
+%    The command \cs{@ytryfc}, which is also part of the code in the
+%    kernel, loops through the defer list and tries to build a float
+%    page starting with the float pass to it in |#1|. If it suceeds,
+%    the floats that are part of the float page are listed in
+%    \cs{@flsucceed} and the switch \cs[no-index]{if@fcolmade} is set to
+%    \texttt{true}. Interesting for us is that inside the code
+%    \cs[no-index]{@tempdima} holds the size taken up by the floats, so we can
+%    use this to calculate the unsued space on the float page and
+%    store it in \cs{fp@unused@space} for use in our extended
+%    algorithm.
+%    \begin{macrocode}
+\def\@ytryfc #1{%
+  \begingroup
+    \gdef\@flsucceed{\@elt #1}%
+    \global\let\@flfail\@empty
+    \@tempdima\ht #1%
+    \let\@elt\@ztryfc
+    \@trylist
+    \ifdim \@tempdima >\@fpmin
+      \global\@fcolmadetrue
+%    \end{macrocode}
+%    This branch is executed when the floats together are big enough
+%   to form a float page. Thus, this is the right place to calculate
+%   the free space by substracting the used space from the column
+%   height (which may not be the full height if there are spanning
+%   floats in two column mode).
+%    \begin{macrocode}
+      \@tempdimb\@colht
+      \advance\@tempdimb-\@tempdima
+      \xdef\fp@unused@space{\the\@tempdimb}%
+%    \end{macrocode}
+%    The remaining code is again unchanged except that we added two
+%    additional tracing lines (though those should be added to
+%    the \pkg{fltrace} package too one of these days).
+%    \begin{macrocode}
+    \else
+      \@cons\@failedlist #1%
+      \fl@trace{ --> fail}%
+    \fi
+  \endgroup
+  \if@fcolmade
+    \let\@elt\@gobble
+    \fl@trace{ --> success: \@flsucceed}%
+  \fi}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%
+%
+%  \begin{macro}[internal]{\@largefloatcheck}
+%
+%    The final kernel macro we need to patch is
+%    \cs{@largefloatcheck}. This is called when a float box is
+%    constructed and it checks if that box is larger than the availale
+%    \cs{textheight} which would mean it could never be placed
+%    anywhere, not even on a float page. The code therefore reduces
+%    the box size as necessary and issues a warning.
+%
+%    This macro is therefore a natural candidate to also check if the
+%    float size is too large for the float to go into top or bottom
+%    areas (if the option \option{checktb} is used.
+%    \begin{macrocode}
+\def \@largefloatcheck{%
+  \ifdim \ht\@currbox>\textheight
+    \@tempdima -\textheight
+    \advance \@tempdima \ht\@currbox
+    \@latex@warning {Float too large for page by \the\@tempdima}%
+    \ht\@currbox \textheight
+  \fi    
+%    \end{macrocode}
+%    The \cs{fp@maybe@check@tb} does the checking (or nothing if the
+%    option is not given).
+%    \begin{macrocode}
+  \fp@maybe@check@tb
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%
+%
+%
+% \subsection{Internal helpers commands and parameters}
+%                
+%
+%  \begin{macro}[internal]{fp@candidates}
+%     We use an internal counter to count the number of floats in the
+%    defer list and on a float page under construction.
+%    \begin{macrocode}
+\newcount\fp@candidates
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%
+%  \begin{macro}[internal]{\fp@unused@space}
+%    In \cs{fp@unused@space} which we store the amount of free space
+%    on the current float page.
+%    \begin{macrocode}
+\def\fp@unused@space{}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%
+%  \begin{macro}[internal]{\fp@analyse@floats@for@unraveling}
+%    With \cs{fp@analyse@floats@for@unraveling} we loop over the
+%    floats on the float page, i.e., |#1| will be one of such floats.
+%
+%    Its task is to count the floats (in \cs{fp@candidates}) check if
+%    there are at least \ctr{floatpagekeeplimit} of them (which means
+%    the float page should definitely be kept).
+%
+%    The most important task, however is to check if one of the floats
+%    has only a \texttt{p} specifier but no other. In that case it is
+%    essential that we aren't unraveling the float page because such a
+%    float would then only go back onto the defer list as it has no
+%    place to go except a float page.
+%    \begin{macrocode}
+\def\fp@analyse@floats@for@unraveling#1{%
+  \advance\fp@candidates\@ne
+  \ifnum \fp@candidates <\c@floatpagekeeplimit
+%    \end{macrocode}
+%    So far we haven't got enough floats to know that this float page
+%    should be kept so we check the given float specifiers.
+%  
+%    The test may look a little weird,\footnote{\enquote{Little} might
+%    be an understatement. Encoding a lot of information in individual
+%    bits of the counter value associated with a float was a great way
+%    in the early days of \LaTeX{} to preserve macro space (and
+%    absolutely essential back then), but these days \ldots{} Anyway,
+%    it is the way it is and that part can't really be changed without
+%    breaking a lot of packages.}  but what we want to know is this:
+%    is there are \texttt{p} (third bit) but neither a \texttt{b}
+%    (second bit) nor a \texttt{t} (first bit). We don't care about
+%    \texttt{h} or \texttt{!} which are the next two bit in the float
+%    counter nor any of its higher bits (which encode the type of
+%    float). So we devide the integer number by 8 which which drops
+%    the two least significant bits if you think of the integer being
+%    represented in binary format and then multiply it again by 8. As
+%    a result the first two bits are zeroed out.  We then compare the
+%    result with the original value and if the two values are the same
+%    then the \texttt{b} and \texttt{t} bits must both have been zero
+%    from the start. And since the float was on a float page we also
+%    know that it had a \texttt{p} specifier.
+%    \begin{macrocode}
+    \@tempcntb\count#1%
+    \divide\@tempcntb 8\relax
+    \multiply\@tempcntb 8\relax
+    \ifnum \count#1=\@tempcntb
+%    \end{macrocode}
+%    In that case we set \cs[no-index]{if@fcolmade} to \texttt{true} to signal that
+%    this float page should be kept, generate a tracing message and change
+%    \cs[no-index]{@elt} to becomes \cs[no-index]{@gobble} to quickly jump over any
+%    remaining floats in the loop without doing further tests or
+%    generating further tracing messages.
+%    \begin{macrocode}
+      \global \@fcolmadetrue
+      \fl@trace{----- current float page kept, contains a float}%
+      \fl@trace{\@spaces\space\space with p but no t or b specifier}%
+      \let\@elt\@gobble
+    \fi
+%    \end{macrocode}
+%    On the other hand, if we have seen enough floats we also know
+%    that the float page should be kept, so change the switch, give
+%    some tracing info and stop checking:
+%    \begin{macrocode}
+  \else
+    \global \@fcolmadetrue
+    \fl@trace{----- current float page kept
+              (contains at least \the\fp@candidates\space floats)}%
+    \let\@elt\@gobble
+  \fi
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%
+%
+%  \begin{macro}[internal]{\fp@maybe@add@bang}
+%
+%    The helper \cs{fp@maybe@add@bang} is used to loop through all of
+%    the floats of a float page (received each as |#1| in turn) and
+%    add a \texttt{!}\@ specifier if there wasn't one before.
+%
+%    However, we only define it if it wasn't defined earlier in the
+%    code for one of the options.
+%    \begin{macrocode}
+\ifx\fp@maybe@add@bang\@undefined
+  \def\fp@maybe@add@bang#1{%
+%    \end{macrocode}
+%    Find out if the fourth bit is set (which means no \texttt{!}\@)
+%    and if so substract 16 from the float counter which means setting
+%    it to zero.
+%    \begin{macrocode}
+    \@boxfpsbit #1\sixt@@n
+    \ifodd \@tempcnta
+      \global\advance\count#1-\sixt@@n
+    \fi
+  }
+\fi
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%
+%
+%  \begin{macro}[internal]{\fp@maybe@check@tb}
+%    The code in \cs{fp@maybe@check@tb} is used in
+%    \cs{@largefloatcheck} to test if the float has a \texttt{t} or
+%    \texttt{b} specifier but is too large to fit into the the
+%    respective area. This test is not made by default but only if the
+%    option \option{checktb} is used, so we could have defined it
+%    inside the option. But to keep the option section simple we only
+%    gave it a trivial definition there so that we can now check if it
+%    is defined, if so the option was given.
+%    \begin{macrocode}
+\ifx\fp@maybe@check@tb\@undefined
+%    \end{macrocode}
+%    If the option was not given we don't do any checking so we define
+%    it to do nothing.
+%    \begin{macrocode}
+  \let\fp@maybe@check@tb\relax
+\else
+%    \end{macrocode}
+%    Otherwise it gets a real definition. Again this is a case of
+%    looking at various bits in the float counter value in binary
+%    notation.
+%    \begin{macrocode}
+  \def\fp@maybe@check@tb{%
+%    \end{macrocode}
+%    If the specifier contained a \texttt{!}\@ we are ok, because in
+%    that case size restrictions for areas do not apply. For this we
+%    have to test the fourth bit which means dividing by 16 and then
+%    checking if the result is odd or even (odd means there was no
+%    \texttt{!}\@)\footnote{I'm sure we had very good reasons to
+%    implement it this way in 1992\Dash we probably saved a few bytes
+%    which was important back then. But it is certainly odd that for
+%    \texttt{!}\@ a value of zero means that it was specified on the
+%    float while for all other specifiers a value of \texttt{1}
+%    indicates that the specifier was given.}. The kernel
+%    \cs{@getfpsbit} does this for us and stores the result in
+%    \cs[no-index]{@tempcnta} so we can test this with \cs[no-index]{ifodd} to see if the
+%    bit was set.
+%    \begin{macrocode}
+    \@getfpsbit \sixt@@n
+    \ifodd \@tempcnta
+%    \end{macrocode}
+%    If there was no \texttt{!}\@ we check if the height of the
+%    float is too large to fit into the top area.
+%    \begin{macrocode}
+      \ifdim \ht\@currbox>\topfraction\textheight
+%    \end{macrocode}
+%
+%    If that is the case we also check the first bit of the float
+%    counter to see if a \texttt{t} was specified. For this we use
+%    \cs{@getfpsbit} again but this time with \texttt{2} as argument
+%    since we test the first bit.
+%    \begin{macrocode}
+        \@getfpsbit \tw@
+        \ifodd \@tempcnta
+%    \end{macrocode}
+%    If \texttt{t}  was specified we need to remove it (next line) and
+%    add (if not already present) a \texttt{p} instead. This is done
+%    by \cs{fp@add@p@bit}. Finally we add a warning for the user about
+%    the change.
+%    \begin{macrocode}
+          \global\advance\count\@currbox -\tw@
+          \fp@add@p@bit
+          \@latex@warning {Float too large for top area: t changed to p}%
+        \fi
+      \fi
+%    \end{macrocode}
+%    A similar test and action is needed for bottom floats, here we
+%    need to look at and zero out the second bit (i.e., using 4 as a value).
+%    \begin{macrocode}
+      \ifdim \ht\@currbox>\bottomfraction\textheight
+        \@getfpsbit 4\relax
+        \ifodd \@tempcnta 
+          \global\advance\count\@currbox -4\relax
+          \fp@add@p@bit
+          \@latex@warning {Float too large for bottom area:
+                           b changed to p}%
+        \fi
+      \fi
+    \fi
+  }
+\fi  
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%
+%  \begin{macro}[internal]{\fp@add@p@bit}
+%    The command \cs{fp@add@p@bit} adds the \texttt{p} specifier which
+%    means checking the third bit and if not set, adding 8 to the float  counter.
+%    \begin{macrocode}
+\def\fp@add@p@bit{%
+   \@getfpsbit 8\relax
+   \ifodd \@tempcnta
+   \else
+     \global\advance\count\@currbox 8\relax
+   \fi
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%
+% \subsection{Patches that will go into \pkg{fltrace} eventually}
+%
+%  The \pkg{lessfloatpages} package added some additional general
+%  tracing info into some of the kernel functions which isn't
+%  currently available when using only the \pkg{fltrace} package. As
+%  that tracing info is generally useful for understanding what the
+%  base part of the float algorithm does it should be also added to
+%  the latter package.
 
 %
 %    \begin{macrocode}

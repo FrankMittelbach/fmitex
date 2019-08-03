@@ -8,7 +8,8 @@ lessfloatpages:  starting with \bx@B
 lessfloatpages:  --> fail
 lessfloatpages:  starting with \bx@C
 lessfloatpages:  --> success: \bx@C \bx@D 
-lessfloatpages: ----- current float page kept, contains a [p] float
+lessfloatpages: ----- current float page kept, contains a float
+lessfloatpages:       with p but no t or b specifier
 [2]
 lessfloatpages: PAGE: trying to make a float page
 lessfloatpages: ----- \@deferlist: \bx@B 
