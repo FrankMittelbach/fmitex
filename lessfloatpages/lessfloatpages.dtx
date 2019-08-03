@@ -16,7 +16,7 @@
 % for those people who are interested or want to report an issue.
 %
 
-\def\lessfloatpagesdate   {2019/08/01}
+\def\lessfloatpagesdate   {2019/08/03}
 \def\lessfloatpagesversion{prerelease}     %{v1.0a}
 
 
@@ -205,16 +205,30 @@
 %   \texttt{!}\@ syntax and/or shifting its position in the source
 %   document).
 %
+%   Why does the current algorithm has these problems? To some extend
+%   because it offers only global parameters that need to fit
+%   different scenarios and thus settings that are suitable when many floats
+%   need to be placed then result in sub-optimal paginations in
+%   document parts that only contain a few floats and vice versa.
+%   To overcome this problem, one can either try to develop algorithms
+%   with many more configurable parameters that act differently in
+%   different scenarios or to let the algorithm follow a main strategy
+%   configurable with only a few parameters (like today) but monitor
+%   the process and make more local adjustements and corrections
+%   depending on the actual outcome of the base strategy and knowledge
+%   on the real inputs in a given document part. This is more
+%   or less the approach taken by the extenion implemented in this
+%   package.
 %
 % \section{Improvements to the float page algorithm}
 %
-%   A possible way to improve on the the existing algorithm, without
+%   A simple way to improve on the the existing algorithm, without
 %   compromising its main goal of placing the floats as fast as
 %   possible and as close as possible to their call-outs, is the
 %   following: as long as there are many floats waiting to be placed
 %   generate float pages as necessary to get them placed (using the
 %   current algorithm and its parameters). However, once we are unable
-%   to build further float places, do some level of backtracking by
+%   to build further float pages, do some level of backtracking by
 %   checking if we have actually succeeded in placing all floats.
 %
 %   If there are still floats waiting to be placed then assume that
@@ -247,6 +261,17 @@
 %   normal float page algorithm will first place as many of them as
 %   possible into float pages and only the last of these pages will be
 %   subject to a closer inspection and a possible unraveling.
+%
+%   An extension of this idea (and the one that we actually implement)
+%   is to monitor the whole float page generation process and instead
+%   of just considering the last float page in sequence for unraveling
+%   look at each prospective float page in turn and based on the
+%   current situation (e.g., number of floats still being unplaced,
+%   free space on the float page, etc.)\@ decide whether this float
+%   page should be produced or whether we should stop making float
+%   pages and instead place the pending floats into top and bottom
+%   areas of the upcoming page.
+%
 %
 % \subsection{Details on the extended algorithm}
 %
@@ -498,7 +523,7 @@
 %
 %   The next message in that test document then shows what happens
 %   when there are not enough floats waiting or they are simply too
-%   small (to even surpass \cs{floatpagefraction}):
+%   small (to even get passed the \cs{floatpagefraction} limit):
 %\begin{verbatim}
 %  lessfloatpages: PAGE: trying to make a float page
 %  lessfloatpages: ----- \@deferlist: \bx@I \bx@J 
@@ -672,7 +697,7 @@
 %
 % \subsection{Tracing code}
 %                
-%  \begin{macro}[internal]{fl@trace}
+%  \begin{macro}[internal]{\fl@trace}
 %    The command \cs[no-index]{fl@trace} is used to output tracing information.
 %    By default the tracing of the algorithm is turned off, so
 %    \cs[no-index]{fl@trace} will simply swallow its argument. But if
