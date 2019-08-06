@@ -26,7 +26,7 @@
 
 \tableofcontents
 
-\section{Tofu through the years}
+\section{With tofu through the years}
 
 Tofu is not just an essential ingredient for many Asian dishes, it is
 also the nick name for little squares that are produced by many
@@ -34,7 +34,7 @@ bowsers when they got asked to render a character for which they glyph
 available.
 
 Especially in the early days of the World Wide Web,
-websites in foreign langages (from the perspective of your computer)
+websites in foreign languages (from the perspective of your computer)
 got often littered with such squares making text comprehension quite
 difficult if not impossible in some cases. So instead of getting
 \begin{quote}
@@ -53,8 +53,8 @@ Over the years the situation with browsers improved, but even nowadays
 you may find tofu-littered sites or perhaps worse those that think they
 can show you the glyphs but render the wrong ones.
 
-While with browswers you may accept a certain imperfection in the
-rendering, tofu in printed material is quite inacceptable and
+While with browsers you may accept a certain imperfection in the
+rendering, tofu in printed material is quite unacceptable and
 typesetting systems should always use the correct glyphs or at least
 tell you very explicitly if for some reason they are unable to do so,
 so that you can apply some corrective actions. In the remainder of
@@ -84,8 +84,8 @@ English posed series issues, be it that necessary glyphs where missing
 or only available as constructed characters (whenever accents where
 involved) which prevented \TeX{} from applying hyphenation.
 
-So when \TeX{} got more and more polular outside the English-speaking
-world there was considerable preasure on Don Knuth (largely by
+So when \TeX{} got more and more popular outside the English-speaking
+world there was considerable pressure on Don Knuth (largely by
 European user groups) to extend \TeX{} so that it could better handle
 languages with larger character sets. At the 1989 \TeX{} conference in
 Stanford we finally managed to convince Don to reopen (in a limited
@@ -112,7 +112,7 @@ wrong characters in the output.
 \subsection{The \LaTeXe{} solution}
 
 For \LaTeX{} the solution came in form of the New Font Selection
-Scheme (NFSS)~\cite{} and in particular withith the packages
+Scheme (NFSS)~\cite{} and in particular with the packages
 \LPack{inputenc} (for managing input in different code pages and
 mapping it to a standard internal representation) and \LPack{fontenc}
 (for translating this internal representation to the correct glyph
@@ -135,8 +135,8 @@ or incorrect glyphs in the output.
 
 In practice only a small number of font encodings ever got used and
 new fonts usually were made available in these ``popular'' encodings
-by providing the necesary font reencodings through the virtual font
-mechanism or through reencodings done by device drivers such as
+by providing the necessary font re-encodings through the virtual font
+mechanism or through re-encodings done by device drivers such as
 \Prog{dvips} or directly in the engine (in case of \Prog{pdftex}).
 
 As overall result, life for \LaTeX{} users got again fairly easy after
@@ -144,7 +144,7 @@ As overall result, life for \LaTeX{} users got again fairly easy after
 specifying which font encoding to use documents normally would typeset
 without any defects regardless of the font family that got used. And
 due to the fact that users writing in Latin-based languages
-essentially every font available was evailable in \texttt{T1} encoding
+essentially every font available was available in \texttt{T1} encoding
 it was also clear which glyphs were available and those were than
 available universally.
 
@@ -159,12 +159,12 @@ was possible as the \texttt{T1} font encoding was nearly identical to
 the quite common \texttt{latin1} input encoding.\footnote{For example,
   with French texts it worked throughout. However, with German only
   the ``umlauts'' worked, but the sharp s ``ß'' generated a different
-  character.}  Years later, ommitting the input encoding declaration
+  character.}  Years later, omitting the input encoding declaration
 even when it worked initially finally backfired: once \LaTeX{} moved
 on to make UTF-8 the default encoding, documents stored in legacy
 encodings failed if they didn't contain an input
 declaration.\footnote{The remedy for such old documents is then to
-  either add the missing declaration or reencode the old source and
+  either add the missing declaration or re-encode the old source and
   store them in UTF-8.}
 
 
@@ -172,7 +172,7 @@ declaration.\footnote{The remedy for such old documents is then to
 
 One of the goals of Unicode was to uniquely identify each and every
 glyph and thereby avoiding some of the possible translation problems
-that occured because a text was written under the assumption of one
+that occurred because a text was written under the assumption of one
 (8-bit) encoding but interpreted later on under a different encoding.
 
 \vfill
