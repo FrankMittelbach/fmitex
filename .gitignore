@@ -13,3 +13,6 @@ footmisc/build
 ftnright/build
 parskip/build
 widows-and-orphans/build/
+lessfloatpages/build
+*.toc
+*.curlopt
