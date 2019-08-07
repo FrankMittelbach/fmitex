@@ -1,9 +1,11 @@
 *.*~
 *.aux
+*.curlopt
 *.log
 *.out
 *.pdf
 *.synctex.gz
+*.toc
 *.zip
 TEMPLATE
 dashundergaps/build
@@ -11,7 +13,6 @@ doc-v3/build
 doc-v3/tmp
 footmisc/build
 ftnright/build
+lessfloatpages/build
 parskip/build
 widows-and-orphans/build/
-lessfloatpages/build
-*.curlopt
