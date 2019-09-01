@@ -12,9 +12,9 @@ TEMPLATE
 dashundergaps/build
 doc-v3/build
 doc-v3/tmp
+fewerfloatpages/build
 footmisc/build
 ftnright/build
 hummingbird/build
-lessfloatpages/build
 parskip/build
 widows-and-orphans/build/
