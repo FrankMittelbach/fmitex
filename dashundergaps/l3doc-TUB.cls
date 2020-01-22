@@ -891,7 +891,7 @@
     \tl_greplace_all:Nno \g__codedoc_base_name_tl
       { ~ } { \c_catcode_other_space_tl }
     \seq_get:NN #1 \l__codedoc_tmpa_tl
-    \str_if_eq_x:nnTF { \l__codedoc_tmpa_tl } { \scan_stop: }
+    \str_if_eq:eeTF { \l__codedoc_tmpa_tl } { \scan_stop: }
       {
         \seq_gclear:N \g__codedoc_variants_seq
         \__codedoc_names_typeset_auxii:x { \g__codedoc_base_name_tl }
@@ -954,7 +954,7 @@
         #1
           {
             \l__codedoc_tmpa_tl
-            \str_if_eq_x:nnF { \l__codedoc_tmpb_tl } { \scan_stop: }
+            \str_if_eq:eeF { \l__codedoc_tmpb_tl } { \scan_stop: }
               { : \l__codedoc_tmpb_tl }
             \bool_if:NT \l__codedoc_macro_TF_bool { TF }
           }
@@ -2098,7 +2098,7 @@
           \tl_if_empty:nTF {#3}
             { { } { } { } }
             {
-              \str_if_eq_x:nnTF {#3} { TeX }
+              \str_if_eq:eeTF {#3} { TeX }
                 {
                   { TeX~and~LaTeX2e }
                   { \string\TeX{}~and~\string\LaTeXe{} }

@@ -1,6 +1,9 @@
 *.*~
 *.aux
 *.curlopt
+*.glo
+*.hd
+*.idx
 *.log
 *.out
 *.pdf
