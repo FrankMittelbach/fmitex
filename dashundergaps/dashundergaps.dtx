@@ -17,8 +17,8 @@
 % for those people who are interested or want to report an issue.
 %
 
-\def\dashundergapsdate   {2019-07-14}    % don't forget to also adjust build.lua!
-\def\dashundergapsversion{v2.0e}
+\def\dashundergapsdate   {2020-01-22}    % don't forget to also adjust build.lua!
+\def\dashundergapsversion{v2.0f}
 
 %<*driver>
 \let\fmipagebreak\pagebreak
@@ -532,19 +532,19 @@
 %
 %  \begin{macro}{\dotuline}
 %     The dots produced by \cs{dotuline} depend on the current font,
-%     which is a somewhat questionable design\Dash if you underline a text %part
+%     which is a somewhat questionable design\Dash if you underline a text
 %     with a single bold word somewhere inside it will change the
 %     shape of the dot line. So we  always use the \cs{normalfont}
 %     dot (this is not done in the original definition).
 %    \begin{macrocode}
-\def\dotuline{\bgroup
+\protected\def\dotuline{\leavevmode\bgroup
   \UL@setULdepth
+  \ifx\UL@on\UL@onin \advance\ULdepth2\p@\fi
   \markoverwith{\begingroup
-     \advance\ULdepth0.08ex
+%     \advance\ULdepth0.08ex
      \lower\ULdepth\hbox{\normalfont \kern.1em .\kern.04em}%
      \endgroup}%
   \ULon}
-\MakeRobust\dotuline
 %    \end{macrocode}
 %  \end{macro}
 %
@@ -556,11 +556,10 @@
 %     value of \cs{ULdepth} so that the user (or this package here)
 %     can change the placement.
 %    \begin{macrocode}
-\def\uwave{\bgroup
+\protected\def\uwave{\leavevmode\bgroup
   \UL@setULdepth
   \advance\ULdepth 0.6\p@
   \markoverwith{\lower\ULdepth\hbox{\sixly \char58}}\ULon}
-\MakeRobust\uwave
 %    \end{macrocode}
 %  \end{macro}
 %

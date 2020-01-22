@@ -22,7 +22,7 @@ typesetruns   = 4
 
 uploadconfig = {
  pkg = "dashundergaps",
- version = "v2.0e 2019-07-14",
+ version = "v2.0f 2020-01-22",
  author = "Frank Mittelbach",
  license = "lppl1.3c",
  summary = "Produce gaps that are underlined, dotted or dashed",
@@ -32,7 +32,7 @@ uploadconfig = {
  uploader = "Frank Mittelbach",
  email = "frank.mittelbach@latex-project.org",
  update = true ,
- note = [[Uploaded automatically by l3build...]],
+ note = [[Uploaded by l3build...]],
 }
 
 
