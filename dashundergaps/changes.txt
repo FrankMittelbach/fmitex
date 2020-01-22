@@ -1,3 +1,10 @@
+2020-01-22  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* dashundergaps.dtx (subsection{Loading and fixing/changing \pkg{ulem}}):
+	Adjusted definition to new ulem release
+
+	* Some release cleanup.
+
 2019-07-14  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
 
 	* dashundergaps.dtx (subsection{The main implementation part}):

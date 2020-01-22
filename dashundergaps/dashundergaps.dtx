@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-%% File: dashundergaps.dtx (C) Copyright 2018-2019 Frank Mittelbach
+%% File: dashundergaps.dtx (C) Copyright 2018-2020 Frank Mittelbach
 %
 % It may be distributed and/or modified under the conditions of the
 % LaTeX Project Public License (LPPL), either version 1.3c of this
@@ -536,6 +536,7 @@
 %     with a single bold word somewhere inside it will change the
 %     shape of the dot line. So we  always use the \cs{normalfont}
 %     dot (this is not done in the original definition).
+% \changes{v2.0f}{2020/01/22}{Adjusted definition to new ulem release}
 %    \begin{macrocode}
 \protected\def\dotuline{\leavevmode\bgroup
   \UL@setULdepth
@@ -555,6 +556,7 @@
 %     the lowering. We change that to be based on the current
 %     value of \cs{ULdepth} so that the user (or this package here)
 %     can change the placement.
+% \changes{v2.0f}{2020/01/22}{Adjusted definition to new ulem release}
 %    \begin{macrocode}
 \protected\def\uwave{\leavevmode\bgroup
   \UL@setULdepth
