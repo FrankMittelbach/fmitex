@@ -14,7 +14,7 @@ Package source can be found below:
 
 https://github.com/FrankMittelbach/fmitex/
 
-The license is LPPL.
+The license is LPPL 1.3c.
 
 A general discussion on how to manage widows and orphans can be found in a TugBoat article located at
 
@@ -22,7 +22,7 @@ https://www.latex-project.org/publications/indexbytopic/2e-packages/
 
 -----
 
-Copyright (C) 2018 Frank Mittelbach<br />
+Copyright (C) 2018-2020 Frank Mittelbach<br />
 <https://latex-project.org/> <br />
 All rights reserved.
 
