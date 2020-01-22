@@ -11,11 +11,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line ....
 % t=46.0 g=60.0 b=10000 p=9000 c=100000#
 % t=66.05238 plus 3.0 g=60.0 b=* p=0 c=*
-*************************************************
-* widows-and-orphans warning: "widow"
-* 
-* Lonely display on page 2
-*************************************************
+Package widows-and-orphans Warning: Lonely display on page 2
 [1
 ]
 %% goal height=60.0, max depth=5.0
