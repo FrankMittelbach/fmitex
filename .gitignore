@@ -1,6 +1,9 @@
 *.*~
 *.aux
 *.curlopt
+*.glo
+*.hd
+*.idx
 *.log
 *.out
 *.pdf
@@ -17,4 +20,8 @@ footmisc/build
 ftnright/build
 hummingbird/build
 parskip/build
+utf8font/build
 widows-and-orphans/build/
+lessfloatpages/build
+*.toc
+*.curlopt

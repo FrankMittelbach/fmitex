@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-%% File: dashundergaps.dtx (C) Copyright 2018 Frank Mittelbach
+%% File: dashundergaps.dtx (C) Copyright 2018-2020 Frank Mittelbach
 %
 % It may be distributed and/or modified under the conditions of the
 % LaTeX Project Public License (LPPL), either version 1.3c of this
@@ -17,8 +17,8 @@
 % for those people who are interested or want to report an issue.
 %
 
-\def\dashundergapsdate   {2018/11/18}
-\def\dashundergapsversion{v2.0d}
+\def\dashundergapsdate   {2020-01-22}    % don't forget to also adjust build.lua!
+\def\dashundergapsversion{v2.0f}
 
 %<*driver>
 \let\fmipagebreak\pagebreak
@@ -28,7 +28,6 @@
 \documentclass
     [final]
     {l3doc-TUB}
-
 
 \setcounter{page}{1}       
 
@@ -533,19 +532,20 @@
 %
 %  \begin{macro}{\dotuline}
 %     The dots produced by \cs{dotuline} depend on the current font,
-%     which is a somewhat questionable design\Dash if you underline a text %part
+%     which is a somewhat questionable design\Dash if you underline a text
 %     with a single bold word somewhere inside it will change the
 %     shape of the dot line. So we  always use the \cs{normalfont}
 %     dot (this is not done in the original definition).
+% \changes{v2.0f}{2020/01/22}{Adjusted definition to new ulem release}
 %    \begin{macrocode}
-\def\dotuline{\bgroup
+\protected\def\dotuline{\leavevmode\bgroup
   \UL@setULdepth
+  \ifx\UL@on\UL@onin \advance\ULdepth2\p@\fi
   \markoverwith{\begingroup
-     \advance\ULdepth0.08ex
+%     \advance\ULdepth0.08ex
      \lower\ULdepth\hbox{\normalfont \kern.1em .\kern.04em}%
      \endgroup}%
   \ULon}
-\MakeRobust\dotuline
 %    \end{macrocode}
 %  \end{macro}
 %
@@ -556,12 +556,12 @@
 %     the lowering. We change that to be based on the current
 %     value of \cs{ULdepth} so that the user (or this package here)
 %     can change the placement.
+% \changes{v2.0f}{2020/01/22}{Adjusted definition to new ulem release}
 %    \begin{macrocode}
-\def\uwave{\bgroup
+\protected\def\uwave{\leavevmode\bgroup
   \UL@setULdepth
   \advance\ULdepth 0.6\p@
   \markoverwith{\lower\ULdepth\hbox{\sixly \char58}}\ULon}
-\MakeRobust\uwave
 %    \end{macrocode}
 %  \end{macro}
 %
@@ -635,6 +635,24 @@
 \RequirePackage{xparse,l3keys2e}
 %    \end{macrocode}
 %
+%    As the code uses some functions from \pkg{expl3} that got
+%    introduced sometime in 2018 we need to require a fairly recent
+%    version (the date is somewhat arbitrarily picked).
+%    \begin{macrocode}
+\@ifpackagelater{expl3}{2018-06-24}
+  {}
+  {%
+    \PackageError{dashundergaps}{Support package l3kernel too old}
+      {%
+        Please install an up to date version of l3kernel\MessageBreak
+        using your TeX package manager or from CTAN.\MessageBreak
+        \MessageBreak
+        Loading dashundergaps will abort!%
+      }%
+    \endinput
+  }
+%    \end{macrocode}
+%    
 % Here we introduce the package and specify its version number:
 %    \begin{macrocode}
 \ProvidesExplPackage{dashundergaps}
@@ -698,7 +716,6 @@
 %    number of gaps, it makes little sense to modify it at the
 %    document level. However, there may be use cases even for that and
 %    more importantly, by making it a user-level counter it is
-%\fmipagebreak
 %    possible to refer to the total number of gaps easily, e.g., via
 %    \cs{thetotalgapnumber}.
 % ^^A\makeatletter\@endparpenalty=10000\makeatother
@@ -1050,7 +1067,7 @@
 %    package via \cs{usepackage}.
 %    \begin{macrocode}
 \ProcessKeysPackageOptions{fmdug}
-%<*package>
+%</package>
 %    \end{macrocode}
 %
 % \Finale

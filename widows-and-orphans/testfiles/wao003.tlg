@@ -11,11 +11,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line ....
 % t=78.05238 plus 3.0 g=60.0 b=* p=0 c=*
-*************************************************
-* widows-and-orphans warning: "widow"
-* 
-* Display widow on page 2
-*************************************************
+Package widows-and-orphans Warning: Display widow on page 2
 [1
 ]
 %% goal height=60.0, max depth=5.0
@@ -23,11 +19,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 % t=49.55238 plus 7.0 minus 3.0 g=60.0 b=332 p=150 c=482#
 % t=61.55238 plus 7.0 minus 3.0 g=60.0 b=14 p=152 c=166#
 % t=73.55238 plus 7.0 minus 3.0 g=60.0 b=* p=0 c=*
-*************************************************
-* widows-and-orphans warning: "widow"
-* 
-* Widow on page 3
-*************************************************
+Package widows-and-orphans Warning: Widow on page 3
 [2]
 %% goal height=60.0, max depth=5.0
 % t=10.0 g=60.0 b=10000 p=0 c=100000#
@@ -36,11 +28,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 % t=46.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
 % t=58.0 plus 2.0 g=60.0 b=100 p=150 c=250#
 % t=70.0 plus 2.0 g=60.0 b=* p=152 c=*
-*************************************************
-* widows-and-orphans warning: "orphan"
-* 
-* Orphan on page 3
-*************************************************
+Package widows-and-orphans Warning: Orphan on page 3
 [3]
 %% goal height=60.0, max depth=5.0
 % t=10.0 g=60.0 b=10000 p=152 c=100000#
@@ -57,11 +45,8 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 % t=46.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
 % t=58.0 plus 2.0 g=60.0 b=100 p=302 c=402#
 % t=70.0 plus 2.0 g=60.0 b=* p=0 c=*
-*************************************************
-* widows-and-orphans warning: "orphan-widow"
-* 
-* Orphan on page 5 (second column) and widow on page 6 (first column)
-*************************************************
+Package widows-and-orphans Warning: Orphan on page 5 (second column) and widow
+(widows-and-orphans)                on page 6 (first column)
 [5]
 %% goal height=60.0, max depth=5.0
 % t=10.0 g=60.0 b=10000 p=0 c=100000#
@@ -80,11 +65,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 % t=46.0 plus 1.0 g=60.0 b=10000 p=150 c=100000#
 % t=58.0 plus 1.0 g=60.0 b=800 p=152 c=952#
 % t=70.0 plus 1.0 g=60.0 b=* p=0 c=*
-*************************************************
-* widows-and-orphans warning: "widow"
-* 
-* Widow on page 7 (second column)
-*************************************************
+Package widows-and-orphans Warning: Widow on page 7 (second column)
 %% goal height=60.0, max depth=5.0
 % t=10.0 g=60.0 b=10000 p=0 c=100000#
 % t=22.0 plus 1.0 g=60.0 b=10000 p=302 c=100000#
@@ -92,11 +73,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 % t=46.0 plus 2.0 g=60.0 b=10000 p=150 c=100000#
 % t=58.0 plus 2.0 g=60.0 b=100 p=152 c=252#
 % t=70.0 plus 2.0 g=60.0 b=* p=0 c=*
-*************************************************
-* widows-and-orphans warning: "widow"
-* 
-* Widow on page 8 (first column)
-*************************************************
+Package widows-and-orphans Warning: Widow on page 8 (first column)
 [7
 ]
 %% goal height=60.0, max depth=5.0
@@ -106,11 +83,8 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 % t=46.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
 % t=58.0 plus 2.0 g=60.0 b=100 p=302 c=402#
 % t=70.0 plus 2.0 g=60.0 b=* p=0 c=*
-*************************************************
-* widows-and-orphans warning: "orphan-widow"
-* 
-* Orphan and widow on page 8 (first and second column)
-*************************************************
+Package widows-and-orphans Warning: Orphan and widow on page 8 (first and
+(widows-and-orphans)                second column)
 %% goal height=60.0, max depth=5.0
 % t=10.0 g=60.0 b=10000 p=0 c=100000#
 % t=22.0 plus 1.0 g=60.0 b=10000 p=302 c=100000#
