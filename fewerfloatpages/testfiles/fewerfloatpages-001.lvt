@@ -4,7 +4,7 @@
 
 \usepackage{lipsum}
 
-\usepackage[trace]{fewerfloatpages}
+\usepackage[trace,addbang]{fewerfloatpages}
 \setcounter{floatpagekeeplimit}{5}  % ignore really
 
 \newcommand\fig[3][tbp]{\fbox{#3}\begin{figure}[#1]\frame{\vbox to#2{\vfil #3 (fig)\vfil}}\end{figure}}

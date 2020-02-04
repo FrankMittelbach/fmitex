@@ -4,7 +4,7 @@
 
 \usepackage{lipsum}
 
-\usepackage[trace]{fewerfloatpages}
+\usepackage[trace,addbang]{fewerfloatpages}
 \setcounter{floatpagedeferlimit}{10}
 \setcounter{floatpagekeeplimit}{5}
 
