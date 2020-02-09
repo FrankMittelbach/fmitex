@@ -15,10 +15,10 @@ TEMPLATE
 dashundergaps/build
 doc-v3/build
 doc-v3/tmp
+fewerfloatpages/build
 footmisc/build
 ftnright/build
 hummingbird/build
-lessfloatpages/build
 parskip/build
 unicodefont/build
 widows-and-orphans/build/

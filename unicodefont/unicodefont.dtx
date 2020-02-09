@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-%% File: unicodefont.dtx (C) Copyright 2019 Frank Mittelbach
+%% File: unicodefont.dtx (C) Copyright 2019-2020 Frank Mittelbach
 %
 % It may be distributed and/or modified under the conditions of the
 % LaTeX Project Public License (LPPL), either version 1.3c of this
@@ -17,8 +17,8 @@
 % for those people who are interested or want to report an issue.
 %
 
-\def\unicodefontdate   {2019/04/19}
-\def\unicodefontversion{v0.9a}
+\def\unicodefontdate   {2020/02/05}
+\def\unicodefontversion{v0.9b}
 
 
 %<*driver>
@@ -95,76 +95,197 @@
 %  the Asian idiographs are much larger.}
 %
 %  A common way to represent the number of a single Unicode character is
-%  \texttt{U+} followed by four hexdecimals. For example
+%  \texttt{U+} followed by four (or more) hexdecimals. For example
 %  \texttt{U+0041} represents the letter ``A'' and \texttt{U+20AC} the
 %  Euro currency symbol ``\texteuro''.
 %
 %  A named Unicode block
 
 
+                    \protected\def\FOO{\errorstopmode\foo}
 
+                    
 % \subsubsection{User interface commands}
 %
 
 %  \begin{macro}{\displaytable}
 %    
 %    \begin{macrocode}
-\NewDocumentCommand\displaytable {m o}{%
+                   
+\NewDocumentCommand\displaytable {O{} m o}{%
   \group_begin:
-    \fontspec{#1}[#2]
+    \fontspec{#2}[#3]
+    \keys_set:nn{@@}{#1}
+%
     \begin{longtable}{@{}c@{\quad}*{16}{c}@{}}
-      \@@_setup_head_footer:nn{#1}{#2}
+      \@@_setup_header_footer:nn{#2}{#3}
       \@@_produce_table_rows:
-      \@@_maybe_diplay_statistics:n{#1}
+      \@@_maybe_display_statistics:n{#2}
     \end{longtable}
   \group_end:
 }
-\NewDocumentCommand\displaysimpletable {m o}{%
+\NewDocumentCommand\displaysimpletable {O{} m o}{%
   \group_begin:
-    \fontspec{#1}[#2]
-    \bool_set_false:N \l_@@_display_block_bool
-    \begin{longtable}{@{}c@{\quad}*{16}{c}@{}}
-%      \@@_setup_head_footer:nn{#1}{#2}
-      \@@_produce_table_rows:
-%      \@@_maybe_diplay_statistics:n{#1}
-    \end{longtable}
+  \keys_set:nn{@@}{nostatistics,noheader,display-block=none,hexdigits=head+foot}
+    \displaytable[#1]{#2}[#3]
   \group_end:
 }
 %    \end{macrocode}
 %  \end{macro}
 %
 
+\bool_new:N \l_@@_display_block_bool
 
 
-%  \begin{macro}{}
+
+%%%%%%%%%%%%%%%%%%%
+
+\cs_new_protected:cpn { \c__keys_props_root_str .cs_set:Np } #1
+   { \__keys_cs_make:NNpn \cs_set:Npn #1 { } }
+\cs_new_protected:Npn \__keys_cs_make:NNpn #1#2#3#
+   {
+     \cs_set_protected:cpx { \c__keys_code_root_str \l_keys_path_str } ##1
+       { #1 \exp_not:N #2 \exp_not:n {#3} {##1} }
+     \use_none:n
+   }  
+
+%%%%%%%%%%%%%%%%%%%
+
+
+\keys_define:nn {@@}
+     {
+       ,nostatistics .bool_set_inverse:N = \l_@@_display_statistics_bool
+       ,nostatistics .default:n          = true
+       ,nostatistics .initial:n          = false
+%
+       ,display-block .choice:
+       ,display-block / titles  .code:n =
+         \bool_set_true:N \l_@@_display_block_bool
+       ,display-block / rules   .code:n =
+         \bool_set_false:N \l_@@_display_block_bool
+         \tl_set:Nn \l_@@_display_block_action_tl {\\ \midrule}
+       ,display-block / none   .code:n =
+         \bool_set_false:N \l_@@_display_block_bool
+         \tl_set:Nn \l_@@_display_block_action_tl {\\}
+       ,display-block .initial:n  = titles
+%
+       ,hexdigits  .choice:
+,
+       hexdigits / block   .code:n  =
+         \bool_set_true:N   \l_@@_blockwise_hex_digits_bool
+         \bool_set_false:N  \l_@@_header_hex_digits_bool
+         \bool_set_false:N  \l_@@_footer_hex_digits_bool
+,
+       hexdigits / foot   .code:n  =
+         \bool_set_true:N   \l_@@_footer_hex_digits_bool
+         \bool_set_false:N  \l_@@_header_hex_digits_bool
+         \bool_set_false:N  \l_@@_blockwise_hex_digits_bool
+,
+       hexdigits / head   .code:n  =
+         \bool_set_true:N   \l_@@_header_hex_digits_bool
+         \bool_set_false:N  \l_@@_footer_hex_digits_bool
+         \bool_set_false:N  \l_@@_blockwise_hex_digits_bool
+,
+       hexdigits / head+foot  .code:n  =
+         \bool_set_true:N   \l_@@_header_hex_digits_bool
+         \bool_set_true:N   \l_@@_footer_hex_digits_bool
+         \bool_set_false:N  \l_@@_blockwise_hex_digits_bool
+,
+       hexdigits / none   .code:n  =
+         \bool_set_false:N  \l_@@_header_hex_digits_bool
+         \bool_set_false:N  \l_@@_footer_hex_digits_bool
+         \bool_set_false:N  \l_@@_blockwise_hex_digits_bool
+,
+       display-block-digits  .default:n = true
+,
+       color .choice:
+,
+       color / none    .code:n =
+         \tl_clear:N \l_@@_color_setup_tl
+,
+       color / unknown .code:n =
+         \tl_set:Nn \l_@@_color_setup_tl { \color {#1} }
+,
+       color  .initial:n = blue,
+       missing-glyph .tl_set:N  = \l_@@_missing_glyph_tl
+,
+       missing-glyph .initial:n = -
+,
+      debug .code:n =
+         \cs_new:Npn \@@_debug_line_ending:n ##1
+            {\rlap{\normalfont\scriptsize \qquad ##1}}
+,
+  }
+
+
+           
+\bool_new:N \l_@@_blockwise_hex_digits_bool
+\bool_new:N \l_@@_header_hex_digits_bool     \bool_set_true:N \l_@@_header_hex_digits_bool
+\bool_new:N \l_@@_footer_hex_digits_bool
+
+
+\tl_new:N \l_@@_display_block_hline_tl
+
+     
+%  \begin{macro}{\@@_setup_header_footer:nn}
 %    
 %    \begin{macrocode}
-\cs_new:Npn \@@_setup_head_footer:nn #1#2{  % font name, features
-    \IfValueTF{#2}
-            { \caption{#1 (features:~ \texttt{\small#2})}}
-            { \caption{#1}}
-    \\*[6pt]
-    \bool_if:NF \l_@@_blockwise_hex_digits_bool
-                \@@_display_row_of_hex_digits:
+\cs_new:Npn \@@_setup_header_footer:nn #1#2{  % font name, features
+  \bool_if:NT \l_@@_display_header_bool
+       { \@@_format_table_title:nn{#1}{#2} 
+         \\*[6pt]
+       }
+  \bool_if:NT \l_@@_header_hex_digits_bool
+       { \@@_display_row_of_hex_digits: }
   \endfirsthead
-    \caption[]{#1~ \emph{cont.}}
-    \\*[6pt]
-    \bool_if:NF \l_@@_blockwise_hex_digits_bool
-                \@@_display_row_of_hex_digits:
+  \bool_if:NT \l_@@_display_header_bool
+       { \@@_format_table_cont:nn{#1}{#2} 
+         \\*[6pt]
+       }
+  \bool_if:NT \l_@@_header_hex_digits_bool
+       { \@@_display_row_of_hex_digits: }
   \endhead
+  \bool_if:NT \l_@@_footer_hex_digits_bool
+       { \@@_display_row_of_hex_digits: }
   \endfoot
+  \bool_if:NT \l_@@_footer_hex_digits_bool
+       {
+         \@@_display_row_of_hex_digits:
+       }
   \endlastfoot
 }
 %    \end{macrocode}
 %  \end{macro}
 
 
+\keys_define:nn {@@}
+     {
+       ,noheader .bool_set_inverse:N = \l_@@_display_header_bool
+       ,noheader .default:n          = true
+       ,noheader .initial:n          = false
+%
+       ,title-format .cs_set:Np = \@@_format_table_title:nn #1#2
+       ,title-format .initial:n = 
+         \IfValueTF{#2}
+            { \caption{ #1~ (features:~ \texttt{\small#2}) }  } 
+            { \caption{ #1 } }
+       ,title-cont-format .cs_set:Np = \@@_format_table_cont:nn #1#2
+       ,title-cont-format .initial:n = 
+         \caption[]{#1~ \emph{cont.}}
+%
+     }
+     
+
+
 %  \begin{macro}{}
 %    
 %    \begin{macrocode}
-\cs_new:Npn \@@_maybe_diplay_statistics:n #1 {
-  \\*[-16pt]
-  \multicolumn{17}{l}{\normalfont Total~ number~ of~ gyphs~ in~ #1:~ \glyphcount}
+\cs_new:Npn \@@_maybe_display_statistics:n #1 {
+  \bool_if:NT \l_@@_display_statistics_bool
+       { 
+         \\*[4pt]
+         \multicolumn{17}{l}{\normalfont Total~ number~ of~ gyphs~ in~ #1:~ \glyphcount}
+       }
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -183,7 +304,7 @@
 %    Change options anywhere.
 %    \begin{macrocode}
 \NewDocumentCommand \unicodefontsetup { m }
-  { \keys_set:nn {fmutf} {#1} \ignorespaces }
+  { \keys_set:nn {@@} {#1} \ignorespaces }
 %    \end{macrocode}
 %  \end{macro}
 %
@@ -198,7 +319,7 @@
 % to variables. These internal variables are declared by the key
 % declarations if unknown, so they are not separately declared beforehand.
 %    \begin{macrocode}
-\keys_define:nn {fmutf}
+\keys_define:nn {@@}
      {
        % ====================================
        % ====================================
@@ -223,11 +344,6 @@
 \bool_new:N \g_@@_char_seen_bool
 \bool_new:N \g_@@_row_missing_bool
 
-\bool_new:N \l_@@_blockwise_hex_digits_bool
-
-\bool_new:N \l_@@_display_block_bool
-
-\bool_set_true:N \l_@@_display_block_bool
 
 
 \bool_gset_true:N \g_@@_row_missing_bool
@@ -235,9 +351,15 @@
 \DeclareDocumentCommand \glyphcount {}
   { \int_use:N \g_@@_glyph_int }
 
+\bool_new:N \g_@@_first_row_bool
+
+
+  
 \cs_new:Npn \@@_produce_table_rows: 
-  { \int_gzero:N \g_@@_glyph_int 
-    \clist_map_function:NN \c_@@_hex_digits_clist \@@_handle_hex_A:n }
+   {
+     \bool_gset_true:N \g_@@_first_row_bool
+     \int_gzero:N \g_@@_glyph_int 
+     \clist_map_function:NN \c_@@_hex_digits_clist \@@_handle_hex_A:n }
 
 
 \cs_new:Npn \@@_handle_hex_A:n #1 {
@@ -250,33 +372,56 @@
 }
 
 
+\errorstopmode
+\errorcontextlines=50
+
 \cs_new:Npn \@@_maybe_display_block_title: {
   \bool_if:NTF \g_@@_char_seen_bool
     {
-      \tl_if_empty:NF \g_@@_block_tl
-	 {
+      \tl_if_empty:NTF \g_@@_block_tl
+         {
+           \bool_if:NTF \g_@@_row_missing_bool
+                { \@@_debug_line_ending:n{A}\\[6pt] }
+                { \@@_debug_line_ending:n{B}\\      }
+         }
+         {
            \typeout{ Processing~ \tl_use:N \g_@@_block_tl }
-           \bool_if:NT \l_@@_display_block_bool
+           \bool_if:NTF \l_@@_display_block_bool
                 {
-                  \\[-6pt]
+                  \bool_if:NTF \g_@@_first_row_bool
+                    {
+                      \bool_gset_false:N \g_@@_first_row_bool
+                      \@@_debug_line_ending:n{C}\\[-8pt]
+                    }
+                    {
+                      \@@_debug_line_ending:n{D}\\[4pt]
+                    }
 	          \multicolumn{17}{c}{\normalfont \bfseries \tl_use:N \g_@@_block_tl}
                   \bool_if:NTF \l_@@_blockwise_hex_digits_bool
-	               { \\* \@@_display_row_of_hex_digits: }
-                       { \\*[4pt] }
+	               { \@@_debug_line_ending:n{E}\\* \@@_display_row_of_hex_digits: }
+                       { \@@_debug_line_ending:n{F}\\*[2pt] }
+                }
+                {
+                  \bool_if:NTF \g_@@_first_row_bool
+                    {
+                      \bool_gset_false:N \g_@@_first_row_bool
+                    }
+                    {
+                      \@@_debug_line_ending:n{G~ (new~ block)}
+                      \l_@@_display_block_action_tl
+                    }
                 }
 	   \tl_gclear:N \g_@@_block_tl
-	 }  
+	 }
       \bool_gset_false:N \g_@@_char_seen_bool     
       \bool_gset_false:N \g_@@_row_missing_bool
       \tl_use:N \g_@@_row_tl
-      \\
     }
+%    \end{macrocode}
+%    Current row had no chars, remember that fact
+%    \begin{macrocode}
     {
-      \bool_if:NF \g_@@_row_missing_bool
-	   {
-	     \bool_gset_true:N \g_@@_row_missing_bool
-	     \\
-	   }
+      \bool_gset_true:N \g_@@_row_missing_bool
     }
 }
 
@@ -295,52 +440,57 @@
   \clist_map_function:NN \c_@@_hex_digits_clist \@@_handle_hex_D:n
 }
 \cs_new:Npn \@@_handle_hex_D:n #1 {
-   \@@_if_uchar_exists:nTF
-     { \g_@@_hex_A_tl \g_@@_hex_B_tl \g_@@_hex_C_tl #1 }
-     {
-       \tl_gput_right:Nx \g_@@_row_tl
-	  { & \exp_not:N \@@_format_glyph:n 
-		  { \g_@@_hex_A_tl \g_@@_hex_B_tl \g_@@_hex_C_tl #1 } }
-       \bool_gset_true:N \g_@@_char_seen_bool
-       \int_gincr:N\g_@@_glyph_int
-     }
-     { \tl_gput_right:Nn \g_@@_row_tl { & \@@_format_missing_glyph: } }
+  \@@_handle_slot:x { \g_@@_hex_A_tl \g_@@_hex_B_tl \g_@@_hex_C_tl #1 }
 }
+
+
+\cs_new:Npn \@@_handle_slot:n #1 {
+   \@@_if_uchar_exists:nTF { #1 }
+      { \tl_gput_right:Nn \g_@@_row_tl { & \@@_format_glyph:n {#1} }
+        \bool_gset_true:N \g_@@_char_seen_bool
+        \int_gincr:N\g_@@_glyph_int
+      }
+      { \tl_gput_right:Nn \g_@@_row_tl { & \@@_format_missing_glyph: }
+      }
+}
+
+\cs_generate_variant:Nn \@@_handle_slot:n {x}
+
 
 
 \cs_new:Npn \@@_update_block_title:n #1 {
     \tl_gset:Nx \g_@@_block_tl  {
     \int_case:nnF{ "#1 }
        {
-         { 0 }  { Basic~ Latin }
-         { 8 }  { Latin-1~ Supplement }
-         { "10 }{ Latin~ Extended-A }
-         { "18 }{ Latin~ Extended-B }
-         { "25 }{ IPA~ Extension }
-         { "2B }{ Spacing~ Modifier~ Letters }
-         { "30 }{ Combining~ Diacritical~ Marks }
-         { "37 }{ Greek~ and~ Coptic }
-         { "40 }{ Cyrillic }
-         { "53 }{ Armenian }
-         { "59 }{ Hebrew }
-         { "60 }{ Arabic }
-         { "70 }{ Syriac }
-         { "75 }{ Arabic~ Supplement }
-         { "78 }{ Thaana }
-         { "7C }{ NKo }
-         { "90 }{ Devanagari }
-         { "98 }{ Bengali }
-         { "A0 }{ Gurmukhi }
-         { "A8 }{ Gujarati }
-         { "B0 }{ Oriya }
-         { "B8 }{ Tamil }
-         { "C0 }{ Telugu }
-         { "C8 }{ Kannada }
-         { "D0 }{ Malayalm }
-         { "D8 }{ Sinhala }
-         { "E0 }{ Thai }
-         { "E8 }{ Lao }
-         { "F0 }{ Tibetan }
+         { "000 }{ Basic~ Latin }
+         { "008 }{ Latin-1~ Supplement }
+         { "010 }{ Latin~ Extended-A }
+         { "018 }{ Latin~ Extended-B }
+         { "025 }{ IPA~ Extension }
+         { "02B }{ Spacing~ Modifier~ Letters }
+         { "030 }{ Combining~ Diacritical~ Marks }
+         { "037 }{ Greek~ and~ Coptic }
+         { "040 }{ Cyrillic }
+         { "053 }{ Armenian }
+         { "059 }{ Hebrew }
+         { "060 }{ Arabic }
+         { "070 }{ Syriac }
+         { "075 }{ Arabic~ Supplement }
+         { "078 }{ Thaana }
+         { "07C }{ NKo }
+         { "090 }{ Devanagari }
+         { "098 }{ Bengali }
+         { "0A0 }{ Gurmukhi }
+         { "0A8 }{ Gujarati }
+         { "0B0 }{ Oriya }
+         { "0B8 }{ Tamil }
+         { "0C0 }{ Telugu }
+         { "0C8 }{ Kannada }
+         { "0D0 }{ Malayalm }
+         { "0D8 }{ Sinhala }
+         { "0E0 }{ Thai }
+         { "0E8 }{ Lao }
+         { "0F0 }{ Tibetan }
          { "100 }{ Myanmar }
          { "10A }{ Georgian }
          { "110 }{ Hangul~ Jamo }
@@ -415,17 +565,22 @@
          { "A49 }{ Yi~ Radicals }
          { "A70 }{ Modifier~ Tone~ Letters }
          { "A72 }{ Latin~ Extended-D }
-%...         
-         { "A80 }{ \ldots }
-         { "A80 }{  }
-%...         
+         { "A80 }{ Syloti~ Nagri }
+         { "A84 }{ Phags-pa }
          { "E00 }{ Private~ Use~ Area }
+         { "F90 }{ CJK~ Compatibility~ Ideographs }
          { "FB0 }{ Alphabetic~ Presentation~ Forms }
          { "FB5 }{ Arabic~ Presentation~ Forms-A }
          { "FE0 }{ Variation~ Selectors }
          { "FE1 }{ Vertical~ Forms }
+         { "FE2 }{ Combining~ Half~ Marks  }
+         { "FE3 }{ CJK~ Compatibility~ Forms }
+         { "FE5 }{ Small~ Form~ Variants }
+         { "FE7 }{ Arabic~ Presentation~ Forms-B }
+         { "FF0 }{ Halfwidth~ and Fullwidth~ Forms }
+         { "FFF }{ Specials~ \ldots }
 %...         
-         { "F8F }{ Others~ \ldots }
+         { "1000 }{ Plane 1~ \ldots }
        }
 %    \end{macrocode}
 %    If none of the above has matched we are somewhere within a block
@@ -448,6 +603,13 @@
   }
 
 
+
+\cs_new:Npn \@@_if_ignore_slot:nTF #1#2#3 {\ifodd"#1\relax #2\else #3\fi}
+
+
+
+
+
 \cs_new:Npn \@@_display_row_of_hex_digits: {
     & \@@_format_hex_digit:n{0} 
     & \@@_format_hex_digit:n{1} 
@@ -465,10 +627,15 @@
     & \@@_format_hex_digit:n{D} 
     & \@@_format_hex_digit:n{E} 
     & \@@_format_hex_digit:n{F}
-    \\*
+   \@@_debug_line_ending:n{H}\\*
 }
 
-\cs_new:Npn \@@_setup_color: { \color{blue} }
+
+\cs_new:Npn \@@_debug_line_ending:n #1 {}
+
+\cs_new:Npn \@@_setup_color: { \l_@@_color_setup_tl }
+
+
 
 \cs_new:Npn \@@_format_hex_digit:n #1 {
   \texttt{\scriptsize\@@_setup_color:  #1}
@@ -482,7 +649,10 @@
   \hbox_to_wd:nn {6pt} { \tex_hss:D \symbol{ " #1} \tex_hss:D }
 }
 \cs_new:Npn \@@_format_missing_glyph: {
-  \hbox_to_wd:nn {6pt} { \tex_hss:D \@@_format_hex_digit:n{-} \tex_hss:D }
+  \hbox_to_wd:nn {6pt}
+       { \tex_hss:D
+         \@@_format_hex_digit:n{ \l_@@_missing_glyph_tl }
+         \tex_hss:D }
 }
 
 
@@ -491,7 +661,7 @@
 
 
 
-\RequirePackage{longtable,caption,fontspec}
+\RequirePackage{longtable,booktabs,caption,fontspec}
 
 
 
@@ -502,7 +672,7 @@
 %  So what remains to be done is executing all options passed to the
 %    package via \cs{usepackage}.
 %    \begin{macrocode}
-\ProcessKeysPackageOptions{fmutf}
+\ProcessKeysPackageOptions{@@}
 %</package>
 %    \end{macrocode}
 %
@@ -535,13 +705,35 @@
 
 \usepackage{unicodefont}
 
+\addtolength\textwidth{30pt}
+
 \begin{document}
 
-\displaysimpletable{cmr10}
-\displaysimpletable{ec-qhvr}
+\listoftables
+
+
+\section{Computer Modern  --- 8bit font} \displaysimpletable[color=none,noheader=false]{cmr10}
+
+\section{TeX Gyre Heros (Helvetica)  --- 8bit font}
+
+\displaysimpletable[color=red,
+  hexdigits = head+foot,
+]{ec-qhvr}
+
 \newpage
-\displaytable{Latin Modern Sans}
-\newpage
+
+\section{Latin Modern Sans --- OTF font}
+
+\displaytable[
+%  display-block = rules,
+  %              missing-glyph = \tiny\setlength\fboxsep{0pt}\fbox{$\times$},
+  hexdigits = block,
+  title-cont-format = \caption[]{\emph{continued}},
+]{Latin Modern Sans}
+
+
+\section{\TeX{} Gyre Pagella (Palatino) oldstyle figures --- OTF font}
+
 \displaytable{TeX Gyre Pagella}[Numbers=OldStyle]
 
 \end{document}
