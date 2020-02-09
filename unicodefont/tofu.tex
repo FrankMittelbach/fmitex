@@ -9,6 +9,8 @@
 
 \newcommand\tofu{$\square$}
 
+\setcounter{secnumdepth}{1}
+
 
 \author{Frank Mittelbach}
 \title{Preventing Tofu with \pdfTeX{} and Unicode engines}
@@ -30,50 +32,54 @@
 
 Tofu is not just an essential ingredient for many Asian dishes, it is
 also the nick name for little squares that are produced by many
-bowsers when they got asked to render a character for which they glyph
-available.
+bowsers when they get asked to render a character for which they do
+not have a glyph available.
 
 Especially in the early days of the World Wide Web,
 websites in foreign languages (from the perspective of your computer)
-got often littered with such squares making text comprehension quite
+got often littered with such squares, making text comprehension quite
 difficult if not impossible in some cases. So instead of getting
 \begin{quote}
   ?`But aren't Kafka's Schlo{\ss} \&
   {\AE}sop's {\OE}uvres often na{\"\i}ve vis-\`{a}-vis the d{\ae}monic
   \textit{ph{\oe}nix's official r\^{o}le} in fluffy souffl\'{e}s?
 \end{quote}
-you might see something like
+you might have seen something like
 \begin{quote}
   \tofu But aren't Kafka's Schlo{\tofu} \tofu{} {\tofu}sop's
   \tofu{}uvres often na{\tofu}ve vis-\tofu{}-vis the d{\tofu}monic
   \textit{ph{\tofu}nix's official r\tofu{}le} in fluffy
   souffl\tofu{}s?
 \end{quote}
-Over the years the situation with browsers improved, but even nowadays
-you may find tofu-littered sites or perhaps worse those that think they
-can show you the glyphs but render the wrong ones.
+Over the years the situation with browsers improved (partly because
+using inferior fonts deemed acceptible as long as they could render
+the needed glyphs), but even nowadays you may find tofu-littered sites
+when you direct your browser to it or perhaps worse those where you
+browser thinks it can show you the glyphs but render the wrong ones.
 
 While with browsers you may accept a certain imperfection in the
 rendering, tofu in printed material is quite unacceptable and
 typesetting systems should always use the correct glyphs or at least
 tell you very explicitly if for some reason they are unable to do so,
-so that you can apply some corrective actions. In the remainder of
+to allow you to can apply some corrective actions. In the remainder of
 this article we will discuss how \TeX{} and in particular \LaTeX{} is
 doing in this respect and what a user can or has to do to avoid some
 capital blunder.
 
-\subsection{The first \TeX{} years}
+%\subsection{The first \TeX{} years}
+\subsection{Early  vegitarian dishes with \TeX{}}
 
-In the early days of \TeX{} the use of fonts was easy as you could use
-any font you wanted as long as it was called Computer Modern.
+In the early days of \TeX{} the use of fonts was easy because you
+could use any font you wanted as long as it was called Computer
+Modern.
 
 In other words there was essentially only one set of fonts available
-and the glyphs it contained and how to address them was described in
-the \TeX{}book~\cite{}. Furthermore, all fonts only contained 128
-glyphs, i.e., essentially the base Latin characters, a few accents to
-construct diacritical characters using the \cs{accent} primitive and a
-few other symbols such as \textdagger, \$ and so forth to be accessed
-through command names.
+for use with \TeX\ and the glyphs it contained and how to address them
+was described in the \TeX{}book~\cite{}. Furthermore, all fonts only
+contained 128 glyphs, i.e., essentially the base Latin characters, a
+few accents to construct diacritical characters using the \cs{accent}
+primitive and a few other symbols such as \textdagger, \$ and so forth
+to be accessed through command names.
 
 Thus, once you learned the construction methods and memorized the
 control sequences for accessing the existing symbols you could be sure
