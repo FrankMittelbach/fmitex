@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-%% File: unicodefont.dtx (C) Copyright 2019-2020 Frank Mittelbach
+%% File: unicodefonttable.dtx (C) Copyright 2019-2020 Frank Mittelbach
 %
 % It may be distributed and/or modified under the conditions of the
 % LaTeX Project Public License (LPPL), either version 1.3c of this
@@ -17,17 +17,17 @@
 % for those people who are interested or want to report an issue.
 %
 
-\def\unicodefontdate   {2020/02/05}
-\def\unicodefontversion{v0.9b}
+\def\unicodefonttabledate   {2020/02/05}
+\def\unicodefonttableversion{v0.9b}
 
 
 %<*driver>
 \documentclass{l3doc}
-%\usepackage{unicodefont}
+%\usepackage{unicodefonttable}
 \EnableCrossrefs
 \CodelineIndex
 \begin{document}
-  \DocInput{unicodefont.dtx}
+  \DocInput{unicodefonttable.dtx}
 \end{document}
 %</driver>
 %
@@ -38,7 +38,7 @@
 % \newcommand\kval[1]{\texttt{#1}}
 %
 %
-% \title{The \texttt{unicodefont} package\thanks{}}
+% \title{The \texttt{unicodefonttable} package\thanks{}}
 % \author{Frank Mittelbach}
 %
 % \maketitle
@@ -84,9 +84,9 @@
 %
 % Here we introduce the package and specify its version number:
 %    \begin{macrocode}
-\ProvidesExplPackage{unicodefont}
-                    {\unicodefontdate}
-                    {\unicodefontversion}
+\ProvidesExplPackage{unicodefonttable}
+                    {\unicodefonttabledate}
+                    {\unicodefonttableversion}
                     {Producing font tables for Unicode and other fonts}
 %    \end{macrocode}
 %
@@ -112,10 +112,10 @@
 % \subsubsection{User interface commands}
 %
 
-%  \begin{macro}{\unicodefonttablesetup}
+%  \begin{macro}{\unicodefonttabletablesetup}
 %    Change options anywhere.
 %    \begin{macrocode}
-\NewDocumentCommand \unicodefonttablesetup { m }
+\NewDocumentCommand \unicodefonttabletablesetup { m }
   { \keys_set:nn {@@} {#1} \ignorespaces }
 %    \end{macrocode}
 %  \end{macro}
@@ -183,6 +183,7 @@
 
 \bool_new:N \l_@@_display_block_bool
 \tl_new:N   \l_@@_display_block_action_tl
+\tl_new:N   \l_@@_color_setup_tl
 
    
 \keys_define:nn {@@}
@@ -221,6 +222,8 @@
 
 
 
+
+\cs_new:Npn \@@_setup_color: { \l_@@_color_setup_tl }
 
 
 \bool_new:N \l_@@_blockwise_hex_digits_bool
@@ -693,10 +696,9 @@
 
 \cs_new:Npn \@@_debug_line_ending:n #1 {}
 
-\cs_new:Npn \@@_setup_color: { \l_@@_color_setup_tl }
 
 
-\unicodefonttablesetup{debug}
+\unicodefonttabletablesetup{debug}
 
 
 \cs_new:Npn \@@_format_hex_digit:n #1 {
@@ -765,7 +767,7 @@
 \setmainfont{Linux Biolinum O}
 \setmonofont{SourceCodePro}
 
-\usepackage{unicodefont}
+\usepackage{unicodefonttable}
 
 \addtolength\textwidth{30pt}
 

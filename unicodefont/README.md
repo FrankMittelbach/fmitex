@@ -1,4 +1,4 @@
-# unicodefont package
+# unicodefonttable package
 
 -----
 

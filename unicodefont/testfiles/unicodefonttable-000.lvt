@@ -12,6 +12,6 @@
 
 \START
 
-\usepackage{unicodefont}
+\usepackage{unicodefonttable}
 
 \END
