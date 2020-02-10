@@ -33,7 +33,11 @@
 %
 % \fi
 %
-
+%
+% \newcommand\key [1]{\texttt{#1}}
+% \newcommand\kval[1]{\texttt{#1}}
+%
+%
 % \title{The \texttt{unicodefont} package\thanks{}}
 % \author{Frank Mittelbach}
 %
@@ -67,7 +71,7 @@
 %
 
 %    \begin{macrocode}
-%<@@=fmunif>
+%<@@=fmuft>
 %    \end{macrocode}
 %
 % We need the package \pkg{xparse} for specifying the document-level
@@ -108,11 +112,22 @@
 % \subsubsection{User interface commands}
 %
 
-%  \begin{macro}{\displaytable}
+%  \begin{macro}{\unicodefonttablesetup}
+%    Change options anywhere.
+%    \begin{macrocode}
+\NewDocumentCommand \unicodefonttablesetup { m }
+  { \keys_set:nn {@@} {#1} \ignorespaces }
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%
+%  \begin{macro}{\displayfonttable}
+%  \begin{macro}{\displaysimplefonttable}
 %    
 %    \begin{macrocode}
                    
-\NewDocumentCommand\displaytable {O{} m o}{%
+\NewDocumentCommand\displayfonttable {O{} m o}{%
   \group_begin:
     \fontspec{#2}[#3]
     \keys_set:nn{@@}{#1}
@@ -120,26 +135,36 @@
     \begin{longtable}{@{}c@{\quad}*{16}{c}@{}}
       \@@_setup_header_footer:nn{#2}{#3}
       \@@_produce_table_rows:
-      \@@_maybe_display_statistics:n{#2}
+%      \@@_debug_line_ending:n{Z}\\*
     \end{longtable}
   \group_end:
 }
-\NewDocumentCommand\displaysimpletable {O{} m o}{%
+%    \end{macrocode}
+%    The \cs{displaysimplefonttable} is intended for use with 8-bit
+%    fonts for \pdfTeX{}. For such fonts block headers make little
+%    sense (as the fonts do not conform to Unicode and since they have
+%    at most 265 glyphs we certainly do not need to loop over the
+%    whole Unicode range of the first plane. So  we adjust a few of
+%    the customization keys and then call \cs{displayfonttable}. This
+%    way it is still possible to overwrite the key values.
+%    \begin{macrocode}
+\NewDocumentCommand\displaysimplefonttable {O{} m o}{%
   \group_begin:
-  \keys_set:nn{@@}{nostatistics,noheader,display-block=none,hexdigits=head+foot}
-    \displaytable[#1]{#2}[#3]
+    \keys_set:nn{@@}{nostatistics,
+                    display-block=none,hexdigits=head,range-end=FF}
+    \displayfonttable[#1]{#2}[#3]
   \group_end:
 }
 %    \end{macrocode}
 %  \end{macro}
+%  \end{macro}
 %
-
-\bool_new:N \l_@@_display_block_bool
 
 
 
 %%%%%%%%%%%%%%%%%%%
 
+%    \begin{macrocode}
 \cs_new_protected:cpn { \c__keys_props_root_str .cs_set:Np } #1
    { \__keys_cs_make:NNpn \cs_set:Npn #1 { } }
 \cs_new_protected:Npn \__keys_cs_make:NNpn #1#2#3#
@@ -148,19 +173,24 @@
        { #1 \exp_not:N #2 \exp_not:n {#3} {##1} }
      \use_none:n
    }  
+%    \end{macrocode}
+%    
 
 %%%%%%%%%%%%%%%%%%%
 
 
+   %    \begin{macrocode}
+
+\bool_new:N \l_@@_display_block_bool
+\tl_new:N   \l_@@_display_block_action_tl
+
+   
 \keys_define:nn {@@}
      {
-       ,nostatistics .bool_set_inverse:N = \l_@@_display_statistics_bool
-       ,nostatistics .default:n          = true
-       ,nostatistics .initial:n          = false
-%
        ,display-block .choice:
        ,display-block / titles  .code:n =
          \bool_set_true:N \l_@@_display_block_bool
+         \tl_set:Nn \l_@@_display_block_action_tl {\\}
        ,display-block / rules   .code:n =
          \bool_set_false:N \l_@@_display_block_bool
          \tl_set:Nn \l_@@_display_block_action_tl {\\ \midrule}
@@ -168,35 +198,7 @@
          \bool_set_false:N \l_@@_display_block_bool
          \tl_set:Nn \l_@@_display_block_action_tl {\\}
        ,display-block .initial:n  = titles
-%
-       ,hexdigits  .choice:
-,
-       hexdigits / block   .code:n  =
-         \bool_set_true:N   \l_@@_blockwise_hex_digits_bool
-         \bool_set_false:N  \l_@@_header_hex_digits_bool
-         \bool_set_false:N  \l_@@_footer_hex_digits_bool
-,
-       hexdigits / foot   .code:n  =
-         \bool_set_true:N   \l_@@_footer_hex_digits_bool
-         \bool_set_false:N  \l_@@_header_hex_digits_bool
-         \bool_set_false:N  \l_@@_blockwise_hex_digits_bool
-,
-       hexdigits / head   .code:n  =
-         \bool_set_true:N   \l_@@_header_hex_digits_bool
-         \bool_set_false:N  \l_@@_footer_hex_digits_bool
-         \bool_set_false:N  \l_@@_blockwise_hex_digits_bool
-,
-       hexdigits / head+foot  .code:n  =
-         \bool_set_true:N   \l_@@_header_hex_digits_bool
-         \bool_set_true:N   \l_@@_footer_hex_digits_bool
-         \bool_set_false:N  \l_@@_blockwise_hex_digits_bool
-,
-       hexdigits / none   .code:n  =
-         \bool_set_false:N  \l_@@_header_hex_digits_bool
-         \bool_set_false:N  \l_@@_footer_hex_digits_bool
-         \bool_set_false:N  \l_@@_blockwise_hex_digits_bool
-,
-       display-block-digits  .default:n = true
+%         
 ,
        color .choice:
 ,
@@ -212,122 +214,171 @@
        missing-glyph .initial:n = -
 ,
       debug .code:n =
-         \cs_new:Npn \@@_debug_line_ending:n ##1
+         \cs_set:Npn \@@_debug_line_ending:n ##1
             {\rlap{\normalfont\scriptsize \qquad ##1}}
 ,
   }
 
 
-           
+
+
+
 \bool_new:N \l_@@_blockwise_hex_digits_bool
 \bool_new:N \l_@@_header_hex_digits_bool     \bool_set_true:N \l_@@_header_hex_digits_bool
 \bool_new:N \l_@@_footer_hex_digits_bool
 
 
 \tl_new:N \l_@@_display_block_hline_tl
+%    \end{macrocode}
 
      
 %  \begin{macro}{\@@_setup_header_footer:nn}
-%    
+%    Setting up header and footer lines of the table. As arguments
+%    this macro receives the \Arg{font name} and the \Arg{font
+%    features} specified by the user.
 %    \begin{macrocode}
-\cs_new:Npn \@@_setup_header_footer:nn #1#2{  % font name, features
-  \bool_if:NT \l_@@_display_header_bool
-       { \@@_format_table_title:nn{#1}{#2} 
-         \\*[6pt]
-       }
-  \bool_if:NT \l_@@_header_hex_digits_bool
-       { \@@_display_row_of_hex_digits: }
+\cs_new:Npn \@@_setup_header_footer:nn #1#2{
+%    \end{macrocode}
+%    On the first peage of the table the header may show a caption or
+%    some other sort of title. The formatting is handled by
+%    \cs{@@_format_table_title:nn} which can be customized through the
+%    key \key{title-format}.
+%    \begin{macrocode}
+    \bool_if:NT \l_@@_display_header_bool
+         { \@@_format_table_title:nn{#1}{#2} \\*[6pt] }
+%    \end{macrocode}
+%    We may also want to display a line of hex digits. This is
+%    controlled through the key \key{hexdigits} that accepts different
+%    values: \kval{head}, \kval{foot}, \kval{head+foo}, \kval{block}
+%    (after a block title) or \kval{none}.
+%    \begin{macrocode}
+    \bool_if:NT \l_@@_header_hex_digits_bool
+         { \@@_display_row_of_hex_digits: }
   \endfirsthead
-  \bool_if:NT \l_@@_display_header_bool
-       { \@@_format_table_cont:nn{#1}{#2} 
-         \\*[6pt]
-       }
-  \bool_if:NT \l_@@_header_hex_digits_bool
-       { \@@_display_row_of_hex_digits: }
+%    \end{macrocode}
+%    Headers for further table pages have a continuation title and
+%    maybe a row of hex digits.
+%    \begin{macrocode}
+    \bool_if:NT \l_@@_display_header_bool
+         { \@@_format_table_cont:nn{#1}{#2} \\*[6pt] }
+    \bool_if:NT \l_@@_header_hex_digits_bool
+         { \@@_display_row_of_hex_digits: }
   \endhead
-  \bool_if:NT \l_@@_footer_hex_digits_bool
-       { \@@_display_row_of_hex_digits: }
+%    \end{macrocode}
+%    Footers of the table are either empty or show a row of hex digits.
+%    \begin{macrocode}
+    \bool_if:NT \l_@@_footer_hex_digits_bool
+         { \@@_display_row_of_hex_digits: }
   \endfoot
-  \bool_if:NT \l_@@_footer_hex_digits_bool
-       {
-         \@@_display_row_of_hex_digits:
-       }
+    \bool_if:NT \l_@@_footer_hex_digits_bool
+         { \@@_display_row_of_hex_digits: }
+    \@@_maybe_display_statistics:n{#1}
   \endlastfoot
 }
 %    \end{macrocode}
-%  \end{macro}
-
-
+%    
+%    
+%    \begin{macrocode}
 \keys_define:nn {@@}
      {
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
        ,noheader .bool_set_inverse:N = \l_@@_display_header_bool
        ,noheader .default:n          = true
        ,noheader .initial:n          = false
 %
-       ,title-format .cs_set:Np = \@@_format_table_title:nn #1#2
-       ,title-format .initial:n = 
-         \IfValueTF{#2}
-            { \caption{ #1~ (features:~ \texttt{\small#2}) }  } 
-            { \caption{ #1 } }
+%    \end{macrocode}
+%    the default for the \key{title-format} is to produce a
+%    \cs{caption} listing the font name and any features (if
+%    given). Note the \cs{IfValueTF} that checks if the second
+%    argument got any value.
+%    \begin{macrocode}
+       ,title-format      .cs_set:Np = \@@_format_table_title:nn #1#2
+       ,title-format      .initial:n = 
+         \IfValueTF{#2} { \caption{ #1~ (features:~ \texttt{\small#2}) } } 
+                        { \caption{ #1 } }
+%    \end{macrocode}
+%    The default contiunation title ignores the given features, so the
+%    formatting is somewhat simpler. It uses \verb=\caption[]{...}= to
+%    make a caption that doesn't alter the table number.
+%    \begin{macrocode}
        ,title-cont-format .cs_set:Np = \@@_format_table_cont:nn #1#2
-       ,title-cont-format .initial:n = 
-         \caption[]{#1~ \emph{cont.}}
-%
+       ,title-cont-format .initial:n = \caption[]{#1~ \emph{cont.}}
+%    \end{macrocode}
+%    The key \key{hexdigits} is implemented as a choice, where each
+%    allowed value sets different booleans that are then used in the code.
+%    \begin{macrocode}
+       ,hexdigits  .choice:
+       ,hexdigits / block   .code:n  =
+         \bool_set_true:N   \l_@@_blockwise_hex_digits_bool
+         \bool_set_false:N  \l_@@_header_hex_digits_bool
+         \bool_set_false:N  \l_@@_footer_hex_digits_bool
+       ,hexdigits / foot   .code:n  =
+         \bool_set_true:N   \l_@@_footer_hex_digits_bool
+         \bool_set_false:N  \l_@@_header_hex_digits_bool
+         \bool_set_false:N  \l_@@_blockwise_hex_digits_bool
+       ,hexdigits / head   .code:n  =
+         \bool_set_true:N   \l_@@_header_hex_digits_bool
+         \bool_set_false:N  \l_@@_footer_hex_digits_bool
+         \bool_set_false:N  \l_@@_blockwise_hex_digits_bool
+       ,hexdigits / head+foot  .code:n  =
+         \bool_set_true:N   \l_@@_header_hex_digits_bool
+         \bool_set_true:N   \l_@@_footer_hex_digits_bool
+         \bool_set_false:N  \l_@@_blockwise_hex_digits_bool
+       ,hexdigits / none   .code:n  =
+         \bool_set_false:N  \l_@@_header_hex_digits_bool
+         \bool_set_false:N  \l_@@_footer_hex_digits_bool
+         \bool_set_false:N  \l_@@_blockwise_hex_digits_bool
      }
+%    \end{macrocode}
+%  \end{macro}
+
+
      
 
 
-%  \begin{macro}{}
-%    
+%  \begin{macro}{\@@_maybe_display_statistics:n}
+%    At the end of the table there may
 %    \begin{macrocode}
 \cs_new:Npn \@@_maybe_display_statistics:n #1 {
   \bool_if:NT \l_@@_display_statistics_bool
-       { 
-         \\*[4pt]
-         \multicolumn{17}{l}{\normalfont Total~ number~ of~ gyphs~ in~ #1:~ \glyphcount}
+       { \\*[-8pt]
+         \multicolumn{17}{l}{ \normalfont
+                              \@@_format_statistics:nn{#1}{\glyphcount} }
        }
 }
 %    \end{macrocode}
-%  \end{macro}
-
-
-
-%
-%  \begin{macro}{}
 %    
-%    \begin{macrocode}
-%    \end{macrocode}
-%  \end{macro}
-%
-%
-%  \begin{macro}{\unicodefontsetup}
-%    Change options anywhere.
-%    \begin{macrocode}
-\NewDocumentCommand \unicodefontsetup { m }
-  { \keys_set:nn {@@} {#1} \ignorespaces }
-%    \end{macrocode}
-%  \end{macro}
-%
-
-%
-%
-% \subsubsection{Option handling}
-%
-% Here we define all the possible option keys for use either as package
-% options or inside
-% \cs{unicodefont}. These are all straightforward assignments
-% to variables. These internal variables are declared by the key
-% declarations if unknown, so they are not separately declared beforehand.
 %    \begin{macrocode}
 \keys_define:nn {@@}
      {
-       % ====================================
-       % ====================================
+       ,nostatistics .bool_set_inverse:N = \l_@@_display_statistics_bool
+       ,nostatistics .default:n          = true
+       ,nostatistics .initial:n          = false
+%
+       ,statistics-format     .cs_set:Np = \@@_format_statistics:nn #1#2
+       ,statistics-format     .initial:n =
+           Total~ number~ of~ gyphs~ in~ #1:~#2 
      }
 %    \end{macrocode}
+%  \end{macro}
+
+
 %
+%
+
 %
 %    \begin{macrocode}
+\keys_define:nn {@@}
+     {
+       ,range-start .tl_set:N  = \l_@@_range_start_tl
+       ,range-start .initial:n = 0000
+       ,range-end   .tl_set:N  = \l_@@_range_end_tl
+       ,range-end   .initial:n = FFFF
+     }
+
+     
 
 \clist_const:Nn\c_@@_hex_digits_clist{0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F}
 
@@ -341,23 +392,26 @@
 \tl_new:N \g_@@_hex_C_tl
 
 
+\bool_new:N \g_@@_first_row_bool
 \bool_new:N \g_@@_char_seen_bool
 \bool_new:N \g_@@_row_missing_bool
 
 
 
-\bool_gset_true:N \g_@@_row_missing_bool
+%\bool_gset_true:N \g_@@_row_missing_bool
 
 \DeclareDocumentCommand \glyphcount {}
   { \int_use:N \g_@@_glyph_int }
 
-\bool_new:N \g_@@_first_row_bool
 
 
   
 \cs_new:Npn \@@_produce_table_rows: 
    {
      \bool_gset_true:N \g_@@_first_row_bool
+     \bool_gset_false:N \g_@@_char_seen_bool     
+     \bool_gset_false:N \g_@@_row_missing_bool
+%     
      \int_gzero:N \g_@@_glyph_int 
      \clist_map_function:NN \c_@@_hex_digits_clist \@@_handle_hex_A:n }
 
@@ -429,16 +483,22 @@
   \@@_maybe_display_block_title:
 %
   \tl_gset:Nn\g_@@_hex_C_tl{#1}
-%  
+  %
   \@@_update_block_title:n { \g_@@_hex_A_tl \g_@@_hex_B_tl \g_@@_hex_C_tl }
-%
-  \tl_gset:Nx \g_@@_row_tl
-     {
-       \exp_not:N \@@_format_row_title:n
-         { \g_@@_hex_A_tl \g_@@_hex_B_tl \g_@@_hex_C_tl  }
-     }
-  \clist_map_function:NN \c_@@_hex_digits_clist \@@_handle_hex_D:n
+  \int_compare:nNnF
+      { " \g_@@_hex_A_tl \g_@@_hex_B_tl \g_@@_hex_C_tl 0 } < { "\l_@@_range_start_tl }
+      {
+        \tl_gset:Nx \g_@@_row_tl
+           {
+             \exp_not:N \@@_format_row_title:n
+                 { \g_@@_hex_A_tl \g_@@_hex_B_tl \g_@@_hex_C_tl  }
+           }
+        \int_compare:nNnF
+           { " \g_@@_hex_A_tl \g_@@_hex_B_tl \g_@@_hex_C_tl 0 } > { "\l_@@_range_end_tl }
+           { \clist_map_function:NN \c_@@_hex_digits_clist \@@_handle_hex_D:n }
+      }
 }
+
 \cs_new:Npn \@@_handle_hex_D:n #1 {
   \@@_handle_slot:x { \g_@@_hex_A_tl \g_@@_hex_B_tl \g_@@_hex_C_tl #1 }
 }
@@ -578,9 +638,9 @@
          { "FE5 }{ Small~ Form~ Variants }
          { "FE7 }{ Arabic~ Presentation~ Forms-B }
          { "FF0 }{ Halfwidth~ and Fullwidth~ Forms }
-         { "FFF }{ Specials~ \ldots }
+         { "FFF }{ Specials~ ... }
 %...         
-         { "1000 }{ Plane 1~ \ldots }
+         { "1000 }{ Plane 1~ ... }
        }
 %    \end{macrocode}
 %    If none of the above has matched we are somewhere within a block
@@ -635,6 +695,8 @@
 
 \cs_new:Npn \@@_setup_color: { \l_@@_color_setup_tl }
 
+
+\unicodefonttablesetup{debug}
 
 
 \cs_new:Npn \@@_format_hex_digit:n #1 {
@@ -712,29 +774,39 @@
 \listoftables
 
 
-\section{Computer Modern  --- 8bit font} \displaysimpletable[color=none,noheader=false]{cmr10}
+\section{Computer Modern  --- 8bit font}
+
+\displaysimplefonttable[color=none,
+  range-end = 7F,
+]{cmr10}
+
+%\section{Computer Modern Sans --- 8bit font} \displaysimplefonttable[]{cmss10}
+
+\newpage
 
 \section{TeX Gyre Heros (Helvetica)  --- 8bit font}
 
-\displaysimpletable[color=red,
+\displaysimplefonttable[color=red,nostatistics=false,
   hexdigits = head+foot,
+  range-end = FF,
 ]{ec-qhvr}
 
 \newpage
 
 \section{Latin Modern Sans --- OTF font}
 
-\displaytable[
+\displayfonttable[
 %  display-block = rules,
   %              missing-glyph = \tiny\setlength\fboxsep{0pt}\fbox{$\times$},
   hexdigits = block,
   title-cont-format = \caption[]{\emph{continued}},
 ]{Latin Modern Sans}
 
+\newpage
 
 \section{\TeX{} Gyre Pagella (Palatino) oldstyle figures --- OTF font}
 
-\displaytable{TeX Gyre Pagella}[Numbers=OldStyle]
+\displayfonttable{TeX Gyre Pagella}[Numbers=OldStyle]
 
 \end{document}
 %    \end{macrocode}
