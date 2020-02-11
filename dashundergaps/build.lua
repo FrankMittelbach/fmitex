@@ -22,7 +22,7 @@ typesetruns   = 4
 
 uploadconfig = {
  pkg = "dashundergaps",
- version = "v2.0f 2020-01-22",
+ version = "v2.0g 2020-02-11",
  author = "Frank Mittelbach",
  license = "lppl1.3c",
  summary = "Produce gaps that are underlined, dotted or dashed",
