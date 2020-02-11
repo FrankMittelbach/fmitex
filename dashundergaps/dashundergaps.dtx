@@ -17,8 +17,8 @@
 % for those people who are interested or want to report an issue.
 %
 
-\def\dashundergapsdate   {2020-01-22}    % don't forget to also adjust build.lua!
-\def\dashundergapsversion{v2.0f}
+\def\dashundergapsdate   {2020-02-11}    % don't forget to also adjust build.lua!
+\def\dashundergapsversion{v2.0g}
 
 %<*driver>
 \let\fmipagebreak\pagebreak
@@ -259,6 +259,14 @@
 %   \meta{text} argument. For example, a \cs{footnote} couldn't be used
 %   in the argument (but then that wouldn't make much sense in a gap,
 %   would~it?).
+%
+%   Another important (and sometimes annoying) restriction is that any
+%    brace group or command with arguments inside the \pkg{ulem}
+%    commands is set as if is is inside an \cs{mbox}, in particular it will
+%    not break across lines. For example \verb=\gap{\emph{...}}= will
+%    show this behavior.  The \pkg{dashundergaps} package tries
+%    mediate as best as possible, e.g., \verb=\gap{\mytext}= works,
+%    but in other cases you have to live with this limitation.
 %
 % \begin{function}{\TeacherModeOn,\TeacherModeOff}
 %   \begin{syntax}
@@ -668,8 +676,20 @@
 %  \begin{macro}{\gap}
 %    The \cs{gap} command parses for a star, optional and mandatory
 %    argument and then calls \cs{@@_gap:nnn} to do the work.
+% \changes{v2.0g}{2020/02/11}{Expand argument up front to work around
+%    ulem restrictions if possible (gh/10)}
 %    \begin{macrocode}
-\DeclareDocumentCommand \gap { som } { \@@_gap:nnn {#1}{#2}{#3} }
+\DeclareDocumentCommand \gap { som }
+   {
+%    \end{macrocode}
+%    We try to expand as much as possible up front to avoid the
+%    \pkg{ulem} limitations:
+%    \begin{macrocode}
+     \protected@edef\next{#3}
+%    \end{macrocode}
+%    Use the \enquote{content} of \cs{next} in the processing:
+%    \begin{macrocode}
+     \@@_gap:nno {#1}{#2}{ \next } }
 %    \end{macrocode}
 %  \end{macro}
 %
@@ -928,11 +948,12 @@
 %
 %
 %  \begin{macro}{\@@_gap:nnn}
-%    At last, here comes the action. \cs{@@_gap:nn} expects two
-%    arguments: |#1| indicates what kind of ``underlining'' is wanted
-%    (anything not recognized is ignored, in particular
-%    ``--NoValue--'' if \cs{gap} was used without an optional argument)
-%    and |#2| is the material to produce a gap for.
+%    At last, here comes the action. \cs{@@_gap:nn} expects three
+%    arguments: |#1| identifies if a star was present, |#2| indicates
+%    what kind of ``underlining'' is wanted (anything not recognized
+%    is ignored, in particular ``--NoValue--'' if \cs{gap} was used
+%    without an optional argument) and |#3| is the material to produce
+%    a gap for.
 %    \begin{macrocode}
 \cs_new:Npn\@@_gap:nnn #1#2#3 {
 %    \end{macrocode}
@@ -1035,6 +1056,10 @@
 %    \begin{macrocode}
   \group_end:
 }
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+\cs_generate_variant:Nn \@@_gap:nnn {nno}
 %    \end{macrocode}
 %  \end{macro}
 %

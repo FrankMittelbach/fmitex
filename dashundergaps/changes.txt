@@ -1,3 +1,8 @@
+2020-02-11  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* dashundergaps.dtx: Expand argument up front to work around
+	ulem restrictions when possible (gh/10)
+
 2020-01-22  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
 
 	* dashundergaps.dtx (subsection{Loading and fixing/changing \pkg{ulem}}):
