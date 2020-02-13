@@ -106,14 +106,24 @@
 %  A named Unicode block
 
 
-                    \protected\def\FOO{\errorstopmode\foo}
 
                     
 % \subsubsection{User interface commands}
 %
+%
+%  Throughout the implementation we will define a number of keys (and
+%  their allowed values. We introduce them at the point where they are
+%    used, so they are sprincled across the code.\footnote{This fits
+%    with the way this package was developed. I first implemented a
+%    single rigid table layout without configuration possibiities and
+%    then thought about which parts I wanted to have flexible. I then
+%    replaced the rigid code with code that is affected by setting
+%    key/value pairs.}
 
 %  \begin{macro}{\unicodefonttabletablesetup}
-%    Change options anywhere.
+%    To set up user defaults for the keys we provide a standard
+%    interface. The command \cs{unicodefonttabletablesetup} expects a
+%    key/value list and can be called as often as necessary.
 %    \begin{macrocode}
 \NewDocumentCommand \unicodefonttabletablesetup { m }
   { \keys_set:nn {@@} {#1} \ignorespaces }
@@ -123,366 +133,548 @@
 %
 %
 %  \begin{macro}{\displayfonttable}
-%  \begin{macro}{\displaysimplefonttable}
-%    
+%    The \cs{displayfonttable} command is the main work horse of the
+%    package. It produces a \texttt{longtable} containing all font
+%    glyphs with 16 glyphs per row. The first optional argument is
+%    used to configure the table through key value pairs, the
+%    mandatory argument is the font name to display (in
+%    \texttt{fontspec} conventions) and the final optional argument is
+%    the font feature list if any. If the latter is not provided it
+%    will get a special value (\texttt{--NoValue--}) assigned by
+%    \texttt{xparse}, which is somehting that can be tested for.
 %    \begin{macrocode}
                    
 \NewDocumentCommand\displayfonttable {O{} m o}{%
   \group_begin:
+%    \end{macrocode}
+%    First initialize the font that should displayed (perhaps with a
+%    feature list) and then update the key value list using \verb=#1=. 
+%    \begin{macrocode}
     \fontspec{#2}[#3]
     \keys_set:nn{@@}{#1}
-%
+%    \end{macrocode}
+%    The we start the table with 17 columns.
+%    \begin{macrocode}
     \begin{longtable}{@{}c@{\quad}*{16}{c}@{}}
+%    \end{macrocode}
+%    Special headers and footers are set up first:
+%    \begin{macrocode}
       \@@_setup_header_footer:nn{#2}{#3}
+%    \end{macrocode}
+%    Then we produce all table rows with the glyphs.
+%    \begin{macrocode}
       \@@_produce_table_rows:
-%      \@@_debug_line_ending:n{Z}\\*
+%    \end{macrocode}
+%    At the very end we may typeset some statistics. This can't be
+%    done in the table footer, because the data is dynamic (e.g.,
+%    number of glyphs processed) and the table footers are static and
+%    do not change based on the table content.
+%    \begin{macrocode}
+      \@@_handle_table_ending:n {#2}
     \end{longtable}
   \group_end:
 }
 %    \end{macrocode}
-%    The \cs{displaysimplefonttable} is intended for use with 8-bit
+%  \end{macro}
+
+
+%  \begin{macro}{\displaysimplefonttable}
+%    The \cs{displaysimplefonttable} is a variant of the previous
+%    command and intended for use with 8-bit
 %    fonts for \pdfTeX{}. For such fonts block headers make little
-%    sense (as the fonts do not conform to Unicode and since they have
-%    at most 265 glyphs we certainly do not need to loop over the
-%    whole Unicode range of the first plane. So  we adjust a few of
-%    the customization keys and then call \cs{displayfonttable}. This
-%    way it is still possible to overwrite the key values.
+%    sense (as the fonts do not conform to Unicode font layout and
+%    since they have at most 265 glyphs we certainly do not need to
+%    loop over the whole Unicode range of the first plane. So we
+%    adjust a few of the customization keys and then call
+%    \cs{displayfonttable}. This way it is still possible to overwrite
+%    the key values.
 %    \begin{macrocode}
 \NewDocumentCommand\displaysimplefonttable {O{} m o}{%
   \group_begin:
     \keys_set:nn{@@}{nostatistics,
-                    display-block=none,hexdigits=head,range-end=FF}
+                    display-block=none,hex-digits=head,range-end=FF}
     \displayfonttable[#1]{#2}[#3]
   \group_end:
 }
 %    \end{macrocode}
 %  \end{macro}
-%  \end{macro}
 %
-
-
-
-%%%%%%%%%%%%%%%%%%%
-
+%
+%
+%  \begin{macro}{\glyphcount}
+%  \begin{macro}{\g_@@_glyph_int}
+%    while generating the font table we count the number of gyphs we
+%    have seen (and typeset). The total is available in the command
+%    \cs{glyphcount} after the table got finished and will be reset to
+%    zero when the next table starts.
 %    \begin{macrocode}
-\cs_new_protected:cpn { \c__keys_props_root_str .cs_set:Np } #1
-   { \__keys_cs_make:NNpn \cs_set:Npn #1 { } }
-\cs_new_protected:Npn \__keys_cs_make:NNpn #1#2#3#
-   {
-     \cs_set_protected:cpx { \c__keys_code_root_str \l_keys_path_str } ##1
-       { #1 \exp_not:N #2 \exp_not:n {#3} {##1} }
-     \use_none:n
-   }  
+\DeclareDocumentCommand \glyphcount {} { \int_use:N \g_@@_glyph_int }
 %    \end{macrocode}
 %    
-
-%%%%%%%%%%%%%%%%%%%
-
-
-   %    \begin{macrocode}
-
-\bool_new:N \l_@@_display_block_bool
-\tl_new:N   \l_@@_display_block_action_tl
-\tl_new:N   \l_@@_color_setup_tl
-
-   
-\keys_define:nn {@@}
-     {
-       ,display-block .choice:
-       ,display-block / titles  .code:n =
-         \bool_set_true:N \l_@@_display_block_bool
-         \tl_set:Nn \l_@@_display_block_action_tl {\\}
-       ,display-block / rules   .code:n =
-         \bool_set_false:N \l_@@_display_block_bool
-         \tl_set:Nn \l_@@_display_block_action_tl {\\ \midrule}
-       ,display-block / none   .code:n =
-         \bool_set_false:N \l_@@_display_block_bool
-         \tl_set:Nn \l_@@_display_block_action_tl {\\}
-       ,display-block .initial:n  = titles
-%         
-,
-       color .choice:
-,
-       color / none    .code:n =
-         \tl_clear:N \l_@@_color_setup_tl
-,
-       color / unknown .code:n =
-         \tl_set:Nn \l_@@_color_setup_tl { \color {#1} }
-,
-       color  .initial:n = blue,
-       missing-glyph .tl_set:N  = \l_@@_missing_glyph_tl
-,
-       missing-glyph .initial:n = -
-,
-      debug .code:n =
-         \cs_set:Npn \@@_debug_line_ending:n ##1
-            {\rlap{\normalfont\scriptsize \qquad ##1}}
-,
-  }
-
-
-
-
-\cs_new:Npn \@@_setup_color: { \l_@@_color_setup_tl }
-
-
-\bool_new:N \l_@@_blockwise_hex_digits_bool
-\bool_new:N \l_@@_header_hex_digits_bool     \bool_set_true:N \l_@@_header_hex_digits_bool
-\bool_new:N \l_@@_footer_hex_digits_bool
-
-
-\tl_new:N \l_@@_display_block_hline_tl
+%    \begin{macrocode}
+\int_new:N \g_@@_glyph_int
 %    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
 
-     
+
+
+
+% \subsubsection{The overall table layout}
+%
+%     
 %  \begin{macro}{\@@_setup_header_footer:nn}
-%    Setting up header and footer lines of the table. As arguments
-%    this macro receives the \Arg{font name} and the \Arg{font
-%    features} specified by the user.
+%    Setting up header and footer lines of the table.
+%    This macro receives the \textit{font name} and the \textit{font
+%    features} specified by the user as its arguments.
 %    \begin{macrocode}
 \cs_new:Npn \@@_setup_header_footer:nn #1#2{
 %    \end{macrocode}
-%    On the first peage of the table the header may show a caption or
-%    some other sort of title. The formatting is handled by
+%    On the first page of the table the header may show a caption or
+%    some other sort of title based on the value of
+%    \cs{l_@@_display_header_bool}. The formatting is handled by
 %    \cs{@@_format_table_title:nn} which can be customized through the
 %    key \key{title-format}.
 %    \begin{macrocode}
     \bool_if:NT \l_@@_display_header_bool
-         { \@@_format_table_title:nn{#1}{#2} \\*[6pt] }
+      { \@@_format_table_title:nn{#1}{#2} \@@_debug_nl:n{T}\\*[6pt] }
 %    \end{macrocode}
 %    We may also want to display a line of hex digits. This is
-%    controlled through the key \key{hexdigits} that accepts different
+%    controlled through the key \key{hex-digits} that accepts different
 %    values: \kval{head}, \kval{foot}, \kval{head+foo}, \kval{block}
 %    (after a block title) or \kval{none}.
 %    \begin{macrocode}
     \bool_if:NT \l_@@_header_hex_digits_bool
-         { \@@_display_row_of_hex_digits: }
+      { \@@_display_row_of_hex_digits:   \@@_debug_nl:n{H}\\*      }
   \endfirsthead
 %    \end{macrocode}
-%    Headers for further table pages have a continuation title and
+%    Headers for later table pages have a continuation title and
 %    maybe a row of hex digits.
 %    \begin{macrocode}
     \bool_if:NT \l_@@_display_header_bool
-         { \@@_format_table_cont:nn{#1}{#2} \\*[6pt] }
+      { \@@_format_table_cont:nn{#1}{#2} \@@_debug_nl:n{T}\\*[6pt] }
     \bool_if:NT \l_@@_header_hex_digits_bool
-         { \@@_display_row_of_hex_digits: }
+      { \@@_display_row_of_hex_digits:   \@@_debug_nl:n{H}\\*      }
   \endhead
 %    \end{macrocode}
 %    Footers of the table are either empty or show a row of hex digits.
 %    \begin{macrocode}
     \bool_if:NT \l_@@_footer_hex_digits_bool
-         { \@@_display_row_of_hex_digits: }
+      { \@@_display_row_of_hex_digits:   \@@_debug_nl:n{H}\\*      }
   \endfoot
-    \bool_if:NT \l_@@_footer_hex_digits_bool
-         { \@@_display_row_of_hex_digits: }
-    \@@_maybe_display_statistics:n{#1}
+%    \end{macrocode}
+%    The footer of the last page of the table will always be
+%    empty. Any special row, such as a row of hex digits, will be
+%    provided in the table body. The reason is that we may want to
+%    disply statistics at the very end of the table and those can't be
+%    placed into a static footer.
+%    \begin{macrocode}
   \endlastfoot
 }
 %    \end{macrocode}
-%    
-%    
+%
+%  \begin{macro}{\l_@@_header_hex_digits_bool}
+%  \begin{macro}{\l_@@_footer_hex_digits_bool}
+%  \begin{macro}{\l_@@_blockwise_hex_digits_bool}
+%    Here are the booleans we use in the code.
 %    \begin{macrocode}
-\keys_define:nn {@@}
-     {
+\bool_new:N \l_@@_header_hex_digits_bool     
+\bool_new:N \l_@@_footer_hex_digits_bool
+\bool_new:N \l_@@_blockwise_hex_digits_bool
 %    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
+%  \end{macro}
 %    
+%    Here are the definitions for the keys used in the code above:
+%    \begin{macrocode}
+\keys_define:nn {@@} {
+%    \end{macrocode}
+%    The \key{header} key is a boolean that determines if a header
+%    title should be produced (default)
+%    \begin{macrocode}
+       ,header .bool_set:N   = \l_@@_display_header_bool
+       ,header .default:n    = true
+       ,header .initial:n    = true
+%    \end{macrocode}
+%    To ease the setup we also support the key \key{noheader} which is
+%    a short form for \texttt{header=false}.
 %    \begin{macrocode}
        ,noheader .bool_set_inverse:N = \l_@@_display_header_bool
        ,noheader .default:n          = true
-       ,noheader .initial:n          = false
-%
 %    \end{macrocode}
-%    the default for the \key{title-format} is to produce a
+%    The default for the \key{title-format} key is to produce a
 %    \cs{caption} listing the font name and any features (if
-%    given). Note the \cs{IfValueTF} that checks if the second
-%    argument got any value.
+%    given). Note the \cs{IfValueTF} command (provided by
+%    \texttt{xparse}) that checks if the second argument got any value
+%    or has the special \texttt{--NoValue--} value.
 %    \begin{macrocode}
        ,title-format      .cs_set:Np = \@@_format_table_title:nn #1#2
        ,title-format      .initial:n = 
          \IfValueTF{#2} { \caption{ #1~ (features:~ \texttt{\small#2}) } } 
                         { \caption{ #1 } }
 %    \end{macrocode}
-%    The default contiunation title ignores the given features, so the
+%    The default continuation title ignores the given features, so the
 %    formatting is somewhat simpler. It uses \verb=\caption[]{...}= to
 %    make a caption that doesn't alter the table number.
 %    \begin{macrocode}
        ,title-cont-format .cs_set:Np = \@@_format_table_cont:nn #1#2
        ,title-cont-format .initial:n = \caption[]{#1~ \emph{cont.}}
 %    \end{macrocode}
-%    The key \key{hexdigits} is implemented as a choice, where each
+%    The key \key{hex-digits} is implemented as a choice, where each
 %    allowed value sets different booleans that are then used in the code.
 %    \begin{macrocode}
-       ,hexdigits  .choice:
-       ,hexdigits / block   .code:n  =
+       ,hex-digits  .choice:
+       ,hex-digits / block   .code:n  =
          \bool_set_true:N   \l_@@_blockwise_hex_digits_bool
          \bool_set_false:N  \l_@@_header_hex_digits_bool
          \bool_set_false:N  \l_@@_footer_hex_digits_bool
-       ,hexdigits / foot   .code:n  =
+       ,hex-digits / foot   .code:n  =
          \bool_set_true:N   \l_@@_footer_hex_digits_bool
          \bool_set_false:N  \l_@@_header_hex_digits_bool
          \bool_set_false:N  \l_@@_blockwise_hex_digits_bool
-       ,hexdigits / head   .code:n  =
+       ,hex-digits / head   .code:n  =
          \bool_set_true:N   \l_@@_header_hex_digits_bool
          \bool_set_false:N  \l_@@_footer_hex_digits_bool
          \bool_set_false:N  \l_@@_blockwise_hex_digits_bool
-       ,hexdigits / head+foot  .code:n  =
+       ,hex-digits / head+foot  .code:n  =
          \bool_set_true:N   \l_@@_header_hex_digits_bool
          \bool_set_true:N   \l_@@_footer_hex_digits_bool
          \bool_set_false:N  \l_@@_blockwise_hex_digits_bool
-       ,hexdigits / none   .code:n  =
+       ,hex-digits / none   .code:n  =
          \bool_set_false:N  \l_@@_header_hex_digits_bool
          \bool_set_false:N  \l_@@_footer_hex_digits_bool
          \bool_set_false:N  \l_@@_blockwise_hex_digits_bool
+       ,hex-digits  .initial:n = head
      }
 %    \end{macrocode}
 %  \end{macro}
+%
+%
+%
 
 
-     
 
-
-%  \begin{macro}{\@@_maybe_display_statistics:n}
-%    At the end of the table there may
+%  \begin{macro}{\@@_display_row_of_hex_digits:}
+%  \begin{macro}{\@@_format_hex_digit:n}
+%    Producing a row of hex digits is simple.
 %    \begin{macrocode}
-\cs_new:Npn \@@_maybe_display_statistics:n #1 {
-  \bool_if:NT \l_@@_display_statistics_bool
-       { \\*[-8pt]
-         \multicolumn{17}{l}{ \normalfont
-                              \@@_format_statistics:nn{#1}{\glyphcount} }
-       }
-}
+\cs_new:Npn \@@_display_row_of_hex_digits: {
+    & \@@_format_hex_digit:n{0}     & \@@_format_hex_digit:n{1} 
+    & \@@_format_hex_digit:n{2}     & \@@_format_hex_digit:n{3} 
+    & \@@_format_hex_digit:n{4}     & \@@_format_hex_digit:n{5} 
+    & \@@_format_hex_digit:n{6}     & \@@_format_hex_digit:n{7} 
+    & \@@_format_hex_digit:n{8}     & \@@_format_hex_digit:n{9} 
+    & \@@_format_hex_digit:n{A}     & \@@_format_hex_digit:n{B} 
+    & \@@_format_hex_digit:n{C}     & \@@_format_hex_digit:n{D} 
+    & \@@_format_hex_digit:n{E}     & \@@_format_hex_digit:n{F}  }
+%    \end{macrocode}
+%    Each digit is typeset in typewriter and in script size. We offer
+%    font and color for 
+%    customization. Not that it is important to use set an explicit
+%    family. Otherwise the hex digits are formatted using the current
+%    table font (which may or may not work at all).
+%    \begin{macrocode}
+\cs_new:Npn \@@_format_hex_digit:n #1 { \l_@@_hex_digits_font_tl \l_@@_color_tl #1 }
+%    \end{macrocode}
+%
+
+%  \begin{macro}{\l_@@_color_tl}
+%    
+%    \begin{macrocode}
+\tl_new:N \l_@@_color_tl
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%    \begin{macrocode}
+\keys_define:nn {@@} {
+   color .choice:
+  ,color / none    .code:n    = \tl_clear:N \l_@@_color_tl
+  ,color / unknown .code:n    = \tl_set:Nn \l_@@_color_tl { \color {#1} }
+  ,color           .initial:n = blue 
 %    \end{macrocode}
 %    
 %    \begin{macrocode}
-\keys_define:nn {@@}
-     {
-       ,nostatistics .bool_set_inverse:N = \l_@@_display_statistics_bool
-       ,nostatistics .default:n          = true
-       ,nostatistics .initial:n          = false
+    ,hex-digits-font    .tl_set:N  = \l_@@_hex_digits_font_tl
+    ,hex-digits-font    .initial:n = \ttfamily \scriptsize
+  }
+%    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
 %
-       ,statistics-format     .cs_set:Np = \@@_format_statistics:nn #1#2
-       ,statistics-format     .initial:n =
-           Total~ number~ of~ gyphs~ in~ #1:~#2 
-     }
+%
+%
+%
+%  \begin{macro}{\@@_handle_table_ending:n}
+%    At the end of the table we may want to display a final row of
+%    hex digits and perhaps some statistics, i.e., the number of
+%    typeset glyphs.
+%    \begin{macrocode}
+\cs_new:Npn \@@_handle_table_ending:n #1 {
+%    \end{macrocode}
+%     
+%    \begin{macrocode}
+  \@@_debug_nl:n{H} \\*
+  \bool_if:NT \l_@@_footer_hex_digits_bool
+    { \@@_display_row_of_hex_digits: \@@_debug_nl:n{H} \\*   }
+  \bool_if:NT \l_@@_display_statistics_bool
+    { \\*[4pt]
+      \multicolumn{17}{l}{ \l_@@_stats_font_tl
+                           \@@_format_stats:nn{#1}{\glyphcount} } }
+}
+%    \end{macrocode}
+%
+%    Here are the keys used above. By default we produce statistics.
+%    \begin{macrocode}
+\keys_define:nn {@@} {
+    ,statistics .bool_set:N = \l_@@_display_statistics_bool
+    ,statistics .default:n   = true
+    ,statistics .initial:n   = true
+%    \end{macrocode}
+%    \texttt{nostatistics} is just short for \texttt{statistics=false}:
+%    \begin{macrocode}
+    ,nostatistics .bool_set_inverse:N = \l_@@_display_statistics_bool
+    ,nostatistics .default:n = true
+%    \end{macrocode}
+%   The default font we use is \cs{normalfont}. Again we need to
+%    supply a family to avoid getting the font used in the table body. 
+%    \begin{macrocode}
+    ,statistics-font    .tl_set:N  = \l_@@_stats_font_tl
+    ,statistics-font    .initial:n = \normalfont
+%    \end{macrocode}
+%    And here we have the default text. There is only space for a
+%    single line. If more text is needed one needs to provide some
+%    explicit \cs{parbox}.
+%    \begin{macrocode}
+    ,statistics-format  .cs_set:Np = \@@_format_stats:nn #1#2
+    ,statistics-format  .initial:n = Total~ number~ of~ gyphs~ in~ #1:~#2 
+  }
+%    \end{macrocode}
+%  \end{macro}
+%
+%
+%
+%
+%
+%  \begin{macro}{\@@_debug_nl:n}
+%    While developing the code I had a bit of trouble getting the line
+%    endings correct, so I added a little macro that made them visible
+%    (displaying its argument in the table margin when the key
+%    \key{debug} is used. By default is does nothing.
+%    \begin{macrocode}
+\cs_new:Npn \@@_debug_nl:n #1 {}
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+\keys_define:nn {@@} {
+  debug .code:n = \cs_set:Npn \@@_debug_nl:n ##1
+                          {\rlap{\normalfont\scriptsize \qquad ##1}} }
+%    \end{macrocode}
+%  \end{macro}
+%    
+%
+%
+%
+%
+%
+%
+% \subsubsection{The producing the table content}
+%
+%
+%    The body of the table consists of rows with sixteen glyphs each
+%    and to to produce it we loop through all possible Unicode points
+%    starting at \texttt{U+0000} and ending with \texttt{U+FFFF}.
+%
+%    This is implemented a four nested loop that run through the
+%    values \texttt{0}, \texttt{1}, \ldots, \texttt{F} with the
+%    current hex value in each of the four positions stored in some variable.
+
+
+%  \begin{macro}{\g_@@_hex_A_tl}
+%  \begin{macro}{\g_@@_hex_B_tl}
+%  \begin{macro}{\g_@@_hex_C_tl}
+%    
+%    We really only need three variables the value innermost loop can
+%    used directly.
+%    \begin{macrocode}
+\tl_new:N \g_@@_hex_A_tl
+\tl_new:N \g_@@_hex_B_tl
+\tl_new:N \g_@@_hex_C_tl
+%    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
+%  \end{macro}
+
+
+%  \begin{macro}{\c_@@_hex_digits_clist}
+%    Here is the sequence we loop through on each level.
+%    \begin{macrocode}
+\clist_const:Nn\c_@@_hex_digits_clist{0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F}
 %    \end{macrocode}
 %  \end{macro}
 
 
-%
-%
 
-%
+%  \begin{macro}{\@@_produce_table_rows:}
+%  \begin{macro}{\@@_handle_hex_A:n}
+%  \begin{macro}{\@@_handle_hex_B:n}
+%  \begin{macro}{\@@_handle_hex_C:n}
+%  \begin{macro}{\@@_handle_hex_D:n}
+%    The overall code layout is then fairly simply:
 %    \begin{macrocode}
-\keys_define:nn {@@}
-     {
-       ,range-start .tl_set:N  = \l_@@_range_start_tl
-       ,range-start .initial:n = 0000
-       ,range-end   .tl_set:N  = \l_@@_range_end_tl
-       ,range-end   .initial:n = FFFF
-     }
-
-     
-
-\clist_const:Nn\c_@@_hex_digits_clist{0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F}
-
-\int_new:N \g_@@_glyph_int
-
-\tl_new:N \g_@@_row_tl
-\tl_new:N \g_@@_block_tl
-
-\tl_new:N \g_@@_hex_A_tl
-\tl_new:N \g_@@_hex_B_tl
-\tl_new:N \g_@@_hex_C_tl
-
-
-\bool_new:N \g_@@_first_row_bool
-\bool_new:N \g_@@_char_seen_bool
-\bool_new:N \g_@@_row_missing_bool
-
-
-
-%\bool_gset_true:N \g_@@_row_missing_bool
-
-\DeclareDocumentCommand \glyphcount {}
-  { \int_use:N \g_@@_glyph_int }
-
-
-
-  
-\cs_new:Npn \@@_produce_table_rows: 
-   {
-     \bool_gset_true:N \g_@@_first_row_bool
-     \bool_gset_false:N \g_@@_char_seen_bool     
-     \bool_gset_false:N \g_@@_row_missing_bool
-%     
-     \int_gzero:N \g_@@_glyph_int 
-     \clist_map_function:NN \c_@@_hex_digits_clist \@@_handle_hex_A:n }
-
-
-\cs_new:Npn \@@_handle_hex_A:n #1 {
-   \tl_gset:Nn\g_@@_hex_A_tl{#1}
-   \clist_map_function:NN \c_@@_hex_digits_clist \@@_handle_hex_B:n
-}
-\cs_new:Npn \@@_handle_hex_B:n #1 {
-   \tl_gset:Nn\g_@@_hex_B_tl{#1}
-   \clist_map_function:NN \c_@@_hex_digits_clist \@@_handle_hex_C:n
-}
-
-
-\errorstopmode
-\errorcontextlines=50
-
-\cs_new:Npn \@@_maybe_display_block_title: {
-  \bool_if:NTF \g_@@_char_seen_bool
-    {
-      \tl_if_empty:NTF \g_@@_block_tl
-         {
-           \bool_if:NTF \g_@@_row_missing_bool
-                { \@@_debug_line_ending:n{A}\\[6pt] }
-                { \@@_debug_line_ending:n{B}\\      }
-         }
-         {
-           \typeout{ Processing~ \tl_use:N \g_@@_block_tl }
-           \bool_if:NTF \l_@@_display_block_bool
-                {
-                  \bool_if:NTF \g_@@_first_row_bool
-                    {
-                      \bool_gset_false:N \g_@@_first_row_bool
-                      \@@_debug_line_ending:n{C}\\[-8pt]
-                    }
-                    {
-                      \@@_debug_line_ending:n{D}\\[4pt]
-                    }
-	          \multicolumn{17}{c}{\normalfont \bfseries \tl_use:N \g_@@_block_tl}
-                  \bool_if:NTF \l_@@_blockwise_hex_digits_bool
-	               { \@@_debug_line_ending:n{E}\\* \@@_display_row_of_hex_digits: }
-                       { \@@_debug_line_ending:n{F}\\*[2pt] }
-                }
-                {
-                  \bool_if:NTF \g_@@_first_row_bool
-                    {
-                      \bool_gset_false:N \g_@@_first_row_bool
-                    }
-                    {
-                      \@@_debug_line_ending:n{G~ (new~ block)}
-                      \l_@@_display_block_action_tl
-                    }
-                }
-	   \tl_gclear:N \g_@@_block_tl
-	 }
-      \bool_gset_false:N \g_@@_char_seen_bool     
-      \bool_gset_false:N \g_@@_row_missing_bool
-      \tl_use:N \g_@@_row_tl
-    }
+\cs_new:Npn \@@_produce_table_rows: {
 %    \end{macrocode}
-%    Current row had no chars, remember that fact
+%    First to some general initialization
 %    \begin{macrocode}
-    {
-      \bool_gset_true:N \g_@@_row_missing_bool
-    }
+   \@@_initialize_table_rows: 
+%    \end{macrocode}
+%    and then loop over \cs{\c_@@_hex_digits_clist} for the leftmost
+%    hex digit (which we call \enquote{A}).
+%    \begin{macrocode}
+   \clist_map_function:NN \c_@@_hex_digits_clist \@@_handle_hex_A:n }
+%    \end{macrocode}
+%
+%    Handling \enquote{A} means storing its value for later use and
+%    then start a loop for setting the second hex digits:
+%    \begin{macrocode}
+\cs_new:Npn \@@_handle_hex_A:n #1 { \tl_gset:Nn\g_@@_hex_A_tl{#1}
+   \clist_map_function:NN \c_@@_hex_digits_clist \@@_handle_hex_B:n }
+%    \end{macrocode}
+%
+%    Same game for \enquote{B} and \enquote{C}\footnote{Actually this
+%    is a white lie. In reality we do a lot of extra stuff when
+%    handling \enquote{C} so later one we give a second definition for
+%    \cs{@@_handle_hex_C:n} but for understanding the overall picture
+%    the simpler one is better.}:
+%    \begin{macrocode}
+\cs_new:Npn \@@_handle_hex_B:n #1 { \tl_gset:Nn\g_@@_hex_B_tl{#1}
+   \clist_map_function:NN \c_@@_hex_digits_clist \@@_handle_hex_C:n }
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+\cs_new:Npn \@@_handle_hex_C:n #1 { \tl_gset:Nn\g_@@_hex_C_tl{#1}
+   \clist_map_function:NN \c_@@_hex_digits_clist \@@_handle_hex_D:n }
+%    \end{macrocode}
+%    In the innermost loop we new have the full Unicode number
+%    available, so there we have to decide what to do with it. This is
+%    done by \cs{@@_handle_hex_D:n} that receives the full number,
+%    e.g., \texttt{1A7C} as its argument.
+%    \begin{macrocode}
+\cs_new:Npn \@@_handle_hex_D:n #1 {
+  \@@_handle_slot:x { " \g_@@_hex_A_tl \g_@@_hex_B_tl \g_@@_hex_C_tl #1 }
 }
+%    \end{macrocode}
+%  \end{macro}
+%  \end{macro}
+%  \end{macro}
+%  \end{macro}
+%  \end{macro}
 
-\cs_new:Npn \@@_handle_hex_C:n #1 {
+
+
+%  \begin{macro}{\@@_handle_slot:n,\@@_handle_slot:x}
+%    If the current slot number under inspection contains a glyph in
+%    our font we want to typeset it. But we don't do this immediately,
+%    instead we build up the whole row and typeset it later.  We
+%    therefore append a \verb=&= and the glyph (including the necessary
+%    formatting) to the token list \cs{g_@@_row_tl}.
+%    \begin{macrocode}
+\cs_new:Npn \@@_handle_slot:n #1 {
+   \@@_if_uchar_exists:nTF { #1 }
+      { \tl_gput_right:Nn \g_@@_row_tl
+                          { & \@@_format_glyph:n { \symbol{#1} } }
+%    \end{macrocode}
+%    We then increment the overall glyph count and record that we have
+%    seen at least one glyph in the current row. There is no much
+%    point in displaying rows that are completely empty because
+%    otherwise we end up with extremely lare tables which are
+%    basically empty.
+%    \begin{macrocode}
+        \int_gincr:N\g_@@_glyph_int
+        \bool_gset_true:N \g_@@_glyph_seen_bool
+      }
+%    \end{macrocode}
+%    If the current slot has no glyph in the font we also add a
+%    \verb=&= followed by an indicator that the glyph is missing.
+%    For this case we provide so customization through keys:
+%    \cs{l_@@_missing_glyph_tl} holds the symbol for a missing glyph
+%    (default a hyphen). It is typeset in color and we allow for
+%    setting it in a special font.
+%    \begin{macrocode}
+      { \tl_gput_right:Nn \g_@@_row_tl 
+         { & \@@_format_glyph:n { \l_@@_missing_glyph_color_tl
+	                          \l_@@_missing_glyph_font_tl 
+	                          \l_@@_missing_glyph_tl } }
+      }
+}
+\cs_generate_variant:Nn \@@_handle_slot:n {x}
+%    \end{macrocode}
+%    
+%    The keys are \key{missing-glyph-font} and
+%    \key{missing-glyph}. For the color we use the \key{color} key
+%    introduced earlier.
+%    \begin{macrocode}
+\keys_define:nn {@@} {
+   missing-glyph-color .choice:
+  ,missing-glyph-color / none    .code:n    =
+       \tl_clear:N \l_@@_missing_glyph_color_tl
+  ,missing-glyph-color / unknown .code:n    =
+       \tl_set:Nn \l_@@_missing_glyph_color_tl { \color {#1} }
+%
+  ,missing-glyph-font  .tl_set:N  = \l_@@_missing_glyph_font_tl
+  ,missing-glyph-font  .initial:n = \ttfamily \scriptsize
+  ,missing-glyph       .tl_set:N  = \l_@@_missing_glyph_tl
+  ,missing-glyph       .initial:n = -  }
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+\tl_new:N  \l_@@_missing_glyph_color_tl
+\tl_set:Nn \l_@@_missing_glyph_color_tl {\l_@@_color_tl}
+%    \end{macrocode}
+%  \end{macro}
+
+
+%  \begin{macro}{\@@_format_glyph:n}
+%    Every glyph is typeset in a box of equal width with the glyph
+%    centered and if necessary protruding on both sides.
+%    \begin{macrocode}
+\cs_new:Npn \@@_format_glyph:n #1 {
+  \hbox_to_wd:nn {\l_@@_glyph_box_dim} { \hss #1 \hss } }
+%    \end{macrocode}
+%    
+%    \begin{macrocode}
+\keys_define:nn {@@} {
+  glyph-width .dim_set:N = \l_@@_glyph_box_dim
+ ,glyph-width .initial:n = 6pt    }
+  
+%    \end{macrocode}
+%  \end{macro}
+
+
+%  \begin{macro}{\@@_if_uchar_exists:n}
+%    For testing if a slot position contains a glyph we need to go
+%    low-level, because for now the \texttt{expl3} doesn't yet offer
+%    an interface.
+%    \begin{macrocode}
+\prg_set_conditional:Npnn \@@_if_uchar_exists:n #1 { TF }
+  { \tex_iffontchar:D \tex_font:D #1 \scan_stop:
+      \prg_return_true:
+    \else:
+      \prg_return_false:
+    \fi:
+  }
+%    \end{macrocode}
+%  \end{macro}
+
+
+
+
+   %    \begin{macrocode}
+
+
+
+\cs_set:Npn \@@_handle_hex_C:n #1 {
   \@@_maybe_display_block_title:
 %
   \tl_gset:Nn\g_@@_hex_C_tl{#1}
@@ -502,22 +694,139 @@
       }
 }
 
-\cs_new:Npn \@@_handle_hex_D:n #1 {
-  \@@_handle_slot:x { \g_@@_hex_A_tl \g_@@_hex_B_tl \g_@@_hex_C_tl #1 }
+
+
+\bool_new:N \l_@@_display_block_bool
+\tl_new:N   \l_@@_display_block_action_tl
+
+   
+\keys_define:nn {@@}
+     {
+       ,display-block .choice:
+       ,display-block / titles  .code:n =
+         \bool_set_true:N \l_@@_display_block_bool
+         \tl_set:Nn \l_@@_display_block_action_tl {\\}
+       ,display-block / rules   .code:n =
+         \bool_set_false:N \l_@@_display_block_bool
+         \tl_set:Nn \l_@@_display_block_action_tl {\\ \midrule}
+       ,display-block / none   .code:n =
+         \bool_set_false:N \l_@@_display_block_bool
+         \tl_set:Nn \l_@@_display_block_action_tl {\\}
+       ,display-block .initial:n  = titles
+%         
+  }
+
+   
+
+
+
+
+
+\tl_new:N \l_@@_display_block_hline_tl
+%    \end{macrocode}
+
+
+
+     
+%
+%
+
+%
+%    \begin{macrocode}
+\keys_define:nn {@@}
+     {
+       ,range-start .tl_set:N  = \l_@@_range_start_tl
+       ,range-start .initial:n = 0000
+       ,range-end   .tl_set:N  = \l_@@_range_end_tl
+       ,range-end   .initial:n = FFFF
+     }
+
+     
+
+
+
+\tl_new:N \g_@@_row_tl
+\tl_new:N \g_@@_block_tl
+
+
+
+\bool_new:N \g_@@_first_row_bool
+\bool_new:N \g_@@_glyph_seen_bool
+\bool_new:N \g_@@_row_missing_bool
+
+
+
+%\bool_gset_true:N \g_@@_row_missing_bool
+
+
+
+\cs_new:Npn \@@_initialize_table_rows: {
+     \bool_gset_true:N \g_@@_first_row_bool
+     \bool_gset_false:N \g_@@_glyph_seen_bool     
+     \bool_gset_false:N \g_@@_row_missing_bool
+%     
+     \int_gzero:N \g_@@_glyph_int 
+}
+
+  
+
+\errorstopmode
+\errorcontextlines=50
+
+\cs_new:Npn \@@_maybe_display_block_title: {
+  \bool_if:NTF \g_@@_glyph_seen_bool
+    {
+      \tl_if_empty:NTF \g_@@_block_tl
+         {
+           \bool_if:NTF \g_@@_row_missing_bool
+                { \@@_debug_nl:n{A}\\[6pt] }
+                { \@@_debug_nl:n{B}\\      }
+         }
+         {
+           \typeout{ Processing~ \tl_use:N \g_@@_block_tl }
+           \bool_if:NTF \l_@@_display_block_bool
+                {
+                  \bool_if:NTF \g_@@_first_row_bool
+                    {
+                      \bool_gset_false:N \g_@@_first_row_bool
+                      \@@_debug_nl:n{C}\\[-8pt]
+                    }
+                    {
+                      \@@_debug_nl:n{D}\\[4pt]
+                    }
+	          \multicolumn{17}{c}{\normalfont \bfseries \tl_use:N \g_@@_block_tl}
+                  \bool_if:NTF \l_@@_blockwise_hex_digits_bool
+	               { \@@_debug_nl:n{E}\\*
+                         \@@_display_row_of_hex_digits:
+                         \@@_debug_nl:n{H}\\*
+                       }
+                       { \@@_debug_nl:n{F}\\*[2pt] }
+                }
+                {
+                  \bool_if:NTF \g_@@_first_row_bool
+                    {
+                      \bool_gset_false:N \g_@@_first_row_bool
+                    }
+                    {
+                      \@@_debug_nl:n{G~ (new~ block)}
+                      \l_@@_display_block_action_tl
+                    }
+                }
+	   \tl_gclear:N \g_@@_block_tl
+	 }
+      \bool_gset_false:N \g_@@_glyph_seen_bool     
+      \bool_gset_false:N \g_@@_row_missing_bool
+      \tl_use:N \g_@@_row_tl
+    }
+%    \end{macrocode}
+%    Current row had no chars, remember that fact
+%    \begin{macrocode}
+    {
+      \bool_gset_true:N \g_@@_row_missing_bool
+    }
 }
 
 
-\cs_new:Npn \@@_handle_slot:n #1 {
-   \@@_if_uchar_exists:nTF { #1 }
-      { \tl_gput_right:Nn \g_@@_row_tl { & \@@_format_glyph:n {#1} }
-        \bool_gset_true:N \g_@@_char_seen_bool
-        \int_gincr:N\g_@@_glyph_int
-      }
-      { \tl_gput_right:Nn \g_@@_row_tl { & \@@_format_missing_glyph: }
-      }
-}
-
-\cs_generate_variant:Nn \@@_handle_slot:n {x}
 
 
 
@@ -656,14 +965,6 @@
 }
 
 
-\prg_set_conditional:Npnn \@@_if_uchar_exists:n #1 { TF }
-  {
-    \tex_iffontchar:D \tex_font:D "#1 \scan_stop:
-      \prg_return_true:
-    \else:
-      \prg_return_false:
-    \fi:
-  }
 
 
 
@@ -673,50 +974,13 @@
 
 
 
-\cs_new:Npn \@@_display_row_of_hex_digits: {
-    & \@@_format_hex_digit:n{0} 
-    & \@@_format_hex_digit:n{1} 
-    & \@@_format_hex_digit:n{2} 
-    & \@@_format_hex_digit:n{3} 
-    & \@@_format_hex_digit:n{4} 
-    & \@@_format_hex_digit:n{5} 
-    & \@@_format_hex_digit:n{6} 
-    & \@@_format_hex_digit:n{7} 
-    & \@@_format_hex_digit:n{8} 
-    & \@@_format_hex_digit:n{9} 
-    & \@@_format_hex_digit:n{A} 
-    & \@@_format_hex_digit:n{B} 
-    & \@@_format_hex_digit:n{C} 
-    & \@@_format_hex_digit:n{D} 
-    & \@@_format_hex_digit:n{E} 
-    & \@@_format_hex_digit:n{F}
-   \@@_debug_line_ending:n{H}\\*
-}
 
 
-\cs_new:Npn \@@_debug_line_ending:n #1 {}
+%\unicodefonttabletablesetup{debug}
 
-
-
-\unicodefonttabletablesetup{debug}
-
-
-\cs_new:Npn \@@_format_hex_digit:n #1 {
-  \texttt{\scriptsize\@@_setup_color:  #1}
-}
 
 \cs_new:Npn \@@_format_row_title:n #1 {
-  \texttt { \footnotesize \@@_setup_color:  U+#1 0 \, - \, #1 F }
-}
-
-\cs_new:Npn \@@_format_glyph:n #1 {
-  \hbox_to_wd:nn {6pt} { \tex_hss:D \symbol{ " #1} \tex_hss:D }
-}
-\cs_new:Npn \@@_format_missing_glyph: {
-  \hbox_to_wd:nn {6pt}
-       { \tex_hss:D
-         \@@_format_hex_digit:n{ \l_@@_missing_glyph_tl }
-         \tex_hss:D }
+  \texttt { \footnotesize \l_@@_color_tl U+#1 0 \, - \, #1 F }
 }
 
 
@@ -789,7 +1053,7 @@
 \section{TeX Gyre Heros (Helvetica)  --- 8bit font}
 
 \displaysimplefonttable[color=red,nostatistics=false,
-  hexdigits = head+foot,
+  hex-digits = head+foot,
   range-end = FF,
 ]{ec-qhvr}
 
@@ -800,7 +1064,7 @@
 \displayfonttable[
 %  display-block = rules,
   %              missing-glyph = \tiny\setlength\fboxsep{0pt}\fbox{$\times$},
-  hexdigits = block,
+  hex-digits = block,
   title-cont-format = \caption[]{\emph{continued}},
 ]{Latin Modern Sans}
 
@@ -839,4 +1103,22 @@
 % \Finale
 %
 
+
+\endinput
+
+%%%%%%%%%%%%%%%%%%%
+
+%    \begin{macrocode}
+\cs_new_protected:cpn { \c__keys_props_root_str .cs_set:Np } #1
+   { \__keys_cs_make:NNpn \cs_set:Npn #1 { } }
+\cs_new_protected:Npn \__keys_cs_make:NNpn #1#2#3#
+   {
+     \cs_set_protected:cpx { \c__keys_code_root_str \l_keys_path_str } ##1
+       { #1 \exp_not:N #2 \exp_not:n {#3} {##1} }
+     \use_none:n
+   }  
+%    \end{macrocode}
+%    
+
+%%%%%%%%%%%%%%%%%%%
 
