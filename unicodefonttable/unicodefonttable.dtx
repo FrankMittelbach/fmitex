@@ -653,9 +653,9 @@
 
 
 %  \begin{macro}{\@@_if_uchar_exists:n}
-%    For testing if a slot position contains a glyph we need to go
-%    low-level, because for now the \texttt{expl3} doesn't yet offer
-%    an interface.
+%    For testing whether or not a slot position contains a glyph we
+%    need to resort to low-level methods, because so far the
+%    \texttt{expl3} doesn't offer an interface.
 %    \begin{macrocode}
 \prg_set_conditional:Npnn \@@_if_uchar_exists:n #1 { TF }
   { \tex_iffontchar:D \tex_font:D #1 \scan_stop:
