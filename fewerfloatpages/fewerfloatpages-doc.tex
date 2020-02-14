@@ -1,0 +1,10 @@
+% this will typeset only documentation but not the code
+
+\AtBeginDocument{\OnlyDescription
+%                 \let\tableofcontents\relax
+                 \IndexPrologue
+                   {\section*{Index}
+                     \markboth{Index}{Index}
+                     \addcontentsline{toc}{section}{Index}}
+                 }
+\input{fewerfloatpages.dtx}

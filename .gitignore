@@ -20,8 +20,5 @@ footmisc/build
 ftnright/build
 hummingbird/build
 parskip/build
-unicodefont/build
-widows-and-orphans/build/
-lessfloatpages/build
-*.toc
-*.curlopt
+unicodefonttable/build
+widows-and-orphans/build
