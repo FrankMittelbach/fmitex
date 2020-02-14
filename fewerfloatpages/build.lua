@@ -19,16 +19,16 @@ typesetruns   = 3
 
 uploadconfig = {
  pkg = module,
- version = "v1.0a 2019-07-27",
+ version = "v1.0a 2020-02-14",
  author = "Frank Mittelbach",
  license = "lppl1.3c",
- summary = "Avoid unnecessary float pages if float page is fairly empty and floats can be placed as top/bottom floats instead",
+ summary = "Avoid unnecessary float pages if a float page is fairly empty and floats can be placed as top/bottom floats instead",
  ctanPath = "/macros/latex/" .. module,
  repository = "https://github.com/FrankMittelbach/fmitex",
  bugtracker = "https://github.com/FrankMittelbach/fmitex/issues",
  uploader = "Frank Mittelbach",
  email = "frank.mittelbach@latex-project.org",
- update = true ,
+ update = false ,
  note = [[Uploaded automatically by l3build...]],
 }
 

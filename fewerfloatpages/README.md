@@ -2,9 +2,9 @@
 
 -----
 
-This package implements float algorithm extension for handling float
+This package implements a float algorithm extension for handling float
 pages. It attempts to reduce the number of unnecessary (fairly empty)
-float pages while making sure that floats nevertheles stay close to
+float pages while making sure that floats nevertheless stay close to
 their call-outs. Several aspects of the algorithm behavior are
 adjustable.
 
@@ -12,7 +12,7 @@ Package source can be found below:
 
 https://github.com/FrankMittelbach/fmitex/
 
-The license is LPPL.
+The license is LPPL 1.3c.
 
 -----
 

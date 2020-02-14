@@ -20,20 +20,20 @@
 %%
 %% This is really a temporary file intended for a single article
 %% written for TugBoat It is a copy of l3doc.cls with a couple of
-%% changes, nothing more Eventually this will get replaced by a real
+%% changes, nothing more. Eventually this will get replaced by a real
 %% class once l3doc.cls gets properly split into a class part and a
 %% support part.
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 %% If you use this for anything other than processing the documents it
-%% was meant for (which so far is 1) you are on your own :-)
+%% was meant for (which so far is 2) you are on your own :-)
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{expl3,xparse,calc}
-\ProvidesExplClass{l3doc-TUB}{2018/02/21}{}
-  {L3 Experimental documentation class (special version for TUGboat)}
+\ProvidesExplClass{l3doc-TUB}{2020/02/14}{}
+  {L3 Experimental documentation class (special version for TUGboat with fixes)}
 \clist_new:N \g_docinput_clist
 \seq_new:N \g_doc_functions_seq
 \seq_new:N \g_doc_macros_seq
@@ -1091,7 +1091,7 @@
     \dim_set:Nn \l__codedoc_trial_width_dim
       { \box_wd:N \l__codedoc_functions_coffin }
     \bool_set:Nn \l__codedoc_long_name_bool
-      { \dim_compare_p:nNn \l__codedoc_trial_width_dim > \marginparwidth }
+      { \dim_compare_p:nNn \l__codedoc_trial_width_dim > {\marginparwidth + 1cm} }  % FMi crude fix
   }
 \cs_new_protected:Npn \__codedoc_function_descr_start:w
   {

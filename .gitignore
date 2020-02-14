@@ -1,6 +1,7 @@
 *.*~
 *.aux
 *.curlopt
+*.curlopt
 *.glo
 *.hd
 *.idx
@@ -9,6 +10,7 @@
 *.pdf
 *.synctex.gz
 *.toc
+*.toc
 *.zip
 00-change-name.sh
 TEMPLATE
@@ -16,12 +18,10 @@ dashundergaps/build
 doc-v3/build
 doc-v3/tmp
 fewerfloatpages/build
+fewerfloatpages/build
 footmisc/build
 ftnright/build
 hummingbird/build
 parskip/build
-utf8font/build
+unicodefonttable/build
 widows-and-orphans/build/
-lessfloatpages/build
-*.toc
-*.curlopt
