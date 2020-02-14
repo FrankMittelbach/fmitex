@@ -12,7 +12,7 @@ sourcefiles = {"*.dtx", "*.ins", "*-????-??-??.sty", "l3doc-TUB.cls"}
 typesetfiles  = {"*.tex"}
 
 checkruns     = 1
-typesetruns   = 3
+typesetruns   = 4
 
 
 -- Upload meta data
@@ -28,7 +28,7 @@ uploadconfig = {
  bugtracker = "https://github.com/FrankMittelbach/fmitex/issues",
  uploader = "Frank Mittelbach",
  email = "frank.mittelbach@latex-project.org",
- update = false ,
+ update = true ,
  note = [[Uploaded automatically by l3build...]],
 }
 
