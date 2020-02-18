@@ -1,0 +1,4 @@
+
+- consider check=file or something where data is read from an external
+  file instead of sprinkling \WaOignorenext etc in the document
+
