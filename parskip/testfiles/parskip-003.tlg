@@ -20,10 +20,7 @@ Package: etoolbox ....-..-.. v... e-TeX tools for LaTeX (JAW)
 ))
 (parskip-003.toc)
 \tf@toc=\write...
-LaTeX Font Info:    Trying to load font information for OMS+lmr on input line ....
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line ....
-LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line ....
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line ....
 Completed box being shipped out [1]
 \vbox(633.0+0.0)x407.0
 .\glue 16.0
@@ -192,15 +189,15 @@ Completed box being shipped out [1]
 ...\glue(\parskip) 12.0
 ...\glue(\baselineskip) 5.11125
 ...\hbox(6.88875+0.0)x319.99997, glue set 312.49997fil, shifted 25.00003
-....\hbox(4.44444+0.0)x0.0
+....\hbox(3.70999+0.0)x0.0
 .....\glue 0.0
 .....\glue -20.00003
 .....\glue -5.0
-.....\hbox(4.44444+0.0)x20.00003, glue set 20.00003fil
+.....\hbox(3.70999+0.0)x20.00003, glue set 20.00003fil
 ......\glue 0.0 plus 1.0fil minus 1.0fil
-......\hbox(4.44444+0.0)x0.0, glue set - 5.00002fil
+......\hbox(3.70999+0.0)x0.0, glue set - 7.77798fil
 .......\glue 0.0 plus 1.0fil minus 1.0fil
-.......\OMS/lmsy/m/n/10 ^^O
+.......\TS1/lmr/m/n/10 ^^88
 .....\glue 5.0
 ....\penalty 0
 ....\OT1/lmr/m/n/10 A
@@ -212,15 +209,15 @@ Completed box being shipped out [1]
 ...\glue(\parskip) 12.0
 ...\glue(\baselineskip) 5.11125
 ...\hbox(6.88875+0.0)x319.99997, glue set 312.91698fil, shifted 25.00003
-....\hbox(4.44444+0.0)x0.0
+....\hbox(3.70999+0.0)x0.0
 .....\glue 0.0
 .....\glue -20.00003
 .....\glue -5.0
-.....\hbox(4.44444+0.0)x20.00003, glue set 20.00003fil
+.....\hbox(3.70999+0.0)x20.00003, glue set 20.00003fil
 ......\glue 0.0 plus 1.0fil minus 1.0fil
-......\hbox(4.44444+0.0)x0.0, glue set - 5.00002fil
+......\hbox(3.70999+0.0)x0.0, glue set - 7.77798fil
 .......\glue 0.0 plus 1.0fil minus 1.0fil
-.......\OMS/lmsy/m/n/10 ^^O
+.......\TS1/lmr/m/n/10 ^^88
 .....\glue 5.0
 ....\penalty 0
 ....\OT1/lmr/m/n/10 B
