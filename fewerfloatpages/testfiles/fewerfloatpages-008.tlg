@@ -1,0 +1,32 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+[1
+]
+fewerfloatpages: PAGE: trying to make a float page
+fewerfloatpages: ----- \@deferlist: \bx@A \bx@B 
+fewerfloatpages:  starting with \bx@A
+fewerfloatpages:  --> fail
+fewerfloatpages:  starting with \bx@B
+fewerfloatpages:  --> success: \bx@B 
+fewerfloatpages: ----- current float page unraveled
+(free space 159.4963pt > 109.99832pt)
+[2]
+fewerfloatpages: PAGE: trying to make a float page
+fewerfloatpages: ----- \@deferlist: \bx@A 
+fewerfloatpages:  starting with \bx@A
+fewerfloatpages:  --> fail
+fewerfloatpages:  --> fail: no float page made
+[3]
+fewerfloatpages: PAGE: trying to make a float page
+fewerfloatpages: ----- \@deferlist: \bx@A \bx@C 
+fewerfloatpages:  starting with \bx@A
+fewerfloatpages:  --> success: \bx@A \bx@C 
+fewerfloatpages: ----- current float page unraveled
+(free space 267.0pt > 109.99832pt)
+[4] [5]
+fewerfloatpages: PAGE: trying to make a float page
+fewerfloatpages: ----- \@deferlist: \bx@E 
+fewerfloatpages:  starting with \bx@E
+fewerfloatpages:  --> fail
+fewerfloatpages:  --> fail: no float page made
+[6] (fewerfloatpages-008.aux)

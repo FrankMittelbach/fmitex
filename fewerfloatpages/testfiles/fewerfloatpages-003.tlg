@@ -1,0 +1,34 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+[1
+]
+fewerfloatpages: PAGE: trying to make a float page
+fewerfloatpages: ----- \@deferlist: \bx@B \bx@C \bx@D \bx@E 
+fewerfloatpages:  starting with \bx@B
+fewerfloatpages:  --> success: \bx@B \bx@C 
+fewerfloatpages: ----- current float page unraveled
+(free space 184.49496pt > 109.99832pt)
+[2]
+fewerfloatpages: PAGE: trying to make a float page
+fewerfloatpages: ----- \@deferlist: \bx@D \bx@E 
+fewerfloatpages:  starting with \bx@D
+fewerfloatpages:  --> success: \bx@D \bx@E 
+fewerfloatpages: ----- current float page unraveled
+(free space 212.00504pt > 109.99832pt)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line ....
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line ....
+[3]
+fewerfloatpages: PAGE: trying to make a float page
+fewerfloatpages: ----- \@deferlist: \bx@F \bx@G \bx@H \bx@I \bx@J 
+fewerfloatpages:  starting with \bx@F
+fewerfloatpages:  --> success: \bx@F \bx@G 
+fewerfloatpages: ----- too many deferred floats for unraveling (5 > 4)
+[4]
+fewerfloatpages: PAGE: trying to make a float page
+fewerfloatpages: ----- \@deferlist: \bx@H \bx@I \bx@J 
+fewerfloatpages:  starting with \bx@H
+fewerfloatpages:  --> success: \bx@H \bx@I \bx@J 
+fewerfloatpages: ----- current float page kept (contains at least 3 floats)
+[5] [6] [7] (fewerfloatpages-003.aux)

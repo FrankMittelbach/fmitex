@@ -1,0 +1,40 @@
+\documentclass{article}
+
+\input{regression-test}
+
+\usepackage{lipsum}
+
+\usepackage[trace,addbang]{fewerfloatpages}
+
+\setcounter{floatpagedeferlimit}{3}
+
+\newcommand\fig[3][tbp]{\begin{figure}[#1]\frame{\vbox to#2{\vfil #3 (fig)\vfil}}\end{figure}}
+\newcommand\tab[3][tbp]{\begin{table}[#1]\frame{\vbox to#2{\vfil #3 (tab)\vfil}}\end{table}}
+
+\begin{document}
+
+\START
+
+Some text \ldots
+
+\fig{.6\textheight}{A}
+
+
+\fig[t]{.35\textheight}{B}
+\tab[p]{.1\textheight}{C}
+\tab{.65\textheight}{D}
+
+\lipsum[3-4]
+
+
+\lipsum
+
+
+\end{document}
+
+
+\fig{.3\textheight}{D}
+\fig{.1\textheight}{E}
+\tab{.3\textheight}{F}
+\tab{.3\textheight}{G}
+\tab{.3\textheight}{H}

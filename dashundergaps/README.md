@@ -12,11 +12,11 @@ Package source can be found below:
 
 https://github.com/FrankMittelbach/fmitex/
 
-The license is LPPL.
+The license is LPPL 1.3c.
 
 -----
 
-Copyright (C) 2018 Frank Mittelbach<br />
+Copyright (C) 2018-2020 Frank Mittelbach<br />
 <https://latex-project.org/> <br />
 All rights reserved.
 

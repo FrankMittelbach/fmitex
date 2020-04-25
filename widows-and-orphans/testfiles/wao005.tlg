@@ -6,11 +6,7 @@ Don't change this file in any respect.
 % t=22.0 g=36.0 b=10000 p=0 c=100000#
 % t=34.0 g=36.0 b=10000 p=100 c=100000#
 % t=46.0 g=36.0 b=* p=152 c=*
-.................................................
-. widows-and-orphans info: "hyphen"
-. 
-. Hyphen in last line of page 1
-.................................................
+Package widows-and-orphans Info: Hyphen in last line of page 1
 [1
 ]
 %% goal height=36.0, max depth=5.0

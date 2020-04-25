@@ -508,7 +508,7 @@
 \@addtoreset{CodelineNo}{part}
 \tl_replace_once:Nnn \theCodelineNo
   { \HDorg@theCodelineNo }
-  { \textcolor[gray]{0.45} { \sffamily\tiny\arabic{CodelineNo} } }
+  { \textcolor[gray]{0.5} { \sffamily\tiny\arabic{CodelineNo} } }
 \fvset{gobble=2}
 \cs_gset_eq:NN \verbatim \Verbatim
 \cs_gset_eq:NN \endverbatim \endVerbatim
@@ -807,7 +807,7 @@
   }
 \cs_new_protected:Npn \__codedoc_typeset_aux:n #1
   {
-    { \color[gray]{0.45} #1 }
+    { \color[gray]{0.5} #1 }
   }
 \cs_new_protected:Npn \__codedoc_get_hyper_target:nN #1#2
   {
@@ -891,7 +891,7 @@
     \tl_greplace_all:Nno \g__codedoc_base_name_tl
       { ~ } { \c_catcode_other_space_tl }
     \seq_get:NN #1 \l__codedoc_tmpa_tl
-    \str_if_eq_x:nnTF { \l__codedoc_tmpa_tl } { \scan_stop: }
+    \str_if_eq:eeTF { \l__codedoc_tmpa_tl } { \scan_stop: }
       {
         \seq_gclear:N \g__codedoc_variants_seq
         \__codedoc_names_typeset_auxii:x { \g__codedoc_base_name_tl }
@@ -954,7 +954,7 @@
         #1
           {
             \l__codedoc_tmpa_tl
-            \str_if_eq_x:nnF { \l__codedoc_tmpb_tl } { \scan_stop: }
+            \str_if_eq:eeF { \l__codedoc_tmpb_tl } { \scan_stop: }
               { : \l__codedoc_tmpb_tl }
             \bool_if:NT \l__codedoc_macro_TF_bool { TF }
           }
@@ -1473,7 +1473,7 @@
       { \exp_last_unbraced:NNo \hyperref [ \l__codedoc_tmpa_tl ] }
       { \use:n }
       {
-        \int_compare:nTF { \str_count:n {#1} <= 0 }
+        \int_compare:nTF { \str_count:n {#1} <= 28 }
           { \MacroFont } { \MacroLongFont }
         \tl_set:Nn \l__codedoc_tmpa_tl {#1}
         \tl_replace_all:Nno \l__codedoc_tmpa_tl
@@ -1492,7 +1492,7 @@
   { \bool_if:NTF #1 { \__codedoc_typeset_TF: } { } }
 \providecommand \MacroLongFont
   {
-    \fontfamily{lmtt}\fontseries{m}\footnotesize
+    \fontfamily{lmtt}\fontseries{lc}\small
   }
 \cs_new_protected:Npn \__codedoc_print_testfile:n #1
   {
@@ -2098,7 +2098,7 @@
           \tl_if_empty:nTF {#3}
             { { } { } { } }
             {
-              \str_if_eq_x:nnTF {#3} { TeX }
+              \str_if_eq:eeTF {#3} { TeX }
                 {
                   { TeX~and~LaTeX2e }
                   { \string\TeX{}~and~\string\LaTeXe{} }

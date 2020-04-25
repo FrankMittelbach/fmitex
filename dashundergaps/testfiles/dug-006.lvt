@@ -1,0 +1,41 @@
+% Testin user shorthands
+
+\documentclass{article}
+
+\input{regression-test}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{dashundergaps}
+
+\showoutput
+
+\newcommand\test{A sample text to see if this is breaking across lines.}
+
+\begin{document}
+
+\START
+
+\dashundergapssetup{
+   ,gap-widen
+   ,gap-format-adjust
+}
+
+Here we have a \gap{\test} Does this break across lines?
+
+Here we have a \gap{\test\space\test} Does this break across lines?
+
+Here we have a \gap{\emph{\test}} Does this break across lines?
+This one does not as expected.
+
+\TeacherModeOn
+
+Here we have a \gap{\test} Does this break across lines?
+
+Here we have a \gap{\test\space\test} Does this break across lines?
+
+Here we have a \gap{\emph{\test}} Does this break across lines?
+This one does not as expected.
+
+
+\end{document}

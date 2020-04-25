@@ -13,28 +13,15 @@ Package: ltxcmds ....-..-.. v... LaTeX kernel commands for general use (HO)
 )
 (../kvsetkeys.sty
 Package: kvsetkeys ....-..-.. v... Key value parser (HO)
-(../infwarerr.sty
-Package: infwarerr ....-..-.. v... Providing info/warning/error messages (HO)
-)
-(../etexcmds.sty
-Package: etexcmds ....-..-.. v... Avoid name clashes with e-TeX commands (HO)
-(../ifluatex.sty
-Package: ifluatex ....-..-.. v... Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
+))
 (../etoolbox.sty
 Package: etoolbox ....-..-.. v... e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count...
 ))
 (parskip-002.toc)
 \tf@toc=\write...
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line ....
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line ....
+LaTeX Font Info:    Trying to load font information for OMS+lmr on input line ....
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line ....
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line ....
 Completed box being shipped out [1]

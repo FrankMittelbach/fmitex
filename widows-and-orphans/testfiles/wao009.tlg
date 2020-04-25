@@ -11,11 +11,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line ....
 % t=78.05238 plus 3.0 g=60.0 b=* p=0 c=*
-*************************************************
-* widows-and-orphans warning: "widow"
-* 
-* Display widow on page 2
-*************************************************
+Package widows-and-orphans Warning: Display widow on page 2
 [1
 ]
 %% goal height=60.0, max depth=5.0
@@ -31,11 +27,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 % t=46.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
 % t=58.0 plus 2.0 g=60.0 b=100 p=5000 c=5100#
 % t=70.0 plus 2.0 g=60.0 b=* p=5001 c=*
-*************************************************
-* widows-and-orphans warning: "orphan"
-* 
-* Orphan on page 3
-*************************************************
+Package widows-and-orphans Warning: Orphan on page 3
 [3]
 %% goal height=60.0, max depth=5.0
 % t=10.0 g=60.0 b=10000 p=5001 c=100000#
@@ -49,22 +41,13 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 % t=22.0 g=60.0 b=10000 p=0 c=100000#
 % t=46.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
 % t=70.0 plus 2.0 g=60.0 b=* p=0 c=*
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! widows-and-orphans error: "no-problem"
-! 
-! No problem to suppress on this page!
-! 
-! See the widows-and-orphans documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
+! Package widows-and-orphans Error: No problem to suppress on this page!
+For immediate help type H <return>.
+ ...                                              
 l. ...  \verystupidpara\verystupidpara
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| Suppression of a widow or orphan problem was requested but on the current
-| page there doesn't seem to be any. Maybe the text was changed and the
-| request should get (re)moved?
-|...............................................
+Suppression of a widow or orphan problem was requested but on the current page
+there doesn't seem to be any. Maybe the text was changed and the request
+should get (re)moved?
 [5]
 %% goal height=60.0, max depth=5.0
 % t=22.0 g=60.0 b=10000 p=0 c=100000#
@@ -82,22 +65,14 @@ l. ...  \verystupidpara\verystupidpara
 % t=46.0 plus 1.0 g=60.0 b=10000 p=5000 c=100000#
 % t=58.0 plus 1.0 g=60.0 b=800 p=5001 c=5801#
 % t=70.0 plus 1.0 g=60.0 b=* p=0 c=*
-*************************************************
-* widows-and-orphans warning: "widow"
-* 
-* Widow on page 7 (second column)
-*************************************************
+Package widows-and-orphans Warning: Widow on page 7 (second column)
 %% goal height=60.0, max depth=5.0
 % t=10.0 g=60.0 b=10000 p=0 c=100000#
 % t=34.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
 % t=46.0 plus 2.0 g=60.0 b=10000 p=5000 c=100000#
 % t=58.0 plus 2.0 g=60.0 b=100 p=5001 c=5101#
 % t=70.0 plus 2.0 g=60.0 b=* p=0 c=*
-*************************************************
-* widows-and-orphans warning: "widow"
-* 
-* Widow on page 8 (first column)
-*************************************************
+Package widows-and-orphans Warning: Widow on page 8 (first column)
 [7
 ]
 %% goal height=60.0, max depth=5.0
