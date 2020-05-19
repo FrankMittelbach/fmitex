@@ -107,6 +107,12 @@
 %    specify the vertical space between paragraphs. If the option is
 %    not given (or given without a value) then \verb=.5\baselineskip=
 %   plus \texttt{2pt} of stretch is assumed.
+% \item[\option{tocskip}]
+%    By default the \cs{parskip} is zero within \cs{tableofcontents}
+%    and similar lists, regardless of its value elsewhere. With the
+%    option \texttt{tocskip} it can be given a different value. If
+%    used without an explicit value you get the same \cs{parskip} as elsewhere
+%    within these lists.
 % \item[\option{indent}]
 %    With the package option \texttt{indent} it is possible to explicitly set
 %    the paragraph indentation. Using this option without a value keeps the
@@ -177,7 +183,7 @@
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\ProvidesPackage{parskip}[2020-01-22 v2.0d non-zero parskip adjustments]
+\ProvidesPackage{parskip}[2020-05-19 v2.0e non-zero parskip adjustments]
 %    \end{macrocode}
 %
 %
@@ -218,6 +224,14 @@
 \DeclareStringOption{skip}
 %    \end{macrocode}
 %
+%    The key \option{tocskip} defines the vertical separation inside the lists
+%    \cs{tableofcontents}, \cs{listoffigures} and \cs{listoftables}. By
+%    default there is no extra separatation (i.e., \texttt{0pt}). If
+%    specified without a value the standard \cs{parskip} is used,
+%    otherwise the given value.
+%    \begin{macrocode}
+\DeclareStringOption[0pt]{tocskip}[\parskip]
+%    \end{macrocode}
 %
 %   Execute any package options:
 %    \begin{macrocode}
@@ -319,12 +333,39 @@
 % Within a table of contents or a list of figures we don't want any
 % additional vertical spacing just because the individual lines in
 % such a list are implemented as one-line paragraphs. So we locally
-% set the \cs{parskip} to zero. Should be really something that is
+% set the \cs{parskip} to zero by default. Should be really something that is
 % done already in \LaTeX{}.
+% \changes{v2.0e}{2020/05/19}{Fix space at start of \cs{@starttoc} (gh/12)}
 %    \begin{macrocode}
 \patchcmd\@starttoc
     {\begingroup \makeatletter}
-    {\begingroup \makeatletter \parskip\z@}
+    {\begingroup \makeatletter
+%    \end{macrocode}
+%    Just setting \cs{parskip} to zero as it was done in the original
+%    version of the package, does not always work. If the list starts
+%    out with an ordinary paragraph (and not with \cs{addvspace} as it
+%    usually does) we will get a zero \cs{parskip} but the heading
+%    above assumes we get the normal \cs{parskip} and has therefore
+%    removed that amount from its own vertical skip. As long as the
+%    parskip value is not too large people didn't notice that heading
+%    and list moved closer to each other but if you use, say,
+%    \texttt{[skip=20pt]} you will even see an overlap.
+%
+%    We therefore do the following: we look at the last skip, undo it
+%    and then issue a skip that is equal to \cs{parskip} +
+%    \cs{lastskip}.
+%     This way the skip seen by any following code has the right value
+%    which is important for \cs{addvspace} calulations. Only then we
+%    locally set \cs{parskip} to zero or rather to
+%    \cs{parskip@tocskip}, the parameter that the user can set through
+%    an option.
+% \changes{v2.0e}{2020/05/19}{Add \texttt{tocskip} option}
+%    \begin{macrocode}
+      \skip@\lastskip
+      \advance\skip@\parskip
+      \vskip-\lastskip
+      \vskip\skip@
+      \parskip\parskip@tocskip}
     {}{\typeout{Couldn't patch \string\@starttoc}}
 %    \end{macrocode}
 %

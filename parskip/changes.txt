@@ -1,3 +1,17 @@
+#### placed on CTAN as 2.0e ####
+
+2020-05-19  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* parskip.dtx (subsubsection{TOCs and similar lists}):
+	Add tocskip option to set the \parskip value inside \tableofcontents
+	and similar lists (default is 0pt as before)
+
+2020-05-18  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* parskip.dtx (subsubsection{TOCs and similar lists}):
+	Fix space at start of \@starttoc (noticable with large skip= values)
+	(gh/12)
+
 #### placed on CTAN as 2.0d ####
 
 	2020-01-22  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>

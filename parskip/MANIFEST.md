@@ -57,6 +57,7 @@ unit tests, and `.tlg` are the stored output for ensuring changes to the package
 the same output. These output files are sometimes shared and sometime specific for
 different engines (pdfTeX, XeTeX, LuaTeX, etc.).
 
+* github-0012.lvt 
 * parskip-000.lvt 
 * parskip-001.lvt 
 * parskip-002.lvt 
@@ -65,6 +66,7 @@ different engines (pdfTeX, XeTeX, LuaTeX, etc.).
 * parskip-005.lvt 
 * parskip-006.lvt 
 * sx-450551.lvt 
+* github-0012.tlg 
 * parskip-000.tlg 
 * parskip-001.tlg 
 * parskip-002.tlg 
