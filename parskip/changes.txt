@@ -1,3 +1,10 @@
+#### placed on CTAN as 2.0f ####
+
+2020-06-15  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* parskip.dtx (subsubsection{Option handling}):
+	Allow skip key without value without a package error (gh/14)
+
 #### placed on CTAN as 2.0e ####
 
 2020-05-19  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>

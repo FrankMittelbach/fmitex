@@ -183,7 +183,7 @@
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\ProvidesPackage{parskip}[2020-05-19 v2.0e non-zero parskip adjustments]
+\ProvidesPackage{parskip}[2020-06-15 v2.0f non-zero parskip adjustments]
 %    \end{macrocode}
 %
 %
@@ -219,9 +219,11 @@
 %   flexibility. If given, one need to provide an explicit value which
 %   is then used as a separation (and it needs to contain any extra
 %   stretch if that is wanted, i.e., there is no extra stretch added
-%   in this case).
+%   in this case). 
+% \changes{v2.0f}{2020/06/15}{Allow \texttt{skip} key without value
+%          without a package error (gh/14)}
 %    \begin{macrocode}
-\DeclareStringOption{skip}
+\DeclareStringOption{skip}[]
 %    \end{macrocode}
 %
 %    The key \option{tocskip} defines the vertical separation inside the lists
@@ -244,11 +246,10 @@
 \ifx\parskip@skip\@empty
 %    \end{macrocode}
 %    If no \option{skip} was given (or it was empty) set \cs{parskip}
-%    to \verb=.5\baselineskip= plus \texttt{2pt} stretch. This has to
-%    be done in 2 steps as \cs{baselineskip} might already contain a stretch.
+%    to half of \verb=.5\baselineskip= plus \texttt{2pt} stretch. Stretch
+%    or shrink inside \cs{baselineskip} is ignored in this case.
 %    \begin{macrocode}
-  \parskip.5\baselineskip
-  \advance\parskip 0pt plus 2pt\relax
+  \parskip=.5\baselineskip plus 2pt\relax
 \else
 %    \end{macrocode}
 %    Otherwise set it to the specified value:
@@ -294,7 +295,8 @@
 %   \topsep = \z@ % add nothing to \parskip before first item
 %\end{verbatim}
 %
-%    However, if the user explicitly asked for a zero parskip (via the \option{skip} option) we
+%    However, if the user explicitly asked for a zero parskip (via the
+%    \option{skip} option) we
 %    shouldn't do this but rather keep the default list settings, so
 %    we better check for this.
 %

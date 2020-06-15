@@ -1,0 +1,22 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+(parskip.sty
+Package: parskip ....-..-.. v... non-zero parskip adjustments
+(../kvoptions.sty
+Package: kvoptions ....-..-.. v... Key value format for package options (HO)
+(../keyval.sty
+Package: keyval ....-..-.. v... key=value parser (DPC)
+\KV@toks@=\toks...
+)
+(../ltxcmds.sty
+Package: ltxcmds ....-..-.. v... LaTeX kernel commands for general use (HO)
+)
+(../kvsetkeys.sty
+Package: kvsetkeys ....-..-.. v... Key value parser (HO)
+))
+(../etoolbox.sty
+Package: etoolbox ....-..-.. v... e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count...
+))
+> 6.0pt plus 2.0pt.
+l. ...\showthe\parskip
