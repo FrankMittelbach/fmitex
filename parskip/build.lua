@@ -18,7 +18,7 @@ checkruns     = 2
 
 uploadconfig = {
  pkg = "parskip",
- version = "v2.0e 2020-05-19",
+ version = "v2.0f 2020-06-15",
  author = "Frank Mittelbach",
  license = "lppl1.3c",
  summary = "Layout with zero \\parindent, non-zero \\parskip",
