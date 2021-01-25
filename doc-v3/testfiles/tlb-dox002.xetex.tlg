@@ -8,6 +8,7 @@ Disable indexing for '\mylength '
 Searching for '\mylength'
 Not indexing '\mylength'
 (../se-ascii-print.def
+File: se-ascii-print.def ....-..-.. v... stringenc: Printable ASCII characters
 )
 [1
 \indexentry{foo={\ttfamily foo} (option)|hdclindex{2}{usage}}{1}
@@ -57,16 +58,10 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line ....
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line ....
- [3
+[3
 ]) (tlb-dox002.gls [4
-])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line ....
-Package atveryend Info: Executing hook `AfterLastShipout' on input line ....
- (tlb-dox002.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line ....
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line ....
+]) (tlb-dox002.aux)
 Package rerunfilecheck Info: File `tlb-dox002.out' has not changed.
-(rerunfilecheck)             Checksum: F85BB8E457B4EC0E89B880973EB7C30B.
+(rerunfilecheck)             Checksum: F85BB8E457B4EC0E89B880973EB7C30B;476.
 Package rerunfilecheck Info: File `tlb-dox002.hd' has not changed.
-(rerunfilecheck)             Checksum: B76112794A5C6B08F6F1B4B642B0FBF5.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line ....
+(rerunfilecheck)             Checksum: B76112794A5C6B08F6F1B4B642B0FBF5;64.

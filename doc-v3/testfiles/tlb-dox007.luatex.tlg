@@ -2,12 +2,10 @@ This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 Recording index type for '\%' as Length
 Recording index type for '\&' as FooBar
-(load luc: ../lmmono9-regular.luc)
 Recording index type for '\*' as Length
 \indexentry{*=\verb!*+\*+ (length)|hdclindex{3}{main}}{1}
 \indexentry{lengths:>*=\verb!*+\*+|hdclindex{3}{main}}{1}
 Disable indexing for '\*'
-(load luc: ../lmmono10-regular.luc)(load luc: ../lmroman9-regular.luc)
 Searching for '\*'
 Not indexing '\*'
 Disable indexing for '\foo '

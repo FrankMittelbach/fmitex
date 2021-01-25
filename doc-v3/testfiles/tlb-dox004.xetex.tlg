@@ -1,11 +1,12 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 (../se-ascii-print.def
+File: se-ascii-print.def ....-..-.. v... stringenc: Printable ASCII characters
 )
 Completed box being shipped out [1]
 \vbox(633.0+0.0)x407.0
 .\hbox(0.0+0.0)x0.0
-..\special{pdf:docinfo<</Title()/Subject()/Creator(LaTeX with hyperref package)/\ETC.}
+..\special{pdf:docinfo<</Title()/Subject()/Creator(LaTeX with hyperref)/Author()\ETC.}
 .\vbox(0.0+0.0)x0.0, glue set - 14.99626fil
 ..\kern 0.0
 ..\kern 16.0
@@ -706,681 +707,680 @@ Completed box being shipped out [4]
 ....\glue 12.0 plus 2.0 minus 2.0
 ....\glue -12.0 plus -2.0 minus -2.0
 ....\glue 20.0 plus 2.0 minus 4.0
-....\vbox(476.94844+0.0)x345.0
-.....\hbox(476.94844+0.0)x345.0, glue set 17.5fil
-......\hbox(476.94844+0.0)x155.0
-.......\vbox(476.94844+0.0)x155.0, glue set 144.93295fil
-........\write-{}
-........\glue(\topskip) 3.718
-........\hbox(6.282+1.79999)x155.0, glue set 58.0915fil
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-..........\hbox(0.0+0.0)x0.0, shifted -11.0
-...........\kern -2.84526
-...........\write5{\protect \BOOKMARK [2][-]{HD.Symbols.2}{Symbols}{index1.1}% 2}
-...........\special{pdf:dest (HD.Symbols.2) [@thispage /XYZ @xpos @ypos null]}
-...........\penalty 10000
-...........\kern 2.84526
-.........\glue 0.0 plus 1.0fil
-.........\TU/lmr/bx/n/9 Symbols
-.........\glue 0.0 plus 1.0fil
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\penalty 10000
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 1.50005
-........\hbox(7.69997+3.30003)x155.0, glue set 96.94998fill
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmtt/m/n/9 \@mylength
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\leaders 0.0 plus 1.0fill
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 500
-.........\rule(7.69997+3.30003)x0.0
-.........\penalty 10000
-.........\leaders 0.0 plus 1.0fil
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-.........\special{color push rgb 1 0 0}
-.........\TU/lmr/m/n/9 3
-.........\special{color pop}
-.........\special{pdf:eann}
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 0.0
-........\hbox(7.69997+3.30003)x155.0, glue set 101.67497fill
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmtt/m/n/9 \@mymacro
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\leaders 0.0 plus 1.0fill
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 500
-.........\rule(7.69997+3.30003)x0.0
-.........\penalty 10000
-.........\leaders 0.0 plus 1.0fil
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\mathon
-.........\vbox(5.994+2.19788)x4.626
-..........\hbox(5.994+0.19798)x4.626
-...........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-...........\special{color push rgb 1 0 0}
-...........\TU/lmr/m/n/9 3
-...........\special{color pop}
-...........\special{pdf:eann}
-..........\kern1.19994
-..........\rule(0.39998+0.0)x*
-.........\mathoff
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\glue 10.0 plus 2.0 minus 3.0
-........\glue 0.0
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 1.52597
-........\hbox(6.174+0.0)x155.0, glue set 73.4185fil
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-..........\hbox(0.0+0.0)x0.0, shifted -11.0
-...........\kern -2.84526
-...........\write5{\protect \BOOKMARK [2][-]{HD.D.2}{D}{index1.1}% 3}
-...........\special{pdf:dest (HD.D.2) [@thispage /XYZ @xpos @ypos null]}
-...........\penalty 10000
-...........\kern 2.84526
-.........\glue 0.0 plus 1.0fil
-.........\TU/lmr/bx/n/9 D
-.........\glue 0.0 plus 1.0fil
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\penalty 10000
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 3.30003
-........\hbox(7.69997+3.30003)x155.0, glue set 125.29999fill
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmtt/m/n/9 \def
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\leaders 0.0 plus 1.0fill
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 500
-.........\rule(7.69997+3.30003)x0.0
-.........\penalty 10000
-.........\leaders 0.0 plus 1.0fil
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-.........\special{color push rgb 1 0 0}
-.........\TU/lmr/m/n/9 3
-.........\special{color pop}
-.........\special{pdf:eann}
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\glue 10.0 plus 2.0 minus 3.0
-........\glue 0.0
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 1.57997
-........\hbox(6.12+0.0)x155.0, glue set 74.00351fil
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-..........\hbox(0.0+0.0)x0.0, shifted -11.0
-...........\kern -2.84526
-...........\write5{\protect \BOOKMARK [2][-]{HD.E.2}{E}{index1.1}% 4}
-...........\special{pdf:dest (HD.E.2) [@thispage /XYZ @xpos @ypos null]}
-...........\penalty 10000
-...........\kern 2.84526
-.........\glue 0.0 plus 1.0fil
-.........\TU/lmr/bx/n/9 E
-.........\glue 0.0 plus 1.0fil
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\penalty 10000
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 5.087
-........\hbox(5.913+0.09898)x155.0, glue set 98.66fill
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmr/m/n/9 environments:
-.........\glue 0.0 plus 1.0fill
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\penalty 10000
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 3.20105
-........\hbox(7.69997+3.30003)x155.0, glue set 57.38896fill
-.........\hbox(0.0+0.0)x0.0
-.........\rule(*+*)x0.0
-.........\penalty 10000
-.........\glue 15.0
-.........\glue 0.0
-.........\TU/lmtt/m/n/9 myenvironment
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\leaders 0.0 plus 1.0fill
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 500
-.........\rule(7.69997+3.30003)x0.0
-.........\penalty 10000
-.........\leaders 0.0 plus 1.0fil
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-.........\special{color push rgb 1 0 0}
-.........\TU/lmr/m/it/9 2
-.........\special{color pop}
-.........\special{pdf:eann}
-.........\TU/lmr/m/n/9 ,
-.........\glue 3.087 plus 1.92937 minus 0.82318
-.........\mathon
-.........\vbox(5.994+2.19788)x4.626
-..........\hbox(5.994+0.19798)x4.626
-...........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-...........\special{color push rgb 1 0 0}
-...........\TU/lmr/m/n/9 3
-...........\special{color pop}
-...........\special{pdf:eann}
-..........\kern1.19994
-..........\rule(0.39998+0.0)x*
-.........\mathoff
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\glue 10.0 plus 2.0 minus 3.0
-........\glue 0.0
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 1.57997
-........\hbox(6.12+0.0)x155.0, glue set 74.15201fil
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-..........\hbox(0.0+0.0)x0.0, shifted -11.0
-...........\kern -2.84526
-...........\write5{\protect \BOOKMARK [2][-]{HD.F.2}{F}{index1.1}% 5}
-...........\special{pdf:dest (HD.F.2) [@thispage /XYZ @xpos @ypos null]}
-...........\penalty 10000
-...........\kern 2.84526
-.........\glue 0.0 plus 1.0fil
-.........\TU/lmr/bx/n/9 F
-.........\glue 0.0 plus 1.0fil
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\penalty 10000
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 3.30003
-........\hbox(7.69997+3.30003)x155.0, glue set 83.64795fill
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmtt/m/n/9 foo
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\TU/lmr/m/n/9 (option)
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\leaders 0.0 plus 1.0fill
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 500
-.........\rule(7.69997+3.30003)x0.0
-.........\penalty 10000
-.........\leaders 0.0 plus 1.0fil
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-.........\special{color push rgb 1 0 0}
-.........\TU/lmr/m/it/9 1
-.........\special{color pop}
-.........\special{pdf:eann}
-.........\TU/lmr/m/n/9 ,
-.........\glue 3.087 plus 1.92937 minus 0.82318
-.........\mathon
-.........\vbox(5.994+1.9999)x4.626
-..........\hbox(5.994+0.0)x4.626
-...........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-...........\special{color push rgb 1 0 0}
-...........\TU/lmr/m/n/9 1
-...........\special{color pop}
-...........\special{pdf:eann}
-..........\kern1.19994
-..........\rule(0.39998+0.0)x*
-.........\mathoff
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\glue 10.0 plus 2.0 minus 3.0
-........\glue 0.0
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 1.52597
-........\hbox(6.174+0.0)x155.0, glue set 73.34201fil
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-..........\hbox(0.0+0.0)x0.0, shifted -11.0
-...........\kern -2.84526
-...........\write5{\protect \BOOKMARK [2][-]{HD.H.2}{H}{index1.1}% 6}
-...........\special{pdf:dest (HD.H.2) [@thispage /XYZ @xpos @ypos null]}
-...........\penalty 10000
-...........\kern 2.84526
-.........\glue 0.0 plus 1.0fil
-.........\TU/lmr/bx/n/9 H
-.........\glue 0.0 plus 1.0fil
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\penalty 10000
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 3.30003
-........\hbox(7.69997+3.30003)x155.0, glue set 115.84998fill
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmtt/m/n/9 \hsize
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\leaders 0.0 plus 1.0fill
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 500
-.........\rule(7.69997+3.30003)x0.0
-.........\penalty 10000
-.........\leaders 0.0 plus 1.0fil
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-.........\special{color push rgb 1 0 0}
-.........\TU/lmr/m/n/9 3
-.........\special{color pop}
-.........\special{pdf:eann}
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\glue 10.0 plus 2.0 minus 3.0
-........\glue 0.0
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 1.52597
-........\hbox(6.174+0.0)x155.0, glue set 74.3005fil
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-..........\hbox(0.0+0.0)x0.0, shifted -11.0
-...........\kern -2.84526
-...........\write5{\protect \BOOKMARK [2][-]{HD.L.2}{L}{index1.1}% 7}
-...........\special{pdf:dest (HD.L.2) [@thispage /XYZ @xpos @ypos null]}
-...........\penalty 10000
-...........\kern 2.84526
-.........\glue 0.0 plus 1.0fil
-.........\TU/lmr/bx/n/9 L
-.........\glue 0.0 plus 1.0fil
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\penalty 10000
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 4.754
-........\hbox(6.246+1.85399)x155.0, glue set 123.59fill
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmr/m/n/9 lengths:
-.........\glue 0.0 plus 1.0fill
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\penalty 10000
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 1.44604
-........\hbox(7.69997+3.30003)x155.0, glue set 76.28896fill
-.........\hbox(0.0+0.0)x0.0
-.........\rule(*+*)x0.0
-.........\penalty 10000
-.........\glue 15.0
-.........\glue 0.0
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmtt/m/n/9 \mylength
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\leaders 0.0 plus 1.0fill
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 500
-.........\rule(7.69997+3.30003)x0.0
-.........\penalty 10000
-.........\leaders 0.0 plus 1.0fil
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-.........\special{color push rgb 1 0 0}
-.........\TU/lmr/m/it/9 1
-.........\special{color pop}
-.........\special{pdf:eann}
-.........\TU/lmr/m/n/9 ,
-.........\glue 3.087 plus 1.92937 minus 0.82318
-.........\mathon
-.........\vbox(5.994+1.9999)x4.626
-..........\hbox(5.994+0.0)x4.626
-...........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-...........\special{color push rgb 1 0 0}
-...........\TU/lmr/m/n/9 2
-...........\special{color pop}
-...........\special{pdf:eann}
-..........\kern1.19994
-..........\rule(0.39998+0.0)x*
-.........\mathoff
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\glue 10.0 plus 2.0 minus 3.0
-........\glue 0.0
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 1.52597
-........\hbox(6.174+0.0)x155.0, glue set 72.451fil
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-..........\hbox(0.0+0.0)x0.0, shifted -11.0
-...........\kern -2.84526
-...........\write5{\protect \BOOKMARK [2][-]{HD.M.2}{M}{index1.1}% 8}
-...........\special{pdf:dest (HD.M.2) [@thispage /XYZ @xpos @ypos null]}
-...........\penalty 10000
-...........\kern 2.84526
-.........\glue 0.0 plus 1.0fil
-.........\TU/lmr/bx/n/9 M
-.........\glue 0.0 plus 1.0fil
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\penalty 10000
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 3.30003
-........\hbox(7.69997+3.30003)x155.0, glue set 11.98096fill
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmtt/m/n/9 myenvironment
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\TU/lmr/m/n/9 (environment)
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\leaders 0.0 plus 1.0fill
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 500
-.........\rule(7.69997+3.30003)x0.0
-.........\penalty 10000
-.........\leaders 0.0 plus 1.0fil
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-.........\special{color push rgb 1 0 0}
-.........\TU/lmr/m/it/9 2
-.........\special{color pop}
-.........\special{pdf:eann}
-.........\TU/lmr/m/n/9 ,
-.........\glue 3.087 plus 1.92937 minus 0.82318
-.........\mathon
-.........\vbox(5.994+2.19788)x4.626
-..........\hbox(5.994+0.19798)x4.626
-...........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-...........\special{color push rgb 1 0 0}
-...........\TU/lmr/m/n/9 3
-...........\special{color pop}
-...........\special{pdf:eann}
-..........\kern1.19994
-..........\rule(0.39998+0.0)x*
-.........\mathoff
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 0.0
-........\hbox(7.69997+3.30003)x155.0, glue set 101.67497fill
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmtt/m/n/9 \mylength
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\leaders 0.0 plus 1.0fill
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 500
-.........\rule(7.69997+3.30003)x0.0
-.........\penalty 10000
-.........\leaders 0.0 plus 1.0fil
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-.........\special{color push rgb 1 0 0}
-.........\TU/lmr/m/n/9 3
-.........\special{color pop}
-.........\special{pdf:eann}
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 0.0
-........\hbox(7.69997+3.30003)x155.0, glue set 55.81094fill
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmtt/m/n/9 \mylength
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\TU/lmr/m/n/9 (length)
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\leaders 0.0 plus 1.0fill
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 500
-.........\rule(7.69997+3.30003)x0.0
-.........\penalty 10000
-.........\leaders 0.0 plus 1.0fil
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-.........\special{color push rgb 1 0 0}
-.........\TU/lmr/m/it/9 1
-.........\special{color pop}
-.........\special{pdf:eann}
-.........\TU/lmr/m/n/9 ,
-.........\glue 3.087 plus 1.92937 minus 0.82318
-.........\mathon
-.........\vbox(5.994+1.9999)x4.626
-..........\hbox(5.994+0.0)x4.626
-...........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-...........\special{color push rgb 1 0 0}
-...........\TU/lmr/m/n/9 2
-...........\special{color pop}
-...........\special{pdf:eann}
-..........\kern1.19994
-..........\rule(0.39998+0.0)x*
-.........\mathoff
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\glue 10.0 plus 2.0 minus 3.0
-........\glue 0.0
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 1.52597
-........\hbox(6.174+0.0)x155.0, glue set 73.34201fil
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-..........\hbox(0.0+0.0)x0.0, shifted -11.0
-...........\kern -2.84526
-...........\write5{\protect \BOOKMARK [2][-]{HD.N.2}{N}{index1.1}% 9}
-...........\special{pdf:dest (HD.N.2) [@thispage /XYZ @xpos @ypos null]}
-...........\penalty 10000
-...........\kern 2.84526
-.........\glue 0.0 plus 1.0fil
-.........\TU/lmr/bx/n/9 N
-.........\glue 0.0 plus 1.0fil
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\penalty 10000
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 3.30003
-........\hbox(7.69997+3.30003)x155.0, glue set 73.32498fill
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmtt/m/n/9 \newenvironment
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\leaders 0.0 plus 1.0fill
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 500
-.........\rule(7.69997+3.30003)x0.0
-.........\penalty 10000
-.........\leaders 0.0 plus 1.0fil
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-.........\special{color push rgb 1 0 0}
-.........\TU/lmr/m/n/9 3
-.........\special{color pop}
-.........\special{pdf:eann}
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\glue 10.0 plus 2.0 minus 3.0
-........\glue 0.0
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 1.52597
-........\hbox(6.174+0.10799)x155.0, glue set 73.5085fil
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-..........\hbox(0.0+0.0)x0.0, shifted -11.0
-...........\kern -2.84526
-...........\write5{\protect \BOOKMARK [2][-]{HD.R.2}{R}{index1.1}% 10}
-...........\special{pdf:dest (HD.R.2) [@thispage /XYZ @xpos @ypos null]}
-...........\penalty 10000
-...........\kern 2.84526
-.........\glue 0.0 plus 1.0fil
-.........\TU/lmr/bx/n/9 R
-.........\glue 0.0 plus 1.0fil
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\penalty 10000
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 3.19205
-........\hbox(7.69997+3.30003)x155.0, glue set 115.84998fill
-.........\hbox(0.0+0.0)x0.0
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmtt/m/n/9 \relax
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\leaders 0.0 plus 1.0fill
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 500
-.........\rule(7.69997+3.30003)x0.0
-.........\penalty 10000
-.........\leaders 0.0 plus 1.0fil
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-.........\special{color push rgb 1 0 0}
-.........\TU/lmr/m/n/9 3
-.........\special{color pop}
-.........\special{pdf:eann}
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0
-.........\glue(\rightskip) 15.0
-........\glue -3.30003
+....\hbox(476.94844+0.0)x345.0, glue set 17.5fil
+.....\hbox(476.94844+0.0)x155.0
+......\vbox(476.94844+0.0)x155.0, glue set 144.93295fil
+.......\write-{}
+.......\glue(\topskip) 3.718
+.......\hbox(6.282+1.79999)x155.0, glue set 58.0915fil
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+.........\hbox(0.0+0.0)x0.0, shifted -11.0
+..........\kern -2.84526
+..........\write5{\protect \BOOKMARK [2][-]{HD.Symbols.2}{Symbols}{index1.1}% 2}
+..........\special{pdf:dest (HD.Symbols.2) [@thispage /XYZ @xpos @ypos null]}
+..........\penalty 10000
+..........\kern 2.84526
 ........\glue 0.0 plus 1.0fil
-........\glue 0.0
-........\glue 0.0 plus 0.0001fil
-.......\glue 0.0 plus 1.0fil minus 1.0fil
-......\glue 0.0 plus 1.0fil
-......\special{color push  Black}
-......\rule(*+*)x0.0
-......\special{color pop}
-......\glue 0.0 plus 1.0fil
-......\hbox(476.94844+0.0)x155.0, glue set 155.0fil
-.......\vbox(476.94844+0.0)x0.0, glue set 466.89857fil
-........\write-{}
-........\glue(\topskip) 10.0
-........\vbox(0.0+0.0)x0.0
+........\TU/lmr/bx/n/9 Symbols
 ........\glue 0.0 plus 1.0fil
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\penalty 10000
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 1.50005
+.......\hbox(7.69997+3.30003)x155.0, glue set 96.94998fill
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+........\TU/lmtt/m/n/9 \@mylength
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\leaders 0.0 plus 1.0fill
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 500
+........\rule(7.69997+3.30003)x0.0
+........\penalty 10000
+........\leaders 0.0 plus 1.0fil
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+........\special{color push rgb 1 0 0}
+........\TU/lmr/m/n/9 3
+........\special{color pop}
+........\special{pdf:eann}
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 0.0
+.......\hbox(7.69997+3.30003)x155.0, glue set 101.67497fill
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+........\TU/lmtt/m/n/9 \@mymacro
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\leaders 0.0 plus 1.0fill
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 500
+........\rule(7.69997+3.30003)x0.0
+........\penalty 10000
+........\leaders 0.0 plus 1.0fil
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\mathon
+........\vbox(5.994+2.19788)x4.626
+.........\hbox(5.994+0.19798)x4.626
+..........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+..........\special{color push rgb 1 0 0}
+..........\TU/lmr/m/n/9 3
+..........\special{color pop}
+..........\special{pdf:eann}
+.........\kern1.19994
+.........\rule(0.39998+0.0)x*
+........\mathoff
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\glue 10.0 plus 2.0 minus 3.0
+.......\glue 0.0
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 1.52597
+.......\hbox(6.174+0.0)x155.0, glue set 73.4185fil
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+.........\hbox(0.0+0.0)x0.0, shifted -11.0
+..........\kern -2.84526
+..........\write5{\protect \BOOKMARK [2][-]{HD.D.2}{D}{index1.1}% 3}
+..........\special{pdf:dest (HD.D.2) [@thispage /XYZ @xpos @ypos null]}
+..........\penalty 10000
+..........\kern 2.84526
+........\glue 0.0 plus 1.0fil
+........\TU/lmr/bx/n/9 D
+........\glue 0.0 plus 1.0fil
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\penalty 10000
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 3.30003
+.......\hbox(7.69997+3.30003)x155.0, glue set 125.29999fill
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+........\TU/lmtt/m/n/9 \def
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\leaders 0.0 plus 1.0fill
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 500
+........\rule(7.69997+3.30003)x0.0
+........\penalty 10000
+........\leaders 0.0 plus 1.0fil
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+........\special{color push rgb 1 0 0}
+........\TU/lmr/m/n/9 3
+........\special{color pop}
+........\special{pdf:eann}
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\glue 10.0 plus 2.0 minus 3.0
+.......\glue 0.0
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 1.57997
+.......\hbox(6.12+0.0)x155.0, glue set 74.00351fil
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+.........\hbox(0.0+0.0)x0.0, shifted -11.0
+..........\kern -2.84526
+..........\write5{\protect \BOOKMARK [2][-]{HD.E.2}{E}{index1.1}% 4}
+..........\special{pdf:dest (HD.E.2) [@thispage /XYZ @xpos @ypos null]}
+..........\penalty 10000
+..........\kern 2.84526
+........\glue 0.0 plus 1.0fil
+........\TU/lmr/bx/n/9 E
+........\glue 0.0 plus 1.0fil
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\penalty 10000
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 5.087
+.......\hbox(5.913+0.09898)x155.0, glue set 98.66fill
+........\hbox(0.0+0.0)x0.0
+........\TU/lmr/m/n/9 environments:
+........\glue 0.0 plus 1.0fill
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\penalty 10000
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 3.20105
+.......\hbox(7.69997+3.30003)x155.0, glue set 57.38896fill
+........\hbox(0.0+0.0)x0.0
+........\rule(*+*)x0.0
+........\penalty 10000
+........\glue 15.0
 ........\glue 0.0
-........\glue 0.0 plus 0.0001fil
-.......\glue 0.0 plus 1.0fil minus 1.0fil
+........\TU/lmtt/m/n/9 myenvironment
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\leaders 0.0 plus 1.0fill
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 500
+........\rule(7.69997+3.30003)x0.0
+........\penalty 10000
+........\leaders 0.0 plus 1.0fil
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+........\special{color push rgb 1 0 0}
+........\TU/lmr/m/it/9 2
+........\special{color pop}
+........\special{pdf:eann}
+........\TU/lmr/m/n/9 ,
+........\glue 3.087 plus 1.92937 minus 0.82318
+........\mathon
+........\vbox(5.994+2.19788)x4.626
+.........\hbox(5.994+0.19798)x4.626
+..........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+..........\special{color push rgb 1 0 0}
+..........\TU/lmr/m/n/9 3
+..........\special{color pop}
+..........\special{pdf:eann}
+.........\kern1.19994
+.........\rule(0.39998+0.0)x*
+........\mathoff
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\glue 10.0 plus 2.0 minus 3.0
+.......\glue 0.0
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 1.57997
+.......\hbox(6.12+0.0)x155.0, glue set 74.15201fil
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+.........\hbox(0.0+0.0)x0.0, shifted -11.0
+..........\kern -2.84526
+..........\write5{\protect \BOOKMARK [2][-]{HD.F.2}{F}{index1.1}% 5}
+..........\special{pdf:dest (HD.F.2) [@thispage /XYZ @xpos @ypos null]}
+..........\penalty 10000
+..........\kern 2.84526
+........\glue 0.0 plus 1.0fil
+........\TU/lmr/bx/n/9 F
+........\glue 0.0 plus 1.0fil
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\penalty 10000
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 3.30003
+.......\hbox(7.69997+3.30003)x155.0, glue set 83.64795fill
+........\hbox(0.0+0.0)x0.0
+........\TU/lmtt/m/n/9 foo
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\TU/lmr/m/n/9 (option)
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\leaders 0.0 plus 1.0fill
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 500
+........\rule(7.69997+3.30003)x0.0
+........\penalty 10000
+........\leaders 0.0 plus 1.0fil
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+........\special{color push rgb 1 0 0}
+........\TU/lmr/m/it/9 1
+........\special{color pop}
+........\special{pdf:eann}
+........\TU/lmr/m/n/9 ,
+........\glue 3.087 plus 1.92937 minus 0.82318
+........\mathon
+........\vbox(5.994+1.9999)x4.626
+.........\hbox(5.994+0.0)x4.626
+..........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+..........\special{color push rgb 1 0 0}
+..........\TU/lmr/m/n/9 1
+..........\special{color pop}
+..........\special{pdf:eann}
+.........\kern1.19994
+.........\rule(0.39998+0.0)x*
+........\mathoff
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\glue 10.0 plus 2.0 minus 3.0
+.......\glue 0.0
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 1.52597
+.......\hbox(6.174+0.0)x155.0, glue set 73.34201fil
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+.........\hbox(0.0+0.0)x0.0, shifted -11.0
+..........\kern -2.84526
+..........\write5{\protect \BOOKMARK [2][-]{HD.H.2}{H}{index1.1}% 6}
+..........\special{pdf:dest (HD.H.2) [@thispage /XYZ @xpos @ypos null]}
+..........\penalty 10000
+..........\kern 2.84526
+........\glue 0.0 plus 1.0fil
+........\TU/lmr/bx/n/9 H
+........\glue 0.0 plus 1.0fil
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\penalty 10000
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 3.30003
+.......\hbox(7.69997+3.30003)x155.0, glue set 115.84998fill
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+........\TU/lmtt/m/n/9 \hsize
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\leaders 0.0 plus 1.0fill
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 500
+........\rule(7.69997+3.30003)x0.0
+........\penalty 10000
+........\leaders 0.0 plus 1.0fil
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+........\special{color push rgb 1 0 0}
+........\TU/lmr/m/n/9 3
+........\special{color pop}
+........\special{pdf:eann}
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\glue 10.0 plus 2.0 minus 3.0
+.......\glue 0.0
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 1.52597
+.......\hbox(6.174+0.0)x155.0, glue set 74.3005fil
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+.........\hbox(0.0+0.0)x0.0, shifted -11.0
+..........\kern -2.84526
+..........\write5{\protect \BOOKMARK [2][-]{HD.L.2}{L}{index1.1}% 7}
+..........\special{pdf:dest (HD.L.2) [@thispage /XYZ @xpos @ypos null]}
+..........\penalty 10000
+..........\kern 2.84526
+........\glue 0.0 plus 1.0fil
+........\TU/lmr/bx/n/9 L
+........\glue 0.0 plus 1.0fil
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\penalty 10000
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 4.754
+.......\hbox(6.246+1.85399)x155.0, glue set 123.59fill
+........\hbox(0.0+0.0)x0.0
+........\TU/lmr/m/n/9 lengths:
+........\glue 0.0 plus 1.0fill
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\penalty 10000
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 1.44604
+.......\hbox(7.69997+3.30003)x155.0, glue set 76.28896fill
+........\hbox(0.0+0.0)x0.0
+........\rule(*+*)x0.0
+........\penalty 10000
+........\glue 15.0
+........\glue 0.0
+........\hbox(0.0+0.0)x0.0
+........\TU/lmtt/m/n/9 \mylength
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\leaders 0.0 plus 1.0fill
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 500
+........\rule(7.69997+3.30003)x0.0
+........\penalty 10000
+........\leaders 0.0 plus 1.0fil
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+........\special{color push rgb 1 0 0}
+........\TU/lmr/m/it/9 1
+........\special{color pop}
+........\special{pdf:eann}
+........\TU/lmr/m/n/9 ,
+........\glue 3.087 plus 1.92937 minus 0.82318
+........\mathon
+........\vbox(5.994+1.9999)x4.626
+.........\hbox(5.994+0.0)x4.626
+..........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+..........\special{color push rgb 1 0 0}
+..........\TU/lmr/m/n/9 2
+..........\special{color pop}
+..........\special{pdf:eann}
+.........\kern1.19994
+.........\rule(0.39998+0.0)x*
+........\mathoff
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\glue 10.0 plus 2.0 minus 3.0
+.......\glue 0.0
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 1.52597
+.......\hbox(6.174+0.0)x155.0, glue set 72.451fil
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+.........\hbox(0.0+0.0)x0.0, shifted -11.0
+..........\kern -2.84526
+..........\write5{\protect \BOOKMARK [2][-]{HD.M.2}{M}{index1.1}% 8}
+..........\special{pdf:dest (HD.M.2) [@thispage /XYZ @xpos @ypos null]}
+..........\penalty 10000
+..........\kern 2.84526
+........\glue 0.0 plus 1.0fil
+........\TU/lmr/bx/n/9 M
+........\glue 0.0 plus 1.0fil
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\penalty 10000
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 3.30003
+.......\hbox(7.69997+3.30003)x155.0, glue set 11.98096fill
+........\hbox(0.0+0.0)x0.0
+........\TU/lmtt/m/n/9 myenvironment
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\TU/lmr/m/n/9 (environment)
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\leaders 0.0 plus 1.0fill
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 500
+........\rule(7.69997+3.30003)x0.0
+........\penalty 10000
+........\leaders 0.0 plus 1.0fil
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+........\special{color push rgb 1 0 0}
+........\TU/lmr/m/it/9 2
+........\special{color pop}
+........\special{pdf:eann}
+........\TU/lmr/m/n/9 ,
+........\glue 3.087 plus 1.92937 minus 0.82318
+........\mathon
+........\vbox(5.994+2.19788)x4.626
+.........\hbox(5.994+0.19798)x4.626
+..........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+..........\special{color push rgb 1 0 0}
+..........\TU/lmr/m/n/9 3
+..........\special{color pop}
+..........\special{pdf:eann}
+.........\kern1.19994
+.........\rule(0.39998+0.0)x*
+........\mathoff
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 0.0
+.......\hbox(7.69997+3.30003)x155.0, glue set 101.67497fill
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+........\TU/lmtt/m/n/9 \mylength
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\leaders 0.0 plus 1.0fill
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 500
+........\rule(7.69997+3.30003)x0.0
+........\penalty 10000
+........\leaders 0.0 plus 1.0fil
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+........\special{color push rgb 1 0 0}
+........\TU/lmr/m/n/9 3
+........\special{color pop}
+........\special{pdf:eann}
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 0.0
+.......\hbox(7.69997+3.30003)x155.0, glue set 55.81094fill
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+........\TU/lmtt/m/n/9 \mylength
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\TU/lmr/m/n/9 (length)
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\leaders 0.0 plus 1.0fill
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 500
+........\rule(7.69997+3.30003)x0.0
+........\penalty 10000
+........\leaders 0.0 plus 1.0fil
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+........\special{color push rgb 1 0 0}
+........\TU/lmr/m/it/9 1
+........\special{color pop}
+........\special{pdf:eann}
+........\TU/lmr/m/n/9 ,
+........\glue 3.087 plus 1.92937 minus 0.82318
+........\mathon
+........\vbox(5.994+1.9999)x4.626
+.........\hbox(5.994+0.0)x4.626
+..........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+..........\special{color push rgb 1 0 0}
+..........\TU/lmr/m/n/9 2
+..........\special{color pop}
+..........\special{pdf:eann}
+.........\kern1.19994
+.........\rule(0.39998+0.0)x*
+........\mathoff
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\glue 10.0 plus 2.0 minus 3.0
+.......\glue 0.0
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 1.52597
+.......\hbox(6.174+0.0)x155.0, glue set 73.34201fil
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+.........\hbox(0.0+0.0)x0.0, shifted -11.0
+..........\kern -2.84526
+..........\write5{\protect \BOOKMARK [2][-]{HD.N.2}{N}{index1.1}% 9}
+..........\special{pdf:dest (HD.N.2) [@thispage /XYZ @xpos @ypos null]}
+..........\penalty 10000
+..........\kern 2.84526
+........\glue 0.0 plus 1.0fil
+........\TU/lmr/bx/n/9 N
+........\glue 0.0 plus 1.0fil
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\penalty 10000
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 3.30003
+.......\hbox(7.69997+3.30003)x155.0, glue set 73.32498fill
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+........\TU/lmtt/m/n/9 \newenvironment
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\leaders 0.0 plus 1.0fill
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 500
+........\rule(7.69997+3.30003)x0.0
+........\penalty 10000
+........\leaders 0.0 plus 1.0fil
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+........\special{color push rgb 1 0 0}
+........\TU/lmr/m/n/9 3
+........\special{color pop}
+........\special{pdf:eann}
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\glue 10.0 plus 2.0 minus 3.0
+.......\glue 0.0
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 1.52597
+.......\hbox(6.174+0.10799)x155.0, glue set 73.5085fil
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+.........\hbox(0.0+0.0)x0.0, shifted -11.0
+..........\kern -2.84526
+..........\write5{\protect \BOOKMARK [2][-]{HD.R.2}{R}{index1.1}% 10}
+..........\special{pdf:dest (HD.R.2) [@thispage /XYZ @xpos @ypos null]}
+..........\penalty 10000
+..........\kern 2.84526
+........\glue 0.0 plus 1.0fil
+........\TU/lmr/bx/n/9 R
+........\glue 0.0 plus 1.0fil
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\penalty 10000
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 3.19205
+.......\hbox(7.69997+3.30003)x155.0, glue set 115.84998fill
+........\hbox(0.0+0.0)x0.0
+........\hbox(0.0+0.0)x0.0
+........\TU/lmtt/m/n/9 \relax
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\leaders 0.0 plus 1.0fill
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 500
+........\rule(7.69997+3.30003)x0.0
+........\penalty 10000
+........\leaders 0.0 plus 1.0fil
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+........\special{color push rgb 1 0 0}
+........\TU/lmr/m/n/9 3
+........\special{color pop}
+........\special{pdf:eann}
+........\penalty 10000
+........\glue(\parfillskip) -15.0
+........\glue(\rightskip) 15.0
+.......\glue -3.30003
+.......\glue 0.0 plus 1.0fil
+.......\glue 0.0
+.......\glue 0.0 plus 0.0001fil
+......\glue 0.0 plus 1.0fil minus 1.0fil
+.....\glue 0.0 plus 1.0fil
+.....\special{color push  Black}
+.....\rule(*+*)x0.0
+.....\special{color pop}
+.....\glue 0.0 plus 1.0fil
+.....\hbox(476.94844+0.0)x155.0, glue set 155.0fil
+......\vbox(476.94844+0.0)x0.0, glue set 466.89857fil
+.......\write-{}
+.......\glue(\topskip) 10.0
+.......\vbox(0.0+0.0)x0.0
+.......\glue 0.0 plus 1.0fil
+.......\glue 0.0
+.......\glue 0.0 plus 0.0001fil
+......\glue 0.0 plus 1.0fil minus 1.0fil
 ...\glue(\baselineskip) 23.23
 ...\hbox(6.77+0.0)x345.0
 ....\special{color push  Black}
@@ -1452,235 +1452,234 @@ Completed box being shipped out [5]
 ....\glue 12.0 plus 2.0 minus 2.0
 ....\glue -12.0 plus -2.0 minus -2.0
 ....\glue 20.0 plus 2.0 minus 4.0
-....\vbox(512.05644+0.0)x345.0
-.....\hbox(512.05644+0.0)x345.0, glue set 17.5fil
-......\hbox(512.05644+0.0)x155.0
-.......\vbox(512.05644+0.0)x155.0, glue set 414.01222fil
-........\write-{}
-........\write-{}
-........\glue(\topskip) 4.006
-........\hbox(5.994+0.09898)x155.0, glue set 145.496fill
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmr/m/n/9 v1
-.........\glue 0.0 plus 1.0fill
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0 plus -1.0fil
-.........\glue(\rightskip) 15.0 plus 1.0fil
+....\hbox(512.05644+0.0)x345.0, glue set 17.5fil
+.....\hbox(512.05644+0.0)x155.0
+......\vbox(512.05644+0.0)x155.0, glue set 414.01222fil
+.......\write-{}
+.......\write-{}
+.......\glue(\topskip) 4.006
+.......\hbox(5.994+0.09898)x155.0, glue set 145.496fill
+........\hbox(0.0+0.0)x0.0
+........\TU/lmr/m/n/9 v1
+........\glue 0.0 plus 1.0fill
 ........\penalty 10000
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 3.20105
-........\hbox(7.69997+3.30003)x155.0, glue set 62.77997fill
-.........\hbox(0.0+0.0)x0.0
-.........\rule(*+*)x0.0
-.........\penalty 10000
-.........\glue 15.0
-.........\glue 0.0
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmtt/m/n/9 foo
-.........\TU/lmr/m/n/9 :
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\TU/lmr/m/n/9 first
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\TU/lmr/m/n/9 change
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\leaders 0.0 plus 1.0fill
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 500
-.........\rule(7.69997+3.30003)x0.0
-.........\penalty 10000
-.........\leaders 0.0 plus 1.0fil
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-.........\special{color push rgb 1 0 0}
-.........\TU/lmr/m/n/9 1
-.........\special{color pop}
-.........\special{pdf:eann}
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0 plus -1.0fil
-.........\glue(\rightskip) 15.0 plus 1.0fil
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 1.70596
-........\hbox(5.994+0.09898)x155.0, glue set 145.496fill
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmr/m/n/9 v2
-.........\glue 0.0 plus 1.0fill
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0 plus -1.0fil
-.........\glue(\rightskip) 15.0 plus 1.0fil
+........\glue(\parfillskip) -15.0 plus -1.0fil
+........\glue(\rightskip) 15.0 plus 1.0fil
+.......\penalty 10000
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 3.20105
+.......\hbox(7.69997+3.30003)x155.0, glue set 62.77997fill
+........\hbox(0.0+0.0)x0.0
+........\rule(*+*)x0.0
 ........\penalty 10000
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 4.65501
-........\hbox(6.246+2.05199)x155.0, glue set 5.37196fil
-.........\hbox(0.0+0.0)x0.0
-.........\rule(*+*)x0.0
-.........\penalty 10000
-.........\glue 15.0
-.........\glue 0.0
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmtt/m/n/9 \mylength
-.........\TU/lmr/m/n/9 :
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\TU/lmr/m/n/9 Fixing
-.........\kern 0.0
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\TU/lmtt/m/n/9 \mylength
-.........\kern 0.0
-.........\glue(\rightskip) 15.0 plus 1.0fil
-........\penalty 300
-........\glue(\baselineskip) 1.24805
-........\hbox(7.69997+3.30003)x125.0, glue set 70.23499fill, shifted 30.0
-.........\TU/lmr/m/n/9 thoroughly
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\leaders 0.0 plus 1.0fill
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 500
-.........\rule(7.69997+3.30003)x0.0
-.........\penalty 10000
-.........\leaders 0.0 plus 1.0fil
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-.........\special{color push rgb 1 0 0}
-.........\TU/lmr/m/n/9 2
-.........\special{color pop}
-.........\special{pdf:eann}
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0 plus -1.0fil
-.........\glue(\rightskip) 15.0 plus 1.0fil
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 1.70596
-........\hbox(5.994+0.09898)x155.0, glue set 138.296fill
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmr/m/n/9 v2.2
-.........\glue 0.0 plus 1.0fill
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0 plus -1.0fil
-.........\glue(\rightskip) 15.0 plus 1.0fil
-........\penalty 10000
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 3.20105
-........\hbox(7.69997+3.30003)x155.0, glue set 65.08395fill
-.........\hbox(0.0+0.0)x0.0
-.........\rule(*+*)x0.0
-.........\penalty 10000
-.........\glue 15.0
-.........\glue 0.0
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmtt/m/n/9 \@mymacro
-.........\TU/lmr/m/n/9 :
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\TU/lmr/m/n/9 new
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\leaders 0.0 plus 1.0fill
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 500
-.........\rule(7.69997+3.30003)x0.0
-.........\penalty 10000
-.........\leaders 0.0 plus 1.0fil
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-.........\special{color push rgb 1 0 0}
-.........\TU/lmr/m/n/9 3
-.........\special{color pop}
-.........\special{pdf:eann}
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0 plus -1.0fil
-.........\glue(\rightskip) 15.0 plus 1.0fil
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 1.70596
-........\hbox(5.994+0.19798)x155.0, glue set 145.496fill
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmr/m/n/9 v3
-.........\glue 0.0 plus 1.0fill
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0 plus -1.0fil
-.........\glue(\rightskip) 15.0 plus 1.0fil
-........\penalty 10000
-........\glue(\parskip) 0.0 plus 1.0
-........\glue(\baselineskip) 3.10205
-........\hbox(7.69997+3.30003)x155.0, glue set 8.38397fill
-.........\hbox(0.0+0.0)x0.0
-.........\rule(*+*)x0.0
-.........\penalty 10000
-.........\glue 15.0
-.........\glue 0.0
-.........\hbox(0.0+0.0)x0.0
-.........\TU/lmtt/m/n/9 myenvironment
-.........\TU/lmr/m/n/9 :
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\TU/lmr/m/n/9 Third
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\TU/lmr/m/n/9 change
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\leaders 0.0 plus 1.0fill
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 500
-.........\rule(7.69997+3.30003)x0.0
-.........\penalty 10000
-.........\leaders 0.0 plus 1.0fil
-..........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-...........\TU/lmr/m/n/9 .
-...........\glue 0.0 plus 1.0fil minus 1.0fil
-.........\penalty 10000
-.........\glue 3.087 plus 1.5435 minus 1.02899
-.........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
-.........\special{color push rgb 1 0 0}
-.........\TU/lmr/m/n/9 3
-.........\special{color pop}
-.........\special{pdf:eann}
-.........\penalty 10000
-.........\glue(\parfillskip) -15.0 plus -1.0fil
-.........\glue(\rightskip) 15.0 plus 1.0fil
-........\glue -3.30003
-........\glue 0.0 plus 1.0fil
+........\glue 15.0
 ........\glue 0.0
-........\glue 0.0 plus 0.0001fil
-.......\glue 0.0 plus 1.0fil minus 1.0fil
-......\glue 0.0 plus 1.0fil
-......\special{color push  Black}
-......\rule(*+*)x0.0
-......\special{color pop}
-......\glue 0.0 plus 1.0fil
-......\hbox(512.05644+0.0)x155.0, glue set 155.0fil
-.......\vbox(512.05644+0.0)x0.0, glue set 502.00282fil
-........\write-{}
-........\glue(\topskip) 10.0
-........\vbox(0.0+0.0)x0.0
-........\glue 0.0 plus 1.0fil
+........\hbox(0.0+0.0)x0.0
+........\TU/lmtt/m/n/9 foo
+........\TU/lmr/m/n/9 :
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\TU/lmr/m/n/9 first
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\TU/lmr/m/n/9 change
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\leaders 0.0 plus 1.0fill
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 500
+........\rule(7.69997+3.30003)x0.0
+........\penalty 10000
+........\leaders 0.0 plus 1.0fil
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+........\special{color push rgb 1 0 0}
+........\TU/lmr/m/n/9 1
+........\special{color pop}
+........\special{pdf:eann}
+........\penalty 10000
+........\glue(\parfillskip) -15.0 plus -1.0fil
+........\glue(\rightskip) 15.0 plus 1.0fil
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 1.70596
+.......\hbox(5.994+0.09898)x155.0, glue set 145.496fill
+........\hbox(0.0+0.0)x0.0
+........\TU/lmr/m/n/9 v2
+........\glue 0.0 plus 1.0fill
+........\penalty 10000
+........\glue(\parfillskip) -15.0 plus -1.0fil
+........\glue(\rightskip) 15.0 plus 1.0fil
+.......\penalty 10000
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 4.65501
+.......\hbox(6.246+2.05199)x155.0, glue set 5.37196fil
+........\hbox(0.0+0.0)x0.0
+........\rule(*+*)x0.0
+........\penalty 10000
+........\glue 15.0
 ........\glue 0.0
-........\glue 0.0 plus 0.0001fil
-.......\glue 0.0 plus 1.0fil minus 1.0fil
+........\hbox(0.0+0.0)x0.0
+........\TU/lmtt/m/n/9 \mylength
+........\TU/lmr/m/n/9 :
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\TU/lmr/m/n/9 Fixing
+........\kern 0.0
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\TU/lmtt/m/n/9 \mylength
+........\kern 0.0
+........\glue(\rightskip) 15.0 plus 1.0fil
+.......\penalty 300
+.......\glue(\baselineskip) 1.24805
+.......\hbox(7.69997+3.30003)x125.0, glue set 70.23499fill, shifted 30.0
+........\TU/lmr/m/n/9 thoroughly
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\leaders 0.0 plus 1.0fill
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 500
+........\rule(7.69997+3.30003)x0.0
+........\penalty 10000
+........\leaders 0.0 plus 1.0fil
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+........\special{color push rgb 1 0 0}
+........\TU/lmr/m/n/9 2
+........\special{color pop}
+........\special{pdf:eann}
+........\penalty 10000
+........\glue(\parfillskip) -15.0 plus -1.0fil
+........\glue(\rightskip) 15.0 plus 1.0fil
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 1.70596
+.......\hbox(5.994+0.09898)x155.0, glue set 138.296fill
+........\hbox(0.0+0.0)x0.0
+........\TU/lmr/m/n/9 v2.2
+........\glue 0.0 plus 1.0fill
+........\penalty 10000
+........\glue(\parfillskip) -15.0 plus -1.0fil
+........\glue(\rightskip) 15.0 plus 1.0fil
+.......\penalty 10000
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 3.20105
+.......\hbox(7.69997+3.30003)x155.0, glue set 65.08395fill
+........\hbox(0.0+0.0)x0.0
+........\rule(*+*)x0.0
+........\penalty 10000
+........\glue 15.0
+........\glue 0.0
+........\hbox(0.0+0.0)x0.0
+........\TU/lmtt/m/n/9 \@mymacro
+........\TU/lmr/m/n/9 :
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\TU/lmr/m/n/9 new
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\leaders 0.0 plus 1.0fill
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 500
+........\rule(7.69997+3.30003)x0.0
+........\penalty 10000
+........\leaders 0.0 plus 1.0fil
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+........\special{color push rgb 1 0 0}
+........\TU/lmr/m/n/9 3
+........\special{color pop}
+........\special{pdf:eann}
+........\penalty 10000
+........\glue(\parfillskip) -15.0 plus -1.0fil
+........\glue(\rightskip) 15.0 plus 1.0fil
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 1.70596
+.......\hbox(5.994+0.19798)x155.0, glue set 145.496fill
+........\hbox(0.0+0.0)x0.0
+........\TU/lmr/m/n/9 v3
+........\glue 0.0 plus 1.0fill
+........\penalty 10000
+........\glue(\parfillskip) -15.0 plus -1.0fil
+........\glue(\rightskip) 15.0 plus 1.0fil
+.......\penalty 10000
+.......\glue(\parskip) 0.0 plus 1.0
+.......\glue(\baselineskip) 3.10205
+.......\hbox(7.69997+3.30003)x155.0, glue set 8.38397fill
+........\hbox(0.0+0.0)x0.0
+........\rule(*+*)x0.0
+........\penalty 10000
+........\glue 15.0
+........\glue 0.0
+........\hbox(0.0+0.0)x0.0
+........\TU/lmtt/m/n/9 myenvironment
+........\TU/lmr/m/n/9 :
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\TU/lmr/m/n/9 Third
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\TU/lmr/m/n/9 change
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\leaders 0.0 plus 1.0fill
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 500
+........\rule(7.69997+3.30003)x0.0
+........\penalty 10000
+........\leaders 0.0 plus 1.0fil
+.........\hbox(0.972+0.0)x5.40005, glue set 1.41302fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\TU/lmr/m/n/9 .
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+........\penalty 10000
+........\glue 3.087 plus 1.5435 minus 1.02899
+........\special{pdf:bann<</Type/Annot/Subtype/Link/Border[0 0 0]/H/I/C[1 0 0]/A<</S/G\ETC.}
+........\special{color push rgb 1 0 0}
+........\TU/lmr/m/n/9 3
+........\special{color pop}
+........\special{pdf:eann}
+........\penalty 10000
+........\glue(\parfillskip) -15.0 plus -1.0fil
+........\glue(\rightskip) 15.0 plus 1.0fil
+.......\glue -3.30003
+.......\glue 0.0 plus 1.0fil
+.......\glue 0.0
+.......\glue 0.0 plus 0.0001fil
+......\glue 0.0 plus 1.0fil minus 1.0fil
+.....\glue 0.0 plus 1.0fil
+.....\special{color push  Black}
+.....\rule(*+*)x0.0
+.....\special{color pop}
+.....\glue 0.0 plus 1.0fil
+.....\hbox(512.05644+0.0)x155.0, glue set 155.0fil
+......\vbox(512.05644+0.0)x0.0, glue set 502.00282fil
+.......\write-{}
+.......\glue(\topskip) 10.0
+.......\vbox(0.0+0.0)x0.0
+.......\glue 0.0 plus 1.0fil
+.......\glue 0.0
+.......\glue 0.0 plus 0.0001fil
+......\glue 0.0 plus 1.0fil minus 1.0fil
 ...\glue(\baselineskip) 23.34
 ...\hbox(6.66+0.21999)x345.0
 ....\special{color push  Black}
@@ -1689,14 +1688,8 @@ Completed box being shipped out [5]
 .....\TU/lmr/m/n/10 5
 .....\glue 0.0 plus 1.0fil
 ....\special{color pop}
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line ....
-Package atveryend Info: Executing hook `AfterLastShipout' on input line ....
- (tlb-dox004.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line ....
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line ....
+) (tlb-dox004.aux)
 Package rerunfilecheck Info: File `tlb-dox004.out' has not changed.
-(rerunfilecheck)             Checksum: F85BB8E457B4EC0E89B880973EB7C30B.
+(rerunfilecheck)             Checksum: F85BB8E457B4EC0E89B880973EB7C30B;476.
 Package rerunfilecheck Info: File `tlb-dox004.hd' has not changed.
-(rerunfilecheck)             Checksum: 3638BFF492BA6EF3464E9B7B191EB03B.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line ....
+(rerunfilecheck)             Checksum: 3638BFF492BA6EF3464E9B7B191EB03B;15.

@@ -16,20 +16,15 @@ Indexing '\skip_new:N' (normal)
 \indexentry{skip_new:N=\verb!*+\skip_new:N+|hdclindex{8}{code}}{2}
 Searching for '\l_mylength_skip'
 Not indexing '\l_mylength_skip'
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line ....
 (../se-ascii-print.def
+File: se-ascii-print.def ....-..-.. v... stringenc: Printable ASCII characters
 )
 [1
 \indexentry{skip_new:N=\verb!*+\skip_new:N+|hdclindex{2}{usage}}{1}
 \indexentry{l_mylength_skip=\verb!*+\l_mylength_skip+ (length)|hdclindex{6}{usage}}{1}
 \indexentry{lengths:>l_mylength_skip=\verb!*+\l_mylength_skip+|hdclindex{6}{usage}}{1}
-]
-Package atveryend Info: Executing hook `AfterLastShipout' on input line ....
- (tlb-dox008.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line ....
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line ....
+] (tlb-dox008.aux)
 Package rerunfilecheck Info: File `tlb-dox008.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package rerunfilecheck Info: File `tlb-dox008.hd' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line ....
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.

@@ -1,6 +1,5 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-(load luc: ../lmmono9-regular.luc)(load luc: ../lmmono10-regular.luc)
 Completed box being shipped out [1]
 \vbox(633.0+0.0)x407.0, direction TLT
 .\glue 16.0
@@ -35,7 +34,7 @@ Completed box being shipped out [1]
 ....\TU/lmr/m/n/10 r
 ....\TU/lmr/m/n/10 i
 ....\TU/lmr/m/n/10 b
-....\kern0.28
+....\kern0.28 (font)
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 s
 ....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
@@ -50,7 +49,7 @@ Completed box being shipped out [1]
 ....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ....\TU/lmr/m/n/10 f
 ....\TU/lmr/m/n/10 o
-....\kern0.28
+....\kern0.28 (font)
 ....\TU/lmr/m/n/10 o
 ....\penalty 10000
 ....\glue(\parfillskip) 0.0 plus 1.0fil
@@ -132,7 +131,7 @@ Completed box being shipped out [1]
 ....\TU/lmr/m/n/10 n
 ....\discretionary (penalty 50)
 .....< \TU/lmr/m/n/10 -
-.....= \kern-0.28
+.....= \kern-0.28 (font)
 ....\TU/lmr/m/n/10 v
 ....\TU/lmr/m/n/10 i
 ....\discretionary (penalty 50)
@@ -145,7 +144,7 @@ Completed box being shipped out [1]
 ....\TU/lmr/m/n/10 m
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 n
-....\kern-0.28
+....\kern-0.28 (font)
 ....\TU/lmr/m/n/10 t
 ....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ....\TU/lmr/m/n/10 f
@@ -155,13 +154,13 @@ Completed box being shipped out [1]
 ....\TU/lmr/m/n/10 “ (ligature ``)
 ....\TU/lmr/m/n/10 f
 ....\TU/lmr/m/n/10 o
-....\kern0.28
+....\kern0.28 (font)
 ....\TU/lmr/m/n/10 o
 ....\TU/lmr/m/n/10 ” (ligature '')
 ....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ....\TU/lmr/m/n/10 f
 ....\TU/lmr/m/n/10 o
-....\kern0.28
+....\kern0.28 (font)
 ....\TU/lmr/m/n/10 o
 ....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ....\TU/lmr/m/n/10 =
@@ -329,7 +328,7 @@ Completed box being shipped out [2]
 ....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ....\TU/lmr/m/n/10 a
 ....\TU/lmr/m/n/10 b
-....\kern0.28
+....\kern0.28 (font)
 ....\TU/lmr/m/n/10 o
 ....\TU/lmr/m/n/10 u
 ....\TU/lmr/m/n/10 t
@@ -362,7 +361,7 @@ Completed box being shipped out [2]
 ....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ....\TU/lmr/m/n/10 c
 ....\TU/lmr/m/n/10 o
-....\kern0.28
+....\kern0.28 (font)
 ....\TU/lmr/m/n/10 d
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 .
@@ -448,14 +447,14 @@ sa\ETC.}
 ....\glue(\spaceskip) 3.33 plus 1.665 minus 1.11
 ....\TU/lmr/m/n/10 “ (ligature ``)
 ....\TU/lmr/m/n/10 m
-....\kern-0.28
+....\kern-0.28 (font)
 ....\TU/lmr/m/n/10 y
-....\kern-0.28
+....\kern-0.28 (font)
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 n
 ....\discretionary (penalty 50)
 .....< \TU/lmr/m/n/10 -
-.....= \kern-0.28
+.....= \kern-0.28 (font)
 ....\TU/lmr/m/n/10 v
 ....\TU/lmr/m/n/10 i
 ....\discretionary (penalty 50)
@@ -468,10 +467,10 @@ sa\ETC.}
 ....\TU/lmr/m/n/10 m
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 n
-....\kern-0.28
+....\kern-0.28 (font)
 ....\TU/lmr/m/n/10 t
 ....\TU/lmr/m/n/10 ” (ligature '')
-....\kern-1.39
+....\kern-1.39 (font)
 ....\TU/lmr/m/n/10 .
 ....\penalty 10000
 ....\glue(\parfillskip) 0.0 plus 1.0fil
@@ -542,14 +541,13 @@ Searching for '\mylength'
 Indexing '\mylength' as Length
 Searching for '\relax'
 Indexing '\relax' (normal)
-(tlb-dox005.ind(load luc: ../lmroman12-regular.luc)(load luc: ../lmroman12-bold.luc)(load luc: ../lmroman9-regular.luc)(load luc: ../lmroman9-bold.luc)
+(tlb-dox005.ind
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line ....
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line ....
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line ....
-(load luc: ../lmroman9-italic.luc)
 Underfull \hbox (badness 5008) in paragraph at lines 42--44
 []\TU/lmtt/m/n/9 myenvironment \TU/lmr/m/n/9 (en-vi- 
 \hbox(6.75+2.241)x108.33333, glue set 3.68721, direction TLT
@@ -578,7 +576,7 @@ Underfull \hbox (badness 5008) in paragraph at lines 42--44
 .\TU/lmr/m/n/9 n
 .\discretionary (penalty 50)
 ..< \TU/lmr/m/n/9 -
-..= \kern-0.261
+..= \kern-0.261 (font)
 .\TU/lmr/m/n/9 v
 .\TU/lmr/m/n/9 i
 .\TU/lmr/m/n/9 -
@@ -932,9 +930,9 @@ i\ETC.}
 ....\TU/lmr/m/n/10 m
 ....\discretionary (penalty 50)
 .....< \TU/lmr/m/n/10 -
-.....= \kern-0.28
+.....= \kern-0.28 (font)
 ....\TU/lmr/m/n/10 b
-....\kern0.28
+....\kern0.28 (font)
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 r
 ....\TU/lmr/m/n/10 s
@@ -1000,7 +998,7 @@ i\ETC.}
 .....< \TU/lmr/m/n/10 -
 ....\TU/lmr/m/n/10 s
 ....\TU/lmr/m/n/10 p
-....\kern0.28
+....\kern0.28 (font)
 ....\TU/lmr/m/n/10 o
 ....\TU/lmr/m/n/10 n
 ....\TU/lmr/m/n/10 d
@@ -1014,7 +1012,7 @@ i\ETC.}
 ....\TU/lmr/m/n/10 n
 ....\discretionary (penalty 50)
 .....< \TU/lmr/m/n/10 -
-.....= \kern-0.28
+.....= \kern-0.28 (font)
 ....\TU/lmr/m/n/10 t
 ....\TU/lmr/m/n/10 r
 ....\TU/lmr/m/n/10 y
@@ -1034,20 +1032,20 @@ i\ETC.}
 ....\TU/lmr/m/n/10 r
 ....\TU/lmr/m/n/10 i
 ....\TU/lmr/m/n/10 b
-....\kern0.28
+....\kern0.28 (font)
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 d
 ....\TU/lmr/m/n/10 ;
 ....\glue(\spaceskip) 3.33 plus 2.49748 minus 0.73999
 ....\TU/lmr/m/n/10 n
-....\kern-0.28
+....\kern-0.28 (font)
 ....\TU/lmr/m/n/10 u
 ....\TU/lmr/m/n/10 m
 ....\discretionary (penalty 50)
 .....< \TU/lmr/m/n/10 -
-.....= \kern-0.28
+.....= \kern-0.28 (font)
 ....\TU/lmr/m/n/10 b
-....\kern0.28
+....\kern0.28 (font)
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 r
 ....\TU/lmr/m/n/10 s
@@ -1102,14 +1100,14 @@ i\ETC.}
 ....\TU/lmr/m/n/10 ;
 ....\glue(\spaceskip) 3.33 plus 2.49748 minus 0.73999
 ....\TU/lmr/m/n/10 n
-....\kern-0.28
+....\kern-0.28 (font)
 ....\TU/lmr/m/n/10 u
 ....\TU/lmr/m/n/10 m
 ....\discretionary (penalty 50)
 .....< \TU/lmr/m/n/10 -
-.....= \kern-0.28
+.....= \kern-0.28 (font)
 ....\TU/lmr/m/n/10 b
-....\kern0.28
+....\kern0.28 (font)
 ....\TU/lmr/m/n/10 e
 ....\TU/lmr/m/n/10 r
 ....\TU/lmr/m/n/10 s
@@ -1163,7 +1161,7 @@ i\ETC.}
 ....\TU/lmr/m/n/10 n
 ....\discretionary (penalty 50)
 .....< \TU/lmr/m/n/10 -
-.....= \kern-0.28
+.....= \kern-0.28 (font)
 ....\TU/lmr/m/n/10 t
 ....\TU/lmr/m/n/10 r
 ....\TU/lmr/m/n/10 y
@@ -1202,9 +1200,9 @@ i\ETC.}
 ......\TU/lmr/bx/n/9 m
 ......\discretionary (penalty 50)
 .......< \TU/lmr/bx/n/9 -
-.......= \kern-0.297
+.......= \kern-0.297 (font)
 ......\TU/lmr/bx/n/9 b
-......\kern0.297
+......\kern0.297 (font)
 ......\TU/lmr/bx/n/9 o
 ......\TU/lmr/bx/n/9 l
 ......\TU/lmr/bx/n/9 s
@@ -1384,7 +1382,7 @@ i\ETC.}
 ......\TU/lmr/m/n/9 n
 ......\discretionary (penalty 50)
 .......< \TU/lmr/m/n/9 -
-.......= \kern-0.261
+.......= \kern-0.261 (font)
 ......\TU/lmr/m/n/9 v
 ......\TU/lmr/m/n/9 i
 ......\discretionary (penalty 50)
@@ -1397,7 +1395,7 @@ i\ETC.}
 ......\TU/lmr/m/n/9 m
 ......\TU/lmr/m/n/9 e
 ......\TU/lmr/m/n/9 n
-......\kern-0.261
+......\kern-0.261 (font)
 ......\TU/lmr/m/n/9 t
 ......\TU/lmr/m/n/9 s
 ......\TU/lmr/m/n/9 :
@@ -1731,7 +1729,7 @@ i\ETC.}
 ......\TU/lmr/m/n/9 n
 ......\discretionary (penalty 50)
 .......< \TU/lmr/m/n/9 -
-.......= \kern-0.261
+.......= \kern-0.261 (font)
 ......\TU/lmr/m/n/9 v
 ......\TU/lmr/m/n/9 i
 ......\TU/lmr/m/n/9 -
@@ -1748,7 +1746,7 @@ i\ETC.}
 ......\TU/lmr/m/n/9 m
 ......\TU/lmr/m/n/9 e
 ......\TU/lmr/m/n/9 n
-......\kern-0.261
+......\kern-0.261 (font)
 ......\TU/lmr/m/n/9 t
 ......\TU/lmr/m/n/9 )
 ......\penalty 10000
@@ -2095,7 +2093,7 @@ i\ETC.}
 ......\TU/lmr/m/n/9 t
 ......\glue(\spaceskip) 3.087 plus 1.5435 minus 1.029
 ......\TU/lmr/m/n/9 c
-......\kern-0.261
+......\kern-0.261 (font)
 ......\TU/lmr/m/n/9 h
 ......\TU/lmr/m/n/9 a
 ......\TU/lmr/m/n/9 n
@@ -2343,7 +2341,7 @@ i\ETC.}
 ......\TU/lmr/m/n/9 d
 ......\glue(\spaceskip) 3.087 plus 1.5435 minus 1.029
 ......\TU/lmr/m/n/9 c
-......\kern-0.261
+......\kern-0.261 (font)
 ......\TU/lmr/m/n/9 h
 ......\TU/lmr/m/n/9 a
 ......\TU/lmr/m/n/9 n

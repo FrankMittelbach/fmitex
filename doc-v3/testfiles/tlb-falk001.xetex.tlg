@@ -11,8 +11,8 @@ Disable indexing for '\testmacro '
 Disable indexing for '\@mymacro '
 \indexentry{@myenvironment={\ttfamily @myenvironment} (env.)|hdclindex{5}{main}}{1}
 \indexentry{environments:>@myenvironment={\ttfamily @myenvironment}|hdclindex{5}{main}}{1}
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line ....
 (../se-ascii-print.def
+File: se-ascii-print.def ....-..-.. v... stringenc: Printable ASCII characters
 )
 [1
 \glossaryentry{v2.1>!!=General:>That's general|hdpindex{}}{1}
@@ -22,13 +22,8 @@ Package atveryend Info: Empty hook `BeforeClearDocument' on input line ....
 \glossaryentry{v2.2>!!=General:>That's general too|hdpindex{}}{1}
 \glossaryentry{v2.2>@mymacro=\verb!*+\@mymacro+:>new|hdpindex{}}{1}
 \glossaryentry{v2.2>@myenvironment=\verb!*+@myenvironment+:>new|hdpindex{}}{1}
-]
-Package atveryend Info: Executing hook `AfterLastShipout' on input line ....
- (tlb-falk001.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line ....
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line ....
+] (tlb-falk001.aux)
 Package rerunfilecheck Info: File `tlb-falk001.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package rerunfilecheck Info: File `tlb-falk001.hd' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line ....
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.

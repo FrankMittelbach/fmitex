@@ -15,3 +15,11 @@ parskip/build
 *.toc
 *.glo
 *.zip
+*.curlopt
+fewerfloatpages/build
+footmisc/build
+footmisc/build
+ftnright/build
+hummingbird/build
+TEMPLATE
+00-change-name.sh

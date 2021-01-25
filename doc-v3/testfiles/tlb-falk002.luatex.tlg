@@ -4,10 +4,8 @@ Don't change this file in any respect.
 ***************************
 * Character table correct *
 ***************************
-(load luc: ../lmmono9-regular.luc)
 \indexentry{mymacro=\verb!*+\mymacro+|main}{1}
 Disable indexing for '\mymacro '
-(load luc: ../lmroman9-regular.luc)
 Searching for '\begin'
 Not indexing '\begin'
 Searching for '\mymacro'
@@ -29,7 +27,6 @@ Indexing '\mymacronobsc' (normal)
 \indexentry{mymacronobsc=\verb!*+\mymacronobsc+|code}{7}
 Searching for '\end'
 Not indexing '\end'
-(load luc: ../lmroman9-italic.luc)
 \indexentry{myenv={\ttfamily myenv} (env.)|main}{9}
 \indexentry{environments:>myenv={\ttfamily myenv}|main}{9}
 Searching for '\begin'

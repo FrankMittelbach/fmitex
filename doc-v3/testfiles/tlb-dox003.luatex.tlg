@@ -1,13 +1,10 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-(load luc: ../lmmono9-regular.luc)
 \indexentry{foo={\ttfamily foo} (option)|main}{1}
-(load luc: ../lmmono10-regular.luc)
 Recording index type for '\mylength' as Length
 \indexentry{mylength=\verb!*+\mylength+ (length)|main}{1}
 \indexentry{lengths:>mylength=\verb!*+\mylength+|main}{1}
 Disable indexing for '\mylength '
-(load luc: ../lmroman9-regular.luc)
 Searching for '\mylength'
 Not indexing '\mylength'
 [1
@@ -46,14 +43,13 @@ Indexing '\mylength' as Length
 Searching for '\relax'
 Indexing '\relax' (normal)
 \indexentry{relax=\verb!*+\relax+|code}{3}
-(tlb-dox003.ind(load luc: ../lmroman12-regular.luc)(load luc: ../lmroman12-bold.luc)(load luc: ../lmroman9-bold.luc)
+(tlb-dox003.ind
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line ....
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line ....
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line ....
-(load luc: ../lmroman9-italic.luc)
 Underfull \hbox (badness 5008) in paragraph at lines 41--43
 []\TU/lmtt/m/n/9 myenvironment \TU/lmr/m/n/9 (en-vi- 
 \hbox(6.75+2.241)x108.33333, glue set 3.68721, direction TLT
@@ -82,7 +78,7 @@ Underfull \hbox (badness 5008) in paragraph at lines 41--43
 .\TU/lmr/m/n/9 n
 .\discretionary (penalty 50)
 ..< \TU/lmr/m/n/9 -
-..= \kern-0.261
+..= \kern-0.261 (font)
 .\TU/lmr/m/n/9 v
 .\TU/lmr/m/n/9 i
 .\TU/lmr/m/n/9 -

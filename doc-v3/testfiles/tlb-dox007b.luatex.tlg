@@ -1,9 +1,7 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-(load luc: ../lmmono9-regular.luc)
 \indexentry{*=\verb!*+\*+ (length)|hdclindex{3}{main}}{1}
 \indexentry{lengths:>*=\verb!*+\*+|hdclindex{3}{main}}{1}
-(load luc: ../lmmono10-regular.luc)(load luc: ../lmroman9-regular.luc)
 \indexentry{foo=\verb!*+\foo+ (length)|hdclindex{7}{main}}{2}
 \indexentry{lengths:>foo=\verb!*+\foo+|hdclindex{7}{main}}{2}
 \indexentry{par=\verb!*+\par+|hdclindex{9}{main}}{3}

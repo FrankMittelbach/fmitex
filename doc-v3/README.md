@@ -50,6 +50,6 @@ entries etc).
 
 -----
 
-Copyright (C) 2017-2018 Frank Mittelbach, The LaTeX3 Project<br />
+Copyright (C) 2017-2021 Frank Mittelbach, The LaTeX Project<br />
 <https://latex-project.org/> <br />
 All rights reserved.

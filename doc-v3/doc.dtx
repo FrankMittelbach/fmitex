@@ -295,10 +295,11 @@
 %
 % \section{Introduction}
 %
-% This is version of of the \DOC package written roughly 30 years
+% This is a new version of the \DOC package, written roughly 30 years
 % after the initial release. As the package has been used for so long
-% it is absolutely important to preserve existing interfaces (even if
-% we can agree that they could have been done better).
+% (and largely unchanged)
+% it is absolutely important to preserve existing interfaces, even if
+% we can agree that they could have been done better.
 %
 % So this is a light-weight change, basically adding hyperlink support
 % and adding a way to provide generally \DOC elements (not just macros
@@ -3198,7 +3199,7 @@
 %    \catcode`\:11}
 %
 %
-% The follwoing part of the code is a new implementation using the
+% The following part of the code is a new implementation using the
 % \texttt{expl3} programming language as the constructs and types
 % provided therein are making programming mauch easier. Over time I
 % will probvably replace the rest of that \DOC code too.
@@ -3373,7 +3374,7 @@
 %    run. However, for this we aren't reusing |\__doc_idxtype_put:N|
 %    (a.k.a.\ |\RecordIndexType|) since that would result in doubling
 %    such lines each time the document is run. Instead we use
-%    |\RecordIndexTypeAux| which only updating the data structures
+%    |\RecordIndexTypeAux| which is only updating the data structures
 %    without writing to the \texttt{.aux} file.
 %    \begin{macrocode}
   \protected@write\@auxout{}

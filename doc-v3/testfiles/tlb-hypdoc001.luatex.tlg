@@ -7,8 +7,8 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line ....
 )
 \tf@toc=\write...
- (tlb-hypdoc001.lvt
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line ....
+(tlb-hypdoc001.lvt
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line ....
 \indexentry{foo=\verb!*+\foo+|hdclindex{2}{usage}}{1}
 ]
 \indexentry{foo=\verb!*+\foo+|hdclindex{3}{main}}{1}
@@ -44,22 +44,15 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 Searching for '\newcounter'
 Indexing '\newcounter' (normal)
 \indexentry{newcounter=\verb!*+\newcounter+|hdclindex{19}{code}}{12}
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line ....
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line ....
 [2
 \indexentry{secnumdepth={\ttfamily secnumdepth} (counter)|hdclindex{17}{usage}}{2}
 \indexentry{counters:>secnumdepth={\ttfamily secnumdepth}|hdclindex{17}{usage}}{2}
-])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line ....
- [3]
-Package atveryend Info: Executing hook `AfterLastShipout' on input line ....
- (tlb-hypdoc001.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line ....
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line ....
+]) [3] (tlb-hypdoc001.aux)
 Package rerunfilecheck Info: File `tlb-hypdoc001.out' has not changed.
-(rerunfilecheck)             Checksum: F1EC4948A4D78182AAEEBAB0C462CC2A;343.
+(rerunfilecheck)             Checksum: 02BF5FF5A4002CD28A9EB50F297994CB;842.
 Package rerunfilecheck Info: File `tlb-hypdoc001.hd' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line ....
