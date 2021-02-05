@@ -10,6 +10,9 @@ l3build save -epdftex,xetex,luatex \
 	tlb-hypdoc001 \
 	tlb1622
 
+l3build save -epdftex,xetex \
+	tlb-dox009
+
 
 l3build save -epdftex,luatex \
 	tlb-dox006 \
