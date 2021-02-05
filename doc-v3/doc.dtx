@@ -43,7 +43,7 @@
 %<+package>
 %<+package>\ProvidesPackage{doc}
 %<+shortvrb>\ProvidesPackage{shortvrb}
-%<+package|shortvrb>  [2018/04/18 v3.0a beta
+%<+package|shortvrb>  [2021/02/05 v3.0b beta
 %<+package|shortvrb>   Standard LaTeX documentation package V3 (FMi)]
 %\catcode`\<=12
 %
@@ -3079,12 +3079,13 @@
    \uppercase{\def\x{\def\macro@namepart{&}}}%
    \expandafter\endgroup\x
 %    \end{macrocode}
-%    If necessary the index entry is produced by the macro
-%    |\produce@index|. Depending on the actual character seen,
-%    this macro has to do different things, so we pass the character
-%    as an argument.
+%    Any indexing is then delegated to
+%    |\maybe@index@short@macro|. Depending on the actual character seen,
+%    this macro has to do different things, which is why we keep it separate from
+%    |\maybe@index@macro| to avoid the special tests in the more
+%    common case of a multi-letter macro name. 
 %    \begin{macrocode}
-     \maybe@index@macro\macro@namepart
+     \maybe@index@short@macro\macro@namepart
 %    \end{macrocode}
 %    Then we disable the cross-referencing mechanism with
 %    |\scan@allowedfalse| and print the actual character. The
@@ -3519,13 +3520,17 @@
 
 
 %  \begin{macro}{\maybe@index@macro}
-%  \begin{macro}{\__doc_maybe_index:n}
+%  \begin{macro}{\__doc_maybe_index:o}
 %    We first make sure that the argument is really a string (so that
 %    we have a defined situation) and then
-%    pass it on to |\__doc_maybe_index_aux:n| to do the work.
+%    pass it on to |\__doc_maybe_index_aux:nN| to do the work.
+%    The second argument defines the indexing operation
+%    \cs{SpecialIndex} for multi-letter macros and below
+%    \cs{SpecialShortIndex} for single character macros.
 %    \begin{macrocode}
 \cs_new:Npn \__doc_maybe_index:o #1 {
-   \exp_args:Nf \__doc_maybe_index_aux:n { \tl_to_str:o {#1} }
+  \exp_args:Nf \__doc_maybe_index_aux:nN { \tl_to_str:o {#1} }
+                                         \SpecialIndex
 }
 %    \end{macrocode}
 %    And here is what we call it in the older non-expl3 code:
@@ -3536,12 +3541,27 @@
 %  \end{macro}
 %
 %
+%  \begin{macro}{\maybe@index@short@macro}
+%  \begin{macro}{\__doc_maybe_index:o}
+%    Single character macros are handled similarly but there the
+%    indexing is done by \cs{SpecialShortIndex}.
+%    \begin{macrocode}
+
+\cs_new:Npn \__doc_maybe_index_short:o #1 {
+  \exp_args:Nf \__doc_maybe_index_aux:nN { \tl_to_str:o {#1} }
+                                         \SpecialShortIndex
+}
+\cs_set_eq:NN \maybe@index@short@macro \__doc_maybe_index_short:o
+%  \end{macro}
+%  \end{macro}
 %
-%  \begin{macro}{\__doc_maybe_index_aux:n}
+%
+%
+%  \begin{macro}{\__doc_maybe_index_aux:nN}
 %    Take a string (representing a macro without backslash) and make
 %    the right choices with respect to indexing.
 %    \begin{macrocode}
-\cs_new:Npn \__doc_maybe_index_aux:n #1 {
+\cs_new:Npn \__doc_maybe_index_aux:nN #1#2 {
 %    \end{macrocode}
 %    A bit of tracing:
 %    \begin{macrocode}
@@ -3575,16 +3595,69 @@
         }
 %    \end{macrocode}
 %    Otherwise execute |\SpecialIndex| which is a short form for
-%    |\CodeMacroIndex{code}|.
+%    |\CodeMacroIndex{code}| or execute \cs{SpecialShortIndex} which
+%    deals with some special cases for single letter macros.
 %    \begin{macrocode}
         {
-          \__doc_trace:x{Indexing~ '\bslash #1'\space (normal)}
-          \exp_args:No \SpecialIndex {\bslash #1} 
+          \__doc_trace:x{Indexing~ '\bslash #1'\space (\string #2)}
+          \exp_args:No #2 {\bslash #1} 
         }
     }
 }
 %    \end{macrocode}
 %  \end{macro}
+%
+%
+%
+%  \begin{macro}{\SpecialShortIndex}
+%    \fmi{to be documented}
+%    \begin{macrocode}
+\cs_new:Npn \SpecialShortIndex #1 {
+    \@SpecialIndexHelper@ #1\@nil
+  \@bsphack
+  \ifdoc@noindex \else
+    \str_case_e:nnF {\@gtempa }
+        {
+          {\cs_to_str:N \^^M } {\def\reserved@a{ \string \space \actualchar }
+                                \def\reserved@b { \space } 
+                                \let\reserved@c \@empty                          }
+          { }                  {\def\reserved@a{ \string \space \actualchar }
+                                \def\reserved@b { \space } 
+                                \let\reserved@c \@empty                          }
+          {\c_left_brace_str} { \def\reserved@a{ \bgroup \actualchar }
+                                \def\reserved@b { \c_left_brace_str } 
+                                \def\reserved@c { \noexpand\iffalse
+                                                  \c_right_brace_str
+                                                  \noexpand\fi }                 }
+          {\c_right_brace_str} { \def\reserved@a{ \egroup \actualchar
+                                                  \noexpand\iffalse
+                                                    \c_left_brace_str
+                                                  \noexpand\fi }
+                                 \def\reserved@b { \c_right_brace_str }
+                                 \let\reserved@c \@empty                         }
+          {\verbatimchar}      { \def\reserved@a{ \quotechar\verbatimchar
+                                                  \actualchar }
+                                 \let\reserved@b \@empty
+                                 \def\reserved@c { \string\texttt{\verbatimchar} } }
+        }
+        { \def\reserved@a {\quotechar \@gtempa \actualchar }
+          \def\reserved@b {\quotechar \@gtempa  }
+          \let\reserved@c \@empty                             }
+    \special@index {
+    \reserved@a
+    \string\verb
+    \quotechar *\verbatimchar \quotechar \bslash
+    \reserved@b
+    \verbatimchar
+    \reserved@c
+    \encapchar code}
+  \fi
+  \@esphack
+}
+%    \end{macrocode}
+%  \end{macro}
+
+
 
 
 

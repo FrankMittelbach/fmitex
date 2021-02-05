@@ -8,12 +8,12 @@ Don't change this file in any respect.
 \indexentry{def=\verb!*+\def+|hdclindex{10}{code}}{3}
 \indexentry{*=\verb!*+\*+ (length)|hdclindex{10}{code}}{3}
 \indexentry{lengths:>*=\verb!*+\*+|hdclindex{10}{code}}{3}
-\indexentry{\=\verb!*+\\+|hdclindex{11}{code}}{4}
-\indexentry{{=\verb!*+\{+|hdclindex{12}{code}}{5}
-\indexentry{}=\verb!*+\}+|hdclindex{12}{code}}{5}
-\indexentry{[=\verb!*+\[+|hdclindex{13}{code}}{6}
-\indexentry{]=\verb!*+\]+|hdclindex{13}{code}}{6}
-\indexentry{$=\verb!*+\$+|hdclindex{14}{code}}{7}
+\indexentry{!\=\verb!*+!\!\+|hdclindex{11}{code}}{4}
+\indexentry{\bgroup =\verb!*+!\{+\iffalse }\fi |hdclindex{12}{code}}{5}
+\indexentry{\egroup =\iffalse {\fi \verb!*+!\}+|hdclindex{12}{code}}{5}
+\indexentry{![=\verb!*+!\![+|hdclindex{13}{code}}{6}
+\indexentry{!]=\verb!*+!\!]+|hdclindex{13}{code}}{6}
+\indexentry{!$=\verb!*+!\!$+|hdclindex{14}{code}}{7}
 \indexentry{%=\verb!*+\%+ (length)|hdclindex{14}{code}}{7}
 \indexentry{lengths:>%=\verb!*+\%+|hdclindex{14}{code}}{7}
 ! Package doc Error: Doc element 'FooBar' unknown.
@@ -24,16 +24,16 @@ l. ...%    \end{macrocode}
 When using '\RecordIndexType' the type must be known 
 to the system, i.e., declared via '\NewDocElement'
 before it can be used in indexing.
-\indexentry{"=\verb!*+\"+|hdclindex{14}{code}}{7}
-\indexentry{!=\verb!*+\!+|hdclindex{14}{code}}{7}
-\indexentry{?=\verb!*+\?+|hdclindex{14}{code}}{7}
-\indexentry{,=\verb!*+\,+|hdclindex{15}{code}}{8}
-\indexentry{;=\verb!*+\;+|hdclindex{15}{code}}{8}
-\indexentry{_=\verb!*+\_+|hdclindex{15}{code}}{8}
-\indexentry{-=\verb!*+\-+|hdclindex{15}{code}}{8}
+\indexentry{!"=\verb!*+!\!"+|hdclindex{14}{code}}{7}
+\indexentry{!!=\verb!*+!\!!+|hdclindex{14}{code}}{7}
+\indexentry{!?=\verb!*+!\!?+|hdclindex{14}{code}}{7}
+\indexentry{!,=\verb!*+!\!,+|hdclindex{15}{code}}{8}
+\indexentry{!;=\verb!*+!\!;+|hdclindex{15}{code}}{8}
+\indexentry{!_=\verb!*+!\!_+|hdclindex{15}{code}}{8}
+\indexentry{!-=\verb!*+!\!-+|hdclindex{15}{code}}{8}
 \indexentry{*=\verb!*+\*+ (length)|hdclindex{16}{code}}{9}
 \indexentry{lengths:>*=\verb!*+\*+|hdclindex{16}{code}}{9}
-\indexentry{,=\verb!*+\,+|hdclindex{16}{code}}{9}
+\indexentry{!,=\verb!*+!\!,+|hdclindex{16}{code}}{9}
 The sequence \l__doc_donotindex_seq contains the items (without outer braces):
 >  {foo}
 >  {def}
@@ -66,13 +66,13 @@ Not indexing '\\'
 Searching for '\{'
 Not indexing '\{'
 Searching for '\}'
-Indexing '\}' (normal)
-\indexentry{}=\verb!*+\}+|hdclindex{20}{code}}{13}
+Indexing '\}' (\SpecialShortIndex)
+\indexentry{\egroup =\iffalse {\fi \verb!*+!\}+|hdclindex{20}{code}}{13}
 Searching for '\['
 Not indexing '\['
 Searching for '\]'
-Indexing '\]' (normal)
-\indexentry{]=\verb!*+\]+|hdclindex{21}{code}}{14}
+Indexing '\]' (\SpecialShortIndex)
+\indexentry{!]=\verb!*+!\!]+|hdclindex{21}{code}}{14}
 Searching for '\$'
 Not indexing '\$'
 Searching for '\%'
@@ -82,24 +82,24 @@ Indexing '\&' as FooBar
 \indexentry{&=\verb!*+\&+ (foobar)|hdclindex{22}{code}}{15}
 \indexentry{foobars:>&=\verb!*+\&+|hdclindex{22}{code}}{15}
 Searching for '\"'
-Indexing '\"' (normal)
-\indexentry{"=\verb!*+\"+|hdclindex{22}{code}}{15}
+Indexing '\"' (\SpecialShortIndex)
+\indexentry{!"=\verb!*+!\!"+|hdclindex{22}{code}}{15}
 Searching for '\!'
-Indexing '\!' (normal)
-\indexentry{!=\verb!*+\!+|hdclindex{22}{code}}{15}
+Indexing '\!' (\SpecialShortIndex)
+\indexentry{!!=\verb!*+!\!!+|hdclindex{22}{code}}{15}
 Searching for '\?'
-Indexing '\?' (normal)
-\indexentry{?=\verb!*+\?+|hdclindex{22}{code}}{15}
+Indexing '\?' (\SpecialShortIndex)
+\indexentry{!?=\verb!*+!\!?+|hdclindex{22}{code}}{15}
 Searching for '\,'
 Not indexing '\,'
 Searching for '\;'
-Indexing '\;' (normal)
-\indexentry{;=\verb!*+\;+|hdclindex{23}{code}}{16}
+Indexing '\;' (\SpecialShortIndex)
+\indexentry{!;=\verb!*+!\!;+|hdclindex{23}{code}}{16}
 Searching for '\_'
-Indexing '\_' (normal)
-\indexentry{_=\verb!*+\_+|hdclindex{23}{code}}{16}
+Indexing '\_' (\SpecialShortIndex)
+\indexentry{!_=\verb!*+!\!_+|hdclindex{23}{code}}{16}
 Searching for '\-'
-Indexing '\-' (normal)
-\indexentry{-=\verb!*+\-+|hdclindex{23}{code}}{16}
+Indexing '\-' (\SpecialShortIndex)
+\indexentry{!-=\verb!*+!\!-+|hdclindex{23}{code}}{16}
 \indexentry{*=\verb!*+\*+ (length)|hdclindex{24}{code}}{17}
 \indexentry{lengths:>*=\verb!*+\*+|hdclindex{24}{code}}{17}

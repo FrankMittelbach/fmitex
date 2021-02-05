@@ -11,7 +11,7 @@ Not indexing '\begin'
 Searching for '\mymacro'
 Not indexing '\mymacro'
 Searching for '\mymacronobsc'
-Indexing '\mymacronobsc' (normal)
+Indexing '\mymacronobsc' (\SpecialIndex)
 \indexentry{mymacronobsc=\verb!*+\mymacronobsc+|code}{3}
 Searching for '\end'
 Not indexing '\end'
@@ -20,10 +20,10 @@ Disable indexing for '\ymacronobsc '
 Searching for '\begin'
 Not indexing '\begin'
 Searching for '\mymacro'
-Indexing '\mymacro' (normal)
+Indexing '\mymacro' (\SpecialIndex)
 \indexentry{mymacro=\verb!*+\mymacro+|code}{6}
 Searching for '\mymacronobsc'
-Indexing '\mymacronobsc' (normal)
+Indexing '\mymacronobsc' (\SpecialIndex)
 \indexentry{mymacronobsc=\verb!*+\mymacronobsc+|code}{7}
 Searching for '\end'
 Not indexing '\end'
@@ -32,10 +32,10 @@ Not indexing '\end'
 Searching for '\begin'
 Not indexing '\begin'
 Searching for '\mymacro'
-Indexing '\mymacro' (normal)
+Indexing '\mymacro' (\SpecialIndex)
 \indexentry{mymacro=\verb!*+\mymacro+|code}{10}
 Searching for '\mymacronobsc'
-Indexing '\mymacronobsc' (normal)
+Indexing '\mymacronobsc' (\SpecialIndex)
 \indexentry{mymacronobsc=\verb!*+\mymacronobsc+|code}{11}
 Searching for '\end'
 Not indexing '\end'

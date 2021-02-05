@@ -450,20 +450,20 @@ Completed box being shipped out [2]
 \indexentry{myenvironment={\ttfamily myenvironment} (environment)|usage}{2}
 \indexentry{environments:>myenvironment={\ttfamily myenvironment}|usage}{2}
 Searching for '\newenvironment'
-Indexing '\newenvironment' (normal)
+Indexing '\newenvironment' (\SpecialIndex)
 Searching for '\hsize'
-Indexing '\hsize' (normal)
+Indexing '\hsize' (\SpecialIndex)
 Searching for '\mylength'
 Indexing '\mylength' as Length
 Disable indexing for '\@mymacro '
 Searching for '\def'
-Indexing '\def' (normal)
+Indexing '\def' (\SpecialIndex)
 Searching for '\@mylength'
-Indexing '\@mylength' (normal)
+Indexing '\@mylength' (\SpecialIndex)
 Searching for '\mylength'
 Indexing '\mylength' as Length
 Searching for '\relax'
-Indexing '\relax' (normal)
+Indexing '\relax' (\SpecialIndex)
 (tlb-dox005.ind
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line ....

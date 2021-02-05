@@ -19,7 +19,7 @@ Not indexing '\mylength'
 \indexentry{myenvironment={\ttfamily myenvironment} (environment)|hdclindex{10}{main}}{2}
 \indexentry{environments:>myenvironment={\ttfamily myenvironment}|hdclindex{10}{main}}{2}
 Searching for '\newenvironment'
-Indexing '\newenvironment' (normal)
+Indexing '\newenvironment' (\SpecialIndex)
 \indexentry{newenvironment=\verb!*+\newenvironment+|hdclindex{11}{code}}{2}
 Searching for '\hsize'
 Indexing '\hsize' as Length
@@ -33,17 +33,17 @@ Recording index type for '\hsize' as Length
 \indexentry{@mymacro=\verb!*+\@mymacro+|hdclindex{12}{main}}{3}
 Disable indexing for '\@mymacro '
 Searching for '\def'
-Indexing '\def' (normal)
+Indexing '\def' (\SpecialIndex)
 \indexentry{def=\verb!*+\def+|hdclindex{13}{code}}{3}
 Searching for '\@mylength'
-Indexing '\@mylength' (normal)
+Indexing '\@mylength' (\SpecialIndex)
 \indexentry{@mylength=\verb!*+\@mylength+|hdclindex{13}{code}}{3}
 Searching for '\mylength'
 Indexing '\mylength' as Length
 \indexentry{mylength=\verb!*+\mylength+ (length)|hdclindex{13}{code}}{3}
 \indexentry{lengths:>mylength=\verb!*+\mylength+|hdclindex{13}{code}}{3}
 Searching for '\relax'
-Indexing '\relax' (normal)
+Indexing '\relax' (\SpecialIndex)
 \indexentry{relax=\verb!*+\relax+|hdclindex{13}{code}}{3}
 (tlb-dox002.ind [2
 \glossaryentry{v3>myenvironment=\verb!*+myenvironment+:>Third change|hdpindex{}}{2}

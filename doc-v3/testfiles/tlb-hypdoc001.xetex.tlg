@@ -29,12 +29,12 @@ Disable indexing for '\mylength '
 Searching for '\mylength'
 Not indexing '\mylength'
 Searching for '\foo'
-Indexing '\foo' (normal)
+Indexing '\foo' (\SpecialIndex)
 \indexentry{foo=\verb!*+\foo+|hdclindex{9}{code}}{5}
 Searching for '\mylength'
 Not indexing '\mylength'
 Searching for '\foo'
-Indexing '\foo' (normal)
+Indexing '\foo' (\SpecialIndex)
 \indexentry{foo=\verb!*+\foo+|hdclindex{11}{code}}{7}
 Searching for '\mylength'
 Indexing '\mylength' as Length
@@ -45,7 +45,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \indexentry{secnumdepth={\ttfamily secnumdepth} (counter)|hdclindex{18}{main}}{12}
 \indexentry{counters:>secnumdepth={\ttfamily secnumdepth}|hdclindex{18}{main}}{12}
 Searching for '\newcounter'
-Indexing '\newcounter' (normal)
+Indexing '\newcounter' (\SpecialIndex)
 \indexentry{newcounter=\verb!*+\newcounter+|hdclindex{19}{code}}{12}
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line ....

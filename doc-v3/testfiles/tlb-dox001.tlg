@@ -12,7 +12,7 @@ Not indexing '\mylength'
 \indexentry{@mymacro=\verb!*+\@mymacro+|hdclindex{11}{main}}{2}
 Disable indexing for '\@mymacro '
 Searching for '\def'
-Indexing '\def' (normal)
+Indexing '\def' (\SpecialIndex)
 \indexentry{def=\verb!*+\def+|hdclindex{12}{code}}{2}
 Searching for '\@mymacro'
 Not indexing '\@mymacro'
