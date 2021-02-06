@@ -1,3 +1,28 @@
+2020-02-11  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* dashundergaps.dtx: Expand argument up front to work around
+	ulem restrictions when possible (gh/10)
+
+2020-01-22  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* dashundergaps.dtx (subsection{Loading and fixing/changing \pkg{ulem}}):
+	Adjusted definition to new ulem release
+
+	* Some release cleanup.
+
+2019-07-14  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* dashundergaps.dtx (subsection{The main implementation part}):
+	As the code doesn't run with expl3 versions prior to mid 2018, we
+	check against that (github/7).
+
+2018-11-09  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* dashundergaps.dtx v2.0d
+
+	\TeacherModeOff was a copy of \TeacherModeOn and never turned
+	anything off.
+
 2018-06-27  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
 
 	* dashundergaps.dtx v2.0c

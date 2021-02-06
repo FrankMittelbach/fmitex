@@ -1,0 +1,122 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+%% goal height=60.0, max depth=5.0
+% t=0.0 g=60.0 b=10000 p=0 c=100000#
+% t=10.0 g=60.0 b=10000 p=150 c=100000#
+% t=22.0 g=60.0 b=10000 p=50 c=100000#
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line ....
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line ....
+% t=46.0 plus 3.0 g=60.0 b=10000 p=0 c=100000#
+% t=64.0 plus 7.0 minus 3.0 g=60.0 b=* p=150 c=*
+[1
+]
+%% goal height=60.0, max depth=5.0
+% t=10.0 g=60.0 b=10000 p=150 c=100000#
+% t=22.0 g=60.0 b=10000 p=152 c=100000#
+% t=34.0 g=60.0 b=10000 p=0 c=100000#
+% t=46.0 plus 1.0 g=60.0 b=10000 p=150 c=100000#
+% t=58.0 plus 1.0 g=60.0 b=800 p=152 c=952#
+% t=70.0 plus 1.0 g=60.0 b=* p=0 c=*
+! Package widows-and-orphans Error: Widow on page iii
+For immediate help type H <return>.
+ ...                                              
+l. ...  \stupidpara\stupidpara\stupidpara
+                                        \stupidpara
+Check out the page and see if you can avoid the widow.
+[2]
+%% goal height=60.0, max depth=5.0
+% t=10.0 g=60.0 b=10000 p=0 c=100000#
+% t=22.0 plus 1.0 g=60.0 b=10000 p=150 c=100000#
+% t=34.0 plus 1.0 g=60.0 b=10000 p=152 c=100000#
+% t=46.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
+% t=58.0 plus 2.0 g=60.0 b=100 p=150 c=250#
+% t=70.0 plus 2.0 g=60.0 b=* p=152 c=*
+! Package widows-and-orphans Error: Orphan on page iii
+For immediate help type H <return>.
+ ...                                              
+l. ......tupidpara\stupidpara\stupidpara\stupidpara
+Check out the page and see if you can avoid the orphan.
+[3]
+%% goal height=60.0, max depth=5.0
+% t=10.0 g=60.0 b=10000 p=152 c=100000#
+% t=22.0 g=60.0 b=10000 p=0 c=100000#
+% t=34.0 plus 1.0 g=60.0 b=10000 p=302 c=100000#
+% t=46.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
+% t=58.0 plus 2.0 g=60.0 b=100 p=302 c=402#
+% t=70.0 plus 2.0 g=60.0 b=* p=0 c=*
+! Package widows-and-orphans Error: Orphan on page iv (second column) and
+(widows-and-orphans)                widow on page v (first column)
+For immediate help type H <return>.
+ ...                                              
+l. ......rystupidpara\verystupidpara\verystupidpara
+                                                  \verystupidpara
+Check out the page and see if you can avoid both orphan and widow.
+[4]
+%% goal height=60.0, max depth=5.0
+% t=10.0 g=60.0 b=10000 p=0 c=100000#
+% t=22.0 plus 1.0 g=60.0 b=10000 p=302 c=100000#
+% t=34.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
+% t=46.0 plus 2.0 g=60.0 b=10000 p=302 c=100000#
+% t=58.0 plus 2.0 g=60.0 b=100 p=0 c=100#
+% t=58.0 plus 2.0 plus 1.0fil g=60.0 b=0 p=-10000 c=-10000#
+[5]
+%% goal height=60.0, max depth=5.0
+% t=0.0 g=60.0 b=10000 p=0 c=100000#
+% t=10.0 g=60.0 b=10000 p=-10001 c=-10001#
+%% goal height=60.0, max depth=5.0
+% t=0.0 g=60.0 b=10000 p=0 c=100000#
+% t=10.0 g=60.0 b=10000 p=150 c=100000#
+% t=22.0 g=60.0 b=10000 p=152 c=100000#
+% t=34.0 g=60.0 b=10000 p=0 c=100000#
+% t=46.0 plus 1.0 g=60.0 b=10000 p=150 c=100000#
+% t=58.0 plus 1.0 g=60.0 b=800 p=152 c=952#
+% t=70.0 plus 1.0 g=60.0 b=* p=0 c=*
+! Package widows-and-orphans Error: Widow on page vi (second column)
+For immediate help type H <return>.
+ ...                                              
+l. ...  \stupidpara\stupidpara\verystupidpara
+                                            \stupidpara
+Check out the page and see if you can avoid the widow.
+%% goal height=60.0, max depth=5.0
+% t=10.0 g=60.0 b=10000 p=0 c=100000#
+% t=22.0 plus 1.0 g=60.0 b=10000 p=302 c=100000#
+% t=34.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
+% t=46.0 plus 2.0 g=60.0 b=10000 p=150 c=100000#
+% t=58.0 plus 2.0 g=60.0 b=100 p=152 c=252#
+% t=70.0 plus 2.0 g=60.0 b=* p=0 c=*
+! Package widows-and-orphans Error: Widow on page vii (first column)
+For immediate help type H <return>.
+ ...                                              
+l. ...  \stupidpara
+                  \verystupidpara\verystupidpara\verystupidpara
+Check out the page and see if you can avoid the widow.
+[6
+]
+%% goal height=60.0, max depth=5.0
+% t=10.0 g=60.0 b=10000 p=0 c=100000#
+% t=22.0 plus 1.0 g=60.0 b=10000 p=150 c=100000#
+% t=34.0 plus 1.0 g=60.0 b=10000 p=152 c=100000#
+% t=46.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
+% t=58.0 plus 2.0 g=60.0 b=100 p=302 c=402#
+% t=70.0 plus 2.0 g=60.0 b=* p=0 c=*
+! Package widows-and-orphans Error: Orphan and widow on page vii (first and
+(widows-and-orphans)                second column)
+For immediate help type H <return>.
+ ...                                              
+l. ...  \stupidpara\verystupidpara\verystupidpara
+                                                \verystupidpara
+Check out the page and see if you can avoid both orphan and widow.
+%% goal height=60.0, max depth=5.0
+% t=10.0 g=60.0 b=10000 p=0 c=100000#
+% t=22.0 plus 1.0 g=60.0 b=10000 p=302 c=100000#
+% t=34.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
+% t=46.0 plus 2.0 g=60.0 b=10000 p=302 c=100000#
+% t=58.0 plus 2.0 g=60.0 b=100 p=0 c=100#
+% t=58.0 plus 2.0 plus 1.0fil g=60.0 b=0 p=-10000 c=-10000#
+[7]
+%% goal height=60.0, max depth=5.0
+% t=0.0 g=60.0 b=10000 p=0 c=100000#
+% t=10.0 g=60.0 b=10000 p=-10001 c=-10001#
+(wao004.aux)

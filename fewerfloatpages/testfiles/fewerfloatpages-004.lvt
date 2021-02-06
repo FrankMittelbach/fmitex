@@ -1,0 +1,44 @@
+\documentclass{article}
+
+\input{regression-test}
+
+\usepackage{lipsum}
+
+% testing that fltrace afterwards doesn't kill the package and full tracing happens
+
+\usepackage[addbang]{fewerfloatpages}
+\usepackage{fltrace}
+
+\newcommand\fig[3][tbp]{\begin{figure}[#1]\frame{\vbox to#2{\vfil #3 (fig)\vfil}}\end{figure}}
+\newcommand\tab[3][tbp]{\begin{table}[#1]\frame{\vbox to#2{\vfil #3 (tab)\vfil}}\end{table}}
+
+\setcounter{floatpagedeferlimit}{0}
+
+\tracefloats
+
+\begin{document}
+
+\START
+
+
+Some text \ldots
+
+\fig{.6\textheight}{1}            % why oes this give different tracing with xetex/luatex???
+
+
+\fig{.35\textheight}{A}
+\tab{.1\textheight}{B}
+\tab{.65\textheight}{C}
+
+\lipsum[3-4]
+
+\fig{.3\textheight}{D}
+\fig{.1\textheight}{E}
+\tab{.3\textheight}{F}
+\tab{.3\textheight}{G}
+\tab{.3\textheight}{H}
+
+\lipsum
+
+
+\end{document}

@@ -1,0 +1,35 @@
+\documentclass {article}
+
+\input{regression-test}
+    
+
+\usepackage[check=error]{widows-and-orphans}
+
+\newcommand\stupidpara{A first (orphan?) line\\a second line\\and a final (widow?) line.\par}
+\newcommand\verystupidpara{A two-line para\\with (orphan+widow?) or not?\par}
+
+\setlength\textheight{5\baselineskip}
+
+\pagenumbering{roman}
+
+\begin{document}
+
+\START
+
+\tracingpages1\tracingonline1
+
+  first line \\
+  second line \\
+  Widow line before display:
+  \[ a=b \]
+
+
+  \stupidpara\stupidpara\stupidpara\stupidpara
+  \verystupidpara\verystupidpara\verystupidpara\verystupidpara
+
+
+  \twocolumn
+  \stupidpara\stupidpara\verystupidpara\stupidpara
+  \stupidpara\verystupidpara\verystupidpara\verystupidpara
+
+\end{document}

@@ -1,0 +1,36 @@
+% check proper spacing after TOC/LOF heading
+
+\documentclass{article}
+
+\input{regression-test}
+
+\usepackage[skip=17pt,tocskip=5]{parskip}
+
+\showoutput
+
+
+\begin{document}
+
+\START
+
+\tableofcontents
+
+\listoffigures
+
+\begin{figure}
+\caption{This is first figure}
+\end{figure}
+
+\begin{figure}
+\caption{This is second figure}
+\end{figure}
+
+\section A
+
+foo
+
+\section B
+
+bar
+
+\end{document}

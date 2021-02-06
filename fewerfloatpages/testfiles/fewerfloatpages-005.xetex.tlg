@@ -1,0 +1,314 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+LaTeX2e: ***Start addtocurcol
+LaTeX2e: (mod 32) fpstype: 30
+LaTeX2e: (mult of 32) currtype: 32
+LaTeX2e: ORD float
+LaTeX2e: fpstype: 30(flsettextmin)
+LaTeX2e: ORD textmin = 109.99832pt
+LaTeX2e: textfloatsheight (before) = 0.0pt
+LaTeX2e: textmin + textfloatsheight: 109.99832pt
+LaTeX2e: page-so-far: 10.21999pt
+LaTeX2e: ORD? textmin being used
+LaTeX2e: float size = 330.00336pt(addtocurcol)
+LaTeX2e: colroom = 550.0pt(addtocurcol)
+LaTeX2e: reqcolroom = 440.00168pt(addtocurcol)
+LaTeX2e: fpstype: 30(flsetnum \@colnum)
+LaTeX2e: \@colnum  (before) = 3
+LaTeX2e: \@currbox single column float -- ok
+LaTeX2e: deferlist: : (addtocurcol-before)
+LaTeX2e: botlist: : (addtocurcol-before)
+LaTeX2e: fpstype not here: 30
+LaTeX2e: not here: sent to addtotoporbot
+LaTeX2e: ***Start addtotoporbot
+LaTeX2e: fpstype OK top: 30
+LaTeX2e: fpstype: 30(flsetnum \@topnum)
+LaTeX2e: \@topnum  (before) = 2
+LaTeX2e: colroom = 550.0pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: reqcolroom = 460.00168pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: Space OK: \@toproom  = 384.99832pt > 330.00336pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: (mid+bot)list: , : (addtotoporbot-before)
+LaTeX2e: colroom (after-top) = 199.99664pt
+LaTeX2e: colnum (after-top) = 2
+LaTeX2e: topnum (after-top) = 1
+LaTeX2e: ***Success: top
+LaTeX2e: ***Start addtocurcol
+LaTeX2e: (mod 32) fpstype: 30
+LaTeX2e: (mult of 32) currtype: 32
+LaTeX2e: ORD float
+LaTeX2e: fpstype: 30(flsettextmin)
+LaTeX2e: ORD textmin = 109.99832pt
+LaTeX2e: textfloatsheight (before) = 0.0pt
+LaTeX2e: textmin + textfloatsheight: 109.99832pt
+LaTeX2e: page-so-far: 10.21999pt
+LaTeX2e: ORD? textmin being used
+LaTeX2e: float size = 192.50336pt(addtocurcol)
+LaTeX2e: colroom = 199.99664pt(addtocurcol)
+LaTeX2e: reqcolroom = 302.50168pt(addtocurcol)
+LaTeX2e: Fail---no room: fl box ht: 192.50336pt(addtocurcol)
+LaTeX2e: put on deferlist (addtocurcol)
+LaTeX2e: deferlist: \bx@B : (addtocurcol-after)
+LaTeX2e: ***Start addtocurcol
+LaTeX2e: (mod 32) fpstype: 30
+LaTeX2e: (mult of 32) currtype: 64
+LaTeX2e: ORD float
+LaTeX2e: fpstype: 30(flsettextmin)
+LaTeX2e: ORD textmin = 109.99832pt
+LaTeX2e: textfloatsheight (before) = 0.0pt
+LaTeX2e: textmin + textfloatsheight: 109.99832pt
+LaTeX2e: page-so-far: 10.21999pt
+LaTeX2e: ORD? textmin being used
+LaTeX2e: float size = 55.00336pt(addtocurcol)
+LaTeX2e: colroom = 199.99664pt(addtocurcol)
+LaTeX2e: reqcolroom = 165.00168pt(addtocurcol)
+LaTeX2e: fpstype: 30(flsetnum \@colnum)
+LaTeX2e: \@colnum  (before) = 2
+LaTeX2e: \@currbox single column float -- ok
+LaTeX2e: deferlist: \bx@B : (addtocurcol-before)
+LaTeX2e: botlist: : (addtocurcol-before)
+LaTeX2e: fpstype not here: 30
+LaTeX2e: not here: sent to addtotoporbot
+LaTeX2e: ***Start addtotoporbot
+LaTeX2e: fpstype OK top: 30
+LaTeX2e: fpstype: 30(flsetnum \@topnum)
+LaTeX2e: \@topnum  (before) = 1
+LaTeX2e: colroom = 199.99664pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: reqcolroom = 177.00168pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: fpstype: 30(flcheckspace \@toproom \@toplist)
+LaTeX2e: Fail---no room (flcheckspace \@toproom \@toplist) (fpstype 30=ORD?):
+LaTeX2e:     \@toproom  = 34.99496pt. Ht float: 55.00336ptORD?
+LaTeX2e: sent to addtobot (addtotoporbot)
+LaTeX2e: ***Start addtobot
+LaTeX2e: fpstype OK bot: 30
+LaTeX2e: fpstype: 30(flsetnum \@botnum)
+LaTeX2e: \@botnum  (before) = 1
+LaTeX2e: colroom = 199.99664pt(flcheckspace \@botroom \@botlist)
+LaTeX2e: reqcolroom = 197.00168pt(flcheckspace \@botroom \@botlist)
+LaTeX2e: Space OK: \@botroom  = 165.00168pt > 55.00336pt(flcheckspace \@botroom \@botlist)
+LaTeX2e: colroom (after-bot) = 124.99329pt
+LaTeX2e: colnum (after-bot) = 1
+LaTeX2e: botnum (after-bot) = 0
+LaTeX2e: ***Success: bot
+LaTeX2e: ***Start addtocurcol
+LaTeX2e: (mod 32) fpstype: 30
+LaTeX2e: (mult of 32) currtype: 64
+LaTeX2e: ORD float
+LaTeX2e: fpstype: 30(flsettextmin)
+LaTeX2e: ORD textmin = 109.99832pt
+LaTeX2e: textfloatsheight (before) = 0.0pt
+LaTeX2e: textmin + textfloatsheight: 109.99832pt
+LaTeX2e: page-so-far: 10.21999pt
+LaTeX2e: ORD? textmin being used
+LaTeX2e: float size = 357.49664pt(addtocurcol)
+LaTeX2e: colroom = 124.99329pt(addtocurcol)
+LaTeX2e: reqcolroom = 467.49496pt(addtocurcol)
+LaTeX2e: Fail---no room: fl box ht: 357.49664pt(addtocurcol)
+LaTeX2e: put on deferlist (addtocurcol)
+LaTeX2e: deferlist: \bx@B \bx@D : (addtocurcol-after)
+[1
+]
+LaTeX2e: PAGE: one column (float? see above) page completed
+LaTeX2e: PAGE: trying to make a float page
+LaTeX2e: ----- \@deferlist: \bx@B \bx@D 
+LaTeX2e:  starting with \bx@B
+LaTeX2e: \bx@B single column float -- ok
+LaTeX2e: \bx@D single column float -- ok
+LaTeX2e:  --> fail
+LaTeX2e:  starting with \bx@D
+LaTeX2e: \bx@D single column float -- ok
+LaTeX2e:  --> success: \bx@D 
+LaTeX2e: ----- too many deferred floats for unraveling (2 > 0)
+LaTeX2e: PAGE: float page completed
+LaTeX2e: PAGE: float page completed
+[2]
+LaTeX2e: PAGE: one column (float? see above) page completed
+LaTeX2e: PAGE: trying to make a float page
+LaTeX2e: ----- \@deferlist: \bx@B 
+LaTeX2e:  starting with \bx@B
+LaTeX2e: \bx@B single column float -- ok
+LaTeX2e:  --> fail
+LaTeX2e:  --> fail: no float page made
+LaTeX2e: ***Start addtonextcol
+LaTeX2e: (mod 32) fpstype: 30
+LaTeX2e: (mult of 32) currtype: 32
+LaTeX2e: ORD float
+LaTeX2e: fpstype: 30(flsettextmin)
+LaTeX2e: ORD textmin = 109.99832pt
+LaTeX2e: text-so-far: 0pt (top of col)
+LaTeX2e: float size: 192.50336pt(addtonextcol)
+LaTeX2e: colroom = 550.0pt(addtonextcol)
+LaTeX2e: reqcolroom = 302.50168pt(addtonextcol)
+LaTeX2e: fpstype: 30(flsetnum \@colnum)
+LaTeX2e: \@colnum  (before) = 3
+LaTeX2e: deferlist: : (addtonextcol-before)
+LaTeX2e: \@currbox single column float -- ok
+LaTeX2e: sent to addtotoporbot (addtonextcol)
+LaTeX2e: ***Start addtotoporbot
+LaTeX2e: fpstype OK top: 30
+LaTeX2e: fpstype: 30(flsetnum \@topnum)
+LaTeX2e: \@topnum  (before) = 2
+LaTeX2e: colroom = 550.0pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: reqcolroom = 322.50168pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: Space OK: \@toproom  = 384.99832pt > 192.50336pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: (mid+bot)list: , : (addtotoporbot-before)
+LaTeX2e: colroom (after-top) = 337.49664pt
+LaTeX2e: colnum (after-top) = 2
+LaTeX2e: topnum (after-top) = 1
+LaTeX2e: ***Success: top
+LaTeX2e: End of addtonextcol -- locally counts:
+LaTeX2e: col: 2. top: 1. bot: 1.
+LaTeX2e: End of addtonextcol -- globally counts:
+LaTeX2e: col: 2. top: 1. bot: 1.
+LaTeX2e: ***Start addtocurcol
+LaTeX2e: (mod 32) fpstype: 30
+LaTeX2e: (mult of 32) currtype: 32
+LaTeX2e: ORD float
+LaTeX2e: fpstype: 30(flsettextmin)
+LaTeX2e: ORD textmin = 109.99832pt
+LaTeX2e: textfloatsheight (before) = 0.0pt
+LaTeX2e: textmin + textfloatsheight: 109.99832pt
+LaTeX2e: page-so-far: 95.93999pt
+LaTeX2e: ORD? textmin being used
+LaTeX2e: float size = 165.00168pt(addtocurcol)
+LaTeX2e: colroom = 337.49664pt(addtocurcol)
+LaTeX2e: reqcolroom = 275.0pt(addtocurcol)
+LaTeX2e: fpstype: 30(flsetnum \@colnum)
+LaTeX2e: \@colnum  (before) = 2
+LaTeX2e: \@currbox single column float -- ok
+LaTeX2e: deferlist: : (addtocurcol-before)
+LaTeX2e: botlist: : (addtocurcol-before)
+LaTeX2e: fpstype not here: 30
+LaTeX2e: not here: sent to addtotoporbot
+LaTeX2e: ***Start addtotoporbot
+LaTeX2e: fpstype OK top: 30
+LaTeX2e: fpstype: 30(flsetnum \@topnum)
+LaTeX2e: \@topnum  (before) = 1
+LaTeX2e: colroom = 337.49664pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: reqcolroom = 287.0pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: Space OK: \@toproom  = 172.49496pt > 165.00168pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: (mid+bot)list: , : (addtotoporbot-before)
+LaTeX2e: colroom (after-top) = 160.49496pt
+LaTeX2e: colnum (after-top) = 1
+LaTeX2e: topnum (after-top) = 0
+LaTeX2e: ***Success: top
+LaTeX2e: ***Start addtocurcol
+LaTeX2e: (mod 32) fpstype: 30
+LaTeX2e: (mult of 32) currtype: 32
+LaTeX2e: ORD float
+LaTeX2e: fpstype: 30(flsettextmin)
+LaTeX2e: ORD textmin = 109.99832pt
+LaTeX2e: textfloatsheight (before) = 0.0pt
+LaTeX2e: textmin + textfloatsheight: 109.99832pt
+LaTeX2e: page-so-far: 95.93999pt
+LaTeX2e: ORD? textmin being used
+LaTeX2e: float size = 55.00336pt(addtocurcol)
+LaTeX2e: colroom = 160.49496pt(addtocurcol)
+LaTeX2e: reqcolroom = 165.00168pt(addtocurcol)
+LaTeX2e: Fail---no room: fl box ht: 55.00336pt(addtocurcol)
+LaTeX2e: put on deferlist (addtocurcol)
+LaTeX2e: deferlist: \bx@F : (addtocurcol-after)
+LaTeX2e: ***Start addtocurcol
+LaTeX2e: (mod 32) fpstype: 30
+LaTeX2e: (mult of 32) currtype: 64
+LaTeX2e: ORD float
+LaTeX2e: fpstype: 30(flsettextmin)
+LaTeX2e: ORD textmin = 109.99832pt
+LaTeX2e: textfloatsheight (before) = 0.0pt
+LaTeX2e: textmin + textfloatsheight: 109.99832pt
+LaTeX2e: page-so-far: 95.93999pt
+LaTeX2e: ORD? textmin being used
+LaTeX2e: float size = 165.00168pt(addtocurcol)
+LaTeX2e: colroom = 160.49496pt(addtocurcol)
+LaTeX2e: reqcolroom = 275.0pt(addtocurcol)
+LaTeX2e: Fail---no room: fl box ht: 165.00168pt(addtocurcol)
+LaTeX2e: put on deferlist (addtocurcol)
+LaTeX2e: deferlist: \bx@F \bx@G : (addtocurcol-after)
+LaTeX2e: ***Start addtocurcol
+LaTeX2e: (mod 32) fpstype: 30
+LaTeX2e: (mult of 32) currtype: 64
+LaTeX2e: ORD float
+LaTeX2e: fpstype: 30(flsettextmin)
+LaTeX2e: ORD textmin = 109.99832pt
+LaTeX2e: textfloatsheight (before) = 0.0pt
+LaTeX2e: textmin + textfloatsheight: 109.99832pt
+LaTeX2e: page-so-far: 95.93999pt
+LaTeX2e: ORD? textmin being used
+LaTeX2e: float size = 165.00168pt(addtocurcol)
+LaTeX2e: colroom = 160.49496pt(addtocurcol)
+LaTeX2e: reqcolroom = 275.0pt(addtocurcol)
+LaTeX2e: Fail---no room: fl box ht: 165.00168pt(addtocurcol)
+LaTeX2e: put on deferlist (addtocurcol)
+LaTeX2e: deferlist: \bx@F \bx@G \bx@H : (addtocurcol-after)
+LaTeX2e: ***Start addtocurcol
+LaTeX2e: (mod 32) fpstype: 30
+LaTeX2e: (mult of 32) currtype: 64
+LaTeX2e: ORD float
+LaTeX2e: fpstype: 30(flsettextmin)
+LaTeX2e: ORD textmin = 109.99832pt
+LaTeX2e: textfloatsheight (before) = 0.0pt
+LaTeX2e: textmin + textfloatsheight: 109.99832pt
+LaTeX2e: page-so-far: 95.93999pt
+LaTeX2e: ORD? textmin being used
+LaTeX2e: float size = 165.00168pt(addtocurcol)
+LaTeX2e: colroom = 160.49496pt(addtocurcol)
+LaTeX2e: reqcolroom = 275.0pt(addtocurcol)
+LaTeX2e: Fail---no room: fl box ht: 165.00168pt(addtocurcol)
+LaTeX2e: put on deferlist (addtocurcol)
+LaTeX2e: deferlist: \bx@F \bx@G \bx@H \bx@I : (addtocurcol-after)
+[3]
+LaTeX2e: PAGE: one column (float? see above) page completed
+LaTeX2e: PAGE: trying to make a float page
+LaTeX2e: ----- \@deferlist: \bx@F \bx@G \bx@H \bx@I 
+LaTeX2e:  starting with \bx@F
+LaTeX2e: \bx@F single column float -- ok
+LaTeX2e: \bx@G single column float -- ok
+LaTeX2e: \bx@H single column float -- ok
+LaTeX2e: \bx@I single column float -- ok
+LaTeX2e:  --> success: \bx@F \bx@G \bx@H 
+LaTeX2e: ----- too many deferred floats for unraveling (4 > 0)
+LaTeX2e: PAGE: float page completed
+LaTeX2e: PAGE: float page completed
+[4]
+LaTeX2e: PAGE: one column (float? see above) page completed
+LaTeX2e: PAGE: trying to make a float page
+LaTeX2e: ----- \@deferlist: \bx@I 
+LaTeX2e:  starting with \bx@I
+LaTeX2e: \bx@I single column float -- ok
+LaTeX2e:  --> fail
+LaTeX2e:  --> fail: no float page made
+LaTeX2e: ***Start addtonextcol
+LaTeX2e: (mod 32) fpstype: 30
+LaTeX2e: (mult of 32) currtype: 64
+LaTeX2e: ORD float
+LaTeX2e: fpstype: 30(flsettextmin)
+LaTeX2e: ORD textmin = 109.99832pt
+LaTeX2e: text-so-far: 0pt (top of col)
+LaTeX2e: float size: 165.00168pt(addtonextcol)
+LaTeX2e: colroom = 550.0pt(addtonextcol)
+LaTeX2e: reqcolroom = 275.0pt(addtonextcol)
+LaTeX2e: fpstype: 30(flsetnum \@colnum)
+LaTeX2e: \@colnum  (before) = 3
+LaTeX2e: deferlist: : (addtonextcol-before)
+LaTeX2e: \@currbox single column float -- ok
+LaTeX2e: sent to addtotoporbot (addtonextcol)
+LaTeX2e: ***Start addtotoporbot
+LaTeX2e: fpstype OK top: 30
+LaTeX2e: fpstype: 30(flsetnum \@topnum)
+LaTeX2e: \@topnum  (before) = 2
+LaTeX2e: colroom = 550.0pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: reqcolroom = 295.0pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: Space OK: \@toproom  = 384.99832pt > 165.00168pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: (mid+bot)list: , : (addtotoporbot-before)
+LaTeX2e: colroom (after-top) = 364.99832pt
+LaTeX2e: colnum (after-top) = 2
+LaTeX2e: topnum (after-top) = 1
+LaTeX2e: ***Success: top
+LaTeX2e: End of addtonextcol -- locally counts:
+LaTeX2e: col: 2. top: 1. bot: 1.
+LaTeX2e: End of addtonextcol -- globally counts:
+LaTeX2e: col: 2. top: 1. bot: 1.
+[5]
+LaTeX2e: PAGE: one column (float? see above) page completed
+[6]
+LaTeX2e: PAGE: one column (float? see above) page completed
+(fewerfloatpages-005.aux)

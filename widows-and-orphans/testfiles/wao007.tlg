@@ -1,0 +1,24 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+%% goal height=60.0, max depth=5.0
+% t=0.0 g=60.0 b=10000 p=0 c=100000#
+% t=10.0 g=60.0 b=10000 p=150 c=100000#
+% t=22.0 g=60.0 b=10000 p=0 c=100000#
+% t=34.0 g=60.0 b=10000 p=50 c=100000#
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line ....
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line ....
+% t=46.0 g=60.0 b=10000 p=9000 c=100000#
+% t=66.05238 plus 3.0 g=60.0 b=* p=0 c=*
+Package widows-and-orphans Warning: Lonely display on page 2
+[1
+]
+%% goal height=60.0, max depth=5.0
+% t=17.10794 g=60.0 b=10000 p=0 c=100000#
+% t=23.10794 plus 3.0 plus 1.0fil minus 3.0 g=60.0 b=0 p=-10000 c=-10000#
+[2]
+%% goal height=60.0, max depth=5.0
+% t=0.0 g=60.0 b=10000 p=0 c=100000#
+% t=10.0 g=60.0 b=10000 p=-10001 c=-10001#
+(wao007.aux)

@@ -1,0 +1,37 @@
+\documentclass{article}
+
+\input{regression-test}
+
+\usepackage{lipsum}
+
+\usepackage[trace,addbang]{fewerfloatpages}
+
+\setcounter{floatpagedeferlimit}{3}
+
+\newcommand\fig[3][tbp]{\begin{figure}[#1]\frame{\vbox to#2{\vfil #3 (fig)\vfil}}\end{figure}}
+\newcommand\tab[3][tbp]{\begin{table}[#1]\frame{\vbox to#2{\vfil #3 (tab)\vfil}}\end{table}}
+
+\begin{document}
+
+\START
+                                % with "nobang:"             % with std (applying !):
+
+\fig[bp]{.4\textheight}{A}      % too big for bottom
+\tab[tpb]{.71\textheight}{B}    % too big for top            % retried with !
+                                                             % so appears in t on page 2
+
+\lipsum
+
+\fig[bp]{.1\textheight}{C}      % A+C float page, unraveled and deferred
+
+\lipsum
+
+\fig[bp]{.1\textheight}{D}     % 
+\fig[bp]{.1\textheight}{E}     % now A+C+D+E enough for float page and kept
+
+\lipsum
+                               % B only set now
+
+\end{document}
+
+

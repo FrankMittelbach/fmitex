@@ -1,0 +1,23 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+%% goal height=36.0, max depth=5.0
+% t=0.0 g=36.0 b=10000 p=0 c=100000#
+% t=10.0 g=36.0 b=10000 p=150 c=100000#
+% t=22.0 g=36.0 b=10000 p=0 c=100000#
+% t=34.0 g=36.0 b=10000 p=100 c=100000#
+% t=46.0 g=36.0 b=* p=152 c=*
+Package widows-and-orphans Info: Hyphen in last line of page 1
+[1
+]
+%% goal height=36.0, max depth=5.0
+% t=10.0 g=36.0 b=10000 p=152 c=100000#
+% t=22.0 g=36.0 b=10000 p=0 c=100000#
+% t=22.0 plus 1.0fil g=36.0 b=0 p=-10000 c=-10000#
+[2]
+%% goal height=36.0, max depth=5.0
+% t=0.0 g=36.0 b=10000 p=0 c=100000#
+% t=10.0 g=36.0 b=10000 p=-10001 c=-10001#
+%% goal height=36.0, max depth=5.0
+% t=0.0 g=36.0 b=10000 p=0 c=100000#
+% t=10.0 g=36.0 b=10000 p=-10001 c=-10001#
+(wao005.aux)

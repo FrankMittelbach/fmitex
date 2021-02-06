@@ -1,0 +1,27 @@
+\documentclass {article}
+
+\input{regression-test}
+    
+\predisplaypenalty=9000
+
+\usepackage{widows-and-orphans}
+
+\newcommand\stupidpara{A first (orphan?) line\\a second line\\and a final (widow?) line.\par}
+\newcommand\verystupidpara{A two-line para\\with (orphan+widow?) or not?\par}
+
+\setlength\textheight{5\baselineskip}
+
+\begin{document}
+
+\START
+
+\tracingpages1\tracingonline1
+
+  first line \\
+  second line \\
+  third line \\
+  last line before display:
+  \[ a_x=\frac{1}{2}^2 \]
+
+
+\end{document}

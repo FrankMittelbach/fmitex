@@ -1,0 +1,81 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+%% goal height=60.0, max depth=5.0
+% t=0.0 g=60.0 b=10000 p=0 c=100000#
+% t=22.0 g=60.0 b=10000 p=0 c=100000#
+% t=34.0 g=60.0 b=10000 p=0 c=100000#
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line ....
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line ....
+% t=78.05238 plus 3.0 g=60.0 b=* p=0 c=*
+[1
+]
+%% goal height=60.0, max depth=5.0
+% t=42.05238 plus 3.0 g=60.0 b=10000 p=0 c=100000#
+% t=85.55238 plus 7.0 minus 3.0 g=60.0 b=* p=0 c=*
+[2]
+%% goal height=60.0, max depth=5.0
+% t=34.0 g=60.0 b=10000 p=0 c=100000#
+% t=70.0 plus 1.0 g=60.0 b=* p=0 c=*
+[3]
+%% goal height=60.0, max depth=5.0
+% t=34.0 g=60.0 b=10000 p=0 c=100000#
+% t=70.0 plus 1.0 g=60.0 b=* p=0 c=*
+[4]
+%% goal height=60.0, max depth=5.0
+% t=34.0 g=60.0 b=10000 p=0 c=100000#
+% t=70.0 plus 1.0 g=60.0 b=* p=0 c=*
+[5]
+%% goal height=60.0, max depth=5.0
+% t=34.0 g=60.0 b=10000 p=0 c=100000#
+% t=58.0 plus 1.0 g=60.0 b=800 p=0 c=800#
+% t=82.0 plus 2.0 g=60.0 b=* p=0 c=*
+[6]
+%% goal height=60.0, max depth=5.0
+% t=22.0 g=60.0 b=10000 p=0 c=100000#
+% t=46.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
+% t=70.0 plus 2.0 g=60.0 b=* p=0 c=*
+[7]
+%% goal height=60.0, max depth=5.0
+% t=22.0 g=60.0 b=10000 p=0 c=100000#
+% t=22.0 plus 1.0fil g=60.0 b=0 p=-10000 c=-10000#
+[8]
+%% goal height=60.0, max depth=5.0
+% t=0.0 g=60.0 b=10000 p=0 c=100000#
+% t=10.0 g=60.0 b=10000 p=-10001 c=-10001#
+%% goal height=60.0, max depth=5.0
+% t=0.0 g=60.0 b=10000 p=0 c=100000#
+% t=34.0 g=60.0 b=10000 p=0 c=100000#
+% t=70.0 plus 1.0 g=60.0 b=* p=0 c=*
+%% goal height=60.0, max depth=5.0
+% t=34.0 g=60.0 b=10000 p=0 c=100000#
+% t=58.0 plus 1.0 g=60.0 b=800 p=0 c=800#
+% t=94.0 plus 2.0 g=60.0 b=* p=0 c=*
+[9
+]
+%% goal height=60.0, max depth=5.0
+% t=34.0 g=60.0 b=10000 p=0 c=100000#
+% t=70.0 plus 1.0 g=60.0 b=* p=0 c=*
+%% goal height=60.0, max depth=5.0
+% t=34.0 g=60.0 b=10000 p=0 c=100000#
+% t=58.0 plus 1.0 g=60.0 b=800 p=0 c=800#
+% t=82.0 plus 2.0 g=60.0 b=* p=0 c=*
+[10]
+%% goal height=60.0, max depth=5.0
+% t=22.0 g=60.0 b=10000 p=0 c=100000#
+% t=46.0 plus 1.0 g=60.0 b=10000 p=0 c=100000#
+% t=46.0 plus 1.0 plus 1.0fil g=60.0 b=0 p=-10000 c=-10000#
+%% goal height=60.0, max depth=5.0
+% t=0.0 g=60.0 b=10000 p=0 c=100000#
+% t=10.0 g=60.0 b=10000 p=-10001 c=-10001#
+%% goal height=60.0, max depth=5.0
+% t=0.0 g=60.0 b=10000 p=0 c=100000#
+% t=10.0 g=60.0 b=10000 p=0 c=100000#
+% t=10.0 plus 1.0fil g=60.0 b=0 p=-10000 c=-10000#
+[11
+]
+%% goal height=60.0, max depth=5.0
+% t=0.0 g=60.0 b=10000 p=0 c=100000#
+% t=10.0 g=60.0 b=10000 p=-10001 c=-10001#
+(wao008.aux)

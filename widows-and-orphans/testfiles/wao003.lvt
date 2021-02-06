@@ -2,9 +2,8 @@
 
 \input{regression-test}
     
-\clubpenalty=152
 
-\usepackage[force]{widows-and-orphans}
+\usepackage{widows-and-orphans}
 
 \newcommand\stupidpara{A first (orphan?) line\\a second line\\and a final (widow?) line.\par}
 \newcommand\verystupidpara{A two-line para\\with (orphan+widow?) or not?\par}
@@ -19,8 +18,10 @@
 
   first line \\
   second line \\
+  third line \\
+  fourth line \\
   Widow line before display:
-  \[ a=b \]
+  \[ a_x=\frac{1}{2}^2 \]
 
 
   \stupidpara\stupidpara\stupidpara\stupidpara

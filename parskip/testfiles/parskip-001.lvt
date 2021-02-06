@@ -1,0 +1,38 @@
+\documentclass{article}
+
+\input{regression-test}
+
+\usepackage{lmodern}
+
+\START
+
+\usepackage{parskip}
+
+\showoutput
+
+\OMIT
+
+\begin{document}
+
+\TIMO
+
+\tableofcontents
+
+\section{A}
+
+Here we have a a paragraph.
+
+And here is the second one.
+\begin{itemize}
+\item A
+\item B
+\end{itemize}
+some more text.
+
+And here is the third one.
+
+\section{B}
+
+And here is another one.
+
+\end{document}

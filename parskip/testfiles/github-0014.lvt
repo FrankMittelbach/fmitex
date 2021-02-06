@@ -1,0 +1,19 @@
+\documentclass{article}
+
+\input{regression-test}
+
+\START
+
+\setlength\baselineskip{12pt plus 2pt minus 2pt}
+
+\usepackage[skip]{parskip}
+
+\OMIT
+
+\begin{document}
+
+\TIMO
+
+\showthe\parskip
+
+\END
