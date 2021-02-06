@@ -42,7 +42,7 @@ See the doc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
 l. ...\RenewDocElement{Dimen}{dimen}
-                                     % but \PrintDimenName undefined
+                                       % but \PrintDimenName undefined
 I expected an existing definition for '\PrintDimenName',
 '\PrintDescribeDimen' and the environment 'dimen' but
 not all of them are defined.

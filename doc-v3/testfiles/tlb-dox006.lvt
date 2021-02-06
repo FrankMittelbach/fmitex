@@ -31,7 +31,7 @@
 \NewDocElement  {Env}{environment}
 
 \NewDocElement  {Dimen}{dimen}    % \dimen already a primitive
-\RenewDocElement{Dimen}{dimen}  % but \PrintDimenName undefined
+\RenewDocElement{Dimen}{dimen}    % but \PrintDimenName undefined
 
 
 \END
