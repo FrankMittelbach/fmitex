@@ -46,7 +46,7 @@
 %<+beta>\ProvidesPackage{doc-v3beta}
 %</package>
 %<+shortvrb>\ProvidesPackage{shortvrb}
-%<+package|shortvrb>  [2021/02/05 v3.0c
+%<+package|shortvrb>  [2021/02/06 v3.0d
 %<+package|shortvrb>   Standard LaTeX documentation package V3 (FMi)]
 %\catcode`\<=12
 %
@@ -1471,9 +1471,17 @@
 % \DOC version~3 modifcations have to be done after the \DOC package
 % got loaded and the last modification will always win.
 %
-%
 % I'm temped to drop compatibility with \LaTeX~2.09  (but so far I
 % have left it in).
+%
+% Finally the fact that we now allow several commands separated by
+% commas in the argument to \verb=\begin{macro}= or
+% \verb=\begin{env}=, etc., has the side effect that names used there
+% can't contain a comma as that is seen as a separator, e.g.,
+% \verb=\begin{macro}{\,}= is now seen as describing the command
+% ``\verb=\='' and not ``\verb=\,=''. In that case hide the comma by
+% surrounding the whole name with an extra brace group, e.g.,
+% \verb=\begin{macro}{{\,}}= will work.
 %
 %
 % \section{Old interfaces no longer really neeeded}
@@ -3667,10 +3675,22 @@
                                                   \noexpand\fi }
                                  \def\reserved@b { \c_right_brace_str }
                                  \let\reserved@c \@empty                         }
-          {\verbatimchar}      { \def\reserved@a{ \quotechar\verbatimchar
-                                                  \actualchar }
-                                 \let\reserved@b \@empty
-                                 \def\reserved@c { \string\texttt{\verbatimchar} } }
+%    \end{macrocode}
+%    The case of \cs{verbatimchar} is tricky. We can't stick it into
+%    the normal \cs{verb} because we would then get something like
+%    \verb=\verb+\++= which would comes out as ``\verb+\++'' instead
+%    of \verb=\+=. So we use the \cs{verb} to only generate the
+%    backslash and then use \cs{texttt} on the \cs{verbatimchar}
+%    itself. However, that is not enough if we are unlucky and
+%    somebody (like Will :-)) has used something like \verb=&= with a
+%    special catcode for the \cs{verbatimchar}. We therefore also
+%    apply \cs{string} to it when we read it back.
+%    \begin{macrocode}
+          {\verbatimchar}  { \def\reserved@a{ \quotechar\verbatimchar
+                                              \actualchar }
+                             \let\reserved@b \@empty
+                             \def\reserved@c
+                                 { \string\texttt{\string\string\verbatimchar} } }
         }
         { \def\reserved@a {\quotechar \@gtempa \actualchar }
           \def\reserved@b {\quotechar \@gtempa  }
