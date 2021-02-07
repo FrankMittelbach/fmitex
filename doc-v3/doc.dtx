@@ -1474,14 +1474,24 @@
 % I'm temped to drop compatibility with \LaTeX~2.09  (but so far I
 % have left it in).
 %
-% Finally the fact that we now allow several commands separated by
-% commas in the argument to \verb=\begin{macro}= or
-% \verb=\begin{env}=, etc., has the side effect that names used there
-% can't contain a comma as that is seen as a separator, e.g.,
-% \verb=\begin{macro}{\,}= is now seen as describing the command
-% ``\verb=\='' and not ``\verb=\,=''. In that case hide the comma by
-% surrounding the whole name with an extra brace group, e.g.,
-% \verb=\begin{macro}{{\,}}= will work.
+% In the past it was possible to use macros declared with \cs{outer}
+% in the argument of \verb=\begin{macro}= or \cs{DoNotIndex} even
+% though \cs{outer} is not a concept supported in \LaTeX{}. This is no
+% longer possible. More exactly, it is no longer possible to prevent
+% them from being indexed (as \cs{DoNotIndex} can't be used), but you
+% can pass them to the \env{macro} environment as follows:
+%\begin{verbatim}
+%     \begin{macro}[outer]{\foo}
+%\end{verbatim}
+% if \cs{foo} is a macro declared with \cs{outer}. The technical
+% reason for this change is that in the past various other commands,
+% such as |\{| or |\}| did not work properly in these arguments when
+% they where passed as ``strings'' and not as single macro tokens. But
+% by switching to macro tokens we can't have \cs{outer} macros because
+% their feature is to be not allowed in arguments. So what happens
+% above when you use \texttt{[outer]} is that the argument is read as
+% a string with four character tokens so that it is not recognized as
+% being \cs{outer}.
 %
 %
 % \section{Old interfaces no longer really neeeded}
