@@ -11,7 +11,11 @@ l3build save -epdftex,xetex,luatex \
 	tlb1622
 
 l3build save -epdftex,xetex \
-	tlb-dox009
+	tlb-dox009 \
+	tlb-dox009 \
+	tlb-dox010 \
+	tlb-dox011 \
+	tlb-dox012
 
 
 l3build save -epdftex,luatex \

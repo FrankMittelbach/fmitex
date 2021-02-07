@@ -1,11 +1,11 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 \indexentry{foo=\verb!*+\foo+|hdclindex{3}{main}}{1}
-Disable indexing for '\foo '
+Disable indexing for '\foo'
 \indexentry{bar=\verb!*+\bar+|hdclindex{4}{main}}{1}
-Disable indexing for '\bar '
+Disable indexing for '\bar'
 \indexentry{myskip=\verb!*+\myskip+|hdclindex{5}{main}}{1}
-Disable indexing for '\myskip '
+Disable indexing for '\myskip'
 Searching for '\def'
 Indexing '\def' (\SpecialIndex)
 \indexentry{def=\verb!*+\def+|hdclindex{6}{code}}{1}
@@ -40,15 +40,15 @@ Indexing '\myotherskip' as Length
 Recording index type for '\mythird' as Length
 \indexentry{mythird=\verb!*+\mythird+ (length)|hdclindex{13}{main}}{6}
 \indexentry{lengths:>mythird=\verb!*+\mythird+|hdclindex{13}{main}}{6}
-Disable indexing for '\mythird '
+Disable indexing for '\mythird'
 Recording index type for '\myotherskip' as Length
 \indexentry{myotherskip=\verb!*+\myotherskip+ (length)|hdclindex{14}{main}}{6}
 \indexentry{lengths:>myotherskip=\verb!*+\myotherskip+|hdclindex{14}{main}}{6}
-Disable indexing for '\myotherskip '
+Disable indexing for '\myotherskip'
 Recording index type for '\myskip' as Length
 \indexentry{myskip=\verb!*+\myskip+ (length)|hdclindex{15}{main}}{6}
 \indexentry{lengths:>myskip=\verb!*+\myskip+|hdclindex{15}{main}}{6}
-Disable indexing for '\myskip '
+Disable indexing for '\myskip'
 Searching for '\newskip'
 Indexing '\newskip' (\SpecialIndex)
 \indexentry{newskip=\verb!*+\newskip+|hdclindex{16}{code}}{6}

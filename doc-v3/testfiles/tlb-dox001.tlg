@@ -4,13 +4,13 @@ Don't change this file in any respect.
 Recording index type for '\mylength' as Length
 \indexentry{mylength=\verb!*+\mylength+ (length)|hdclindex{6}{main}}{1}
 \indexentry{lengths:>mylength=\verb!*+\mylength+|hdclindex{6}{main}}{1}
-Disable indexing for '\mylength '
+Disable indexing for '\mylength'
 Searching for '\mylength'
 Not indexing '\mylength'
 \indexentry{myenvironment={\ttfamily myenvironment} (environment)|hdclindex{10}{main}}{2}
 \indexentry{environments:>myenvironment={\ttfamily myenvironment}|hdclindex{10}{main}}{2}
 \indexentry{@mymacro=\verb!*+\@mymacro+|hdclindex{11}{main}}{2}
-Disable indexing for '\@mymacro '
+Disable indexing for '\@mymacro'
 Searching for '\def'
 Indexing '\def' (\SpecialIndex)
 \indexentry{def=\verb!*+\def+|hdclindex{12}{code}}{2}

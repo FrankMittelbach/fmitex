@@ -20,7 +20,7 @@ Indexing '\%' (\SpecialShortIndex)
 \indexentry{!%=\verb!*+!\!%+|hdclindex{6}{code}}{6}
 Searching for '\+'
 Indexing '\+' (\SpecialShortIndex)
-\indexentry{!+=\verb!*+!\+\texttt{+}|hdclindex{7}{code}}{7}
+\indexentry{!+=\verb!*+!\+\texttt{\string+}|hdclindex{7}{code}}{7}
 Searching for '\*'
 Indexing '\*' (\SpecialShortIndex)
 \indexentry{!*=\verb!*+!\!*+|hdclindex{8}{code}}{8}

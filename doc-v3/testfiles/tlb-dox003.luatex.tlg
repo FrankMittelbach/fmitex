@@ -4,7 +4,7 @@ Don't change this file in any respect.
 Recording index type for '\mylength' as Length
 \indexentry{mylength=\verb!*+\mylength+ (length)|main}{1}
 \indexentry{lengths:>mylength=\verb!*+\mylength+|main}{1}
-Disable indexing for '\mylength '
+Disable indexing for '\mylength'
 Searching for '\mylength'
 Not indexing '\mylength'
 [1
@@ -29,7 +29,7 @@ Indexing '\mylength' as Length
 \indexentry{mylength=\verb!*+\mylength+ (length)|code}{2}
 \indexentry{lengths:>mylength=\verb!*+\mylength+|code}{2}
 \indexentry{@mymacro=\verb!*+\@mymacro+|main}{3}
-Disable indexing for '\@mymacro '
+Disable indexing for '\@mymacro'
 Searching for '\def'
 Indexing '\def' (\SpecialIndex)
 \indexentry{def=\verb!*+\def+|code}{3}

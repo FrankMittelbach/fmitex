@@ -12,7 +12,7 @@ LaTeX Font Info:    Trying to load font information for T1+cmtt on input line ..
 \indexentry{foo=\verb!*+\foo+|hdclindex{2}{usage}}{1}
 ]
 \indexentry{foo=\verb!*+\foo+|hdclindex{3}{main}}{1}
-Disable indexing for '\foo '
+Disable indexing for '\foo'
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line ....
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -22,7 +22,7 @@ Not indexing '\foo'
 Recording index type for '\mylength' as Length
 \indexentry{mylength=\verb!*+\mylength+ (length)|hdclindex{7}{main}}{4}
 \indexentry{lengths:>mylength=\verb!*+\mylength+|hdclindex{7}{main}}{4}
-Disable indexing for '\mylength '
+Disable indexing for '\mylength'
 Searching for '\mylength'
 Not indexing '\mylength'
 Searching for '\foo'

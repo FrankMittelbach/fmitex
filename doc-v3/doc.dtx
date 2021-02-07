@@ -46,7 +46,7 @@
 %<+beta>\ProvidesPackage{doc-v3beta}
 %</package>
 %<+shortvrb>\ProvidesPackage{shortvrb}
-%<+package|shortvrb>  [2021/02/06 v3.0d
+%<+package|shortvrb>  [2021/02/07 v3.0e
 %<+package|shortvrb>   Standard LaTeX documentation package V3 (FMi)]
 %\catcode`\<=12
 %
@@ -1909,6 +1909,13 @@
 \DeclareStringOption{idxgroup}
 \DeclareStringOption{printtype}
 %    \end{macrocode}
+% And this one only for instances of doc elements in the document, it
+%    covers the case where you want to document a macro which is
+%    declared to be \cs{outer}. This is not a concept officially
+%    supported by \LaTeX{} but there are cases when it gets used.   
+%    \begin{macrocode}
+\DeclareBoolOption[false]{outer}
+%    \end{macrocode}
 %
 % \subsection{Processing the package options}
 %
@@ -3331,7 +3338,7 @@
 %
 %  \begin{macro}{\doc_dont_index:n}
 %  \begin{macro}{\__doc_dont_index:n}
-%  \begin{macro}{\__doc_dont_index:N}
+%  \begin{macro}{\__doc_dont_index_aux:n}
 %
 %    Parses the argument a clist of commands with
 %    |\MakePrivateLetters| in force (so that special characters are
@@ -3352,23 +3359,23 @@
 %    \end{macrocode}
 %    
 %    \begin{macrocode}
-  \__doc_trace:x{Disable~ indexing~ for~ '\exp_not:n{#1}' }
+  \__doc_trace:x{Disable~ indexing~ for~ '\tl_to_str:n{#1}' }
 %    \end{macrocode}
 %    Adding the commands to the |\l__doc_donotindex_seq| sequence is
-%    done by mapping the function |\__doc_dont_index:N|  on each
+%    done by mapping the function |\__doc_dont_index_aux:n|  on each
 %    element in the clist.
 %    \begin{macrocode}
-  \clist_map_function:nN {#1} \__doc_dont_index:N
+  \clist_map_function:nN {#1} \__doc_dont_index_aux:n
 }
 %    \end{macrocode}
-%    We record each command by using its name as a string (without the
-%    backslash. This means more tokens in the sequence but it allows
+%    We record each command by using its name as a string.
+%    This means more tokens in the sequence but it allows
 %    to compare names not ``action'' which is important as different
 %    commands may have the same meaning (e.g., they may not be defined
 %    at all),
 %    \begin{macrocode}
-\cs_new:Npn \__doc_dont_index:N #1 {
-  \seq_put_right:Nx \l__doc_donotindex_seq {\cs_to_str:N #1}
+\cs_new:Npn \__doc_dont_index_aux:n #1 {
+  \seq_put_right:Nx \l__doc_donotindex_seq {\expandafter\@gobble \string#1}
 }
 %    \end{macrocode}
 %  \end{macro}
@@ -3389,6 +3396,7 @@
 \def \ShowIndexingState {
   \__doc_trace:x{Show~ doc~ indexing~ state:}
   \seq_show:N  \l__doc_donotindex_seq
+%  \tl_analysis_show:N\l__doc_donotindex_seq
   \prop_show:N \g__doc_idxtype_prop
 }
 %    \end{macrocode}
@@ -5589,7 +5597,8 @@
 % and the third one involves dynamically constructing the name of the index
 % macro:
 %    \begin{macrocode}
-      \@nameuse{SpecialMain#2Index}{#3}\nobreak
+      \csname SpecialMain#2Index\expandafter\endcsname
+        \expandafter{\saved@macroname}\nobreak
       \global\advance\c@CodelineNo\m@ne
     \fi
 %    \end{macrocode}
@@ -5599,7 +5608,7 @@
 %    generated for items starting with a backslash anyway.
 % \fmi{fix}
 %    \begin{macrocode}
-    \if#1\expandafter\DoNotIndex \csname \saved@indexname\endcsname \fi
+    \if#1\expandafter\DoNotIndex \expandafter {\saved@macroname}\fi
     \ignorespaces}
 %    \end{macrocode}
 % \end{macro}
@@ -5624,7 +5633,9 @@
   \@nameuse{doc@noindex\doc@noindexdefault}%
   \setkeys{doc}{#3}%
   \begingroup
-    \catcode`\\12
+    \ifdoc@outer
+      \catcode`\\12
+    \fi
     \MakePrivateLetters
     \@doc@env{#1}{#2}%
 }

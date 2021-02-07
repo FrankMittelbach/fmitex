@@ -24,7 +24,7 @@ l. ...\ShowIndexingState
 Not recording index type for '\foo'
 \indexentry{foo=\verb!*+\foo+ (length)|hdclindex{7}{main}}{2}
 \indexentry{lengths:>foo=\verb!*+\foo+|hdclindex{7}{main}}{2}
-Disable indexing for '\foo '
+Disable indexing for '\foo'
 Searching for '\foo'
 Not indexing '\foo'
 Show doc indexing state:
@@ -42,7 +42,7 @@ braces):
 l. ...\ShowIndexingState
                          ^^A \foo doesn't show up because it is not indexed!
 \indexentry{par=\verb!*+\par+|hdclindex{9}{main}}{3}
-Disable indexing for '\par '
+Disable indexing for '\par'
 Searching for '\def'
 Indexing '\def' (\SpecialIndex)
 \indexentry{def=\verb!*+\def+|hdclindex{10}{code}}{3}

@@ -322,7 +322,7 @@ e}}\ETC.}
 \indexentry{mylength=\verb!*+\mylength+ (length)|hdclindex{5}{usage}}{1}
 \indexentry{lengths:>mylength=\verb!*+\mylength+|hdclindex{5}{usage}}{1}
 Recording index type for '\mylength' as Length
-Disable indexing for '\mylength '
+Disable indexing for '\mylength'
 Searching for '\mylength'
 Not indexing '\mylength'
 Completed box being shipped out [2]
@@ -620,7 +620,7 @@ Searching for '\hsize'
 Indexing '\hsize' (\SpecialIndex)
 Searching for '\mylength'
 Indexing '\mylength' as Length
-Disable indexing for '\@mymacro '
+Disable indexing for '\@mymacro'
 Searching for '\def'
 Indexing '\def' (\SpecialIndex)
 Searching for '\@mylength'

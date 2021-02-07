@@ -5,7 +5,7 @@ Don't change this file in any respect.
 * Character table correct *
 ***************************
 \indexentry{mymacro=\verb!*+\mymacro+|main}{1}
-Disable indexing for '\mymacro '
+Disable indexing for '\mymacro'
 Searching for '\begin'
 Not indexing '\begin'
 Searching for '\mymacro'
@@ -16,7 +16,7 @@ Indexing '\mymacronobsc' (\SpecialIndex)
 Searching for '\end'
 Not indexing '\end'
 \indexentry{mymacronobsc=\verb!*+\mymacronobsc+|main}{5}
-Disable indexing for '\ymacronobsc '
+Disable indexing for 'mymacronobsc'
 Searching for '\begin'
 Not indexing '\begin'
 Searching for '\mymacro'
