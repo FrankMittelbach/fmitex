@@ -34,9 +34,6 @@ Searching for '\myotherskip'
 Indexing '\myotherskip' as Length
 \indexentry{myotherskip=\verb!*+\myotherskip+ (length)|hdclindex{10}{code}}{5}
 \indexentry{lengths:>myotherskip=\verb!*+\myotherskip+|hdclindex{10}{code}}{5}
-(../se-ascii-print.def
-File: se-ascii-print.def ....-..-.. v... stringenc: Printable ASCII characters
-)
 [1
 \indexentry{myskip=\verb!*+\myskip+|hdclindex{2}{usage}}{1}
 ]

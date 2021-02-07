@@ -1,8 +1,5 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-(../se-ascii-print.def
-File: se-ascii-print.def ....-..-.. v... stringenc: Printable ASCII characters
-)
 (tlb-hypdoc001.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line ....
@@ -56,6 +53,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 \indexentry{counters:>secnumdepth={\ttfamily secnumdepth}|hdclindex{17}{usage}}{2}
 ]) [3] (tlb-hypdoc001.aux)
 Package rerunfilecheck Info: File `tlb-hypdoc001.out' has not changed.
-(rerunfilecheck)             Checksum: 206E58C959F1E025A05F3A82597A105F;382.
+(rerunfilecheck)             Checksum: 02BF5FF5A4002CD28A9EB50F297994CB;842.
 Package rerunfilecheck Info: File `tlb-hypdoc001.hd' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.

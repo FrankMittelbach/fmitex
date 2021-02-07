@@ -8,9 +8,6 @@ Don't change this file in any respect.
 \indexentry{@mymacro=\verb!*+\@mymacro+|hdclindex{9}{main}}{2}
 \indexentry{def=\verb!*+\def+|hdclindex{10}{code}}{2}
 \indexentry{mylength=\verb!*+\mylength+|hdclindex{10}{code}}{2}
-(../se-ascii-print.def
-File: se-ascii-print.def ....-..-.. v... stringenc: Printable ASCII characters
-)
 [1
 \glossaryentry{v1>foo=\verb!*+foo+:>first change|hdpindex{}}{1}
 \indexentry{mylength=\verb!*+\mylength+|hdclindex{3}{usage}}{1}

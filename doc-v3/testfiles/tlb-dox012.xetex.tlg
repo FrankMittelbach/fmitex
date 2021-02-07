@@ -35,9 +35,6 @@ spurious, as in `$x}$'. But perhaps the } is legitimate and
 you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
-(../se-ascii-print.def
-File: se-ascii-print.def ....-..-.. v... stringenc: Printable ASCII characters
-)
 [1
 \indexentry{foo=\verb!*+\foo+|hdpindex{code}}{1}
 \indexentry{foo=\verb!*+\foo+|hdpindex{main}}{1}

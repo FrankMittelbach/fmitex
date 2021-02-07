@@ -81,9 +81,6 @@ Indexing '\'' (\SpecialShortIndex)
 Searching for '\#'
 Indexing '\#' (\SpecialShortIndex)
 \indexentry{!#=\verb!*+!\!#+|hdclindex{27}{code}}{27}
-(../se-ascii-print.def
-File: se-ascii-print.def ....-..-.. v... stringenc: Printable ASCII characters
-)
 [1
 ] (tlb-dox009.aux)
 Package rerunfilecheck Info: File `tlb-dox009.out' has not changed.
