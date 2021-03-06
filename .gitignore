@@ -13,14 +13,10 @@
 *.zip
 00-change-name.sh
 TEMPLATE
-dashundergaps/build
 doc-v3/build
 doc-v3/tmp
-fewerfloatpages/build
 footmisc/build
 footmisc/build
 ftnright/build
 hummingbird/build
-parskip/build
 unicodefonttable/build
-widows-and-orphans/build
